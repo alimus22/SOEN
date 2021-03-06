@@ -21,6 +21,7 @@ public class Client extends Thread {
     private static int maxNbTransactions;      		/* Maximum number of transactions */
     private static Transactions [] transaction; 	        /* Transactions to be processed */
     private String clientOperation;    			/* sending or receiving */
+    private int numberOfTransactionsReceived;
        
 	/** Constructor method of Client class
  	 * 
@@ -33,6 +34,7 @@ public class Client extends Thread {
        { 
            System.out.println("\n Initializing client sending application ...");
            numberOfTransactions = 0;
+           numberOfTransactionsReceived = 0;
            maxNbTransactions = 100;
            transaction = new Transactions[maxNbTransactions];  
            clientOperation = operation; 
@@ -184,7 +186,7 @@ public class Client extends Thread {
          
          while (i < getNumberOfTransactions())
          {
-             while (Network.getOutBufferStatus().equals("empty") && System.currentTimeMillis() < waitTime)
+             while (Network.getOutBufferStatus().equals("empty"))
              {
                  Thread.yield(); 	/* Yield the cpu if the network output buffer is full */
              }

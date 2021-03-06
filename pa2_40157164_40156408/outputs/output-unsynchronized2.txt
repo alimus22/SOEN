@@ -2328,7 +2328,9 @@ C:\Users\Ali\.jdks\corretto-11.0.10\bin\java.exe "-javaagent:C:\Program Files\Je
 
  DEBUG : Server.processTransactions() - 71 accounts updated
 
- Terminating serverThread1 Running time 383 milliseconds
+ Terminating serverThread2 Running time 392 milliseconds
+
+ Terminating serverThread1 Running time 392 milliseconds
 
  Terminating network thread - Client disconnected Server disconnected
 
