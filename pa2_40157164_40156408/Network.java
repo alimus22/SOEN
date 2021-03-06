@@ -360,7 +360,7 @@ public class Network extends Thread {
         		  inComingPacket[inputIndexClient].setTransactionBalance(inPacket.getTransactionBalance());
         		  inComingPacket[inputIndexClient].setTransactionError(inPacket.getTransactionError());
         		  inComingPacket[inputIndexClient].setTransactionStatus("transferred");
-            
+
         		 System.out.println("\n DEBUG : Network.send() - index inputIndexClient " + inputIndexClient);
         		 System.out.println("\n DEBUG : Network.send() - account number " + inComingPacket[inputIndexClient].getAccountNumber());
             
@@ -369,8 +369,8 @@ public class Network extends Thread {
         		  if (getinputIndexClient() == getoutputIndexServer())
         		  {	
         			  setInBufferStatus("full");
-            	
-        			System.out.println("\n DEBUG : Network.send() - inComingBuffer status " + getInBufferStatus());
+
+        			  System.out.println("\n DEBUG : Network.send() - inComingBuffer status " + getInBufferStatus());
         		  }
         		  else 
         		  {
@@ -404,7 +404,7 @@ public class Network extends Thread {
         		 {	
         			 setOutBufferStatus("empty");
             
-        			System.out.println("\n DEBUG : Network.receive() - outGoingBuffer status " + getOutBufferStatus());
+           			 System.out.println("\n DEBUG : Network.receive() - outGoingBuffer status " + getOutBufferStatus());
         		 }
         		 else 
         		 {
@@ -441,7 +441,7 @@ public class Network extends Thread {
         		{
         			setOutBufferStatus("full");
 
-        			System.out.println("\n DEBUG : Network.transferOut() - outGoingBuffer status " + getOutBufferStatus());
+           			System.out.println("\n DEBUG : Network.transferOut() - outGoingBuffer status " + getOutBufferStatus());
         		}
         		else
         		{
@@ -499,13 +499,13 @@ public class Network extends Thread {
          {
              if (getClientIP().equals(IP))
              {
-                setClientConnectionStatus("connected");
-                setPortID(0);
+                 setClientConnectionStatus("connected");
+                 setPortID(0);
              }
              else
              if (getServerIP().equals(IP))
              {
-                setServerConnectionStatus("connected");
+                 setServerConnectionStatus("connected");
              }
              return true;
          }
@@ -525,12 +525,12 @@ public class Network extends Thread {
          {
              if (getClientIP().equals(IP))
              {
-                setClientConnectionStatus("disconnected");
+                 setClientConnectionStatus("disconnected");
              }
              else
              if (getServerIP().equals(IP))
              {
-                setServerConnectionStatus("disconnected");
+                 setServerConnectionStatus("disconnected");
              }
              return true;
          }
@@ -563,7 +563,7 @@ public class Network extends Thread {
     	    if(getClientConnectionStatus().equals("disconnected") && getServerConnectionStatus().equals("disconnected")) {
                 System.out.println("\n Terminating network thread - Client " + getClientConnectionStatus() + " Server " + getServerConnectionStatus());
                 setNetworkStatus("inactive");
-                return;
+                System.exit(0);
             } else {
     	        Thread.yield();
             }

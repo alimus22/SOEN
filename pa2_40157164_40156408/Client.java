@@ -21,6 +21,7 @@ public class Client extends Thread {
     private static int maxNbTransactions;      		/* Maximum number of transactions */
     private static Transactions [] transaction; 	        /* Transactions to be processed */
     private String clientOperation;    			/* sending or receiving */
+    private int numberOfTransactionsReceived;
        
 	/** Constructor method of Client class
  	 * 
@@ -33,6 +34,7 @@ public class Client extends Thread {
        { 
            System.out.println("\n Initializing client sending application ...");
            numberOfTransactions = 0;
+           numberOfTransactionsReceived = 0;
            maxNbTransactions = 100;
            transaction = new Transactions[maxNbTransactions];  
            clientOperation = operation; 
@@ -180,6 +182,7 @@ public class Client extends Thread {
      public void receiveTransactions(Transactions transact)
      {
          int i = 0;     /* Index of transaction array */
+         long waitTime = System.currentTimeMillis() + 500;
          
          while (i < getNumberOfTransactions())
          {
@@ -192,7 +195,7 @@ public class Client extends Thread {
             
             System.out.println("\n DEBUG : Client.receiveTransactions() - receiving updated transaction on account " + transact.getAccountNumber());
             
-            System.out.println(transact);                               /* Display updated transaction */    
+            System.out.println(transact);                               /* Display updated transaction */
             i++;
          } 
     }
