@@ -180,10 +180,11 @@ public class Client extends Thread {
      public void receiveTransactions(Transactions transact)
      {
          int i = 0;     /* Index of transaction array */
+         long waitTime = System.currentTimeMillis() + 500;
          
          while (i < getNumberOfTransactions())
          {
-             while (Network.getOutBufferStatus().equals("empty"))
+             while (Network.getOutBufferStatus().equals("empty") && System.currentTimeMillis() < waitTime)
              {
                  Thread.yield(); 	/* Yield the cpu if the network output buffer is full */
              }
@@ -192,7 +193,7 @@ public class Client extends Thread {
             
             System.out.println("\n DEBUG : Client.receiveTransactions() - receiving updated transaction on account " + transact.getAccountNumber());
             
-            System.out.println(transact);                               /* Display updated transaction */    
+            System.out.println(transact);                               /* Display updated transaction */
             i++;
          } 
     }

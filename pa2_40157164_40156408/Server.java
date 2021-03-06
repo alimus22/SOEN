@@ -268,7 +268,7 @@ public class Server extends Thread {
          System.out.println("\n DEBUG : Server.processTransactions() " + getServerThreadId() );
          
          /* Process the accounts until the client disconnects */
-         while ((!Network.getClientConnectionStatus().equals("disconnected")))
+         while (!(Network.getClientConnectionStatus().equals("disconnected")))
          {
 
              while ( (Network.getInBufferStatus().equals("empty") && !Network.getClientConnectionStatus().equals("disconnected")) )
@@ -426,6 +426,7 @@ public class Server extends Thread {
         serverStartTime = System.currentTimeMillis();
         this.processTransactions(trans);
         serverEndTime = System.currentTimeMillis();
+        System.out.println("\n Terminating " + getServerThreadId() + " Running time " + (serverEndTime - serverStartTime) + " milliseconds");
 
         if(getServerThreadId().equals("serverThread1")) {
             setServerThreadRunningStatus1("terminated");
@@ -435,7 +436,6 @@ public class Server extends Thread {
 
         if(getServerThreadRunningStatus1().equals("terminated")
         && getServerThreadRunningStatus2().equals("terminated")) {
-            System.out.println("\n Terminating " + getServerThreadId() + " Running time " + (serverEndTime - serverStartTime) + " milliseconds");
             Network.disconnect(Network.getServerIP());
         }
 	
