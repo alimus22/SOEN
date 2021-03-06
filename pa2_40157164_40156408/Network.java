@@ -24,7 +24,7 @@ public class Network extends Thread {
     private static Transactions outGoingPacket[];              /* Outgoing network buffer */
     private static String inBufferStatus, outBufferStatus;     /* Current status of the network buffers - normal, full, empty */
     private static String networkStatus;                       /* Network status - active, inactive */
-    private static Semaphore emptySend, fullReceive, emptyTransferOut, fullTransferIn, muteIn, muteOut;
+    private static Semaphore emptySend, fullReceive, emptyTransferOut, fullTransferIn, mutexIn, mutexOut;
        
     /** 
      * Constructor of the Network class
@@ -61,10 +61,10 @@ public class Network extends Thread {
          // Semaphores
           emptySend = new Semaphore(maxNbPackets);
           fullTransferIn = new Semaphore(0);
-          muteIn = new Semaphore(1);
+          mutexIn = new Semaphore(1);
           emptyTransferOut = new Semaphore(maxNbPackets);
           fullReceive = new Semaphore(0);
-          muteOut = new Semaphore(1);
+          mutexOut = new Semaphore(1);
 
       }     
         
@@ -365,7 +365,7 @@ public class Network extends Thread {
         {
             try {
                 emptySend.acquire();
-                muteIn.acquire();
+                mutexIn.acquire();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -393,7 +393,7 @@ public class Network extends Thread {
         			  setInBufferStatus("normal");
         		  }
 
-        		  muteIn.release();
+        		  mutexIn.release();
         		  fullTransferIn.release();
             
             return true;
@@ -409,7 +409,7 @@ public class Network extends Thread {
 
             try {
                 fullReceive.acquire();
-                muteOut.acquire();
+                mutexOut.acquire();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -437,7 +437,7 @@ public class Network extends Thread {
         			 setOutBufferStatus("normal"); 
         		 }
 
-        		 muteOut.release();
+        		 mutexOut.release();
         		 emptyTransferOut.release();
 
                 return true;
@@ -456,7 +456,7 @@ public class Network extends Thread {
 
             try {
                 emptyTransferOut.acquire();
-                muteOut.acquire();
+                mutexOut.acquire();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -484,7 +484,7 @@ public class Network extends Thread {
         			setOutBufferStatus("normal");
         		}
 
-        		muteOut.release();
+        		mutexOut.release();
         		fullReceive.release();
              return true;
         }   
@@ -500,7 +500,7 @@ public class Network extends Thread {
 
             try {
                 fullTransferIn.acquire();
-                muteIn.acquire();
+                mutexIn.acquire();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -528,7 +528,7 @@ public class Network extends Thread {
     		    	 setInBufferStatus("normal");
     		     }
 
-            muteIn.release();
+            mutexIn.release();
             emptySend.release();
 
             return true;
@@ -608,7 +608,6 @@ public class Network extends Thread {
     	
     	while (true)
     	{
-//            System.out.println("hey hey");
     	    if(getClientConnectionStatus().equals("disconnected") && getServerConnectionStatus().equals("disconnected")) {
                 System.out.println("\n Terminating network thread - Client " + getClientConnectionStatus() + " Server " + getServerConnectionStatus());
                 setNetworkStatus("inactive");
