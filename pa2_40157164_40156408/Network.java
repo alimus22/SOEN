@@ -498,12 +498,12 @@ public class Network extends Thread {
        public static boolean transferIn(Transactions inPacket)
         {
 
-            try {
-                fullTransferIn.acquire();
-                mutexIn.acquire();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            while(!fullTransferIn.tryAcquire()) {
+                if(Network.getClientConnectionStatus().equals("disconnected")) {
+                    return false;
+                }
             }
+
 	
     		     inPacket.setAccountNumber(inComingPacket[outputIndexServer].getAccountNumber());
     		     inPacket.setOperationType(inComingPacket[outputIndexServer].getOperationType());
@@ -528,7 +528,6 @@ public class Network extends Thread {
     		    	 setInBufferStatus("normal");
     		     }
 
-            mutexIn.release();
             emptySend.release();
 
             return true;
