@@ -503,9 +503,14 @@ public class Network extends Thread {
                     return false;
                 }
             }
+            try {
+                mutexIn.acquire();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-	
-    		     inPacket.setAccountNumber(inComingPacket[outputIndexServer].getAccountNumber());
+
+            inPacket.setAccountNumber(inComingPacket[outputIndexServer].getAccountNumber());
     		     inPacket.setOperationType(inComingPacket[outputIndexServer].getOperationType());
     		     inPacket.setTransactionAmount(inComingPacket[outputIndexServer].getTransactionAmount());
     		     inPacket.setTransactionBalance(inComingPacket[outputIndexServer].getTransactionBalance());
@@ -528,7 +533,8 @@ public class Network extends Thread {
     		    	 setInBufferStatus("normal");
     		     }
 
-            emptySend.release();
+    		mutexIn.release();
+    		emptySend.release();
 
             return true;
         }   

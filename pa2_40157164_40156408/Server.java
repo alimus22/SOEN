@@ -318,8 +318,8 @@ public class Server extends Thread {
                         setNumberOfTransactions((getNumberOfTransactions() + 1));    /* Count the number of transactions processed */
                     }
          }
-         
-         System.out.println("\n DEBUG : Server.processTransactions() - " + getNumberOfTransactions() + " accounts updated");
+
+         //System.out.println("\n DEBUG : Server.processTransactions() - " + getNumberOfTransactions() + " accounts updated");
               
          return true;
      }
