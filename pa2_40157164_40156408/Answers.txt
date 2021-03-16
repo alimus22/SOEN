@@ -1,0 +1,11 @@
+Part i :
+
+We decided to use synchronize statement because implementing synchronized methods would be inefficient since 
+in a multi-threading context, no methods can be invoked while a synchronized methods is already being processed. 
+The implemented synchronize statement allow consistent output and account managment. 
+
+Part ii:
+
+No consequent running time difference were noted. This can be caused by a  fast cpu that makes the saved time
+unnoticeable. However, while using busy-waiting, many CPU cycles were wasted waiting. With synchronized 
+statements and semaphore, the processes are synchronized so that we lose as little CPU frames as possible. 
