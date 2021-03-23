@@ -1,0 +1,6 @@
+First the JVM counts the number of time a method is called and after a threshold is exceeded JIT compiles 
+and optimizes the bytecode so that it runs faster. 
+However, the main reason the program is supposed to run faster after each run is cache (even if it is not the case here 
+since the CPU used for the test is very powerful, making the difference irrelavant). Indeed, cache holds data and instructions
+that are frequently used and are often required by CPU operations. Cache is faster access memory than RAM givent hat it is on
+the same chip as the processor. This reduces the CPU wait time for memory retrievals from main memory.
