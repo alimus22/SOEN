@@ -2,7 +2,7 @@ import common.BaseThread;
 
 /**
  * Class Philosopher.
- * Outlines main subrutines of our virtual philosopher.
+ * Outlines main subroutines of our virtual philosopher.
  *
  * @author Serguei A. Mokhov, mokhov@cs.concordia.ca
  */
@@ -12,6 +12,15 @@ public class Philosopher extends BaseThread
 	 * Max time an action can take (in milliseconds)
 	 */
 	public static final long TIME_TO_WASTE = 1000;
+
+
+	/**
+	 * Create a new Philosopher instance with an ID.
+	 * @param tid
+	 */
+	public Philosopher(int tid) {
+		super(tid);
+	}
 
 	/**
 	 * The act of eating.
@@ -25,9 +34,11 @@ public class Philosopher extends BaseThread
 	{
 		try
 		{
-			// ...
+			System.out.println("\n Philosopher number " + this.iTID + " has started eating.");
+			Thread.yield();
 			sleep((long)(Math.random() * TIME_TO_WASTE));
-			// ...
+			Thread.yield();
+			System.out.println("\n Philosopher number " + this.iTID + " is done eating.");
 		}
 		catch(InterruptedException e)
 		{
@@ -47,7 +58,19 @@ public class Philosopher extends BaseThread
 	 */
 	public void think()
 	{
-		// ...
+		try {
+
+			System.out.println("\n Philosopher number " + this.iTID + " is now thinking.");
+			Thread.yield();
+			sleep((long)(Math.random() * TIME_TO_WASTE));
+			Thread.yield();
+			System.out.println("\n Philosopher number " + this.iTID + " is done thinking.");
+
+		} catch (InterruptedException e) {
+			System.err.println("Philosopher.think():");
+			DiningPhilosophers.reportException(e);
+			System.exit(1);
+		}
 	}
 
 	/**
@@ -60,11 +83,22 @@ public class Philosopher extends BaseThread
 	 */
 	public void talk()
 	{
-		// ...
+		try {
 
-		saySomething();
+			System.out.println("\n Philosopher number " + this.iTID + " is now talking.");
+			Thread.yield();
+			saySomething();
+			sleep((long)(Math.random() * TIME_TO_WASTE));
+			Thread.yield();
+			System.out.println("\n Philosopher number " + this.iTID + " is done talking.");
 
-		// ...
+		} catch (InterruptedException e) {
+			System.err.println("Philosopher.think():");
+			DiningPhilosophers.reportException(e);
+			System.exit(1);
+		}
+
+
 	}
 
 	/**
@@ -87,14 +121,15 @@ public class Philosopher extends BaseThread
 			 * A decision is made at random whether this particular
 			 * philosopher is about to say something terribly useful.
 			 */
-			if(true == false)
-			{
-				// Some monitor ops down here...
-				talk();
-				// ...
-			}
+			double ranNum = Math.random();
 
-			yield();
+			if(Monitor.states[getTID()] != Monitor.STATES.eating && ranNum > 0.5)
+			{
+				DiningPhilosophers.soMonitor.requestTalk();
+				talk();
+				DiningPhilosophers.soMonitor.endTalk();
+			}
+			Thread.yield();
 		}
 	} // run()
 
@@ -115,7 +150,7 @@ public class Philosopher extends BaseThread
 
 		System.out.println
 		(
-			"Philosopher " + getTID() + " says: " +
+			"\n Philosopher " + getTID() + " says: " +
 			astrPhrases[(int)(Math.random() * astrPhrases.length)]
 		);
 	}
