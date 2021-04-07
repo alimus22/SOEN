@@ -14,12 +14,12 @@ public class Monitor
 	 * ------------
 	 */
 
-	enum STATES {eating, thinking, hungry};
+	enum STATES {eating, thinking, hungry}; //Set of all possible states
 	int numberOfChopSticks;
 	private int numberOfPhilosophers;
-	//private Lock lock;
-	public static STATES[] states;
-	private static Stick[] sticks;
+
+	public static STATES[] states; //Current state of all philosophers
+	private static Stick[] sticks; //Array of sticks as ordered on the table
 	private boolean someoneIsTalking;
 
 
@@ -39,8 +39,8 @@ public class Monitor
 
 		//Initial states for philosophers and sticks.
 		for(int i = 0; i < numberOfPhilosophers; i++) {
-			states[i] = STATES.thinking;
-			sticks[i] = new Stick();
+			states[i] = STATES.thinking; //Initialized to thinking
+			sticks[i] = new Stick(); //Initialized to true (available)
 		}
 
 	}
@@ -57,16 +57,20 @@ public class Monitor
 	 */
 	public synchronized void pickUp(final int piTID)
 	{
-		states[piTID] = STATES.hungry;
-		int lstick = piTID;
-		int rstick = (piTID + 1) % numberOfPhilosophers;
-		while(!(sticks[lstick].getAvailability() && sticks[rstick].getAvailability())) {
+		states[piTID] = STATES.hungry; //Set philosopher state to hungry
+
+		//Index of chopsticks surrounding a given philosopher
+		int leftStick = piTID;
+		int rightStick = (piTID + 1) % numberOfPhilosophers;
+
+		//If both chopsticks are not available
+		while(!(sticks[leftStick].getAvailability() && sticks[rightStick].getAvailability())) {
 			try {
 				wait();
 			} catch (InterruptedException e) { }
 		}
-		sticks[lstick].setAvailability(false);
-		sticks[rstick].setAvailability(false);
+		sticks[leftStick].setAvailability(false);
+		sticks[rightStick].setAvailability(false);
 		states[piTID] = STATES.eating;
 		notifyAll();
 	}

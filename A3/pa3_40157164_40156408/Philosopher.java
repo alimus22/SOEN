@@ -34,11 +34,11 @@ public class Philosopher extends BaseThread
 	{
 		try
 		{
-			System.out.println("\n Philosopher number " + this.iTID + " has started eating.");
+			System.out.println("\n Philosopher " + this.iTID + " has started eating.");
 			Thread.yield();
 			sleep((long)(Math.random() * TIME_TO_WASTE));
 			Thread.yield();
-			System.out.println("\n Philosopher number " + this.iTID + " is done eating.");
+			System.out.println("\n Philosopher " + this.iTID + " is done eating.");
 		}
 		catch(InterruptedException e)
 		{
@@ -102,7 +102,7 @@ public class Philosopher extends BaseThread
 	}
 
 	/**
-	 * No, this is not the act of running, just the overridden Thread.run()
+	 * Overridden Thread.run().
 	 */
 	public void run()
 	{
@@ -121,8 +121,10 @@ public class Philosopher extends BaseThread
 			 * A decision is made at random whether this particular
 			 * philosopher is about to say something terribly useful.
 			 */
-			double ranNum = Math.random();
+			double ranNum = Math.random(); // Random number between 0 and 1 to determine if philosopher will talk
 
+			// If philosopher is not eating and if the previously generated random number is
+			// less than 0.5, philosopher will talk.
 			if(Monitor.states[getTID()] != Monitor.STATES.eating && ranNum > 0.5)
 			{
 				DiningPhilosophers.soMonitor.requestTalk();
@@ -131,7 +133,7 @@ public class Philosopher extends BaseThread
 			}
 			Thread.yield();
 		}
-	} // run()
+	}
 
 	/**
 	 * Prints out a phrase from the array of phrases at random.
