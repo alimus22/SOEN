@@ -66,7 +66,7 @@ public class Monitor
 		int leftStick = piTID;
 		int rightStick = (piTID + 1) % numberOfPhilosophers;
 
-		//If both chopsticks are not available
+		//If both chopsticks are not available or neighbour philosophers are starving.
 		while(!(sticks[leftStick].getAvailability() && sticks[rightStick].getAvailability()) || checkStarvation(piTID)) {
 			try {
 				wait();
