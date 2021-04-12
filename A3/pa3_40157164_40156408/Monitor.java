@@ -67,7 +67,7 @@ public class Monitor
 		int rightStick = (piTID + 1) % numberOfPhilosophers;
 
 		//If both chopsticks are not available
-		while(!(sticks[leftStick].getAvailability() && sticks[rightStick].getAvailability()) || hasEaten(piTID)) {
+		while(!(sticks[leftStick].getAvailability() && sticks[rightStick].getAvailability()) || checkStarvation(piTID)) {
 			try {
 				wait();
 			} catch (InterruptedException e) { }
@@ -83,7 +83,7 @@ public class Monitor
 	 * Verifies if the calling philosophers has eaten more times than his neighbours. If so,
 	 * current philosopher cannot compete for the sticks.
 	 */
-	private boolean hasEaten(int piTID) {
+	private boolean checkStarvation(int piTID) {
 		int eatingCountLeft = eatingCount[(piTID - 1 + numberOfPhilosophers) % numberOfPhilosophers];
 		int eatingCountRight = eatingCount[(piTID + 1) % numberOfPhilosophers];
 		int currentEatingCount = eatingCount[piTID];
