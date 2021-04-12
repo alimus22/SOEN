@@ -1,0 +1,355 @@
+Philosophers are about to enter the room!
+
+ 3 philosopher(s) came in for a dinner.
+
+ Philosopher 0 has started eating.
+
+ Philosopher 0 is done eating.
+
+ Philosopher 1 has started eating.
+
+ Philosopher number 0 is now thinking.
+
+ Philosopher number 0 is done thinking.
+
+ Philosopher number 0 is now talking.
+
+ Philosopher 0 says: Eh, it's not easy to be a philosopher: eat, think, talk, eat...
+
+ Philosopher 1 is done eating.
+
+ Philosopher number 1 is now thinking.
+
+ Philosopher 2 has started eating.
+
+ Philosopher number 0 is done talking.
+
+ Philosopher 2 is done eating.
+
+ Philosopher number 2 is now thinking.
+
+ Philosopher 0 has started eating.
+
+ Philosopher number 2 is done thinking.
+
+ Philosopher number 1 is done thinking.
+
+ Philosopher number 1 is now talking.
+
+ Philosopher 1 says: 2 + 2 = 5 for extremely large values of 2...
+
+ Philosopher number 1 is done talking.
+
+ Philosopher 0 is done eating.
+
+ Philosopher number 0 is now thinking.
+
+ Philosopher 1 has started eating.
+
+ Philosopher 1 is done eating.
+
+ Philosopher number 1 is now thinking.
+
+ Philosopher 2 has started eating.
+
+ Philosopher 2 is done eating.
+
+ Philosopher number 2 is now thinking.
+
+ Philosopher number 2 is done thinking.
+
+ Philosopher number 2 is now talking.
+
+ Philosopher 2 says: If thee cannot speak, thee must be silent
+
+ Philosopher number 0 is done thinking.
+
+ Philosopher number 1 is done thinking.
+
+ Philosopher 1 has started eating.
+
+ Philosopher number 2 is done talking.
+
+ Philosopher number 0 is now talking.
+
+ Philosopher 0 says: You know, true is false and false is true if you think of it
+
+ Philosopher 1 is done eating.
+
+ Philosopher number 1 is now thinking.
+
+ Philosopher 2 has started eating.
+
+ Philosopher 2 is done eating.
+
+ Philosopher number 2 is now thinking.
+
+ Philosopher number 1 is done thinking.
+
+ Philosopher number 0 is done talking.
+
+ Philosopher 0 has started eating.
+
+ Philosopher number 1 is now talking.
+
+ Philosopher 1 says: You know, true is false and false is true if you think of it
+
+ Philosopher number 2 is done thinking.
+
+ Philosopher number 1 is done talking.
+
+ Philosopher number 2 is now talking.
+
+ Philosopher 2 says: My number is 2
+
+ Philosopher number 2 is done talking.
+
+ Philosopher 0 is done eating.
+
+ Philosopher number 0 is now thinking.
+
+ Philosopher 2 has started eating.
+
+ Philosopher 2 is done eating.
+
+ Philosopher number 2 is now thinking.
+
+ Philosopher 1 has started eating.
+
+ Philosopher number 0 is done thinking.
+
+ Philosopher 1 is done eating.
+
+ Philosopher number 1 is now thinking.
+
+ Philosopher 0 has started eating.
+
+ Philosopher number 2 is done thinking.
+
+ Philosopher number 2 is now talking.
+
+ Philosopher 2 says: If thee cannot speak, thee must be silent
+
+ Philosopher number 2 is done talking.
+
+ Philosopher 0 is done eating.
+
+ Philosopher number 0 is now thinking.
+
+ Philosopher 2 has started eating.
+
+ Philosopher number 0 is done thinking.
+
+ Philosopher number 1 is done thinking.
+
+ Philosopher 2 is done eating.
+
+ Philosopher number 2 is now thinking.
+
+ Philosopher 0 has started eating.
+
+ Philosopher number 2 is done thinking.
+
+ Philosopher number 2 is now talking.
+
+ Philosopher 2 says: You know, true is false and false is true if you think of it
+
+ Philosopher 0 is done eating.
+
+ Philosopher number 0 is now thinking.
+
+ Philosopher 1 has started eating.
+
+ Philosopher 1 is done eating.
+
+ Philosopher number 1 is now thinking.
+
+ Philosopher number 2 is done talking.
+
+ Philosopher 2 has started eating.
+
+ Philosopher 2 is done eating.
+
+ Philosopher number 2 is now thinking.
+
+ Philosopher number 1 is done thinking.
+
+ Philosopher number 1 is now talking.
+
+ Philosopher 1 says: If thee cannot speak, thee must be silent
+
+ Philosopher number 0 is done thinking.
+
+ Philosopher 0 has started eating.
+
+ Philosopher number 2 is done thinking.
+
+ Philosopher 0 is done eating.
+
+ Philosopher number 0 is now thinking.
+
+ Philosopher 2 has started eating.
+
+ Philosopher number 1 is done talking.
+
+ Philosopher 2 is done eating.
+
+ Philosopher number 2 is now thinking.
+
+ Philosopher 1 has started eating.
+
+ Philosopher number 0 is done thinking.
+
+ Philosopher number 0 is now talking.
+
+ Philosopher 0 says: If thee cannot speak, thee must be silent
+
+ Philosopher number 2 is done thinking.
+
+ Philosopher 1 is done eating.
+
+ Philosopher number 1 is now thinking.
+
+ Philosopher number 1 is done thinking.
+
+ Philosopher 1 has started eating.
+
+ Philosopher number 0 is done talking.
+
+ Philosopher number 2 is now talking.
+
+ Philosopher 2 says: 2 + 2 = 5 for extremely large values of 2...
+
+ Philosopher number 2 is done talking.
+
+ Philosopher 1 is done eating.
+
+ Philosopher number 1 is now thinking.
+
+ Philosopher 2 has started eating.
+
+ Philosopher 2 is done eating.
+
+ Philosopher number 2 is now thinking.
+
+ Philosopher 0 has started eating.
+
+ Philosopher number 1 is done thinking.
+
+ Philosopher number 2 is done thinking.
+
+ Philosopher number 2 is now talking.
+
+ Philosopher 2 says: If thee cannot speak, thee must be silent
+
+ Philosopher 0 is done eating.
+
+ Philosopher number 0 is now thinking.
+
+ Philosopher 1 has started eating.
+
+ Philosopher number 2 is done talking.
+
+ Philosopher 1 is done eating.
+
+ Philosopher number 1 is now thinking.
+
+ Philosopher 2 has started eating.
+
+ Philosopher number 0 is done thinking.
+
+ Philosopher number 0 is now talking.
+
+ Philosopher 0 says: 2 + 2 = 5 for extremely large values of 2...
+
+ Philosopher 2 is done eating.
+
+ Philosopher number 2 is now thinking.
+
+ Philosopher number 0 is done talking.
+
+ Philosopher 0 has started eating.
+
+ Philosopher number 1 is done thinking.
+
+ Philosopher number 1 is now talking.
+
+ Philosopher 1 says: 2 + 2 = 5 for extremely large values of 2...
+
+ Philosopher number 1 is done talking.
+
+ Philosopher number 2 is done thinking.
+
+ Philosopher number 2 is now talking.
+
+ Philosopher 2 says: Eh, it's not easy to be a philosopher: eat, think, talk, eat...
+
+ Philosopher number 2 is done talking.
+
+ Philosopher 0 is done eating.
+
+ Philosopher number 0 is now thinking.
+
+ Philosopher 2 has started eating.
+
+ Philosopher 2 is done eating.
+
+ Philosopher number 2 is now thinking.
+
+ Philosopher 1 has started eating.
+
+ Philosopher 1 is done eating.
+
+ Philosopher number 1 is now thinking.
+
+ Philosopher number 0 is done thinking.
+
+ Philosopher number 0 is now talking.
+
+ Philosopher 0 says: If thee cannot speak, thee must be silent
+
+ Philosopher number 2 is done thinking.
+
+ Philosopher number 0 is done talking.
+
+ Philosopher 0 has started eating.
+
+ Philosopher number 1 is done thinking.
+
+ Philosopher 0 is done eating.
+
+ Philosopher number 0 is now thinking.
+
+ Philosopher 1 has started eating.
+
+ Philosopher number 0 is done thinking.
+
+ Philosopher number 0 is now talking.
+
+ Philosopher 0 says: If thee cannot speak, thee must be silent
+
+ Philosopher 1 is done eating.
+
+ Philosopher number 1 is now thinking.
+
+ Philosopher number 1 is done thinking.
+
+ Philosopher number 0 is done talking.
+
+ Philosopher 0 has started eating.
+
+ Philosopher 0 is done eating.
+
+ Philosopher number 0 is now thinking.
+
+ Philosopher number 0 is done thinking.
+
+ Philosopher number 0 is now talking.
+
+ Philosopher 0 says: Eh, it's not easy to be a philosopher: eat, think, talk, eat...
+
+ Philosopher number 0 is done talking.
+
+ All philosophers have left. System terminates normally.
+
+Process finished with exit code 0

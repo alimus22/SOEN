@@ -1,3 +1,5 @@
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.concurrent.locks.Lock;
 
 /**
@@ -17,11 +19,10 @@ public class Monitor
 	enum STATES {eating, thinking, hungry}; //Set of all possible states
 	int numberOfChopSticks;
 	private int numberOfPhilosophers;
-
-	public static STATES[] states; //Current state of all philosophers
-	private static Stick[] sticks; //Array of sticks as ordered on the table
+	private int[] eatingCount; 		//Number of times philosophers have eaten
+	public static STATES[] states;  //Current state of all philosophers
+	private static Stick[] sticks;  //Array of sticks as ordered on the table
 	private boolean someoneIsTalking;
-
 
 
 
@@ -35,12 +36,14 @@ public class Monitor
 		this.numberOfPhilosophers = numberOfPhilosophers;
 		states = new STATES[numberOfPhilosophers];
 		sticks = new Stick[numberOfPhilosophers];
+		eatingCount = new int[numberOfPhilosophers];
 		someoneIsTalking = false;
 
 		//Initial states for philosophers and sticks.
 		for(int i = 0; i < numberOfPhilosophers; i++) {
 			states[i] = STATES.thinking; //Initialized to thinking
 			sticks[i] = new Stick(); //Initialized to true (available)
+			eatingCount[i] = 0;
 		}
 
 	}
@@ -64,7 +67,7 @@ public class Monitor
 		int rightStick = (piTID + 1) % numberOfPhilosophers;
 
 		//If both chopsticks are not available
-		while(!(sticks[leftStick].getAvailability() && sticks[rightStick].getAvailability())) {
+		while(!(sticks[leftStick].getAvailability() && sticks[rightStick].getAvailability()) || hasEaten(piTID)) {
 			try {
 				wait();
 			} catch (InterruptedException e) { }
@@ -72,7 +75,21 @@ public class Monitor
 		sticks[leftStick].setAvailability(false);
 		sticks[rightStick].setAvailability(false);
 		states[piTID] = STATES.eating;
+		eatingCount[piTID]++;
 		notifyAll();
+	}
+
+	/**
+	 * Verifies if the calling philosophers has eaten more times than his neighbours. If so,
+	 * current philosopher cannot compete for the sticks.
+	 */
+	private boolean hasEaten(int piTID) {
+		int eatingCountLeft = eatingCount[(piTID - 1 + numberOfPhilosophers) % numberOfPhilosophers];
+		int eatingCountRight = eatingCount[(piTID + 1) % numberOfPhilosophers];
+		int currentEatingCount = eatingCount[piTID];
+
+		//Returns true if current philo has eaten more than his right or left neighbours
+		return eatingCountLeft < currentEatingCount || eatingCountRight < currentEatingCount;
 	}
 
 	/**
