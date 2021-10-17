@@ -9,3 +9,21 @@ to show that each of the following languages is regular as well.
 \end{enumerate}
 
 \subsection*{Answer}
+
+\begin{enumerate}[label={(\alph*)}]
+    \item 
+        \begin{proof}
+            First, we have that $|v| = 2$. $v$ is therefore a finite language, meaning it is necessarily regular. We are also told that $u \in L$ and $L$ is regular, meaning that $u$ is regular as well.\\
+            The concatenation closure property states that regular languages are closed under concatenation. Knowing that and since $u$ and $v$ are regular languages, we know that $uv$ is necessarily a regular language.
+        \end{proof}
+    \item
+        \begin{proof}
+            First, we know that $u$ is a regular language since we are told that $L$ is a regular language and that $u \in L$.\\
+            Also, since regular languages are closed under reversal, we know that if $L$ is regular, $L^R$ is also a regular language. Hence, since $v \in L^R$, $v$ is also a regular language.\\
+            The concatenation closure property states that regular languages are closed under concatenation. Knowing that and since $u$ and $v$ are regular languages, we know that $uv$ is necessarily a regular language.
+        \end{proof}
+    \item 
+        \begin{proof}
+            We are told that $L$ is a regular language hence since $u \in L$, $u$ is also a regular language.
+        \end{proof}
+\end{enumerate}

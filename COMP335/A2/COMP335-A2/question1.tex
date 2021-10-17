@@ -4,10 +4,10 @@
 
 \subsection*{Answer}
 
-\noindent In binary, 40 is: 10100.\\
-\noindent A binary string of length 5 ranges from 0 to 63. Our regular expression must first cover all the possible values from 40 to 63:
+\noindent In binary, 40 is: 101000.\\
+\noindent A binary string of length 6 ranges from 0 to 63. Our regular expression must first cover all the possible values from 40 to 63:
 \begin{align*}
-    0^*1(01 + 10 + 11)(0 + 1)^*
+    0^*1(01 + 10 + 11)(0 + 1)^3
 \end{align*}
 \emph{Note: $0^*$ handles possible leading zeros}\\
 \noindent This regular expression only handles binary string with values between 40 and 63 inclusive.\\\\
