@@ -26,6 +26,22 @@
     \end{center}
     \item
         \begin{proof}
-            
+            \noindent We can prove that $L_4$ is not a regular language using the pumping lemma. In order to use the pumping lemma to prove that a language is not regular, we have to prove that there exists a string $w \in L_4$ where $|w| \geq m$ for $m > 0$, such that for all possible decomposition of $w$ in $xyz$ where $xyz = w$, $|xy| \leq m$, and $|y| \geq 1$ there exist at least one $i \geq 0$ such that $w = xy^iz \notin L_4$.\\ \\
+            Let's assume that $L_4$ is a regular language.\\ \\
+            We  know that for all strings $w$ element of $L_4$ and for any decomposition of $w$ such that $w = xyz$, we have that $xy^iz$ must also be element of $L_4$ for $i \geq 0$.
+            Now let $k > 0$ and $a^kb^k \in L_4$. \\ \\
+            We know that $|a^kb^k| = 2k \geq m$. \\
+            Now let $x = a^r$, $y = a^s$ and $z = a^{k- s - r}b^k$ for $r \geq 0$, $s \geq 1$ and $s + r \leq k$ such that:
+            \begin{align*}
+                w &= xyz\\
+                |xy| &= s + r \leq m\\ 
+                |y| &= s \geq 1
+            \end{align*}
+            \noindent For $i = 0$:\\
+            \begin{align*}
+                xy^0z &= xz \\
+                xz &= a^ra^{k-s-r}b^k = a^{k - s}b^k
+            \end{align*}
+            \noindent Since $|s| \geq 1$ we  know that $k > k - s$. The string $a^{k-s}b^k$ is thus not a valid string of $L_4$ which contradicts the initial suppositions. $L_4$ does not respect the pumping lemma and is therefore not a regular language.
         \end{proof}
 \end{enumerate}
