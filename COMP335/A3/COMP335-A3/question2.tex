@@ -1,0 +1,53 @@
+\newpage
+\subsection*{Question 2}
+
+(10 pts) Give context-free grammar for each of the following languages. 
+    
+    \begin{enumerate}[label={(\alph*)}]
+        \item $\{a^h b^k a^m b^n : h + k = m + n\}$
+        \item $\{a^i b^j a^k : (i = j \: and \: k \geq 0) \: or \: (i \geq 0 \: and \: j > k)\}$
+    \end{enumerate}
+
+
+\subsection*{Answer}
+
+\begin{enumerate}[label={(\alph*)}]
+    \item The following context-free-grammar describes the language $L = \{a^h b^k a^m b^n : h + k = m + n\}$
+    \begin{align*}
+        S &\rightarrow T | U | V |W|\lambda\\
+        T &\rightarrow aSb | \lambda\\
+        U &\rightarrow aUa | bVa | \lambda\\
+        V &\rightarrow bVa | \lambda\\
+        W &\rightarrow bWb | bVa | \lambda
+    \end{align*}
+    
+    \item 
+    \noindent In order to find a context-free-grammar corresponding to the language $L = \{a^i b^j a^k : (i = j \: and \: k \geq 0) \: or \: (i \geq 0 \: and \: j > k)\}$, it helps to divide the problem into two smaller problems.\\ Let's say we have to find a grammar for $L_1 = \{a^i b^j a^k : i = j \: and \: k \geq 0\}$ and another for $L_2 = \{a^i b^j a^k : i \geq 0 \: and \: j > k\}$\\
+    \noindent For $L_1 = \{a^i b^j a^k : i = j \: and \: k \geq 0\}$ we have:
+    \begin{align*}
+        S_1 &\rightarrow S_2A | \lambda\\
+        S_2 &\rightarrow aS_2b | \lambda\\
+        A &\rightarrow aA | \lambda
+    \end{align*}
+    
+    \noindent For $L_2 = \{a^i b^j a^k : i \geq 0 \: and \: j > k\}$ we have:
+    \begin{align*}
+        S_3 &\rightarrow A_2bS_4\\
+        A_2 &\rightarrow aA_2 | \lambda\\
+        S_4 &\rightarrow bS_4a | bS_4 | \lambda
+    \end{align*}
+    
+    \noindent Combining these two grammars yields a grammar corresponding to $\{a^i b^j a^k : (i = j \: and \: k \geq 0) \: or \: (i \geq 0 \: and \: j > k)\}$:
+    \begin{align*}
+        S &\rightarrow S_1|S_3\\
+        S_1 &\rightarrow S_2A | \lambda\\
+        S_2 &\rightarrow aS_2b | \lambda\\
+        A &\rightarrow aA | \lambda\\
+        S_3 &\rightarrow A_2bS_4\\
+        A_2 &\rightarrow aA_2 | \lambda\\
+        S_4 &\rightarrow bS_4a | bS_4 | \lambda
+    \end{align*}
+    
+    
+    
+\end{enumerate}

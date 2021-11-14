@@ -1,0 +1,76 @@
+\newpage
+\subsection*{Question 1}
+
+\noindent (15pts) Apply the Pumping Lemma to prove that the following languages are not regular.
+    
+    \begin{enumerate}[label={(\alph*)}]
+        \item $L_1 = \{a^k b^n : n = 2^k\}$
+        \item $L_2 = \{ww : w \in \{a^i b^i : i, j \geq 0\}\}$
+        \item $L_3 = \{vw : v \in \{a, b\}^*, w \in \{c, d\}^*, |v| = |w|\}$
+    \end{enumerate}
+
+
+\subsection*{Answer}
+
+\begin{enumerate}[label = (\alph*)]
+    \item We have to prove that there exist a string $w \in L_1$ where $|w| \geq m$ for $m > 0$, such that for all possible decomposition of $w$ in $xyz$ where $xyz = w$, $|xy| \leq m$, and $|y| \geq 1$ there exist at least one $i \geq 0$ such that $w = xy^iz \notin L_1$.\\ \\
+    Let's assume that $L_1$ is a regular language.\\ \\
+    We  know that for all strings $w$ element of $L_1$ and for any decomposition of $w$ such that $w = xyz$, we have that $xy^iz$ must also be element of $L_1$ for $i \geq 0$.
+    Now let $w = a^mb^{2^m} \in L_1$. \\ \\
+    We know that $|a^mb^{2^m}| = m + 2^m \geq m$. \\
+    Now let $x = a^r$, $y = a^s$ and $z = a^{m- s - r}b^{2^m}$ for $r \geq 0$, $s \geq 1$ and $s + r \leq m$ such that:
+    
+    \begin{align*}
+                w &= xyz\\
+                |xy| &= s + r \leq m\\ 
+                |y| &= s \geq 1
+            \end{align*}
+            \noindent For $i = 0$:\\
+            \begin{align*}
+                xy^0z &= xz \\
+                xz &= a^ra^{m-s-r}b^m = a^{m - s}b^{2^m}
+            \end{align*}
+            
+    \noindent Since $|s| \geq 1$, we  know that $m > m - s$. The string $a^{m-s}b^{2^m}$ is thus not a valid string of $L_1$ since $2^m \neq 2^{m - s}$ which contradicts the initial definition of $L_1$. Hence, the initial supposition is contradicted. $L_1$ does not respect the pumping lemma and is therefore not a regular language.
+    
+    \item We have to prove that there exist a string $w \in L_2$ where $|w| \geq m$ for $m > 0$, such that for all possible decomposition of $w$ in $xyz$ where $xyz = w$, $|xy| \leq m$, and $|y| \geq 1$ there exist at least one $i \geq 0$ such that $w = xy^iz \notin L_2$.\\ \\
+    Let's assume that $L_2$ is a regular language.\\ \\
+    We  know that for all strings $w$ element of $L_2$ and for any decomposition of $w$ such that $w = xyz$, we have that $xy^iz$ must also be element of $L_2$ for $i \geq 0$.
+    Now let $w = w_1w_2 = a^mb^ma^mb^m \in L_2$ where $w_1, w_2 = a^mb^m$. \\ \\
+    We know that $|a^mb^ma^mb^m| = 4m \geq m$. \\
+    Now let $x = a^r$, $y = a^s$ and $z = a^{m- s - r}b^ma^mb^m$ for $r \geq 0$, $s \geq 1$ and $s + r \leq m$ such that:
+    
+    \begin{align*}
+                w &= xyz\\
+                |xy| &= s + r \leq m\\ 
+                |y| &= s \geq 1
+            \end{align*}
+            \noindent For $i = 0$:\\
+            \begin{align*}
+                xy^0z &= xz \\
+                xz &= a^ra^{m-s-r}b^ma^mb^n = a^{m - s}b^ma^mb^m
+            \end{align*}
+            
+    \noindent Since $|s| \geq 1$, we  know that $m > m - s$. The string $a^{m-s}b^ma^mb^m$ is thus not a valid string of $L_2$ since $a^{m-s}b^m \neq a^mb^m$ which contradicts the initial definition of $L_2$. Hence, the initial supposition is contradicted. $L_2$ does not respect the pumping lemma and is therefore not a regular language.
+    
+    \item We have to prove that there exist a string $w \in L_3$ where $|w| \geq m$ for $m > 0$, such that for all possible decomposition of $w$ in $xyz$ where $xyz = w$, $|xy| \leq m$, and $|y| \geq 1$ there exist at least one $i \geq 0$ such that $w = xy^iz \notin L_3$.\\ \\
+    Let's assume that $L_3$ is a regular language.\\ \\
+    We  know that for all strings $w$ element of $L_3$ and for any decomposition of $w$ such that $w = xyz$, we have that $xy^iz$ must also be element of $L_3$ for $i \geq 0$.
+    Now let $w = w = a^mb^ma^mb^m \in L_3$. \\ \\
+    We know that $|a^mb^ma^mb^m| = 4m \geq m$. \\
+    Now let $x = a^r$, $y = a^s$ and $z = a^{m- s - r}b^ma^mb^m$ for $r \geq 0$, $s \geq 1$ and $s + r \leq m$ such that:
+    
+    \begin{align*}
+                w &= xyz\\
+                |xy| &= s + r \leq m\\ 
+                |y| &= s \geq 1
+            \end{align*}
+            \noindent For $i = 0$:\\
+            \begin{align*}
+                xy^0z &= xz \\
+                xz &= a^ra^{m-s-r}b^ma^mb^n = a^{m - s}b^ma^mb^m
+            \end{align*}
+            
+    \noindent Since $|s| \geq 1$, we  know that $m > m - s$. The string $a^{m-s}b^ma^mb^m$ is thus not a valid string of $L_3$ since $|a^{m-s}b^m| \neq |a^mb^m|$ which contradicts the initial definition of $L_3$. Hence, the initial supposition is contradicted. $L_3$ does not respect the pumping lemma and is therefore not a regular language.
+    
+\end{enumerate}

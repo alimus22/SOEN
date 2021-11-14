@@ -1,0 +1,28 @@
+\newpage
+\subsection*{Question 3}
+
+\noindent (15 pts) Let CFG \textit{G} be defined by production $S \rightarrow aS | Sb | a | b  $
+    
+    \begin{enumerate}[label={(\alph*)}]
+        \item (10 pts) Prove by an induction of number of derivations steps that no string $w \in L(G)$ has $ba$ as substring.
+        \item (5 pts) Describe $L(G)$ formally. 
+    \end{enumerate}
+
+
+\subsection*{Answer}
+
+\begin{enumerate}[label={(\alph*)}]
+    \item As a basis, we note that indeed, no string $w$ that can be derived in one step has $ba$ as a substring. The strings that can be derived from $G$ in one step are $a$ and $b$.  \\
+    We assume that any string $w$ obtained from $n$ derivation steps does not have $ba$ as a substring. Now, any $w_1$ derivable in $n+1$ steps is of the form:
+    
+    \begin{align*}
+        S &\rightarrow aS\\
+        S &\rightarrow Sb\\
+        S &\rightarrow a\\
+        S &\rightarrow b
+    \end{align*}
+    
+    We then know that the the next step (n + 1) can have 4 possible outcomes. First, if $S \rightarrow aS$ is used, an $a$ is added at the left of the string $w$. The resulting string $aw$ cannot contain $ba$ as a substring. If $ S \rightarrow Sb$ is used, a $b$ is added at the right of the string $w$. The resulting string $wb$ cannot contain $ba$ as a substring. Therefore, it is impossible to build a string from $G$ that contains $ba$ as a substring. 
+    \item $L(G) = \{a^ib^j : i+j > 0\}$
+    
+\end{enumerate}

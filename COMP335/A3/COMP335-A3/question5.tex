@@ -1,0 +1,157 @@
+\newpage
+\subsection*{Question 5}
+
+\noindent (10 pts) Convert the following grammars into Chomsky Normal Form.
+    
+    \begin{enumerate}[label={(\alph*)}]
+        \item $S \rightarrow ASB|\lambda\;, A \rightarrow aAS|a\;, B \rightarrow SbS|A|bb$
+        \item $S \rightarrow 0A0|1B1|BB,\; A \rightarrow C,\; B \rightarrow S|A, \; C \rightarrow S|\lambda$
+    \end{enumerate}
+
+
+\subsection*{Answer}
+
+\begin{enumerate}[label={(\alph*)}]
+    \item The grammar has the following productions:\\
+    \begin{align*}
+        S &\rightarrow ASB | \lambda\\
+        A &\rightarrow aAS | a\\
+        B &\rightarrow SbS | A | bb
+    \end{align*}
+    \noindent We first eliminate the start symbol $S$ from RHS of productions. We do that by creating a new start symbol $S_0$ and new production $S_0 \rightarrow S$. It yields the following grammar:
+    
+    \begin{align*}
+        S_0 &\rightarrow S\\
+        S &\rightarrow ASB | \lambda\\
+        A &\rightarrow aAS | a\\
+        B &\rightarrow SbS | A | bb
+    \end{align*}
+    
+    \noindent Second, we will eliminate $\lambda$-productions. Since the language described by this grammar accepts the empty string, we must keep a lambda production with the start variable $S_0$. It yields the following grammar:
+    
+    \begin{align*}
+        S_0 &\rightarrow S | \lambda\\
+        S &\rightarrow ASB | \lambda\\
+        A &\rightarrow aAS | a\\
+        B &\rightarrow SbS | A | bb
+    \end{align*}
+    
+    \noindent We now have to remove the $\lambda$-production $S \rightarrow \lambda$. By doing so, we obtain the following grammar:
+    \begin{align*}
+        S_0 &\rightarrow S | \lambda\\
+        S &\rightarrow ASB |\\
+        A &\rightarrow aAS | aA | a\\
+        B &\rightarrow SbS | Sb | bS | A | bb | b
+    \end{align*}
+    
+    \noindent We then want to remove unit-productions. This grammar contains two unit-productions namely $S_0 \rightarrow S$ and $B \rightarrow A$. We replace $S$ and $A$ respectively by the right-hand-side of their productions (where they are on the left-hand-side). 
+    
+    It yields the following grammar:
+    
+    \begin{align*}
+        S_0 &\rightarrow ASB | \lambda\\
+        S &\rightarrow ASB\\
+        A &\rightarrow aAS | aA | a\\
+        B &\rightarrow SbS | Sb | bS | aAS | aA | a | bb | b
+    \end{align*}
+    
+    \noindent CNF does not accept production with both terminals and variables on their right-hand-side. The productions $A \rightarrow aAS$, $A \rightarrow aA$, $B \rightarrow SbS$, $B \rightarrow Sb$, $B \rightarrow bS$, $B \rightarrow aAS$, and $B \rightarrow aA$ must be changed. We do so by introducing two new variables and two new productions namely $X \rightarrow a$ and $Y \rightarrow b$. It yields the following grammar:
+    
+    \begin{align*}
+        S_0 &\rightarrow ASB | \lambda\\
+        S &\rightarrow ASB\\
+        A &\rightarrow XAS | XA | a\\
+        X &\rightarrow a\\
+        Y &\rightarrow b\\
+        B &\rightarrow SYS | SY | YS | XAS | XA | a | bb | b
+    \end{align*}
+    
+    \noindent CNF does not accept productions with more than one terminal value on the right-hand-side. The production $B \rightarrow bb$ must then be replaced. We do so by using the newly introduced production $Y \rightarrow b$. It yields the following grammar:
+    
+    \begin{align*}
+        S_0 &\rightarrow S | \lambda\\
+        S &\rightarrow ASB\\
+        A &\rightarrow XAS | a\\
+        X &\rightarrow a\\
+        Y &\rightarrow b\\
+        B &\rightarrow SYS | SY | YS | XAS | XA | YY | a | b
+    \end{align*}
+    
+    \noindent CNF does not accept productions with more than two variables on the rigth-hand-side. We can easily get ride of such productions by introducing new variables and productions. It yields the following grammar:
+    
+    \begin{align*}
+        S_0 &\rightarrow PB | \lambda\\
+        P &\rightarrow AS\\
+        S &\rightarrow PB\\
+        A &\rightarrow QS | a\\
+        Q &\rightarrow XA\\
+        X &\rightarrow a\\
+        Y &\rightarrow b\\
+        B &\rightarrow RS | SY | YS | QS | XA | YY | a | b\\
+        R &\rightarrow SY
+    \end{align*}
+    
+    \noindent Since no useless-productions are included, this production is now in Chomsky Normal Form.
+    
+    \item The grammar has the following productions:\\
+    \begin{align*}
+        S &\rightarrow 0A0 | 1B1 | BB\\
+        A &\rightarrow C\\
+        B &\rightarrow S | A\\
+        C &\rightarrow S | \lambda
+    \end{align*}
+    
+    \noindent We start by removing the $\lambda$-productions. We have $C \rightarrow \lambda$. We remove it, which yields a new $\lambda$-production. $A \rightarrow \lambda$. Removing it yields the following grammar:
+    \begin{align*}
+        S &\rightarrow 0A0 | 00| 1B1 | BB\\
+        A &\rightarrow C\\
+        B &\rightarrow S | A\\
+        C &\rightarrow S
+    \end{align*}
+    
+    \noindent Then we have to remove unit-productions. There are 4 unit-productions in this grammar namely $A \rightarrow C$, $B \rightarrow S$, $B \rightarrow A$, and $C \rightarrow S$. Starting with $C \rightarrow S$, we replace $S$ with all productions that have $S$ on the left-hand-side which yields the new productions $C \rightarrow 0A0 | 00| 1B1 | BB$. Doing the same with all other cases yields the following grammar:
+    \begin{align*}
+        S &\rightarrow 0A0 | 00| 1B1 | BB\\
+        A &\rightarrow 0A0 | 00| 1B1 | BB\\
+        B &\rightarrow 0A0 | 00| 1B1 | BB\\
+        C &\rightarrow 0A0 | 00| 1B1 | BB\\
+    \end{align*}
+    
+    \noindent We then have to remove useless-productions. The only useless-production is $C \rightarrow 0A0 | 00| 1B1 | BB$ since $C$ can never be accessed. This yields the following grammar:
+    \begin{align*}
+        S &\rightarrow 0A0 | 00| 1B1 | BB\\
+        A &\rightarrow 0A0 | 00| 1B1 | BB\\
+        B &\rightarrow 0A0 | 00| 1B1 | BB
+    \end{align*}
+    
+    \noindent CNF does not accept productions with both terminals and variables on their right-hand-side. The productions $S \rightarrow 0A0$, $S \rightarrow 1B1$, $A \rightarrow 0A0$, $A \rightarrow 1B1$, $B \rightarrow 0A0$, and $B \rightarrow 1B1$ must be changed. We can do so by introducing new variables and corresponding new productions which yields the following language:
+    \begin{align*}
+        S &\rightarrow DAD | 00| EBE | BB\\
+        A &\rightarrow DAD | 00| EBE | BB\\
+        B &\rightarrow DAD | 00| EBE | BB\\
+        D &\rightarrow 0\\
+        E &\rightarrow 1
+    \end{align*}
+    
+    \noindent CNF does not accept productions with more than one terminal value on the right-hand-side. The productions $S \rightarrow 00$, $A \rightarrow 00$, and $B \rightarrow 00$ must be replaced. We can do so using the productions introdced in the previous step which yields the following grammar:
+    
+    \begin{align*}
+        S &\rightarrow DAD | DD| EBE | BB\\
+        A &\rightarrow DAD | DD| EBE | BB\\
+        B &\rightarrow DAD | DD| EBE | BB\\
+        D &\rightarrow 0\\
+        E &\rightarrow 1
+    \end{align*}
+    
+    \noindent Finally, CNF does not accept productions with more than 2 variables on the right-hand-side. We replace such productions by introducing new productions and corresponding variables. This yields the following CNF grammar:
+    \begin{align*}
+        S &\rightarrow FD | DD| GE | BB\\
+        A &\rightarrow FD | DD| GE | BB\\
+        B &\rightarrow FD | DD| GE | BB\\
+        F &\rightarrow DA\\
+        G &\rightarrow EB\\
+        D &\rightarrow 0\\
+        E &\rightarrow 1
+    \end{align*}
+    
+\end{enumerate}
