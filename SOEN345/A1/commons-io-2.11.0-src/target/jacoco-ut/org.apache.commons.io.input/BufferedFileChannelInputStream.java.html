@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BufferedFileChannelInputStream.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons IO</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.io.input</a> &gt; <span class="el_source">BufferedFileChannelInputStream.java</span></div><h1>BufferedFileChannelInputStream.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.io.input;
+
+import static org.apache.commons.io.IOUtils.EOF;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.Objects;
+
+import org.apache.commons.io.IOUtils;
+
+/**
+ * {@link InputStream} implementation which uses direct buffer to read a file to avoid extra copy of data between Java
+ * and native memory which happens when using {@link java.io.BufferedInputStream}. Unfortunately, this is not something
+ * already available in JDK, {@code sun.nio.ch.ChannelInputStream} supports reading a file using NIO, but does not
+ * support buffering.
+ * &lt;p&gt;
+ * This class was ported and adapted from Apache Spark commit 933dc6cb7b3de1d8ccaf73d124d6eb95b947ed19 where it was
+ * called {@code NioBufferedFileInputStream}.
+ * &lt;/p&gt;
+ *
+ * @since 2.9.0
+ */
+@SuppressWarnings(&quot;restriction&quot;)
+public final class BufferedFileChannelInputStream extends InputStream {
+
+    private final ByteBuffer byteBuffer;
+
+    private final FileChannel fileChannel;
+
+<span class="fc" id="L50">    private static final Class&lt;?&gt; DIRECT_BUFFER_CLASS = getDirectBufferClass();</span>
+
+    private static Class&lt;?&gt; getDirectBufferClass() {
+<span class="fc" id="L53">        Class&lt;?&gt; res = null;</span>
+        try {
+<span class="fc" id="L55">            res = Class.forName(&quot;sun.nio.ch.DirectBuffer&quot;);</span>
+<span class="nc" id="L56">        } catch (final IllegalAccessError | ClassNotFoundException ignored) {</span>
+            // ignored
+<span class="fc" id="L58">        }</span>
+<span class="fc" id="L59">        return res;</span>
+    }
+
+    private static boolean isDirectBuffer(final Object object) {
+<span class="pc bpc" id="L63" title="2 of 4 branches missed.">        return DIRECT_BUFFER_CLASS != null &amp;&amp; DIRECT_BUFFER_CLASS.isInstance(object);</span>
+    }
+
+    /**
+     * Constructs a new instance for the given File.
+     *
+     * @param file The file to stream.
+     * @throws IOException If an I/O error occurs
+     */
+    public BufferedFileChannelInputStream(final File file) throws IOException {
+<span class="fc" id="L73">        this(file, IOUtils.DEFAULT_BUFFER_SIZE);</span>
+<span class="fc" id="L74">    }</span>
+
+    /**
+     * Constructs a new instance for the given File and buffer size.
+     *
+     * @param file The file to stream.
+     * @param bufferSizeInBytes buffer size.
+     * @throws IOException If an I/O error occurs
+     */
+    public BufferedFileChannelInputStream(final File file, final int bufferSizeInBytes) throws IOException {
+<span class="fc" id="L84">        this(file.toPath(), bufferSizeInBytes);</span>
+<span class="fc" id="L85">    }</span>
+
+    /**
+     * Constructs a new instance for the given Path.
+     *
+     * @param path The path to stream.
+     * @throws IOException If an I/O error occurs
+     */
+    public BufferedFileChannelInputStream(final Path path) throws IOException {
+<span class="nc" id="L94">        this(path, IOUtils.DEFAULT_BUFFER_SIZE);</span>
+<span class="nc" id="L95">    }</span>
+
+    /**
+     * Constructs a new instance for the given Path and buffer size.
+     *
+     * @param path The path to stream.
+     * @param bufferSizeInBytes buffer size.
+     * @throws IOException If an I/O error occurs
+     */
+<span class="fc" id="L104">    public BufferedFileChannelInputStream(final Path path, final int bufferSizeInBytes) throws IOException {</span>
+<span class="fc" id="L105">        Objects.requireNonNull(path, &quot;path&quot;);</span>
+<span class="fc" id="L106">        fileChannel = FileChannel.open(path, StandardOpenOption.READ);</span>
+<span class="fc" id="L107">        byteBuffer = ByteBuffer.allocateDirect(bufferSizeInBytes);</span>
+<span class="fc" id="L108">        byteBuffer.flip();</span>
+<span class="fc" id="L109">    }</span>
+
+    @Override
+    public synchronized int available() throws IOException {
+<span class="nc" id="L113">        return byteBuffer.remaining();</span>
+    }
+
+    /**
+     * Attempts to clean up a ByteBuffer if it is direct or memory-mapped. This uses an *unsafe* Sun API that will cause
+     * errors if one attempts to read from the disposed buffer. However, neither the bytes allocated to direct buffers
+     * nor file descriptors opened for memory-mapped buffers put pressure on the garbage collector. Waiting for garbage
+     * collection may lead to the depletion of off-heap memory or huge numbers of open files. There's unfortunately no
+     * standard API to manually dispose of these kinds of buffers.
+     *
+     * @param buffer the buffer to clean.
+     */
+    private void clean(final ByteBuffer buffer) {
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">        if (isDirectBuffer(buffer)) {</span>
+<span class="fc" id="L127">            cleanDirectBuffer(buffer);</span>
+        }
+<span class="fc" id="L129">    }</span>
+
+    /**
+     * In Java 8, the type of DirectBuffer.cleaner() was sun.misc.Cleaner, and it was possible to access the method
+     * sun.misc.Cleaner.clean() to invoke it. The type changed to jdk.internal.ref.Cleaner in later JDKs, and the
+     * .clean() method is not accessible even with reflection. However sun.misc.Unsafe added a invokeCleaner() method in
+     * JDK 9+ and this is still accessible with reflection.
+     *
+     * @param buffer the buffer to clean. must be a DirectBuffer.
+     */
+    private void cleanDirectBuffer(final ByteBuffer buffer) {
+        //
+        // Ported from StorageUtils.scala.
+        //
+//      private val bufferCleaner: DirectBuffer =&gt; Unit =
+//      if (SystemUtils.isJavaVersionAtLeast(JavaVersion.JAVA_9)) {
+//        val cleanerMethod =
+//          Utils.classForName(&quot;sun.misc.Unsafe&quot;).getMethod(&quot;invokeCleaner&quot;, classOf[ByteBuffer])
+//        val unsafeField = classOf[Unsafe].getDeclaredField(&quot;theUnsafe&quot;)
+//        unsafeField.setAccessible(true)
+//        val unsafe = unsafeField.get(null).asInstanceOf[Unsafe]
+//        buffer: DirectBuffer =&gt; cleanerMethod.invoke(unsafe, buffer)
+//      } else {
+//        val cleanerMethod = Utils.classForName(&quot;sun.misc.Cleaner&quot;).getMethod(&quot;clean&quot;)
+//        buffer: DirectBuffer =&gt; {
+//          // Careful to avoid the return type of .cleaner(), which changes with JDK
+//          val cleaner: AnyRef = buffer.cleaner()
+//          if (cleaner != null) {
+//            cleanerMethod.invoke(cleaner)
+//          }
+//        }
+//      }
+        //
+<span class="fc" id="L162">        final String specVer = System.getProperty(&quot;java.specification.version&quot;);</span>
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">        if (&quot;1.8&quot;.equals(specVer)) {</span>
+            // On Java 8, but also compiles on Java 11.
+            try {
+<span class="nc" id="L166">              final Class&lt;?&gt; clsCleaner = Class.forName(&quot;sun.misc.Cleaner&quot;);</span>
+<span class="nc" id="L167">              final Method cleanerMethod = DIRECT_BUFFER_CLASS.getMethod(&quot;cleaner&quot;);</span>
+<span class="nc" id="L168">              final Object cleaner = cleanerMethod.invoke(buffer);</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">              if (cleaner != null) {</span>
+<span class="nc" id="L170">                  final Method cleanMethod = clsCleaner.getMethod(&quot;clean&quot;);</span>
+<span class="nc" id="L171">                  cleanMethod.invoke(cleaner);</span>
+              }
+<span class="nc" id="L173">            } catch (final ReflectiveOperationException e) {</span>
+<span class="nc" id="L174">                throw new IllegalStateException(e);</span>
+<span class="nc" id="L175">            }</span>
+        } else {
+            // On Java 9 and up, but compiles on Java 8.
+            try {
+<span class="fc" id="L179">                final Class&lt;?&gt; clsUnsafe = Class.forName(&quot;sun.misc.Unsafe&quot;);</span>
+<span class="fc" id="L180">                final Method cleanerMethod = clsUnsafe.getMethod(&quot;invokeCleaner&quot;, ByteBuffer.class);</span>
+<span class="fc" id="L181">                final Field unsafeField = clsUnsafe.getDeclaredField(&quot;theUnsafe&quot;);</span>
+<span class="fc" id="L182">                unsafeField.setAccessible(true);</span>
+<span class="fc" id="L183">                cleanerMethod.invoke(unsafeField.get(null), buffer);</span>
+<span class="nc" id="L184">            } catch (final ReflectiveOperationException e) {</span>
+<span class="nc" id="L185">                throw new IllegalStateException(e);</span>
+<span class="fc" id="L186">            }</span>
+        }
+<span class="fc" id="L188">    }</span>
+
+    @Override
+    public synchronized void close() throws IOException {
+        try {
+<span class="fc" id="L193">            fileChannel.close();</span>
+        } finally {
+<span class="fc" id="L195">            clean(byteBuffer);</span>
+        }
+<span class="fc" id="L197">    }</span>
+
+    @Override
+    public synchronized int read() throws IOException {
+<span class="fc bfc" id="L201" title="All 2 branches covered.">        if (!refill()) {</span>
+<span class="fc" id="L202">            return EOF;</span>
+        }
+<span class="fc" id="L204">        return byteBuffer.get() &amp; 0xFF;</span>
+    }
+
+    @Override
+    public synchronized int read(final byte[] b, final int offset, int len) throws IOException {
+<span class="pc bpc" id="L209" title="4 of 8 branches missed.">        if (offset &lt; 0 || len &lt; 0 || offset + len &lt; 0 || offset + len &gt; b.length) {</span>
+<span class="nc" id="L210">            throw new IndexOutOfBoundsException();</span>
+        }
+<span class="fc bfc" id="L212" title="All 2 branches covered.">        if (!refill()) {</span>
+<span class="fc" id="L213">            return EOF;</span>
+        }
+<span class="fc" id="L215">        len = Math.min(len, byteBuffer.remaining());</span>
+<span class="fc" id="L216">        byteBuffer.get(b, offset, len);</span>
+<span class="fc" id="L217">        return len;</span>
+    }
+
+    /**
+     * Checks whether data is left to be read from the input stream.
+     *
+     * @return true if data is left, false otherwise
+     */
+    private boolean refill() throws IOException {
+<span class="fc bfc" id="L226" title="All 2 branches covered.">        if (!byteBuffer.hasRemaining()) {</span>
+<span class="fc" id="L227">            byteBuffer.clear();</span>
+<span class="fc" id="L228">            int nRead = 0;</span>
+<span class="fc bfc" id="L229" title="All 2 branches covered.">            while (nRead == 0) {</span>
+<span class="fc" id="L230">                nRead = fileChannel.read(byteBuffer);</span>
+            }
+<span class="fc" id="L232">            byteBuffer.flip();</span>
+<span class="fc bfc" id="L233" title="All 2 branches covered.">            return nRead &gt;= 0;</span>
+        }
+<span class="fc" id="L235">        return true;</span>
+    }
+
+    @Override
+    public synchronized long skip(final long n) throws IOException {
+<span class="fc bfc" id="L240" title="All 2 branches covered.">        if (n &lt;= 0L) {</span>
+<span class="fc" id="L241">            return 0L;</span>
+        }
+<span class="fc bfc" id="L243" title="All 2 branches covered.">        if (byteBuffer.remaining() &gt;= n) {</span>
+            // The buffered content is enough to skip
+<span class="fc" id="L245">            byteBuffer.position(byteBuffer.position() + (int) n);</span>
+<span class="fc" id="L246">            return n;</span>
+        }
+<span class="fc" id="L248">        final long skippedFromBuffer = byteBuffer.remaining();</span>
+<span class="fc" id="L249">        final long toSkipFromFileChannel = n - skippedFromBuffer;</span>
+        // Discard everything we have read in the buffer.
+<span class="fc" id="L251">        byteBuffer.position(0);</span>
+<span class="fc" id="L252">        byteBuffer.flip();</span>
+<span class="fc" id="L253">        return skippedFromBuffer + skipFromFileChannel(toSkipFromFileChannel);</span>
+    }
+
+    private long skipFromFileChannel(final long n) throws IOException {
+<span class="fc" id="L257">        final long currentFilePosition = fileChannel.position();</span>
+<span class="fc" id="L258">        final long size = fileChannel.size();</span>
+<span class="fc bfc" id="L259" title="All 2 branches covered.">        if (n &gt; size - currentFilePosition) {</span>
+<span class="fc" id="L260">            fileChannel.position(size);</span>
+<span class="fc" id="L261">            return size - currentFilePosition;</span>
+        }
+<span class="fc" id="L263">        fileChannel.position(currentFilePosition + n);</span>
+<span class="fc" id="L264">        return n;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

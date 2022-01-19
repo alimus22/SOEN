@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Counters.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons IO</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.io.file</a> &gt; <span class="el_source">Counters.java</span></div><h1>Counters.java</h1><pre class="source lang-java linenums">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.apache.commons.io.file;
+
+import java.math.BigInteger;
+import java.util.Objects;
+
+/**
+ * Provides counters for files, directories, and sizes, as a visit proceeds.
+ *
+ * @since 2.7
+ */
+<span class="nc" id="L28">public class Counters {</span>
+
+    /**
+     * Counts files, directories, and sizes, as a visit proceeds.
+     */
+    private static class AbstractPathCounters implements PathCounters {
+
+        private final Counter byteCounter;
+        private final Counter directoryCounter;
+        private final Counter fileCounter;
+
+        /**
+         * Constructs a new instance.
+         *
+         * @param byteCounter the byte counter.
+         * @param directoryCounter the directory counter.
+         * @param fileCounter the file counter.
+         */
+        protected AbstractPathCounters(final Counter byteCounter, final Counter directoryCounter,
+<span class="fc" id="L47">            final Counter fileCounter) {</span>
+<span class="fc" id="L48">            this.byteCounter = byteCounter;</span>
+<span class="fc" id="L49">            this.directoryCounter = directoryCounter;</span>
+<span class="fc" id="L50">            this.fileCounter = fileCounter;</span>
+<span class="fc" id="L51">        }</span>
+
+        @Override
+        public boolean equals(final Object obj) {
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">            if (this == obj) {</span>
+<span class="nc" id="L56">                return true;</span>
+            }
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">            if (!(obj instanceof AbstractPathCounters)) {</span>
+<span class="nc" id="L59">                return false;</span>
+            }
+<span class="fc" id="L61">            final AbstractPathCounters other = (AbstractPathCounters) obj;</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">            return Objects.equals(byteCounter, other.byteCounter)</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">                &amp;&amp; Objects.equals(directoryCounter, other.directoryCounter)</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">                &amp;&amp; Objects.equals(fileCounter, other.fileCounter);</span>
+        }
+
+        @Override
+        public Counter getByteCounter() {
+<span class="fc" id="L69">            return byteCounter;</span>
+        }
+
+        @Override
+        public Counter getDirectoryCounter() {
+<span class="fc" id="L74">            return directoryCounter;</span>
+        }
+
+        /**
+         * Gets the count of visited files.
+         *
+         * @return the byte count of visited files.
+         */
+        @Override
+        public Counter getFileCounter() {
+<span class="fc" id="L84">            return this.fileCounter;</span>
+        }
+
+        @Override
+        public int hashCode() {
+<span class="fc" id="L89">            return Objects.hash(byteCounter, directoryCounter, fileCounter);</span>
+        }
+
+        @Override
+        public void reset() {
+<span class="fc" id="L94">            byteCounter.reset();</span>
+<span class="fc" id="L95">            directoryCounter.reset();</span>
+<span class="fc" id="L96">            fileCounter.reset();</span>
+<span class="fc" id="L97">        }</span>
+
+        @Override
+        public String toString() {
+<span class="fc" id="L101">            return String.format(&quot;%,d files, %,d directories, %,d bytes&quot;, Long.valueOf(fileCounter.get()),</span>
+<span class="fc" id="L102">                Long.valueOf(directoryCounter.get()), Long.valueOf(byteCounter.get()));</span>
+        }
+
+    }
+
+    /**
+     * Counts using a BigInteger number.
+     */
+<span class="fc" id="L110">    private static final class BigIntegerCounter implements Counter {</span>
+
+<span class="fc" id="L112">        private BigInteger value = BigInteger.ZERO;</span>
+
+        @Override
+        public void add(final long val) {
+<span class="fc" id="L116">            value = value.add(BigInteger.valueOf(val));</span>
+
+<span class="fc" id="L118">        }</span>
+
+        @Override
+        public boolean equals(final Object obj) {
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">            if (this == obj) {</span>
+<span class="nc" id="L123">                return true;</span>
+            }
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">            if (!(obj instanceof Counter)) {</span>
+<span class="nc" id="L126">                return false;</span>
+            }
+<span class="fc" id="L128">            final Counter other = (Counter) obj;</span>
+<span class="fc" id="L129">            return Objects.equals(value, other.getBigInteger());</span>
+        }
+
+        @Override
+        public long get() {
+<span class="fc" id="L134">            return value.longValueExact();</span>
+        }
+
+        @Override
+        public BigInteger getBigInteger() {
+<span class="fc" id="L139">            return value;</span>
+        }
+
+        @Override
+        public Long getLong() {
+<span class="fc" id="L144">            return Long.valueOf(value.longValueExact());</span>
+        }
+
+        @Override
+        public int hashCode() {
+<span class="fc" id="L149">            return Objects.hash(value);</span>
+        }
+
+        @Override
+        public void increment() {
+<span class="fc" id="L154">            value = value.add(BigInteger.ONE);</span>
+<span class="fc" id="L155">        }</span>
+
+        @Override
+        public String toString() {
+<span class="fc" id="L159">            return value.toString();</span>
+        }
+
+        @Override
+        public void reset() {
+<span class="fc" id="L164">            value = BigInteger.ZERO;</span>
+<span class="fc" id="L165">        }</span>
+    }
+
+    /**
+     * Counts files, directories, and sizes, as a visit proceeds, using BigInteger numbers.
+     */
+    private final static class BigIntegerPathCounters extends AbstractPathCounters {
+
+        /**
+         * Constructs a new initialized instance.
+         */
+        protected BigIntegerPathCounters() {
+<span class="fc" id="L177">            super(Counters.bigIntegerCounter(), Counters.bigIntegerCounter(), Counters.bigIntegerCounter());</span>
+<span class="fc" id="L178">        }</span>
+
+    }
+
+    /**
+     * Counts using a number.
+     */
+    public interface Counter {
+
+        /**
+         * Adds the given number to this counter.
+         *
+         * @param val the value to add.
+         */
+        void add(long val);
+
+        /**
+         * Gets the counter as a long.
+         *
+         * @return the counter as a long.
+         */
+        long get();
+
+        /**
+         * Gets the counter as a BigInteger.
+         *
+         * @return the counter as a BigInteger.
+         */
+        BigInteger getBigInteger();
+
+        /**
+         * Gets the counter as a Long.
+         *
+         * @return the counter as a Long.
+         */
+        Long getLong();
+
+        /**
+         * Adds one to this counter.
+         */
+        void increment();
+
+        /**
+         * Resets this count to 0.
+         */
+        default void reset() {
+            // binary compat, do nothing
+<span class="nc" id="L225">        }</span>
+
+    }
+
+    /**
+     * Counts using a long number.
+     */
+    private final static class LongCounter implements Counter {
+
+        private long value;
+
+        @Override
+        public void add(final long add) {
+<span class="fc" id="L238">            value += add;</span>
+
+<span class="fc" id="L240">        }</span>
+
+        @Override
+        public boolean equals(final Object obj) {
+<span class="pc bpc" id="L244" title="1 of 2 branches missed.">            if (this == obj) {</span>
+<span class="nc" id="L245">                return true;</span>
+            }
+<span class="pc bpc" id="L247" title="1 of 2 branches missed.">            if (!(obj instanceof Counter)) {</span>
+<span class="nc" id="L248">                return false;</span>
+            }
+<span class="fc" id="L250">            final Counter other = (Counter) obj;</span>
+<span class="fc bfc" id="L251" title="All 2 branches covered.">            return value == other.get();</span>
+        }
+
+        @Override
+        public long get() {
+<span class="fc" id="L256">            return value;</span>
+        }
+
+        @Override
+        public BigInteger getBigInteger() {
+<span class="fc" id="L261">            return BigInteger.valueOf(value);</span>
+        }
+
+        @Override
+        public Long getLong() {
+<span class="fc" id="L266">            return Long.valueOf(value);</span>
+        }
+
+        @Override
+        public int hashCode() {
+<span class="fc" id="L271">            return Objects.hash(value);</span>
+        }
+
+        @Override
+        public void increment() {
+<span class="fc" id="L276">            value++;</span>
+<span class="fc" id="L277">        }</span>
+
+        @Override
+        public String toString() {
+<span class="fc" id="L281">            return Long.toString(value);</span>
+        }
+
+        @Override
+        public void reset() {
+<span class="fc" id="L286">            value = 0L;</span>
+<span class="fc" id="L287">        }</span>
+    }
+
+    /**
+     * Counts files, directories, and sizes, as a visit proceeds, using long numbers.
+     */
+    private final static class LongPathCounters extends AbstractPathCounters {
+
+        /**
+         * Constructs a new initialized instance.
+         */
+        protected LongPathCounters() {
+<span class="fc" id="L299">            super(Counters.longCounter(), Counters.longCounter(), Counters.longCounter());</span>
+<span class="fc" id="L300">        }</span>
+
+    }
+
+    /**
+     * Counts nothing.
+     */
+    private final static class NoopCounter implements Counter {
+
+<span class="fc" id="L309">        static final NoopCounter INSTANCE = new NoopCounter();</span>
+
+        @Override
+        public void add(final long add) {
+            // noop
+<span class="fc" id="L314">        }</span>
+
+        @Override
+        public long get() {
+<span class="fc" id="L318">            return 0;</span>
+        }
+
+        @Override
+        public BigInteger getBigInteger() {
+<span class="fc" id="L323">            return BigInteger.ZERO;</span>
+        }
+
+        @Override
+        public Long getLong() {
+<span class="fc" id="L328">            return 0L;</span>
+        }
+
+        @Override
+        public void increment() {
+            // noop
+<span class="fc" id="L334">        }</span>
+
+    }
+
+    /**
+     * Counts nothing.
+     */
+    private static final class NoopPathCounters extends AbstractPathCounters {
+
+<span class="fc" id="L343">        static final NoopPathCounters INSTANCE = new NoopPathCounters();</span>
+
+        /**
+         * Constructs a new initialized instance.
+         */
+        private NoopPathCounters() {
+<span class="fc" id="L349">            super(Counters.noopCounter(), Counters.noopCounter(), Counters.noopCounter());</span>
+<span class="fc" id="L350">        }</span>
+
+    }
+
+    /**
+     * Counts files, directories, and sizes, as a visit proceeds.
+     */
+    public interface PathCounters {
+
+        /**
+         * Gets the byte counter.
+         *
+         * @return the byte counter.
+         */
+        Counter getByteCounter();
+
+        /**
+         * Gets the directory counter.
+         *
+         * @return the directory counter.
+         */
+        Counter getDirectoryCounter();
+
+        /**
+         * Gets the file counter.
+         *
+         * @return the file counter.
+         */
+        Counter getFileCounter();
+
+        /**
+         * Resets the counts to 0.
+         */
+        default void reset() {
+            // binary compat, do nothing
+<span class="nc" id="L385">        }</span>
+
+    }
+
+    /**
+     * Returns a new BigInteger Counter.
+     *
+     * @return a new BigInteger Counter.
+     */
+    public static Counter bigIntegerCounter() {
+<span class="fc" id="L395">        return new BigIntegerCounter();</span>
+    }
+
+    /**
+     * Returns a new BigInteger PathCounters.
+     *
+     * @return a new BigInteger PathCounters.
+     */
+    public static PathCounters bigIntegerPathCounters() {
+<span class="fc" id="L404">        return new BigIntegerPathCounters();</span>
+    }
+
+    /**
+     * Returns a new long Counter.
+     *
+     * @return a new long Counter.
+     */
+    public static Counter longCounter() {
+<span class="fc" id="L413">        return new LongCounter();</span>
+    }
+
+    /**
+     * Returns a new BigInteger PathCounters.
+     *
+     * @return a new BigInteger PathCounters.
+     */
+    public static PathCounters longPathCounters() {
+<span class="fc" id="L422">        return new LongPathCounters();</span>
+    }
+
+    /**
+     * Returns the NOOP Counter.
+     *
+     * @return the NOOP Counter.
+     * @since 2.9.0
+     */
+    public static Counter noopCounter() {
+<span class="fc" id="L432">        return NoopCounter.INSTANCE;</span>
+    }
+
+    /**
+     * Returns the NOOP PathCounters.
+     *
+     * @return the NOOP PathCounters.
+     * @since 2.9.0
+     */
+    public static PathCounters noopPathCounters() {
+<span class="fc" id="L442">        return NoopPathCounters.INSTANCE;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

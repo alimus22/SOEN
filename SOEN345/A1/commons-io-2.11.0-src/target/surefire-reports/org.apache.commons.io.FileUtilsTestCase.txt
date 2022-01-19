@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.apache.commons.io.FileUtilsTestCase
+-------------------------------------------------------------------------------
+Tests run: 149, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 2.967 s - in org.apache.commons.io.FileUtilsTestCase

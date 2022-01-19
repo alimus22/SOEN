@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReadAheadInputStream.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons IO</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.io.input</a> &gt; <span class="el_source">ReadAheadInputStream.java</span></div><h1>ReadAheadInputStream.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.io.input;
+
+import static org.apache.commons.io.IOUtils.EOF;
+
+// import javax.annotation.concurrent.GuardedBy;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InterruptedIOException;
+import java.nio.ByteBuffer;
+import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+
+/**
+ * Implements {@link InputStream} to asynchronously read ahead from an underlying input stream when a specified amount
+ * of data has been read from the current buffer. It does so by maintaining two buffers: an active buffer and a read
+ * ahead buffer. The active buffer contains data which should be returned when a read() call is issued. The read ahead
+ * buffer is used to asynchronously read from the underlying input stream. When the current active buffer is exhausted,
+ * we flip the two buffers so that we can start reading from the read ahead buffer without being blocked by disk I/O.
+ * &lt;p&gt;
+ * This class was ported and adapted from Apache Spark commit 933dc6cb7b3de1d8ccaf73d124d6eb95b947ed19.
+ * &lt;/p&gt;
+ *
+ * @since 2.9.0
+ */
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">public class ReadAheadInputStream extends InputStream {</span>
+
+<span class="fc" id="L46">    private static final ThreadLocal&lt;byte[]&gt; oneByte = ThreadLocal.withInitial(() -&gt; new byte[1]);</span>
+
+    /**
+     * Creates a new daemon executor service.
+     *
+     * @return a new daemon executor service.
+     */
+    private static ExecutorService newExecutorService() {
+<span class="fc" id="L54">        return Executors.newSingleThreadExecutor(ReadAheadInputStream::newThread);</span>
+    }
+
+    /**
+     * Creates a new daemon thread.
+     *
+     * @param r the thread's runnable.
+     * @return a new daemon thread.
+     */
+    private static Thread newThread(final Runnable r) {
+<span class="fc" id="L64">        final Thread thread = new Thread(r, &quot;commons-io-read-ahead&quot;);</span>
+<span class="fc" id="L65">        thread.setDaemon(true);</span>
+<span class="fc" id="L66">        return thread;</span>
+    }
+
+<span class="fc" id="L69">    private final ReentrantLock stateChangeLock = new ReentrantLock();</span>
+
+    // @GuardedBy(&quot;stateChangeLock&quot;)
+    private ByteBuffer activeBuffer;
+
+    // @GuardedBy(&quot;stateChangeLock&quot;)
+    private ByteBuffer readAheadBuffer;
+
+    // @GuardedBy(&quot;stateChangeLock&quot;)
+    private boolean endOfStream;
+
+    // @GuardedBy(&quot;stateChangeLock&quot;)
+    // true if async read is in progress
+    private boolean readInProgress;
+
+    // @GuardedBy(&quot;stateChangeLock&quot;)
+    // true if read is aborted due to an exception in reading from underlying input stream.
+    private boolean readAborted;
+
+    // @GuardedBy(&quot;stateChangeLock&quot;)
+    private Throwable readException;
+
+    // @GuardedBy(&quot;stateChangeLock&quot;)
+    // whether the close method is called.
+    private boolean isClosed;
+
+    // @GuardedBy(&quot;stateChangeLock&quot;)
+    // true when the close method will close the underlying input stream. This is valid only if
+    // `isClosed` is true.
+    private boolean isUnderlyingInputStreamBeingClosed;
+
+    // @GuardedBy(&quot;stateChangeLock&quot;)
+    // whether there is a read ahead task running,
+    private boolean isReading;
+
+    // Whether there is a reader waiting for data.
+<span class="fc" id="L105">    private final AtomicBoolean isWaiting = new AtomicBoolean(false);</span>
+
+    private final InputStream underlyingInputStream;
+
+    private final ExecutorService executorService;
+
+    private final boolean shutdownExecutorService;
+
+<span class="fc" id="L113">    private final Condition asyncReadComplete = stateChangeLock.newCondition();</span>
+
+    /**
+     * Creates an instance with the specified buffer size and read-ahead threshold
+     *
+     * @param inputStream The underlying input stream.
+     * @param bufferSizeInBytes The buffer size.
+     */
+    public ReadAheadInputStream(final InputStream inputStream, final int bufferSizeInBytes) {
+<span class="fc" id="L122">        this(inputStream, bufferSizeInBytes, newExecutorService(), true);</span>
+<span class="fc" id="L123">    }</span>
+
+    /**
+     * Creates an instance with the specified buffer size and read-ahead threshold
+     *
+     * @param inputStream The underlying input stream.
+     * @param bufferSizeInBytes The buffer size.
+     * @param executorService An executor service for the read-ahead thread.
+     */
+    public ReadAheadInputStream(final InputStream inputStream, final int bufferSizeInBytes,
+        final ExecutorService executorService) {
+<span class="nc" id="L134">        this(inputStream, bufferSizeInBytes, executorService, false);</span>
+<span class="nc" id="L135">    }</span>
+
+    /**
+     * Creates an instance with the specified buffer size and read-ahead threshold
+     *
+     * @param inputStream The underlying input stream.
+     * @param bufferSizeInBytes The buffer size.
+     * @param executorService An executor service for the read-ahead thread.
+     * @param shutdownExecutorService Whether or not to shutdown the given ExecutorService on close.
+     */
+    private ReadAheadInputStream(final InputStream inputStream, final int bufferSizeInBytes,
+<span class="fc" id="L146">        final ExecutorService executorService, final boolean shutdownExecutorService) {</span>
+<span class="pc bpc" id="L147" title="1 of 2 branches missed.">        if (bufferSizeInBytes &lt;= 0) {</span>
+<span class="nc" id="L148">            throw new IllegalArgumentException(</span>
+                &quot;bufferSizeInBytes should be greater than 0, but the value is &quot; + bufferSizeInBytes);
+        }
+<span class="fc" id="L151">        this.executorService = Objects.requireNonNull(executorService, &quot;executorService&quot;);</span>
+<span class="fc" id="L152">        this.underlyingInputStream = Objects.requireNonNull(inputStream, &quot;inputStream&quot;);</span>
+<span class="fc" id="L153">        this.shutdownExecutorService = shutdownExecutorService;</span>
+<span class="fc" id="L154">        this.activeBuffer = ByteBuffer.allocate(bufferSizeInBytes);</span>
+<span class="fc" id="L155">        this.readAheadBuffer = ByteBuffer.allocate(bufferSizeInBytes);</span>
+<span class="fc" id="L156">        this.activeBuffer.flip();</span>
+<span class="fc" id="L157">        this.readAheadBuffer.flip();</span>
+<span class="fc" id="L158">    }</span>
+
+    @Override
+    public int available() throws IOException {
+<span class="fc" id="L162">        stateChangeLock.lock();</span>
+        // Make sure we have no integer overflow.
+        try {
+<span class="fc" id="L165">            return (int) Math.min(Integer.MAX_VALUE, (long) activeBuffer.remaining() + readAheadBuffer.remaining());</span>
+        } finally {
+<span class="fc" id="L167">            stateChangeLock.unlock();</span>
+        }
+    }
+
+    private void checkReadException() throws IOException {
+<span class="pc bpc" id="L172" title="1 of 2 branches missed.">        if (readAborted) {</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (readException instanceof IOException) {</span>
+<span class="nc" id="L174">                throw (IOException) readException;</span>
+            }
+<span class="nc" id="L176">            throw new IOException(readException);</span>
+        }
+<span class="fc" id="L178">    }</span>
+
+    @Override
+    public void close() throws IOException {
+<span class="fc" id="L182">        boolean isSafeToCloseUnderlyingInputStream = false;</span>
+<span class="fc" id="L183">        stateChangeLock.lock();</span>
+        try {
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">            if (isClosed) {</span>
+<span class="nc" id="L186">                return;</span>
+            }
+<span class="fc" id="L188">            isClosed = true;</span>
+<span class="pc bpc" id="L189" title="1 of 2 branches missed.">            if (!isReading) {</span>
+                // Nobody is reading, so we can close the underlying input stream in this method.
+<span class="fc" id="L191">                isSafeToCloseUnderlyingInputStream = true;</span>
+                // Flip this to make sure the read ahead task will not close the underlying input stream.
+<span class="fc" id="L193">                isUnderlyingInputStreamBeingClosed = true;</span>
+            }
+        } finally {
+<span class="fc" id="L196">            stateChangeLock.unlock();</span>
+        }
+
+<span class="pc bpc" id="L199" title="1 of 2 branches missed.">        if (shutdownExecutorService) {</span>
+            try {
+<span class="fc" id="L201">                executorService.shutdownNow();</span>
+<span class="fc" id="L202">                executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS);</span>
+<span class="nc" id="L203">            } catch (final InterruptedException e) {</span>
+<span class="nc" id="L204">                final InterruptedIOException iio = new InterruptedIOException(e.getMessage());</span>
+<span class="nc" id="L205">                iio.initCause(e);</span>
+<span class="nc" id="L206">                throw iio;</span>
+            } finally {
+<span class="pc bpc" id="L208" title="1 of 2 branches missed.">                if (isSafeToCloseUnderlyingInputStream) {</span>
+<span class="fc" id="L209">                    underlyingInputStream.close();</span>
+                }
+            }
+        }
+<span class="fc" id="L213">    }</span>
+
+    private void closeUnderlyingInputStreamIfNecessary() {
+<span class="fc" id="L216">        boolean needToCloseUnderlyingInputStream = false;</span>
+<span class="fc" id="L217">        stateChangeLock.lock();</span>
+        try {
+<span class="fc" id="L219">            isReading = false;</span>
+<span class="pc bpc" id="L220" title="3 of 4 branches missed.">            if (isClosed &amp;&amp; !isUnderlyingInputStreamBeingClosed) {</span>
+                // close method cannot close underlyingInputStream because we were reading.
+<span class="nc" id="L222">                needToCloseUnderlyingInputStream = true;</span>
+            }
+        } finally {
+<span class="fc" id="L225">            stateChangeLock.unlock();</span>
+        }
+<span class="pc bpc" id="L227" title="1 of 2 branches missed.">        if (needToCloseUnderlyingInputStream) {</span>
+            try {
+<span class="nc" id="L229">                underlyingInputStream.close();</span>
+<span class="nc" id="L230">            } catch (final IOException e) {</span>
+                // TODO ?
+<span class="nc" id="L232">            }</span>
+        }
+<span class="fc" id="L234">    }</span>
+
+    private boolean isEndOfStream() {
+<span class="fc bfc" id="L237" title="All 6 branches covered.">        return !activeBuffer.hasRemaining() &amp;&amp; !readAheadBuffer.hasRemaining() &amp;&amp; endOfStream;</span>
+    }
+
+    @Override
+    public int read() throws IOException {
+<span class="fc bfc" id="L242" title="All 2 branches covered.">        if (activeBuffer.hasRemaining()) {</span>
+            // short path - just get one byte.
+<span class="fc" id="L244">            return activeBuffer.get() &amp; 0xFF;</span>
+        }
+<span class="fc" id="L246">        final byte[] oneByteArray = oneByte.get();</span>
+<span class="fc bfc" id="L247" title="All 2 branches covered.">        return read(oneByteArray, 0, 1) == EOF ? -1 : oneByteArray[0] &amp; 0xFF;</span>
+    }
+
+    @Override
+    public int read(final byte[] b, final int offset, int len) throws IOException {
+<span class="pc bpc" id="L252" title="3 of 6 branches missed.">        if (offset &lt; 0 || len &lt; 0 || len &gt; b.length - offset) {</span>
+<span class="nc" id="L253">            throw new IndexOutOfBoundsException();</span>
+        }
+<span class="pc bpc" id="L255" title="1 of 2 branches missed.">        if (len == 0) {</span>
+<span class="nc" id="L256">            return 0;</span>
+        }
+
+<span class="fc bfc" id="L259" title="All 2 branches covered.">        if (!activeBuffer.hasRemaining()) {</span>
+            // No remaining in active buffer - lock and switch to write ahead buffer.
+<span class="fc" id="L261">            stateChangeLock.lock();</span>
+            try {
+<span class="fc" id="L263">                waitForAsyncReadComplete();</span>
+<span class="fc bfc" id="L264" title="All 2 branches covered.">                if (!readAheadBuffer.hasRemaining()) {</span>
+                    // The first read.
+<span class="fc" id="L266">                    readAsync();</span>
+<span class="fc" id="L267">                    waitForAsyncReadComplete();</span>
+<span class="fc bfc" id="L268" title="All 2 branches covered.">                    if (isEndOfStream()) {</span>
+<span class="fc" id="L269">                        return EOF;</span>
+                    }
+                }
+                // Swap the newly read read ahead buffer in place of empty active buffer.
+<span class="fc" id="L273">                swapBuffers();</span>
+                // After swapping buffers, trigger another async read for read ahead buffer.
+<span class="fc" id="L275">                readAsync();</span>
+            } finally {
+<span class="fc" id="L277">                stateChangeLock.unlock();</span>
+            }
+        }
+<span class="fc" id="L280">        len = Math.min(len, activeBuffer.remaining());</span>
+<span class="fc" id="L281">        activeBuffer.get(b, offset, len);</span>
+
+<span class="fc" id="L283">        return len;</span>
+    }
+
+    /** Read data from underlyingInputStream to readAheadBuffer asynchronously. */
+    private void readAsync() throws IOException {
+<span class="fc" id="L288">        stateChangeLock.lock();</span>
+        final byte[] arr;
+        try {
+<span class="fc" id="L291">            arr = readAheadBuffer.array();</span>
+<span class="pc bpc" id="L292" title="1 of 4 branches missed.">            if (endOfStream || readInProgress) {</span>
+<span class="fc" id="L293">                return;</span>
+            }
+<span class="fc" id="L295">            checkReadException();</span>
+<span class="fc" id="L296">            readAheadBuffer.position(0);</span>
+<span class="fc" id="L297">            readAheadBuffer.flip();</span>
+<span class="fc" id="L298">            readInProgress = true;</span>
+        } finally {
+<span class="fc" id="L300">            stateChangeLock.unlock();</span>
+        }
+<span class="fc" id="L302">        executorService.execute(() -&gt; {</span>
+<span class="fc" id="L303">            stateChangeLock.lock();</span>
+            try {
+<span class="pc bpc" id="L305" title="1 of 2 branches missed.">                if (isClosed) {</span>
+<span class="nc" id="L306">                    readInProgress = false;</span>
+<span class="nc" id="L307">                    return;</span>
+                }
+                // Flip this so that the close method will not close the underlying input stream when we
+                // are reading.
+<span class="fc" id="L311">                isReading = true;</span>
+            } finally {
+<span class="fc" id="L313">                stateChangeLock.unlock();</span>
+            }
+
+            // Please note that it is safe to release the lock and read into the read ahead buffer
+            // because either of following two conditions will hold:
+            //
+            // 1. The active buffer has data available to read so the reader will not read from the read ahead buffer.
+            //
+            // 2. This is the first time read is called or the active buffer is exhausted, in that case the reader waits
+            // for this async read to complete.
+            //
+            // So there is no race condition in both the situations.
+<span class="fc" id="L325">            int read = 0;</span>
+<span class="fc" id="L326">            int off = 0, len = arr.length;</span>
+<span class="fc" id="L327">            Throwable exception = null;</span>
+            try {
+                // try to fill the read ahead buffer.
+                // if a reader is waiting, possibly return early.
+                do {
+<span class="fc" id="L332">                    read = underlyingInputStream.read(arr, off, len);</span>
+<span class="fc bfc" id="L333" title="All 2 branches covered.">                    if (read &lt;= 0) {</span>
+<span class="fc" id="L334">                        break;</span>
+                    }
+<span class="fc" id="L336">                    off += read;</span>
+<span class="fc" id="L337">                    len -= read;</span>
+<span class="fc bfc" id="L338" title="All 4 branches covered.">                } while (len &gt; 0 &amp;&amp; !isWaiting.get());</span>
+<span class="nc" id="L339">            } catch (final Throwable ex) {</span>
+<span class="nc" id="L340">                exception = ex;</span>
+<span class="nc bnc" id="L341" title="All 2 branches missed.">                if (ex instanceof Error) {</span>
+                    // `readException` may not be reported to the user. Rethrow Error to make sure at least
+                    // The user can see Error in UncaughtExceptionHandler.
+<span class="nc" id="L344">                    throw (Error) ex;</span>
+                }
+            } finally {
+<span class="fc" id="L347">                stateChangeLock.lock();</span>
+                try {
+<span class="fc" id="L349">                    readAheadBuffer.limit(off);</span>
+<span class="pc bpc" id="L350" title="1 of 4 branches missed.">                    if (read &lt; 0 || (exception instanceof EOFException)) {</span>
+<span class="fc" id="L351">                        endOfStream = true;</span>
+<span class="pc bpc" id="L352" title="1 of 2 branches missed.">                    } else if (exception != null) {</span>
+<span class="nc" id="L353">                        readAborted = true;</span>
+<span class="nc" id="L354">                        readException = exception;</span>
+                    }
+<span class="fc" id="L356">                    readInProgress = false;</span>
+<span class="fc" id="L357">                    signalAsyncReadComplete();</span>
+                } finally {
+<span class="fc" id="L359">                    stateChangeLock.unlock();</span>
+                }
+<span class="fc" id="L361">                closeUnderlyingInputStreamIfNecessary();</span>
+            }
+<span class="fc" id="L363">        });</span>
+<span class="fc" id="L364">    }</span>
+
+    private void signalAsyncReadComplete() {
+<span class="fc" id="L367">        stateChangeLock.lock();</span>
+        try {
+<span class="fc" id="L369">            asyncReadComplete.signalAll();</span>
+        } finally {
+<span class="fc" id="L371">            stateChangeLock.unlock();</span>
+        }
+<span class="fc" id="L373">    }</span>
+
+    @Override
+    public long skip(final long n) throws IOException {
+<span class="fc bfc" id="L377" title="All 2 branches covered.">        if (n &lt;= 0L) {</span>
+<span class="fc" id="L378">            return 0L;</span>
+        }
+<span class="fc bfc" id="L380" title="All 2 branches covered.">        if (n &lt;= activeBuffer.remaining()) {</span>
+            // Only skipping from active buffer is sufficient
+<span class="fc" id="L382">            activeBuffer.position((int) n + activeBuffer.position());</span>
+<span class="fc" id="L383">            return n;</span>
+        }
+<span class="fc" id="L385">        stateChangeLock.lock();</span>
+        long skipped;
+        try {
+<span class="fc" id="L388">            skipped = skipInternal(n);</span>
+        } finally {
+<span class="fc" id="L390">            stateChangeLock.unlock();</span>
+        }
+<span class="fc" id="L392">        return skipped;</span>
+    }
+
+    /**
+     * Internal skip function which should be called only from skip(). The assumption is that the stateChangeLock is
+     * already acquired in the caller before calling this function.
+     *
+     * @param n the number of bytes to be skipped.
+     * @return the actual number of bytes skipped.
+     */
+    private long skipInternal(final long n) throws IOException {
+<span class="pc bpc" id="L403" title="2 of 4 branches missed.">        assert stateChangeLock.isLocked();</span>
+<span class="fc" id="L404">        waitForAsyncReadComplete();</span>
+<span class="pc bpc" id="L405" title="1 of 2 branches missed.">        if (isEndOfStream()) {</span>
+<span class="nc" id="L406">            return 0;</span>
+        }
+<span class="pc bpc" id="L408" title="1 of 2 branches missed.">        if (available() &gt;= n) {</span>
+            // we can skip from the internal buffers
+<span class="nc" id="L410">            int toSkip = (int) n;</span>
+            // We need to skip from both active buffer and read ahead buffer
+<span class="nc" id="L412">            toSkip -= activeBuffer.remaining();</span>
+<span class="nc bnc" id="L413" title="All 4 branches missed.">            assert toSkip &gt; 0; // skipping from activeBuffer already handled.</span>
+<span class="nc" id="L414">            activeBuffer.position(0);</span>
+<span class="nc" id="L415">            activeBuffer.flip();</span>
+<span class="nc" id="L416">            readAheadBuffer.position(toSkip + readAheadBuffer.position());</span>
+<span class="nc" id="L417">            swapBuffers();</span>
+            // Trigger async read to emptied read ahead buffer.
+<span class="nc" id="L419">            readAsync();</span>
+<span class="nc" id="L420">            return n;</span>
+        }
+<span class="fc" id="L422">        final int skippedBytes = available();</span>
+<span class="fc" id="L423">        final long toSkip = n - skippedBytes;</span>
+<span class="fc" id="L424">        activeBuffer.position(0);</span>
+<span class="fc" id="L425">        activeBuffer.flip();</span>
+<span class="fc" id="L426">        readAheadBuffer.position(0);</span>
+<span class="fc" id="L427">        readAheadBuffer.flip();</span>
+<span class="fc" id="L428">        final long skippedFromInputStream = underlyingInputStream.skip(toSkip);</span>
+<span class="fc" id="L429">        readAsync();</span>
+<span class="fc" id="L430">        return skippedBytes + skippedFromInputStream;</span>
+    }
+
+    /**
+     * Flips the active and read ahead buffer
+     */
+    private void swapBuffers() {
+<span class="fc" id="L437">        final ByteBuffer temp = activeBuffer;</span>
+<span class="fc" id="L438">        activeBuffer = readAheadBuffer;</span>
+<span class="fc" id="L439">        readAheadBuffer = temp;</span>
+<span class="fc" id="L440">    }</span>
+
+    private void waitForAsyncReadComplete() throws IOException {
+<span class="fc" id="L443">        stateChangeLock.lock();</span>
+        try {
+<span class="fc" id="L445">            isWaiting.set(true);</span>
+            // There is only one reader, and one writer, so the writer should signal only once,
+            // but a while loop checking the wake up condition is still needed to avoid spurious wakeups.
+<span class="fc bfc" id="L448" title="All 2 branches covered.">            while (readInProgress) {</span>
+<span class="fc" id="L449">                asyncReadComplete.await();</span>
+            }
+<span class="nc" id="L451">        } catch (final InterruptedException e) {</span>
+<span class="nc" id="L452">            final InterruptedIOException iio = new InterruptedIOException(e.getMessage());</span>
+<span class="nc" id="L453">            iio.initCause(e);</span>
+<span class="nc" id="L454">            throw iio;</span>
+        } finally {
+<span class="fc" id="L456">            isWaiting.set(false);</span>
+<span class="fc" id="L457">            stateChangeLock.unlock();</span>
+        }
+<span class="fc" id="L459">        checkReadException();</span>
+<span class="fc" id="L460">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
