@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MagicNumberFileFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons IO</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.io.filefilter</a> &gt; <span class="el_source">MagicNumberFileFilter.java</span></div><h1>MagicNumberFileFilter.java</h1><pre class="source lang-java linenums">/* $$ This file has been instrumented by Clover 4.4.1#2019101123313948 $$ *//*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.io.filefilter;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.io.Serializable;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Arrays;
+
+import org.apache.commons.io.IOUtils;
+
+/**
+ * &lt;p&gt;
+ * File filter for matching files containing a &quot;magic number&quot;. A magic number
+ * is a unique series of bytes common to all files of a specific file format.
+ * For instance, all Java class files begin with the bytes
+ * {@code 0xCAFEBABE}.
+ * &lt;/p&gt;
+ * &lt;h2&gt;Using Classic IO&lt;/h2&gt;
+ * &lt;pre&gt;
+ * File dir = new File(&quot;.&quot;);
+ * MagicNumberFileFilter javaClassFileFilter =
+ *     MagicNumberFileFilter(new byte[] {(byte) 0xCA, (byte) 0xFE,
+ *       (byte) 0xBA, (byte) 0xBE});
+ * String[] javaClassFiles = dir.list(javaClassFileFilter);
+ * for (String javaClassFile : javaClassFiles) {
+ *     System.out.println(javaClassFile);
+ * }
+ * &lt;/pre&gt;
+ *
+ * &lt;p&gt;
+ * Sometimes, such as in the case of TAR files, the
+ * magic number will be offset by a certain number of bytes in the file. In the
+ * case of TAR archive files, this offset is 257 bytes.
+ * &lt;/p&gt;
+ *
+ * &lt;pre&gt;
+ * File dir = new File(&quot;.&quot;);
+ * MagicNumberFileFilter tarFileFilter =
+ *     MagicNumberFileFilter(&quot;ustar&quot;, 257);
+ * String[] tarFiles = dir.list(tarFileFilter);
+ * for (String tarFile : tarFiles) {
+ *     System.out.println(tarFile);
+ * }
+ * &lt;/pre&gt;
+ * &lt;h2&gt;Using NIO&lt;/h2&gt;
+ * &lt;pre&gt;
+ * final Path dir = Paths.get(&quot;&quot;);
+ * final AccumulatorPathVisitor visitor = AccumulatorPathVisitor.withLongCounters(MagicNumberFileFilter(&quot;ustar&quot;, 257));
+ * //
+ * // Walk one dir
+ * Files.&lt;b&gt;walkFileTree&lt;/b&gt;(dir, Collections.emptySet(), 1, visitor);
+ * System.out.println(visitor.getPathCounters());
+ * System.out.println(visitor.getFileList());
+ * //
+ * visitor.getPathCounters().reset();
+ * //
+ * // Walk dir tree
+ * Files.&lt;b&gt;walkFileTree&lt;/b&gt;(dir, visitor);
+ * System.out.println(visitor.getPathCounters());
+ * System.out.println(visitor.getDirList());
+ * System.out.println(visitor.getFileList());
+ * &lt;/pre&gt;
+ *
+ * @since 2.0
+ * @see FileFilterUtils#magicNumberFileFilter(byte[])
+ * @see FileFilterUtils#magicNumberFileFilter(String)
+ * @see FileFilterUtils#magicNumberFileFilter(byte[], long)
+ * @see FileFilterUtils#magicNumberFileFilter(String, long)
+ */
+public class MagicNumberFileFilter extends AbstractFileFilter implements
+<span class="pc bpc" id="L94" title="3 of 4 branches missed.">        Serializable {public static class __CLR4_4_13nh3nhkylvdzh9{public static com_atlassian_clover.CoverageRecorder R;public static com_atlassian_clover.CloverProfile[] profiles = { };@java.lang.SuppressWarnings(&quot;unchecked&quot;) public static &lt;I, T extends I&gt; I lambdaInc(final int i,final T l,final int si){java.lang.reflect.InvocationHandler h=new java.lang.reflect.InvocationHandler(){public java.lang.Object invoke(java.lang.Object p,java.lang.reflect.Method m,java.lang.Object[] a) throws Throwable{R.inc(i);R.inc(si);try{return m.invoke(l,a);}catch(java.lang.reflect.InvocationTargetException e){throw e.getCause()!=null?e.getCause():new RuntimeException(&quot;Clover failed to invoke instrumented lambda&quot;,e);}}};return (I)java.lang.reflect.Proxy.newProxyInstance(l.getClass().getClassLoader(),l.getClass().getInterfaces(),h);}static{com_atlassian_clover.CoverageRecorder _R=null;try{com_atlassian_clover.CloverVersionInfo.An_old_version_of_clover_is_on_your_compilation_classpath___Please_remove___Required_version_is___4_4_1();if(2019101123313948L!=com_atlassian_clover.CloverVersionInfo.getBuildStamp()){com_atlassian_clover.Clover.l(&quot;[CLOVER] WARNING: The Clover version used in instrumentation does not match the runtime version. You need to run instrumented classes against the same version of Clover that you instrumented with.&quot;);com_atlassian_clover.Clover.l(&quot;[CLOVER] WARNING: Instr=4.4.1#2019101123313948,Runtime=&quot;+com_atlassian_clover.CloverVersionInfo.getReleaseNum()+&quot;#&quot;+com_atlassian_clover.CloverVersionInfo.getBuildStamp());}R=com_atlassian_clover.Clover.getNullRecorder();_R=com_atlassian_clover.Clover.getNullRecorder();_R=com_atlassian_clover.Clover.getRecorder(&quot;\u002f\u0055\u0073\u0065\u0072\u0073\u002f\u0061\u006c\u0069\u0068\u0061\u006e\u006e\u0069\u002f\u0044\u0065\u0073\u006b\u0074\u006f\u0070\u002f\u0047\u0069\u0074\u0048\u0075\u0062\u002f\u0053\u004f\u0045\u004e\u002f\u0053\u004f\u0045\u004e\u0033\u0034\u0035\u002f\u0041\u0031\u002f\u0063\u006f\u006d\u006d\u006f\u006e\u0073\u002d\u0069\u006f\u002d\u0032\u002e\u0031\u0031\u002e\u0030\u002d\u0073\u0072\u0063\u002f\u0074\u0061\u0072\u0067\u0065\u0074\u002f\u0063\u006c\u006f\u0076\u0065\u0072\u002f\u0063\u006c\u006f\u0076\u0065\u0072\u002e\u0064\u0062&quot;,1642616389890L,8589935092L,4807,profiles,new java.lang.String[]{&quot;clover.distributed.coverage&quot;,null});}catch(java.lang.SecurityException e){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised because it has insufficient security privileges. Please consult the Clover documentation on the security policy file changes required. (&quot;+e.getClass()+&quot;:&quot;+e.getMessage()+&quot;)&quot;);}catch(java.lang.NoClassDefFoundError e){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised. Are you sure you have Clover in the runtime classpath? (&quot;+e.getClass()+&quot;:&quot;+e.getMessage()+&quot;)&quot;);}catch(java.lang.Throwable t){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised because of an unexpected error. (&quot;+t.getClass()+&quot;:&quot;+t.getMessage()+&quot;)&quot;);}R=_R;}}public static final com_atlassian_clover.TestNameSniffer __CLR4_4_1_TEST_NAME_SNIFFER=com_atlassian_clover.TestNameSniffer.NULL_INSTANCE;</span>
+
+    /**
+     * The serialization version unique identifier.
+     */
+    private static final long serialVersionUID = -547733176983104172L;
+
+    /**
+     * The magic number to compare against the file's bytes at the provided
+     * offset.
+     */
+    private final byte[] magicNumbers;
+
+    /**
+     * The offset (in bytes) within the files that the magic number's bytes
+     * should appear.
+     */
+    private final long byteOffset;
+
+    /**
+     * &lt;p&gt;
+     * Constructs a new MagicNumberFileFilter and associates it with the magic
+     * number to test for in files. This constructor assumes a starting offset
+     * of {@code 0}.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * It is important to note that &lt;em&gt;the array is not cloned&lt;/em&gt; and that
+     * any changes to the magic number array after construction will affect the
+     * behavior of this file filter.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * MagicNumberFileFilter javaClassFileFilter =
+     *     MagicNumberFileFilter(new byte[] {(byte) 0xCA, (byte) 0xFE,
+     *       (byte) 0xBA, (byte) 0xBE});
+     * &lt;/pre&gt;
+     *
+     * @param magicNumber the magic number to look for in the file.
+     *
+     * @throws IllegalArgumentException if {@code magicNumber} is
+     *         {@code null}, or contains no bytes.
+     */
+    public MagicNumberFileFilter(final byte[] magicNumber) {
+<span class="fc" id="L138">        this(magicNumber, 0);__CLR4_4_13nh3nhkylvdzh9.R.inc(4734);try{__CLR4_4_13nh3nhkylvdzh9.R.inc(4733);</span>
+<span class="fc" id="L139">    }finally{__CLR4_4_13nh3nhkylvdzh9.R.flushNeeded();}}</span>
+
+    /**
+     * &lt;p&gt;
+     * Constructs a new MagicNumberFileFilter and associates it with the magic
+     * number to test for in files and the byte offset location in the file to
+     * to look for that magic number.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * MagicNumberFileFilter tarFileFilter =
+     *     MagicNumberFileFilter(new byte[] {0x75, 0x73, 0x74, 0x61, 0x72}, 257);
+     * &lt;/pre&gt;
+     *
+     * &lt;pre&gt;
+     * MagicNumberFileFilter javaClassFileFilter =
+     *     MagicNumberFileFilter(new byte[] {0xCA, 0xFE, 0xBA, 0xBE}, 0);
+     * &lt;/pre&gt;
+     *
+     * @param magicNumber the magic number to look for in the file.
+     * @param offset the byte offset in the file to start comparing bytes.
+     *
+     * @throws IllegalArgumentException if {@code magicNumber} is
+     *         {@code null}, or contains no bytes, or {@code offset}
+     *         is a negative number.
+     */
+<span class="fc" id="L165">    public MagicNumberFileFilter(final byte[] magicNumber, final long offset) {try{__CLR4_4_13nh3nhkylvdzh9.R.inc(4735);</span>
+<span class="pc bpc" id="L166" title="4 of 10 branches missed.">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4736);if ((((magicNumber == null)&amp;&amp;(__CLR4_4_13nh3nhkylvdzh9.R.iget(4737)!=0|true))||(__CLR4_4_13nh3nhkylvdzh9.R.iget(4738)==0&amp;false))) {{</span>
+<span class="fc" id="L167">            __CLR4_4_13nh3nhkylvdzh9.R.inc(4739);throw new IllegalArgumentException(&quot;The magic number cannot be null&quot;);</span>
+        }
+<span class="pc bpc" id="L169" title="4 of 10 branches missed.">        }__CLR4_4_13nh3nhkylvdzh9.R.inc(4740);if ((((magicNumber.length == 0)&amp;&amp;(__CLR4_4_13nh3nhkylvdzh9.R.iget(4741)!=0|true))||(__CLR4_4_13nh3nhkylvdzh9.R.iget(4742)==0&amp;false))) {{</span>
+<span class="fc" id="L170">            __CLR4_4_13nh3nhkylvdzh9.R.inc(4743);throw new IllegalArgumentException(&quot;The magic number must contain at least one byte&quot;);</span>
+        }
+<span class="pc bpc" id="L172" title="4 of 10 branches missed.">        }__CLR4_4_13nh3nhkylvdzh9.R.inc(4744);if ((((offset &lt; 0)&amp;&amp;(__CLR4_4_13nh3nhkylvdzh9.R.iget(4745)!=0|true))||(__CLR4_4_13nh3nhkylvdzh9.R.iget(4746)==0&amp;false))) {{</span>
+<span class="fc" id="L173">            __CLR4_4_13nh3nhkylvdzh9.R.inc(4747);throw new IllegalArgumentException(&quot;The offset cannot be negative&quot;);</span>
+        }
+
+<span class="fc" id="L176">        }__CLR4_4_13nh3nhkylvdzh9.R.inc(4748);this.magicNumbers = IOUtils.byteArray(magicNumber.length);</span>
+<span class="fc" id="L177">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4749);System.arraycopy(magicNumber, 0, this.magicNumbers, 0, magicNumber.length);</span>
+<span class="fc" id="L178">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4750);this.byteOffset = offset;</span>
+<span class="fc" id="L179">    }finally{__CLR4_4_13nh3nhkylvdzh9.R.flushNeeded();}}</span>
+
+    /**
+     * &lt;p&gt;
+     * Constructs a new MagicNumberFileFilter and associates it with the magic
+     * number to test for in files. This constructor assumes a starting offset
+     * of {@code 0}.
+     * &lt;/p&gt;
+     *
+     * Example usage:
+     * &lt;pre&gt;
+     * {@code
+     * MagicNumberFileFilter xmlFileFilter =
+     *     MagicNumberFileFilter(&quot;&lt;?xml&quot;);
+     * }
+     * &lt;/pre&gt;
+     *
+     * @param magicNumber the magic number to look for in the file.
+     *        The string is converted to bytes using the platform default charset.
+     *
+     * @throws IllegalArgumentException if {@code magicNumber} is
+     *         {@code null} or the empty String.
+     */
+    public MagicNumberFileFilter(final String magicNumber) {
+<span class="fc" id="L203">        this(magicNumber, 0);__CLR4_4_13nh3nhkylvdzh9.R.inc(4752);try{__CLR4_4_13nh3nhkylvdzh9.R.inc(4751);</span>
+<span class="fc" id="L204">    }finally{__CLR4_4_13nh3nhkylvdzh9.R.flushNeeded();}}</span>
+
+    /**
+     * &lt;p&gt;
+     * Constructs a new MagicNumberFileFilter and associates it with the magic
+     * number to test for in files and the byte offset location in the file to
+     * to look for that magic number.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * MagicNumberFileFilter tarFileFilter =
+     *     MagicNumberFileFilter(&quot;ustar&quot;, 257);
+     * &lt;/pre&gt;
+     *
+     * @param magicNumber the magic number to look for in the file.
+     *        The string is converted to bytes using the platform default charset.
+     * @param offset the byte offset in the file to start comparing bytes.
+     *
+     * @throws IllegalArgumentException if {@code magicNumber} is
+     *         {@code null} or the empty String, or {@code offset} is
+     *         a negative number.
+     */
+<span class="fc" id="L226">    public MagicNumberFileFilter(final String magicNumber, final long offset) {try{__CLR4_4_13nh3nhkylvdzh9.R.inc(4753);</span>
+<span class="pc bpc" id="L227" title="4 of 10 branches missed.">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4754);if ((((magicNumber == null)&amp;&amp;(__CLR4_4_13nh3nhkylvdzh9.R.iget(4755)!=0|true))||(__CLR4_4_13nh3nhkylvdzh9.R.iget(4756)==0&amp;false))) {{</span>
+<span class="fc" id="L228">            __CLR4_4_13nh3nhkylvdzh9.R.inc(4757);throw new IllegalArgumentException(&quot;The magic number cannot be null&quot;);</span>
+        }
+<span class="pc bpc" id="L230" title="4 of 10 branches missed.">        }__CLR4_4_13nh3nhkylvdzh9.R.inc(4758);if ((((magicNumber.isEmpty())&amp;&amp;(__CLR4_4_13nh3nhkylvdzh9.R.iget(4759)!=0|true))||(__CLR4_4_13nh3nhkylvdzh9.R.iget(4760)==0&amp;false))) {{</span>
+<span class="fc" id="L231">            __CLR4_4_13nh3nhkylvdzh9.R.inc(4761);throw new IllegalArgumentException(&quot;The magic number must contain at least one byte&quot;);</span>
+        }
+<span class="pc bpc" id="L233" title="4 of 10 branches missed.">        }__CLR4_4_13nh3nhkylvdzh9.R.inc(4762);if ((((offset &lt; 0)&amp;&amp;(__CLR4_4_13nh3nhkylvdzh9.R.iget(4763)!=0|true))||(__CLR4_4_13nh3nhkylvdzh9.R.iget(4764)==0&amp;false))) {{</span>
+<span class="fc" id="L234">            __CLR4_4_13nh3nhkylvdzh9.R.inc(4765);throw new IllegalArgumentException(&quot;The offset cannot be negative&quot;);</span>
+        }
+
+<span class="fc" id="L237">        }__CLR4_4_13nh3nhkylvdzh9.R.inc(4766);this.magicNumbers = magicNumber.getBytes(Charset.defaultCharset()); // explicitly uses the platform default</span>
+                                                                            // charset
+<span class="fc" id="L239">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4767);this.byteOffset = offset;</span>
+<span class="fc" id="L240">    }finally{__CLR4_4_13nh3nhkylvdzh9.R.flushNeeded();}}</span>
+
+    /**
+     * &lt;p&gt;
+     * Accepts the provided file if the file contains the file filter's magic
+     * number at the specified offset.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * If any {@link IOException}s occur while reading the file, the file will
+     * be rejected.
+     * &lt;/p&gt;
+     *
+     * @param file the file to accept or reject.
+     *
+     * @return {@code true} if the file contains the filter's magic number
+     *         at the specified offset, {@code false} otherwise.
+     */
+    @Override
+<span class="fc" id="L259">    public boolean accept(final File file) {try{__CLR4_4_13nh3nhkylvdzh9.R.inc(4768);</span>
+<span class="pc bpc" id="L260" title="6 of 14 branches missed.">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4769);if ((((file != null &amp;&amp; file.isFile() &amp;&amp; file.canRead())&amp;&amp;(__CLR4_4_13nh3nhkylvdzh9.R.iget(4770)!=0|true))||(__CLR4_4_13nh3nhkylvdzh9.R.iget(4771)==0&amp;false))) {{</span>
+<span class="fc" id="L261">            __CLR4_4_13nh3nhkylvdzh9.R.inc(4772);try {</span>
+<span class="fc" id="L262">                class __CLR4_4_1$AC0 implements java.lang.AutoCloseable {public void close(){}}; __CLR4_4_13nh3nhkylvdzh9.R.inc(4773);try (__CLR4_4_1$AC0 __CLR$ACI0=new __CLR4_4_1$AC0(){{__CLR4_4_13nh3nhkylvdzh9.R.inc(4774);}};RandomAccessFile randomAccessFile = new RandomAccessFile(file, &quot;r&quot;)) {</span>
+<span class="fc" id="L263">                    __CLR4_4_13nh3nhkylvdzh9.R.inc(4775);final byte[] fileBytes = IOUtils.byteArray(this.magicNumbers.length);</span>
+<span class="fc" id="L264">                    __CLR4_4_13nh3nhkylvdzh9.R.inc(4776);randomAccessFile.seek(byteOffset);</span>
+<span class="fc" id="L265">                    __CLR4_4_13nh3nhkylvdzh9.R.inc(4777);final int read = randomAccessFile.read(fileBytes);</span>
+<span class="pc bpc" id="L266" title="4 of 10 branches missed.">                    __CLR4_4_13nh3nhkylvdzh9.R.inc(4778);if ((((read != magicNumbers.length)&amp;&amp;(__CLR4_4_13nh3nhkylvdzh9.R.iget(4779)!=0|true))||(__CLR4_4_13nh3nhkylvdzh9.R.iget(4780)==0&amp;false))) {{</span>
+<span class="fc" id="L267">                        __CLR4_4_13nh3nhkylvdzh9.R.inc(4781);return false;</span>
+                    }
+<span class="fc" id="L269">                    }__CLR4_4_13nh3nhkylvdzh9.R.inc(4782);return Arrays.equals(this.magicNumbers, fileBytes);</span>
+<span class="fc" id="L270">                }</span>
+            }
+<span class="nc" id="L272">            catch (final IOException ioe) {</span>
+                // Do nothing, fall through and do not accept file
+            }
+        }
+
+<span class="fc" id="L277">        }__CLR4_4_13nh3nhkylvdzh9.R.inc(4783);return false;</span>
+<span class="fc" id="L278">    }finally{__CLR4_4_13nh3nhkylvdzh9.R.flushNeeded();}}</span>
+
+    /**
+     * &lt;p&gt;
+     * Accepts the provided file if the file contains the file filter's magic
+     * number at the specified offset.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * If any {@link IOException}s occur while reading the file, the file will
+     * be rejected.
+     * &lt;/p&gt;
+     * @param file the file to accept or reject.
+     *
+     * @return {@code true} if the file contains the filter's magic number
+     *         at the specified offset, {@code false} otherwise.
+     * @since 2.9.0
+     */
+    @Override
+<span class="fc" id="L297">    public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {try{__CLR4_4_13nh3nhkylvdzh9.R.inc(4784);</span>
+<span class="pc bpc" id="L298" title="6 of 14 branches missed.">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4785);if ((((file != null &amp;&amp; Files.isRegularFile(file) &amp;&amp; Files.isReadable(file))&amp;&amp;(__CLR4_4_13nh3nhkylvdzh9.R.iget(4786)!=0|true))||(__CLR4_4_13nh3nhkylvdzh9.R.iget(4787)==0&amp;false))) {{</span>
+<span class="fc" id="L299">            __CLR4_4_13nh3nhkylvdzh9.R.inc(4788);try {</span>
+<span class="fc" id="L300">                class __CLR4_4_1$AC1 implements java.lang.AutoCloseable {public void close(){}}; __CLR4_4_13nh3nhkylvdzh9.R.inc(4789);try (__CLR4_4_1$AC1 __CLR$ACI1=new __CLR4_4_1$AC1(){{__CLR4_4_13nh3nhkylvdzh9.R.inc(4790);}};final FileChannel fileChannel = FileChannel.open(file)) {</span>
+<span class="fc" id="L301">                    __CLR4_4_13nh3nhkylvdzh9.R.inc(4791);final ByteBuffer byteBuffer = ByteBuffer.allocate(this.magicNumbers.length);</span>
+<span class="fc" id="L302">                    __CLR4_4_13nh3nhkylvdzh9.R.inc(4792);final int read = fileChannel.read(byteBuffer);</span>
+<span class="pc bpc" id="L303" title="4 of 10 branches missed.">                    __CLR4_4_13nh3nhkylvdzh9.R.inc(4793);if ((((read != magicNumbers.length)&amp;&amp;(__CLR4_4_13nh3nhkylvdzh9.R.iget(4794)!=0|true))||(__CLR4_4_13nh3nhkylvdzh9.R.iget(4795)==0&amp;false))) {{</span>
+<span class="fc" id="L304">                        __CLR4_4_13nh3nhkylvdzh9.R.inc(4796);return FileVisitResult.TERMINATE;</span>
+                    }
+<span class="fc" id="L306">                    }__CLR4_4_13nh3nhkylvdzh9.R.inc(4797);return toFileVisitResult(Arrays.equals(this.magicNumbers, byteBuffer.array()), file);</span>
+<span class="pc bpc" id="L307" title="1 of 2 branches missed.">                }</span>
+            }
+<span class="nc" id="L309">            catch (final IOException ioe) {</span>
+                // Do nothing, fall through and do not accept file
+            }
+        }
+<span class="fc" id="L313">        }__CLR4_4_13nh3nhkylvdzh9.R.inc(4798);return FileVisitResult.TERMINATE;</span>
+<span class="fc" id="L314">    }finally{__CLR4_4_13nh3nhkylvdzh9.R.flushNeeded();}}</span>
+
+    /**
+     * Returns a String representation of the file filter, which includes the
+     * magic number bytes and byte offset.
+     *
+     * @return a String representation of the file filter.
+     */
+    @Override
+<span class="fc" id="L323">    public String toString() {try{__CLR4_4_13nh3nhkylvdzh9.R.inc(4799);</span>
+<span class="fc" id="L324">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4800);final StringBuilder builder = new StringBuilder(super.toString());</span>
+<span class="fc" id="L325">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4801);builder.append(&quot;(&quot;);</span>
+<span class="fc" id="L326">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4802);builder.append(new String(magicNumbers, Charset.defaultCharset()));// TODO perhaps use hex if value is not</span>
+                                                                           // printable
+<span class="fc" id="L328">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4803);builder.append(&quot;,&quot;);</span>
+<span class="fc" id="L329">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4804);builder.append(this.byteOffset);</span>
+<span class="fc" id="L330">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4805);builder.append(&quot;)&quot;);</span>
+<span class="fc" id="L331">        __CLR4_4_13nh3nhkylvdzh9.R.inc(4806);return builder.toString();</span>
+<span class="fc" id="L332">    }finally{__CLR4_4_13nh3nhkylvdzh9.R.flushNeeded();}}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

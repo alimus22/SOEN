@@ -1,0 +1,10 @@
+var clover = new Object();
+
+// JSON: {classes : [{name, id, sl, el,  methods : [{sl, el}, ...]}, ...]}
+clover.pageData = {"classes":[{"el":114,"id":17762,"methods":[{"el":44,"sc":5,"sl":38},{"el":49,"sc":5,"sl":46},{"el":60,"sc":5,"sl":54},{"el":71,"sc":5,"sl":65},{"el":76,"sc":5,"sl":73},{"el":81,"sc":5,"sl":78},{"el":92,"sc":5,"sl":86},{"el":103,"sc":5,"sl":97},{"el":113,"sc":5,"sl":108}],"name":"PathUtilsDeleteDirectoryTest","sl":34}]}
+
+// JSON: {test_ID : {"methods": [ID1, ID2, ID3...], "name" : "testXXX() void"}, ...};
+clover.testTargets = {"test_1391":{"methods":[{"sl":65},{"sl":73}],"name":"testDeleteDirectory1FileSize0NoOptions","pass":true,"statements":[{"sl":67},{"sl":68},{"sl":70},{"sl":75}]},"test_1488":{"methods":[{"sl":54}],"name":"testDeleteDirectory1FileSize0","pass":true,"statements":[{"sl":56},{"sl":57},{"sl":59}]},"test_18":{"methods":[{"sl":86}],"name":"testDeleteDirectory1FileSize1","pass":true,"statements":[{"sl":88},{"sl":89},{"sl":91}]},"test_404":{"methods":[{"sl":108}],"name":"testDeleteEmptyDirectory","pass":true,"statements":[{"sl":110},{"sl":112}]},"test_530":{"methods":[{"sl":65},{"sl":78}],"name":"testDeleteDirectory1FileSize0OverrideReadOnly","pass":true,"statements":[{"sl":67},{"sl":68},{"sl":70},{"sl":80}]},"test_891":{"methods":[{"sl":97}],"name":"testDeleteDirectory2FileSize2","pass":true,"statements":[{"sl":99},{"sl":100},{"sl":102}]}}
+
+// JSON: { lines : [{tests : [testid1, testid2, testid3, ...]}, ...]};
+clover.srcFileLines = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [1488], [], [1488], [1488], [], [1488], [], [], [], [], [], [1391, 530], [], [1391, 530], [1391, 530], [], [1391, 530], [], [], [1391], [], [1391], [], [], [530], [], [530], [], [], [], [], [], [18], [], [18], [18], [], [18], [], [], [], [], [], [891], [], [891], [891], [], [891], [], [], [], [], [], [404], [], [404], [], [404], [], []]

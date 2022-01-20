@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WriterOutputStream.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons IO</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.io.output</a> &gt; <span class="el_source">WriterOutputStream.java</span></div><h1>WriterOutputStream.java</h1><pre class="source lang-java linenums">/* $$ This file has been instrumented by Clover 4.4.1#2019101123313948 $$ *//*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.io.output;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Writer;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CoderResult;
+import java.nio.charset.CodingErrorAction;
+
+/**
+ * {@link OutputStream} implementation that transforms a byte stream to a
+ * character stream using a specified charset encoding and writes the resulting
+ * stream to a {@link Writer}. The stream is transformed using a
+ * {@link CharsetDecoder} object, guaranteeing that all charset
+ * encodings supported by the JRE are handled correctly.
+ * &lt;p&gt;
+ * The output of the {@link CharsetDecoder} is buffered using a fixed size buffer.
+ * This implies that the data is written to the underlying {@link Writer} in chunks
+ * that are no larger than the size of this buffer. By default, the buffer is
+ * flushed only when it overflows or when {@link #flush()} or {@link #close()}
+ * is called. In general there is therefore no need to wrap the underlying {@link Writer}
+ * in a {@link java.io.BufferedWriter}. {@link WriterOutputStream} can also
+ * be instructed to flush the buffer after each write operation. In this case, all
+ * available data is written immediately to the underlying {@link Writer}, implying that
+ * the current position of the {@link Writer} is correlated to the current position
+ * of the {@link WriterOutputStream}.
+ * &lt;p&gt;
+ * {@link WriterOutputStream} implements the inverse transformation of {@link java.io.OutputStreamWriter};
+ * in the following example, writing to {@code out2} would have the same result as writing to
+ * {@code out} directly (provided that the byte sequence is legal with respect to the
+ * charset encoding):
+ * &lt;pre&gt;
+ * OutputStream out = ...
+ * Charset cs = ...
+ * OutputStreamWriter writer = new OutputStreamWriter(out, cs);
+ * WriterOutputStream out2 = new WriterOutputStream(writer, cs);&lt;/pre&gt;
+ * {@link WriterOutputStream} implements the same transformation as {@link java.io.InputStreamReader},
+ * except that the control flow is reversed: both classes transform a byte stream
+ * into a character stream, but {@link java.io.InputStreamReader} pulls data from the underlying stream,
+ * while {@link WriterOutputStream} pushes it to the underlying stream.
+ * &lt;p&gt;
+ * Note that while there are use cases where there is no alternative to using
+ * this class, very often the need to use this class is an indication of a flaw
+ * in the design of the code. This class is typically used in situations where an existing
+ * API only accepts an {@link OutputStream} object, but where the stream is known to represent
+ * character data that must be decoded for further use.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ * Instances of {@link WriterOutputStream} are not thread safe.
+ * &lt;/p&gt;
+ *
+ * @see org.apache.commons.io.input.ReaderInputStream
+ * @since 2.0
+ */
+<span class="pc bpc" id="L74" title="3 of 4 branches missed.">public class WriterOutputStream extends OutputStream {public static class __CLR4_4_17ei7eikylve0hp{public static com_atlassian_clover.CoverageRecorder R;public static com_atlassian_clover.CloverProfile[] profiles = { };@java.lang.SuppressWarnings(&quot;unchecked&quot;) public static &lt;I, T extends I&gt; I lambdaInc(final int i,final T l,final int si){java.lang.reflect.InvocationHandler h=new java.lang.reflect.InvocationHandler(){public java.lang.Object invoke(java.lang.Object p,java.lang.reflect.Method m,java.lang.Object[] a) throws Throwable{R.inc(i);R.inc(si);try{return m.invoke(l,a);}catch(java.lang.reflect.InvocationTargetException e){throw e.getCause()!=null?e.getCause():new RuntimeException(&quot;Clover failed to invoke instrumented lambda&quot;,e);}}};return (I)java.lang.reflect.Proxy.newProxyInstance(l.getClass().getClassLoader(),l.getClass().getInterfaces(),h);}static{com_atlassian_clover.CoverageRecorder _R=null;try{com_atlassian_clover.CloverVersionInfo.An_old_version_of_clover_is_on_your_compilation_classpath___Please_remove___Required_version_is___4_4_1();if(2019101123313948L!=com_atlassian_clover.CloverVersionInfo.getBuildStamp()){com_atlassian_clover.Clover.l(&quot;[CLOVER] WARNING: The Clover version used in instrumentation does not match the runtime version. You need to run instrumented classes against the same version of Clover that you instrumented with.&quot;);com_atlassian_clover.Clover.l(&quot;[CLOVER] WARNING: Instr=4.4.1#2019101123313948,Runtime=&quot;+com_atlassian_clover.CloverVersionInfo.getReleaseNum()+&quot;#&quot;+com_atlassian_clover.CloverVersionInfo.getBuildStamp());}R=com_atlassian_clover.Clover.getNullRecorder();_R=com_atlassian_clover.Clover.getNullRecorder();_R=com_atlassian_clover.Clover.getRecorder(&quot;\u002f\u0055\u0073\u0065\u0072\u0073\u002f\u0061\u006c\u0069\u0068\u0061\u006e\u006e\u0069\u002f\u0044\u0065\u0073\u006b\u0074\u006f\u0070\u002f\u0047\u0069\u0074\u0048\u0075\u0062\u002f\u0053\u004f\u0045\u004e\u002f\u0053\u004f\u0045\u004e\u0033\u0034\u0035\u002f\u0041\u0031\u002f\u0063\u006f\u006d\u006d\u006f\u006e\u0073\u002d\u0069\u006f\u002d\u0032\u002e\u0031\u0031\u002e\u0030\u002d\u0073\u0072\u0063\u002f\u0074\u0061\u0072\u0067\u0065\u0074\u002f\u0063\u006c\u006f\u0076\u0065\u0072\u002f\u0063\u006c\u006f\u0076\u0065\u0072\u002e\u0064\u0062&quot;,1642616389890L,8589935092L,9682,profiles,new java.lang.String[]{&quot;clover.distributed.coverage&quot;,null});}catch(java.lang.SecurityException e){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised because it has insufficient security privileges. Please consult the Clover documentation on the security policy file changes required. (&quot;+e.getClass()+&quot;:&quot;+e.getMessage()+&quot;)&quot;);}catch(java.lang.NoClassDefFoundError e){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised. Are you sure you have Clover in the runtime classpath? (&quot;+e.getClass()+&quot;:&quot;+e.getMessage()+&quot;)&quot;);}catch(java.lang.Throwable t){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised because of an unexpected error. (&quot;+t.getClass()+&quot;:&quot;+t.getMessage()+&quot;)&quot;);}R=_R;}}public static final com_atlassian_clover.TestNameSniffer __CLR4_4_1_TEST_NAME_SNIFFER=com_atlassian_clover.TestNameSniffer.NULL_INSTANCE;</span>
+    private static final int BUFFER_SIZE = 1024;
+
+    private final Writer writer;
+    private final CharsetDecoder decoder;
+    private final boolean writeImmediately;
+
+    /**
+     * ByteBuffer used as input for the decoder. This buffer can be small
+     * as it is used only to transfer the received data to the
+     * decoder.
+     */
+<span class="fc" id="L86">    private final ByteBuffer decoderIn = ByteBuffer.allocate(128);</span>
+
+    /**
+     * CharBuffer used as output for the decoder. It should be
+     * somewhat larger as we write from this buffer to the
+     * underlying Writer.
+     */
+    private final CharBuffer decoderOut;
+
+    /**
+     * Constructs a new {@link WriterOutputStream} with a default output buffer size of {@value #BUFFER_SIZE}
+     * characters. The output buffer will only be flushed when it overflows or when {@link #flush()} or {@link #close()}
+     * is called.
+     *
+     * @param writer the target {@link Writer}
+     * @param decoder the charset decoder
+     * @since 2.1
+     */
+    public WriterOutputStream(final Writer writer, final CharsetDecoder decoder) {
+<span class="nc" id="L105">        this(writer, decoder, BUFFER_SIZE, false);__CLR4_4_17ei7eikylve0hp.R.inc(9595);try{__CLR4_4_17ei7eikylve0hp.R.inc(9594);</span>
+<span class="nc" id="L106">    }finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a new {@link WriterOutputStream}.
+     *
+     * @param writer the target {@link Writer}
+     * @param decoder the charset decoder
+     * @param bufferSize the size of the output buffer in number of characters
+     * @param writeImmediately If {@code true} the output buffer will be flushed after each
+     *                         write operation, i.e. all available data will be written to the
+     *                         underlying {@link Writer} immediately. If {@code false}, the
+     *                         output buffer will only be flushed when it overflows or when
+     *                         {@link #flush()} or {@link #close()} is called.
+     * @since 2.1
+     */
+    public WriterOutputStream(final Writer writer, final CharsetDecoder decoder, final int bufferSize,
+<span class="fc" id="L122">                              final boolean writeImmediately) {try{__CLR4_4_17ei7eikylve0hp.R.inc(9596);</span>
+<span class="fc" id="L123">        __CLR4_4_17ei7eikylve0hp.R.inc(9597);checkIbmJdkWithBrokenUTF16( decoder.charset());</span>
+<span class="fc" id="L124">        __CLR4_4_17ei7eikylve0hp.R.inc(9598);this.writer = writer;</span>
+<span class="fc" id="L125">        __CLR4_4_17ei7eikylve0hp.R.inc(9599);this.decoder = decoder;</span>
+<span class="fc" id="L126">        __CLR4_4_17ei7eikylve0hp.R.inc(9600);this.writeImmediately = writeImmediately;</span>
+<span class="fc" id="L127">        __CLR4_4_17ei7eikylve0hp.R.inc(9601);decoderOut = CharBuffer.allocate(bufferSize);</span>
+<span class="fc" id="L128">    }finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a new {@link WriterOutputStream}.
+     *
+     * @param writer the target {@link Writer}
+     * @param charset the charset encoding
+     * @param bufferSize the size of the output buffer in number of characters
+     * @param writeImmediately If {@code true} the output buffer will be flushed after each
+     *                         write operation, i.e. all available data will be written to the
+     *                         underlying {@link Writer} immediately. If {@code false}, the
+     *                         output buffer will only be flushed when it overflows or when
+     *                         {@link #flush()} or {@link #close()} is called.
+     */
+    public WriterOutputStream(final Writer writer, final Charset charset, final int bufferSize,
+                              final boolean writeImmediately) {
+<span class="fc" id="L144">        this(writer,</span>
+<span class="fc" id="L145">             charset.newDecoder()</span>
+<span class="fc" id="L146">                    .onMalformedInput(CodingErrorAction.REPLACE)</span>
+<span class="fc" id="L147">                    .onUnmappableCharacter(CodingErrorAction.REPLACE)</span>
+<span class="fc" id="L148">                    .replaceWith(&quot;?&quot;),</span>
+             bufferSize,
+<span class="fc" id="L150">             writeImmediately);__CLR4_4_17ei7eikylve0hp.R.inc(9603);try{__CLR4_4_17ei7eikylve0hp.R.inc(9602);</span>
+<span class="fc" id="L151">    }finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a new {@link WriterOutputStream} with a default output buffer size of {@value #BUFFER_SIZE}
+     * characters. The output buffer will only be flushed when it overflows or when {@link #flush()} or {@link #close()}
+     * is called.
+     *
+     * @param writer the target {@link Writer}
+     * @param charset the charset encoding
+     */
+    public WriterOutputStream(final Writer writer, final Charset charset) {
+<span class="nc" id="L162">        this(writer, charset, BUFFER_SIZE, false);__CLR4_4_17ei7eikylve0hp.R.inc(9605);try{__CLR4_4_17ei7eikylve0hp.R.inc(9604);</span>
+<span class="nc" id="L163">    }finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a new {@link WriterOutputStream}.
+     *
+     * @param writer the target {@link Writer}
+     * @param charsetName the name of the charset encoding
+     * @param bufferSize the size of the output buffer in number of characters
+     * @param writeImmediately If {@code true} the output buffer will be flushed after each
+     *                         write operation, i.e. all available data will be written to the
+     *                         underlying {@link Writer} immediately. If {@code false}, the
+     *                         output buffer will only be flushed when it overflows or when
+     *                         {@link #flush()} or {@link #close()} is called.
+     */
+    public WriterOutputStream(final Writer writer, final String charsetName, final int bufferSize,
+                              final boolean writeImmediately) {
+<span class="fc" id="L179">        this(writer, Charset.forName(charsetName), bufferSize, writeImmediately);__CLR4_4_17ei7eikylve0hp.R.inc(9607);try{__CLR4_4_17ei7eikylve0hp.R.inc(9606);</span>
+<span class="fc" id="L180">    }finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a new {@link WriterOutputStream} with a default output buffer size of {@value #BUFFER_SIZE}
+     * characters. The output buffer will only be flushed when it overflows or when {@link #flush()} or {@link #close()}
+     * is called.
+     *
+     * @param writer the target {@link Writer}
+     * @param charsetName the name of the charset encoding
+     */
+    public WriterOutputStream(final Writer writer, final String charsetName) {
+<span class="fc" id="L191">        this(writer, charsetName, BUFFER_SIZE, false);__CLR4_4_17ei7eikylve0hp.R.inc(9609);try{__CLR4_4_17ei7eikylve0hp.R.inc(9608);</span>
+<span class="fc" id="L192">    }finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a new {@link WriterOutputStream} that uses the default character encoding and with a default output
+     * buffer size of {@value #BUFFER_SIZE} characters. The output buffer will only be flushed when it overflows or when
+     * {@link #flush()} or {@link #close()} is called.
+     *
+     * @param writer the target {@link Writer}
+     * @deprecated 2.5 use {@link #WriterOutputStream(Writer, Charset)} instead
+     */
+    @Deprecated
+    public WriterOutputStream(final Writer writer) {
+<span class="nc" id="L204">        this(writer, Charset.defaultCharset(), BUFFER_SIZE, false);__CLR4_4_17ei7eikylve0hp.R.inc(9611);try{__CLR4_4_17ei7eikylve0hp.R.inc(9610);</span>
+<span class="nc" id="L205">    }finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Write bytes from the specified byte array to the stream.
+     *
+     * @param b the byte array containing the bytes to write
+     * @param off the start offset in the byte array
+     * @param len the number of bytes to write
+     * @throws IOException if an I/O error occurs.
+     */
+    @Override
+<span class="fc" id="L216">    public void write(final byte[] b, int off, int len) throws IOException {try{__CLR4_4_17ei7eikylve0hp.R.inc(9612);</span>
+<span class="pc bpc" id="L217" title="4 of 10 branches missed.">        __CLR4_4_17ei7eikylve0hp.R.inc(9613);while ((((len &gt; 0)&amp;&amp;(__CLR4_4_17ei7eikylve0hp.R.iget(9614)!=0|true))||(__CLR4_4_17ei7eikylve0hp.R.iget(9615)==0&amp;false))) {{</span>
+<span class="fc" id="L218">            __CLR4_4_17ei7eikylve0hp.R.inc(9616);final int c = Math.min(len, decoderIn.remaining());</span>
+<span class="fc" id="L219">            __CLR4_4_17ei7eikylve0hp.R.inc(9617);decoderIn.put(b, off, c);</span>
+<span class="fc" id="L220">            __CLR4_4_17ei7eikylve0hp.R.inc(9618);processInput(false);</span>
+<span class="fc" id="L221">            __CLR4_4_17ei7eikylve0hp.R.inc(9619);len -= c;</span>
+<span class="fc" id="L222">            __CLR4_4_17ei7eikylve0hp.R.inc(9620);off += c;</span>
+<span class="fc" id="L223">        }</span>
+<span class="pc bpc" id="L224" title="4 of 10 branches missed.">        }__CLR4_4_17ei7eikylve0hp.R.inc(9621);if ((((writeImmediately)&amp;&amp;(__CLR4_4_17ei7eikylve0hp.R.iget(9622)!=0|true))||(__CLR4_4_17ei7eikylve0hp.R.iget(9623)==0&amp;false))) {{</span>
+<span class="fc" id="L225">            __CLR4_4_17ei7eikylve0hp.R.inc(9624);flushOutput();</span>
+        }
+<span class="fc" id="L227">    }}finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Write bytes from the specified byte array to the stream.
+     *
+     * @param b the byte array containing the bytes to write
+     * @throws IOException if an I/O error occurs.
+     */
+    @Override
+<span class="fc" id="L236">    public void write(final byte[] b) throws IOException {try{__CLR4_4_17ei7eikylve0hp.R.inc(9625);</span>
+<span class="fc" id="L237">        __CLR4_4_17ei7eikylve0hp.R.inc(9626);write(b, 0, b.length);</span>
+<span class="fc" id="L238">    }finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Write a single byte to the stream.
+     *
+     * @param b the byte to write
+     * @throws IOException if an I/O error occurs.
+     */
+    @Override
+<span class="fc" id="L247">    public void write(final int b) throws IOException {try{__CLR4_4_17ei7eikylve0hp.R.inc(9627);</span>
+<span class="fc" id="L248">        __CLR4_4_17ei7eikylve0hp.R.inc(9628);write(new byte[] {(byte) b}, 0, 1);</span>
+<span class="fc" id="L249">    }finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Flush the stream. Any remaining content accumulated in the output buffer
+     * will be written to the underlying {@link Writer}. After that
+     * {@link Writer#flush()} will be called.
+     * @throws IOException if an I/O error occurs.
+     */
+    @Override
+<span class="fc" id="L258">    public void flush() throws IOException {try{__CLR4_4_17ei7eikylve0hp.R.inc(9629);</span>
+<span class="fc" id="L259">        __CLR4_4_17ei7eikylve0hp.R.inc(9630);flushOutput();</span>
+<span class="fc" id="L260">        __CLR4_4_17ei7eikylve0hp.R.inc(9631);writer.flush();</span>
+<span class="fc" id="L261">    }finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Close the stream. Any remaining content accumulated in the output buffer
+     * will be written to the underlying {@link Writer}. After that
+     * {@link Writer#close()} will be called.
+     * @throws IOException if an I/O error occurs.
+     */
+    @Override
+<span class="fc" id="L270">    public void close() throws IOException {try{__CLR4_4_17ei7eikylve0hp.R.inc(9632);</span>
+<span class="fc" id="L271">        __CLR4_4_17ei7eikylve0hp.R.inc(9633);processInput(true);</span>
+<span class="fc" id="L272">        __CLR4_4_17ei7eikylve0hp.R.inc(9634);flushOutput();</span>
+<span class="fc" id="L273">        __CLR4_4_17ei7eikylve0hp.R.inc(9635);writer.close();</span>
+<span class="fc" id="L274">    }finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Decode the contents of the input ByteBuffer into a CharBuffer.
+     *
+     * @param endOfInput indicates end of input
+     * @throws IOException if an I/O error occurs.
+     */
+<span class="fc" id="L282">    private void processInput(final boolean endOfInput) throws IOException {try{__CLR4_4_17ei7eikylve0hp.R.inc(9636);</span>
+        // Prepare decoderIn for reading
+<span class="fc" id="L284">        __CLR4_4_17ei7eikylve0hp.R.inc(9637);decoderIn.flip();</span>
+<span class="fc" id="L285">        __CLR4_4_17ei7eikylve0hp.R.inc(9638);CoderResult coderResult;</span>
+<span class="fc" id="L286">        __CLR4_4_17ei7eikylve0hp.R.inc(9639);while (true) {{</span>
+<span class="fc" id="L287">            __CLR4_4_17ei7eikylve0hp.R.inc(9640);coderResult = decoder.decode(decoderIn, decoderOut, endOfInput);</span>
+<span class="pc bpc" id="L288" title="4 of 10 branches missed.">            __CLR4_4_17ei7eikylve0hp.R.inc(9641);if ((((coderResult.isOverflow())&amp;&amp;(__CLR4_4_17ei7eikylve0hp.R.iget(9642)!=0|true))||(__CLR4_4_17ei7eikylve0hp.R.iget(9643)==0&amp;false))) {{</span>
+<span class="fc" id="L289">                __CLR4_4_17ei7eikylve0hp.R.inc(9644);flushOutput();</span>
+<span class="pc bpc" id="L290" title="7 of 10 branches missed.">            } }else {__CLR4_4_17ei7eikylve0hp.R.inc(9645);if ((((coderResult.isUnderflow())&amp;&amp;(__CLR4_4_17ei7eikylve0hp.R.iget(9646)!=0|true))||(__CLR4_4_17ei7eikylve0hp.R.iget(9647)==0&amp;false))) {{</span>
+<span class="fc" id="L291">                __CLR4_4_17ei7eikylve0hp.R.inc(9648);break;</span>
+            } }else {{
+                // The decoder is configured to replace malformed input and unmappable characters,
+                // so we should not get here.
+<span class="nc" id="L295">                __CLR4_4_17ei7eikylve0hp.R.inc(9649);throw new IOException(&quot;Unexpected coder result&quot;);</span>
+            }
+        }}}
+        // Discard the bytes that have been read
+<span class="fc" id="L299">        }__CLR4_4_17ei7eikylve0hp.R.inc(9650);decoderIn.compact();</span>
+<span class="fc" id="L300">    }finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Flush the output.
+     *
+     * @throws IOException if an I/O error occurs.
+     */
+<span class="fc" id="L307">    private void flushOutput() throws IOException {try{__CLR4_4_17ei7eikylve0hp.R.inc(9651);</span>
+<span class="pc bpc" id="L308" title="4 of 10 branches missed.">        __CLR4_4_17ei7eikylve0hp.R.inc(9652);if ((((decoderOut.position() &gt; 0)&amp;&amp;(__CLR4_4_17ei7eikylve0hp.R.iget(9653)!=0|true))||(__CLR4_4_17ei7eikylve0hp.R.iget(9654)==0&amp;false))) {{</span>
+<span class="fc" id="L309">            __CLR4_4_17ei7eikylve0hp.R.inc(9655);writer.write(decoderOut.array(), 0, decoderOut.position());</span>
+<span class="fc" id="L310">            __CLR4_4_17ei7eikylve0hp.R.inc(9656);decoderOut.rewind();</span>
+        }
+<span class="fc" id="L312">    }}finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+
+    /**
+     * Check if the JDK in use properly supports the given charset.
+     *
+     * @param charset the charset to check the support for
+     */
+<span class="fc" id="L319">    private static void checkIbmJdkWithBrokenUTF16(final Charset charset){try{__CLR4_4_17ei7eikylve0hp.R.inc(9657);</span>
+<span class="pc bpc" id="L320" title="4 of 10 branches missed.">        __CLR4_4_17ei7eikylve0hp.R.inc(9658);if ((((!&quot;UTF-16&quot;.equals(charset.name()))&amp;&amp;(__CLR4_4_17ei7eikylve0hp.R.iget(9659)!=0|true))||(__CLR4_4_17ei7eikylve0hp.R.iget(9660)==0&amp;false))) {{</span>
+<span class="fc" id="L321">            __CLR4_4_17ei7eikylve0hp.R.inc(9661);return;</span>
+        }
+<span class="fc" id="L323">        }__CLR4_4_17ei7eikylve0hp.R.inc(9662);final String TEST_STRING_2 = &quot;v\u00e9s&quot;;</span>
+<span class="fc" id="L324">        __CLR4_4_17ei7eikylve0hp.R.inc(9663);final byte[] bytes = TEST_STRING_2.getBytes(charset);</span>
+
+<span class="fc" id="L326">        __CLR4_4_17ei7eikylve0hp.R.inc(9664);final CharsetDecoder charsetDecoder2 = charset.newDecoder();</span>
+<span class="fc" id="L327">        __CLR4_4_17ei7eikylve0hp.R.inc(9665);final ByteBuffer bb2 = ByteBuffer.allocate(16);</span>
+<span class="fc" id="L328">        __CLR4_4_17ei7eikylve0hp.R.inc(9666);final CharBuffer cb2 = CharBuffer.allocate(TEST_STRING_2.length());</span>
+<span class="fc" id="L329">        __CLR4_4_17ei7eikylve0hp.R.inc(9667);final int len = bytes.length;</span>
+<span class="pc bpc" id="L330" title="4 of 10 branches missed.">        __CLR4_4_17ei7eikylve0hp.R.inc(9668);for (int i = 0; (((i &lt; len)&amp;&amp;(__CLR4_4_17ei7eikylve0hp.R.iget(9669)!=0|true))||(__CLR4_4_17ei7eikylve0hp.R.iget(9670)==0&amp;false)); i++) {{</span>
+<span class="fc" id="L331">            __CLR4_4_17ei7eikylve0hp.R.inc(9671);bb2.put(bytes[i]);</span>
+<span class="fc" id="L332">            __CLR4_4_17ei7eikylve0hp.R.inc(9672);bb2.flip();</span>
+<span class="fc" id="L333">            __CLR4_4_17ei7eikylve0hp.R.inc(9673);try {</span>
+<span class="fc bfc" id="L334" title="All 2 branches covered.">                __CLR4_4_17ei7eikylve0hp.R.inc(9674);charsetDecoder2.decode(bb2, cb2, i == (len - 1));</span>
+<span class="nc" id="L335">            } catch ( final IllegalArgumentException e){</span>
+<span class="nc" id="L336">                __CLR4_4_17ei7eikylve0hp.R.inc(9675);throw new UnsupportedOperationException(&quot;UTF-16 requested when running on an IBM JDK with broken UTF-16 support. &quot; +</span>
+                        &quot;Please find a JDK that supports UTF-16 if you intend to use UF-16 with WriterOutputStream&quot;);
+<span class="fc" id="L338">            }</span>
+<span class="fc" id="L339">            __CLR4_4_17ei7eikylve0hp.R.inc(9676);bb2.compact();</span>
+        }
+<span class="fc" id="L341">        }__CLR4_4_17ei7eikylve0hp.R.inc(9677);cb2.rewind();</span>
+<span class="pc bpc" id="L342" title="7 of 10 branches missed.">        __CLR4_4_17ei7eikylve0hp.R.inc(9678);if ((((!TEST_STRING_2.equals(cb2.toString()))&amp;&amp;(__CLR4_4_17ei7eikylve0hp.R.iget(9679)!=0|true))||(__CLR4_4_17ei7eikylve0hp.R.iget(9680)==0&amp;false))){{</span>
+<span class="nc" id="L343">            __CLR4_4_17ei7eikylve0hp.R.inc(9681);throw new UnsupportedOperationException(&quot;UTF-16 requested when running on an IBM JDK with broken UTF-16 support. &quot; +</span>
+                    &quot;Please find a JDK that supports UTF-16 if you intend to use UF-16 with WriterOutputStream&quot;);
+        }
+
+<span class="fc" id="L347">    }}finally{__CLR4_4_17ei7eikylve0hp.R.flushNeeded();}}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TeeInputStream.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons IO</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.io.input</a> &gt; <span class="el_source">TeeInputStream.java</span></div><h1>TeeInputStream.java</h1><pre class="source lang-java linenums">/* $$ This file has been instrumented by Clover 4.4.1#2019101123313948 $$ *//*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.io.input;
+
+import static org.apache.commons.io.IOUtils.EOF;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+/**
+ * InputStream proxy that transparently writes a copy of all bytes read
+ * from the proxied stream to a given OutputStream. Using {@link #skip(long)}
+ * or {@link #mark(int)}/{@link #reset()} on the stream will result on some
+ * bytes from the input stream being skipped or duplicated in the output
+ * stream.
+ * &lt;p&gt;
+ * The proxied input stream is closed when the {@link #close()} method is
+ * called on this proxy. You may configure whether the input stream closes the
+ * output stream.
+ * &lt;/p&gt;
+ *
+ * @since 1.4
+ * @see ObservableInputStream
+ */
+<span class="pc bpc" id="L40" title="3 of 4 branches missed.">public class TeeInputStream extends ProxyInputStream {public static class __CLR4_4_15p55p5kylve01d{public static com_atlassian_clover.CoverageRecorder R;public static com_atlassian_clover.CloverProfile[] profiles = { };@java.lang.SuppressWarnings(&quot;unchecked&quot;) public static &lt;I, T extends I&gt; I lambdaInc(final int i,final T l,final int si){java.lang.reflect.InvocationHandler h=new java.lang.reflect.InvocationHandler(){public java.lang.Object invoke(java.lang.Object p,java.lang.reflect.Method m,java.lang.Object[] a) throws Throwable{R.inc(i);R.inc(si);try{return m.invoke(l,a);}catch(java.lang.reflect.InvocationTargetException e){throw e.getCause()!=null?e.getCause():new RuntimeException(&quot;Clover failed to invoke instrumented lambda&quot;,e);}}};return (I)java.lang.reflect.Proxy.newProxyInstance(l.getClass().getClassLoader(),l.getClass().getInterfaces(),h);}static{com_atlassian_clover.CoverageRecorder _R=null;try{com_atlassian_clover.CloverVersionInfo.An_old_version_of_clover_is_on_your_compilation_classpath___Please_remove___Required_version_is___4_4_1();if(2019101123313948L!=com_atlassian_clover.CloverVersionInfo.getBuildStamp()){com_atlassian_clover.Clover.l(&quot;[CLOVER] WARNING: The Clover version used in instrumentation does not match the runtime version. You need to run instrumented classes against the same version of Clover that you instrumented with.&quot;);com_atlassian_clover.Clover.l(&quot;[CLOVER] WARNING: Instr=4.4.1#2019101123313948,Runtime=&quot;+com_atlassian_clover.CloverVersionInfo.getReleaseNum()+&quot;#&quot;+com_atlassian_clover.CloverVersionInfo.getBuildStamp());}R=com_atlassian_clover.Clover.getNullRecorder();_R=com_atlassian_clover.Clover.getNullRecorder();_R=com_atlassian_clover.Clover.getRecorder(&quot;\u002f\u0055\u0073\u0065\u0072\u0073\u002f\u0061\u006c\u0069\u0068\u0061\u006e\u006e\u0069\u002f\u0044\u0065\u0073\u006b\u0074\u006f\u0070\u002f\u0047\u0069\u0074\u0048\u0075\u0062\u002f\u0053\u004f\u0045\u004e\u002f\u0053\u004f\u0045\u004e\u0033\u0034\u0035\u002f\u0041\u0031\u002f\u0063\u006f\u006d\u006d\u006f\u006e\u0073\u002d\u0069\u006f\u002d\u0032\u002e\u0031\u0031\u002e\u0030\u002d\u0073\u0072\u0063\u002f\u0074\u0061\u0072\u0067\u0065\u0074\u002f\u0063\u006c\u006f\u0076\u0065\u0072\u002f\u0063\u006c\u006f\u0076\u0065\u0072\u002e\u0064\u0062&quot;,1642616389890L,8589935092L,7419,profiles,new java.lang.String[]{&quot;clover.distributed.coverage&quot;,null});}catch(java.lang.SecurityException e){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised because it has insufficient security privileges. Please consult the Clover documentation on the security policy file changes required. (&quot;+e.getClass()+&quot;:&quot;+e.getMessage()+&quot;)&quot;);}catch(java.lang.NoClassDefFoundError e){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised. Are you sure you have Clover in the runtime classpath? (&quot;+e.getClass()+&quot;:&quot;+e.getMessage()+&quot;)&quot;);}catch(java.lang.Throwable t){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised because of an unexpected error. (&quot;+t.getClass()+&quot;:&quot;+t.getMessage()+&quot;)&quot;);}R=_R;}}public static final com_atlassian_clover.TestNameSniffer __CLR4_4_1_TEST_NAME_SNIFFER=com_atlassian_clover.TestNameSniffer.NULL_INSTANCE;</span>
+
+    /**
+     * The output stream that will receive a copy of all bytes read from the
+     * proxied input stream.
+     */
+    private final OutputStream branch;
+
+    /**
+     * Flag for closing the associated output stream when this stream is closed.
+     */
+    private final boolean closeBranch;
+
+    /**
+     * Creates a TeeInputStream that proxies the given {@link InputStream}
+     * and copies all read bytes to the given {@link OutputStream}. The given
+     * output stream will not be closed when this stream gets closed.
+     *
+     * @param input input stream to be proxied
+     * @param branch output stream that will receive a copy of all bytes read
+     */
+    public TeeInputStream(final InputStream input, final OutputStream branch) {
+<span class="fc" id="L62">        this(input, branch, false);__CLR4_4_15p55p5kylve01d.R.inc(7386);try{__CLR4_4_15p55p5kylve01d.R.inc(7385);</span>
+<span class="fc" id="L63">    }finally{__CLR4_4_15p55p5kylve01d.R.flushNeeded();}}</span>
+
+    /**
+     * Creates a TeeInputStream that proxies the given {@link InputStream}
+     * and copies all read bytes to the given {@link OutputStream}. The given
+     * output stream will be closed when this stream gets closed if the
+     * closeBranch parameter is {@code true}.
+     *
+     * @param input input stream to be proxied
+     * @param branch output stream that will receive a copy of all bytes read
+     * @param closeBranch flag for closing also the output stream when this
+     *                    stream is closed
+     */
+    public TeeInputStream(
+            final InputStream input, final OutputStream branch, final boolean closeBranch) {
+<span class="fc" id="L78">        super(input);__CLR4_4_15p55p5kylve01d.R.inc(7388);try{__CLR4_4_15p55p5kylve01d.R.inc(7387);</span>
+<span class="fc" id="L79">        __CLR4_4_15p55p5kylve01d.R.inc(7389);this.branch = branch;</span>
+<span class="fc" id="L80">        __CLR4_4_15p55p5kylve01d.R.inc(7390);this.closeBranch = closeBranch;</span>
+<span class="fc" id="L81">    }finally{__CLR4_4_15p55p5kylve01d.R.flushNeeded();}}</span>
+
+    /**
+     * Closes the proxied input stream and, if so configured, the associated
+     * output stream. An exception thrown from one stream will not prevent
+     * closing of the other stream.
+     *
+     * @throws IOException if either of the streams could not be closed
+     */
+    @Override
+<span class="fc" id="L91">    public void close() throws IOException {try{__CLR4_4_15p55p5kylve01d.R.inc(7391);</span>
+<span class="fc" id="L92">        __CLR4_4_15p55p5kylve01d.R.inc(7392);try {</span>
+<span class="fc" id="L93">            __CLR4_4_15p55p5kylve01d.R.inc(7393);super.close();</span>
+        } finally {
+<span class="pc bpc" id="L95" title="4 of 10 branches missed.">            __CLR4_4_15p55p5kylve01d.R.inc(7394);if ((((closeBranch)&amp;&amp;(__CLR4_4_15p55p5kylve01d.R.iget(7395)!=0|true))||(__CLR4_4_15p55p5kylve01d.R.iget(7396)==0&amp;false))) {{</span>
+<span class="fc" id="L96">                __CLR4_4_15p55p5kylve01d.R.inc(7397);branch.close();</span>
+            }
+        }}
+<span class="fc" id="L99">    }finally{__CLR4_4_15p55p5kylve01d.R.flushNeeded();}}</span>
+
+    /**
+     * Reads a single byte from the proxied input stream and writes it to
+     * the associated output stream.
+     *
+     * @return next byte from the stream, or -1 if the stream has ended
+     * @throws IOException if the stream could not be read (or written)
+     */
+    @Override
+<span class="fc" id="L109">    public int read() throws IOException {try{__CLR4_4_15p55p5kylve01d.R.inc(7398);</span>
+<span class="fc" id="L110">        __CLR4_4_15p55p5kylve01d.R.inc(7399);final int ch = super.read();</span>
+<span class="pc bpc" id="L111" title="4 of 10 branches missed.">        __CLR4_4_15p55p5kylve01d.R.inc(7400);if ((((ch != EOF)&amp;&amp;(__CLR4_4_15p55p5kylve01d.R.iget(7401)!=0|true))||(__CLR4_4_15p55p5kylve01d.R.iget(7402)==0&amp;false))) {{</span>
+<span class="fc" id="L112">            __CLR4_4_15p55p5kylve01d.R.inc(7403);branch.write(ch);</span>
+        }
+<span class="fc" id="L114">        }__CLR4_4_15p55p5kylve01d.R.inc(7404);return ch;</span>
+<span class="fc" id="L115">    }finally{__CLR4_4_15p55p5kylve01d.R.flushNeeded();}}</span>
+
+    /**
+     * Reads bytes from the proxied input stream and writes the read bytes
+     * to the associated output stream.
+     *
+     * @param bts byte buffer
+     * @param st start offset within the buffer
+     * @param end maximum number of bytes to read
+     * @return number of bytes read, or -1 if the stream has ended
+     * @throws IOException if the stream could not be read (or written)
+     */
+    @Override
+<span class="fc" id="L128">    public int read(final byte[] bts, final int st, final int end) throws IOException {try{__CLR4_4_15p55p5kylve01d.R.inc(7405);</span>
+<span class="fc" id="L129">        __CLR4_4_15p55p5kylve01d.R.inc(7406);final int n = super.read(bts, st, end);</span>
+<span class="pc bpc" id="L130" title="4 of 10 branches missed.">        __CLR4_4_15p55p5kylve01d.R.inc(7407);if ((((n != EOF)&amp;&amp;(__CLR4_4_15p55p5kylve01d.R.iget(7408)!=0|true))||(__CLR4_4_15p55p5kylve01d.R.iget(7409)==0&amp;false))) {{</span>
+<span class="fc" id="L131">            __CLR4_4_15p55p5kylve01d.R.inc(7410);branch.write(bts, st, n);</span>
+        }
+<span class="fc" id="L133">        }__CLR4_4_15p55p5kylve01d.R.inc(7411);return n;</span>
+<span class="fc" id="L134">    }finally{__CLR4_4_15p55p5kylve01d.R.flushNeeded();}}</span>
+
+    /**
+     * Reads bytes from the proxied input stream and writes the read bytes
+     * to the associated output stream.
+     *
+     * @param bts byte buffer
+     * @return number of bytes read, or -1 if the stream has ended
+     * @throws IOException if the stream could not be read (or written)
+     */
+    @Override
+<span class="fc" id="L145">    public int read(final byte[] bts) throws IOException {try{__CLR4_4_15p55p5kylve01d.R.inc(7412);</span>
+<span class="fc" id="L146">        __CLR4_4_15p55p5kylve01d.R.inc(7413);final int n = super.read(bts);</span>
+<span class="pc bpc" id="L147" title="4 of 10 branches missed.">        __CLR4_4_15p55p5kylve01d.R.inc(7414);if ((((n != EOF)&amp;&amp;(__CLR4_4_15p55p5kylve01d.R.iget(7415)!=0|true))||(__CLR4_4_15p55p5kylve01d.R.iget(7416)==0&amp;false))) {{</span>
+<span class="fc" id="L148">            __CLR4_4_15p55p5kylve01d.R.inc(7417);branch.write(bts, 0, n);</span>
+        }
+<span class="fc" id="L150">        }__CLR4_4_15p55p5kylve01d.R.inc(7418);return n;</span>
+<span class="fc" id="L151">    }finally{__CLR4_4_15p55p5kylve01d.R.flushNeeded();}}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

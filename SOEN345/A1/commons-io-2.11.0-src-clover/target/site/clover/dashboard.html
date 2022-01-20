@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    
+    
+    <link rel="SHORTCUT ICON" href="img/clover.ico" />
+
+    <link rel="stylesheet" href="aui/css/aui.min.css" media="all"/>
+    <link rel="stylesheet" href="aui/css/aui-experimental.min.css" media="all"/>
+    <!--[if IE 9]><link rel="stylesheet" href="aui/css/aui-ie9.min.css" media="all"/><![endif]-->
+
+    <style type="text/css" media="all">
+        @import url('style.css');
+        @import url('tree.css');
+        
+    </style>
+
+    <script src="jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui-experimental.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui-soy.min.js" type="text/javascript"></script>
+
+    <script src="package-nodes-tree.js" type="text/javascript"></script>
+    <script src="clover-tree.js" type="text/javascript"></script>
+    <script src="clover.js" type="text/javascript"></script>
+    <script src="clover-descriptions.js" type="text/javascript"></script>
+    <script src="cloud.js" type="text/javascript"></script>
+
+            <title>Apache Commons IO 2.11.0</title>
+    </head>
+
+<body onresize="processTreeMapDashJson(treeMapJson);" >
+    <div id="page">
+        
+        
+
+
+<header id="header" role="banner">
+    <nav class="aui-header aui-dropdown2-trigger-group" role="navigation">
+        <div class="aui-header-inner">
+            <div class="aui-header-primary">
+                <h1 id="logo" class="aui-header-logo aui-header-logo-clover">
+                    <a href="http://openclover.org" title="Visit OpenClover home page"><span class="aui-header-logo-device">OpenClover</span></a>
+                </h1>
+                            </div>
+            <div class="aui-header-secondary">
+                <ul class="aui-nav">
+                    <li id="system-help-menu">
+                        <a class="aui-nav-link" title="Open online documentation" target="_blank"
+                           href="http://openclover.org/documentation">
+                            <span class="aui-icon aui-icon-small aui-iconfont-help">&#160;Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+        
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <div class="aui-page-panel-nav aui-page-panel-nav-clover">
+                    
+
+<div class="aui-page-header-inner" style="margin-bottom: 20px;">
+    <div class="aui-page-header-image">
+                    <a href="https://commons.apache.org/proper/commons-io/" target="_top">
+                <div class="aui-avatar aui-avatar-large aui-avatar-project">
+            <div class="aui-avatar-inner">
+                                    <img src="img/clover_logo_large.png" alt="Clover icon"/>
+                            </div>
+        </div>
+                    </a>
+            </div>
+    <div class="aui-page-header-main" >
+        <h1>
+                            <a href="https://commons.apache.org/proper/commons-io/" target="_top">
+                                        Apache Commons IO 2.11.0
+                                        </a>
+                    </h1>
+    </div>
+</div>
+
+<nav class="aui-navgroup aui-navgroup-vertical">
+    <div class="aui-navgroup-inner">
+                                            <ul class="aui-nav">
+                <li class="aui-nav-selected">
+                    <a href="dashboard.html">Project overview</a>
+                </li>
+            </ul>
+        
+                <div class="aui-nav-heading packages-nav-heading">
+            <strong>Packages</strong>
+        </div>
+        <div class="aui-nav project-packages">
+            <form method="get" action="#" class="aui package-filter-container">
+                <input type="text" autocomplete="off" class="package-filter text"
+                       placeholder="Type to filter packages..." name="package-filter" id="package-filter"
+                       title="Start typing package name (or part of the name) to search through the tree. Use arrow keys and the Enter key to navigate."/>
+            </form>
+            <p class="package-filter-no-results-message hidden">
+                <small>No results found.</small>
+            </p>
+                                                  <div class="packages-tree-wrapper" data-root-relative="" data-package-name="">
+                <div class="packages-tree-container"></div>
+                <div class="clover-packages-lozenges"></div>
+            </div>
+        </div>
+        
+            </div>
+</nav>                </div>
+                <section class="aui-page-panel-content">
+                    <div class="aui-page-panel-content-clover">
+
+                    
+                    <ol class="aui-nav aui-nav-breadcrumbs">
+            
+        <li><a href="dashboard.html">Project Clover database Wed. Jan. 19 2022 13:19:53 EST</a></li>
+    </ol>
+    
+<h1 class="aui-h2-clover">
+            Project overview
+    </h1>
+<div class="aui-tabs horizontal-tabs">
+        <ul class="tabs-menu">
+            <li class="menu-item active-tab">
+            <a href="dashboard.html">Dashboard</a>
+        </li>
+                <li class="menu-item ">
+            <a href="pkg-summary.html"><strong>Application code</strong></a>
+        </li>
+                <li class="menu-item ">
+            <a href="testsrc-pkg-summary.html"><strong>Test code</strong></a>
+        </li>
+        <li class="menu-item ">
+            <a href="test-pkg-summary.html"><strong>Test results</strong></a>
+        </li>
+                <li class="menu-item ">
+            <a href="top-risks.html"><strong>Top risks</strong></a>
+        </li>
+        <li class="menu-item ">
+            <a href="quick-wins.html"><strong>Quick wins</strong></a>
+        </li>
+                                                <li class="menu-item ">
+                <a href="treemap.html"><strong>Coverage tree map</strong></a>
+            </li>
+            </ul>
+    <div class="tabs-pane active-pane" id="tabs-first">
+
+        <div>&#160;</div>
+
+
+
+
+
+
+<div class="aui-group">
+    <div class="aui-item">
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                
+                <h3>
+                    Code coverage
+                    <small style="float:right; font-weight: normal">
+                        198 classes,
+                        8,734 /
+                        9,826 elements
+                    </small>
+                </h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.88886625</span>88.9%</div><div style="display: table-cell">
+ <div title="88.9% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:88.9%"></div></div></div></div>
+                <p><a href="pkg-summary.html">See more</a></p>
+            </div>
+        </div>
+
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>
+                    Test results
+                    <small style="float:right; font-weight: normal">
+                        1,851 /
+                        1,853 tests
+                        83.19 secs
+                    </small>
+                </h3>
+            </header>
+            <div class="dashboard-widget-content">
+                                    
+
+<div style="display: table; width: 100%">
+            <div class="barGraphValue"><span class="sortValue">0.9989207</span>99.9%</div>         <div style="display: table-cell">
+            
+            <div title="0% Errors" style="min-width: 40px;" class="testBarError">
+                <div title="99.9% of tests passed&lt;br/&gt;0.1% of tests failed" class="testBarFail" style="width: 100%"><div class="testBarPass" style="width: 99.9%"></div></div>
+            </div>
+        </div>
+    </div>                                <p><a href="test-pkg-summary.html">See more</a></p>
+            </div>
+        </div>
+
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Code metrics</h3>
+            </header>
+                         
+
+<div id="$statsId" class="aui-item" style="display: ${display}">
+<div style="display: table">
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of branches in this project">Branches:</label></div>
+        <div class="stats-box-value">2,316</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of statements in this project">Statements:</label></div>
+        <div class="stats-box-value">5,717</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of methods in this project">Methods:</label></div>
+        <div class="stats-box-value">1,793</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of classes in this project">Classes:</label></div>
+        <div class="stats-box-value">198</div>
+    </div>
+            <div class="stats-box">
+            <div class="stats-box-label"><label title="Total number of files in this project">Files:</label></div>
+            <div class="stats-box-value">180</div>
+        </div>
+                <div class="stats-box">
+            <div class="stats-box-label"><label title="Total number of packages in this project">Packages:</label></div>
+            <div class="stats-box-value">11</div>
+        </div>
+        <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of lines of code in this project">LOC:</label></div>
+        <div class="stats-box-value">39,515</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of non-comment lines of code in this project">NCLOC:</label></div>
+        <div class="stats-box-value">14,015</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Cyclomatic complexity is the number of paths in this project">Total complexity:</label></div>
+        <div class="stats-box-value">3,357</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label">
+            <label title="Complexity density is the complexity divided by the number of statements in this project">Complexity density:</label>
+        </div>
+        <div class="stats-box-value">0.59</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Number of statements per method.">Statements/Method:</label></div>
+        <div class="stats-box-value">3.19</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Number of methods per class.">Methods/Class:</label></div>
+        <div class="stats-box-value">9.06</div>
+    </div>
+            <div class="stats-box">
+            <div class="stats-box-label"><label title="Number of classes per package.">Classes/Package:</label></div>
+            <div class="stats-box-value">18</div>
+        </div>
+        <div class="stats-box">
+        <div class="stats-box-label"><label title="Complexity divided by the number of methods in this project">Average method complexity:</label></div>
+        <div class="stats-box-value">1.87</div>
+    </div>
+</div>
+
+</div>        </div>
+
+                <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Class Coverage Distribution</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <div style="text-align: center">                     <img src="img/classDistrubutionChart.png" alt="img/classDistrubutionChart.png" usemap="#classDistrubutionChart.png"/>
+                </div>
+                <map id="classDistrubutionChart.png" name="classDistrubutionChart.png">
+<area shape="rect" coords="282,15,304,206" title="118 classes have 91-100% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="258,146,280,206" title="37 classes have 81-90% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="233,192,255,206" title="9 classes have 71-80% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="209,200,231,206" title="4 classes have 61-70% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="184,198,206,206" title="5 classes have 51-60% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="160,202,182,206" title="3 classes have 41-50% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="135,200,157,206" title="4 classes have 31-40% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="111,203,133,206" title="2 classes have 21-30% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="87,205,109,206" title="1 class has 11-20% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="38,198,60,206" title="5 classes have 0% coverage" alt="" nohref="nohref"/>
+</map>
+            </div>
+        </div>
+        
+                <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Class Complexity</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <div style="text-align: center">
+                    <img src="img/classComplexityChart.png" alt="img/classComplexityChart.png" usemap="#classComplexityChart.png"/>
+                </div>
+                <map id="classComplexityChart.png" name="classComplexityChart.png">
+<area shape="poly" coords="269,199,267,202,264,199,267,197,269,199,269,199" title="Complexity: 16; Coverage: 88%; Class: WildcardFilter" alt="" href="org/apache/commons/io/filefilter/WildcardFilter.html#WildcardFilter"/>
+<area shape="poly" coords="294,197,291,199,289,197,291,194,294,197,294,197" title="Complexity: 20; Coverage: 98%; Class: WildcardFileFilter" alt="" href="org/apache/commons/io/filefilter/WildcardFileFilter.html#WildcardFileFilter"/>
+<area shape="poly" coords="264,204,262,207,259,204,262,202,264,204,264,204" title="Complexity: 8; Coverage: 86%; Class: TrueFileFilter" alt="" href="org/apache/commons/io/filefilter/TrueFileFilter.html#TrueFileFilter"/>
+<area shape="poly" coords="200,207,198,210,195,207,198,205,200,207,200,207" title="Complexity: 3; Coverage: 60%; Class: SymbolicLinkFileFilter" alt="" href="org/apache/commons/io/filefilter/SymbolicLinkFileFilter.html#SymbolicLinkFileFilter"/>
+<area shape="poly" coords="281,196,279,199,276,196,279,194,281,196,281,196" title="Complexity: 21; Coverage: 93%; Class: SuffixFileFilter" alt="" href="org/apache/commons/io/filefilter/SuffixFileFilter.html#SuffixFileFilter"/>
+<area shape="poly" coords="267,203,264,205,262,203,264,200,267,203,267,203" title="Complexity: 10; Coverage: 87%; Class: SizeFileFilter" alt="" href="org/apache/commons/io/filefilter/SizeFileFilter.html#SizeFileFilter"/>
+<area shape="poly" coords="274,201,271,204,269,201,271,199,274,201,274,201" title="Complexity: 13; Coverage: 90%; Class: RegexFileFilter" alt="" href="org/apache/commons/io/filefilter/RegexFileFilter.html#RegexFileFilter"/>
+<area shape="poly" coords="276,195,274,197,271,195,274,192,276,195,276,195" title="Complexity: 23; Coverage: 91%; Class: PrefixFileFilter" alt="" href="org/apache/commons/io/filefilter/PrefixFileFilter.html#PrefixFileFilter"/>
+<area shape="poly" coords="205,202,203,205,200,202,203,200,205,202,205,202" title="Complexity: 11; Coverage: 62%; Class: PathVisitorFileFilter" alt="" href="org/apache/commons/io/filefilter/PathVisitorFileFilter.html#PathVisitorFileFilter"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="272,196,269,199,267,196,269,194,272,196,272,196" title="Complexity: 21; Coverage: 89%; Class: OrFileFilter" alt="" href="org/apache/commons/io/filefilter/OrFileFilter.html#OrFileFilter"/>
+<area shape="poly" coords="298,204,296,207,293,204,296,202,298,204,298,204" title="Complexity: 8; Coverage: 100%; Class: NotFileFilter" alt="" href="org/apache/commons/io/filefilter/NotFileFilter.html#NotFileFilter"/>
+<area shape="poly" coords="294,197,291,199,289,197,291,194,294,197,294,197" title="Complexity: 20; Coverage: 98%; Class: WildcardFileFilter" alt="" href="org/apache/commons/io/filefilter/WildcardFileFilter.html#WildcardFileFilter"/>
+<area shape="poly" coords="298,193,296,195,293,193,296,190,298,193,298,193" title="Complexity: 27; Coverage: 100%; Class: MagicNumberFileFilter" alt="" href="org/apache/commons/io/filefilter/MagicNumberFileFilter.html#MagicNumberFileFilter"/>
+<area shape="poly" coords="237,207,235,209,232,207,235,204,237,207,237,207" title="Complexity: 4; Coverage: 75%; Class: IOFileFilter" alt="" href="org/apache/commons/io/filefilter/IOFileFilter.html#IOFileFilter"/>
+<area shape="poly" coords="262,207,259,209,257,207,259,204,262,207,262,207" title="Complexity: 4; Coverage: 85%; Class: HiddenFileFilter" alt="" href="org/apache/commons/io/filefilter/HiddenFileFilter.html#HiddenFileFilter"/>
+<area shape="poly" coords="284,175,281,177,279,175,281,172,284,175,284,175" title="Complexity: 56; Coverage: 94%; Class: FileFilterUtils" alt="" href="org/apache/commons/io/filefilter/FileFilterUtils.html#FileFilterUtils"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="298,204,296,207,293,204,296,202,298,204,298,204" title="Complexity: 8; Coverage: 100%; Class: NotFileFilter" alt="" href="org/apache/commons/io/filefilter/NotFileFilter.html#NotFileFilter"/>
+<area shape="poly" coords="284,204,281,207,279,204,281,202,284,204,284,204" title="Complexity: 8; Coverage: 94%; Class: EmptyFileFilter" alt="" href="org/apache/commons/io/filefilter/EmptyFileFilter.html#EmptyFileFilter"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="281,203,279,205,276,203,279,200,281,203,281,203" title="Complexity: 10; Coverage: 93%; Class: DelegateFileFilter" alt="" href="org/apache/commons/io/filefilter/DelegateFileFilter.html#DelegateFileFilter"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="54,207,51,210,49,207,51,205,54,207,54,207" title="Complexity: 3; Coverage: 0%; Class: CanExecuteFileFilter" alt="" href="org/apache/commons/io/filefilter/CanExecuteFileFilter.html#CanExecuteFileFilter"/>
+<area shape="poly" coords="291,194,289,197,286,194,289,192,291,194,291,194" title="Complexity: 24; Coverage: 97%; Class: AndFileFilter" alt="" href="org/apache/commons/io/filefilter/AndFileFilter.html#AndFileFilter"/>
+<area shape="poly" coords="289,202,286,205,284,202,286,200,289,202,289,202" title="Complexity: 11; Coverage: 96%; Class: AgeFileFilter" alt="" href="org/apache/commons/io/filefilter/AgeFileFilter.html#AgeFileFilter"/>
+<area shape="poly" coords="252,203,249,205,247,203,249,200,252,203,252,203" title="Complexity: 10; Coverage: 81%; Class: AbstractFileFilter" alt="" href="org/apache/commons/io/filefilter/AbstractFileFilter.html#AbstractFileFilter"/>
+<area shape="poly" coords="298,204,296,206,293,204,296,201,298,204,298,204" title="Complexity: 9; Coverage: 100%; Class: IOFunction" alt="" href="org/apache/commons/io/function/IOFunction.html#IOFunction"/>
+<area shape="poly" coords="122,208,120,210,117,208,120,205,122,208,122,208" title="Complexity: 2; Coverage: 28%; Class: IOConsumer" alt="" href="org/apache/commons/io/function/IOConsumer.html#IOConsumer"/>
+<area shape="poly" coords="289,202,286,205,284,202,286,200,289,202,289,202" title="Complexity: 11; Coverage: 96%; Class: AgeFileFilter" alt="" href="org/apache/commons/io/filefilter/AgeFileFilter.html#AgeFileFilter"/>
+<area shape="poly" coords="262,205,259,208,257,205,259,203,262,205,262,205" title="Complexity: 6; Coverage: 85%; Class: TaggedIOException" alt="" href="org/apache/commons/io/TaggedIOException.html#TaggedIOException"/>
+<area shape="poly" coords="110,205,107,207,105,205,107,202,110,205,110,205" title="Complexity: 7; Coverage: 23%; Class: StreamIterator" alt="" href="org/apache/commons/io/StreamIterator.html#StreamIterator"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="289,199,286,202,284,199,286,197,289,199,289,199" title="Complexity: 16; Coverage: 96%; Class: LineIterator" alt="" href="org/apache/commons/io/LineIterator.html#LineIterator"/>
+<area shape="poly" coords="269,30,267,33,264,30,267,28,269,30,269,30" title="Complexity: 293; Coverage: 88%; Class: IOUtils" alt="" href="org/apache/commons/io/IOUtils.html#IOUtils"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 5; Coverage: 100%; Class: IOIndexedException" alt="" href="org/apache/commons/io/IOIndexedException.html#IOIndexedException"/>
+<area shape="poly" coords="176,208,174,210,171,208,174,205,176,208,176,208" title="Complexity: 2; Coverage: 50%; Class: IOExceptionWithCause" alt="" href="org/apache/commons/io/IOExceptionWithCause.html#IOExceptionWithCause"/>
+<area shape="poly" coords="298,203,296,205,293,203,296,200,298,203,298,203" title="Complexity: 10; Coverage: 100%; Class: IOExceptionList" alt="" href="org/apache/commons/io/IOExceptionList.html#IOExceptionList"/>
+<area shape="poly" coords="289,196,286,199,284,196,286,194,289,196,289,196" title="Complexity: 21; Coverage: 96%; Class: IOCase" alt="" href="org/apache/commons/io/IOCase.html#IOCase"/>
+<area shape="poly" coords="294,199,291,202,289,199,291,197,294,199,294,199" title="Complexity: 16; Coverage: 98%; Class: HexDump" alt="" href="org/apache/commons/io/HexDump.html#HexDump"/>
+<area shape="poly" coords="284,72,281,75,279,72,281,70,284,72,284,72" title="Complexity: 224; Coverage: 94%; Class: FilenameUtils" alt="" href="org/apache/commons/io/FilenameUtils.html#FilenameUtils"/>
+<area shape="poly" coords="286,18,284,20,281,18,284,15,286,18,286,18" title="Complexity: 314; Coverage: 95%; Class: FileUtils" alt="" href="org/apache/commons/io/FileUtils.html#FileUtils"/>
+<area shape="poly" coords="267,167,264,169,262,167,264,164,267,167,267,167" title="Complexity: 69; Coverage: 87%; Class: FileSystemUtils" alt="" href="org/apache/commons/io/FileSystemUtils.html#FileSystemUtils"/>
+<area shape="poly" coords="240,189,237,191,235,189,237,186,240,189,240,189" title="Complexity: 33; Coverage: 76%; Class: FileSystem" alt="" href="org/apache/commons/io/FileSystem.html#FileSystem"/>
+<area shape="poly" coords="152,207,149,210,147,207,149,205,152,207,152,207" title="Complexity: 3; Coverage: 40%; Class: FileExistsException" alt="" href="org/apache/commons/io/FileExistsException.html#FileExistsException"/>
+<area shape="poly" coords="298,208,296,210,293,208,296,205,298,208,298,208" title="Complexity: 2; Coverage: 100%; Class: FileDeleteStrategy.ForceFileDeleteStrategy" alt="" href="org/apache/commons/io/FileDeleteStrategy.html#FileDeleteStrategy.ForceFileDeleteStrategy"/>
+<area shape="poly" coords="274,203,271,205,269,203,271,200,274,203,274,203" title="Complexity: 10; Coverage: 90%; Class: FileDeleteStrategy" alt="" href="org/apache/commons/io/FileDeleteStrategy.html#FileDeleteStrategy"/>
+<area shape="poly" coords="298,207,296,209,293,207,296,204,298,207,298,207" title="Complexity: 4; Coverage: 100%; Class: FileCleaningTracker.Tracker" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Tracker"/>
+<area shape="poly" coords="298,205,296,208,293,205,296,203,298,205,298,205" title="Complexity: 6; Coverage: 100%; Class: FileCleaningTracker.Reaper" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Reaper"/>
+<area shape="poly" coords="274,202,271,205,269,202,271,200,274,202,274,202" title="Complexity: 11; Coverage: 90%; Class: FileCleaningTracker" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker"/>
+<area shape="poly" coords="88,205,85,207,83,205,85,202,88,205,88,205" title="Complexity: 7; Coverage: 14%; Class: FileCleaner" alt="" href="org/apache/commons/io/FileCleaner.html#FileCleaner"/>
+<area shape="poly" coords="298,189,296,191,293,189,296,186,298,189,298,189" title="Complexity: 33; Coverage: 100%; Class: EndianUtils" alt="" href="org/apache/commons/io/EndianUtils.html#EndianUtils"/>
+<area shape="poly" coords="298,207,296,209,293,207,296,204,298,207,298,207" title="Complexity: 4; Coverage: 100%; Class: FileCleaningTracker.Tracker" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Tracker"/>
+<area shape="poly" coords="294,192,291,194,289,192,291,189,294,192,294,192" title="Complexity: 28; Coverage: 98%; Class: DirectoryWalker" alt="" href="org/apache/commons/io/DirectoryWalker.html#DirectoryWalker"/>
+<area shape="poly" coords="240,200,237,202,235,200,237,197,240,200,240,200" title="Complexity: 15; Coverage: 76%; Class: CopyUtils" alt="" href="org/apache/commons/io/CopyUtils.html#CopyUtils"/>
+<area shape="poly" coords="298,205,296,208,293,205,296,203,298,205,298,205" title="Complexity: 6; Coverage: 100%; Class: FileCleaningTracker.Reaper" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Reaper"/>
+<area shape="poly" coords="274,207,271,209,269,207,271,204,274,207,274,207" title="Complexity: 4; Coverage: 90%; Class: ByteOrderParser" alt="" href="org/apache/commons/io/ByteOrderParser.html#ByteOrderParser"/>
+<area shape="poly" coords="298,197,296,200,293,197,296,195,298,197,298,197" title="Complexity: 19; Coverage: 100%; Class: ByteOrderMark" alt="" href="org/apache/commons/io/ByteOrderMark.html#ByteOrderMark"/>
+<area shape="poly" coords="193,193,191,196,188,193,191,191,193,193,193,193" title="Complexity: 26; Coverage: 57%; Class: FileEntry" alt="" href="org/apache/commons/io/monitor/FileEntry.html#FileEntry"/>
+<area shape="poly" coords="272,178,269,180,267,178,269,175,272,178,272,178" title="Complexity: 51; Coverage: 89%; Class: FileAlterationObserver" alt="" href="org/apache/commons/io/monitor/FileAlterationObserver.html#FileAlterationObserver"/>
+<area shape="poly" coords="286,194,284,197,281,194,284,192,286,194,286,194" title="Complexity: 24; Coverage: 95%; Class: FileAlterationMonitor" alt="" href="org/apache/commons/io/monitor/FileAlterationMonitor.html#FileAlterationMonitor"/>
+<area shape="poly" coords="298,204,296,207,293,204,296,202,298,204,298,204" title="Complexity: 8; Coverage: 100%; Class: NotFileFilter" alt="" href="org/apache/commons/io/filefilter/NotFileFilter.html#NotFileFilter"/>
+<area shape="poly" coords="54,205,51,208,49,205,51,203,54,205,54,205" title="Complexity: 6; Coverage: 0%; Class: PeekableInputStream" alt="" href="org/apache/commons/io/input/buffer/PeekableInputStream.html#PeekableInputStream"/>
+<area shape="poly" coords="137,185,134,188,132,185,134,183,137,185,137,185" title="Complexity: 39; Coverage: 34%; Class: CircularByteBuffer" alt="" href="org/apache/commons/io/input/buffer/CircularByteBuffer.html#CircularByteBuffer"/>
+<area shape="poly" coords="259,197,257,200,254,197,257,195,259,197,259,197" title="Complexity: 19; Coverage: 84%; Class: CircularBufferInputStream" alt="" href="org/apache/commons/io/input/buffer/CircularBufferInputStream.html#CircularBufferInputStream"/>
+<area shape="poly" coords="230,196,227,198,225,196,227,193,230,196,230,196" title="Complexity: 22; Coverage: 72%; Class: XmlStreamWriter" alt="" href="org/apache/commons/io/output/XmlStreamWriter.html#XmlStreamWriter"/>
+<area shape="poly" coords="267,194,264,197,262,194,264,192,267,194,267,194" title="Complexity: 24; Coverage: 87%; Class: WriterOutputStream" alt="" href="org/apache/commons/io/output/WriterOutputStream.html#WriterOutputStream"/>
+<area shape="poly" coords="298,196,296,199,293,196,296,194,298,196,298,196" title="Complexity: 21; Coverage: 100%; Class: UnsynchronizedByteArrayOutputStream" alt="" href="org/apache/commons/io/output/UnsynchronizedByteArrayOutputStream.html#UnsynchronizedByteArrayOutputStream"/>
+<area shape="poly" coords="262,197,259,199,257,197,259,194,262,197,262,197" title="Complexity: 20; Coverage: 85%; Class: ThresholdingOutputStream" alt="" href="org/apache/commons/io/output/ThresholdingOutputStream.html#ThresholdingOutputStream"/>
+<area shape="poly" coords="298,208,296,210,293,208,296,205,298,208,298,208" title="Complexity: 2; Coverage: 100%; Class: FileDeleteStrategy.ForceFileDeleteStrategy" alt="" href="org/apache/commons/io/FileDeleteStrategy.html#FileDeleteStrategy.ForceFileDeleteStrategy"/>
+<area shape="poly" coords="298,205,296,208,293,205,296,203,298,205,298,205" title="Complexity: 6; Coverage: 100%; Class: FileCleaningTracker.Reaper" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Reaper"/>
+<area shape="poly" coords="298,207,296,209,293,207,296,204,298,207,298,207" title="Complexity: 4; Coverage: 100%; Class: FileCleaningTracker.Tracker" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Tracker"/>
+<area shape="poly" coords="298,207,296,209,293,207,296,204,298,207,298,207" title="Complexity: 4; Coverage: 100%; Class: FileCleaningTracker.Tracker" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Tracker"/>
+<area shape="poly" coords="281,200,279,202,276,200,279,197,281,200,281,200" title="Complexity: 15; Coverage: 93%; Class: StringBuilderWriter" alt="" href="org/apache/commons/io/output/StringBuilderWriter.html#StringBuilderWriter"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 5; Coverage: 100%; Class: IOIndexedException" alt="" href="org/apache/commons/io/IOIndexedException.html#IOIndexedException"/>
+<area shape="poly" coords="298,195,296,197,293,195,296,192,298,195,298,195" title="Complexity: 23; Coverage: 100%; Class: ProxyWriter" alt="" href="org/apache/commons/io/output/ProxyWriter.html#ProxyWriter"/>
+<area shape="poly" coords="281,201,279,204,276,201,279,199,281,201,281,201" title="Complexity: 13; Coverage: 93%; Class: ProxyOutputStream" alt="" href="org/apache/commons/io/output/ProxyOutputStream.html#ProxyOutputStream"/>
+<area shape="poly" coords="291,194,289,196,286,194,289,191,291,194,291,194" title="Complexity: 25; Coverage: 97%; Class: ProxyCollectionWriter" alt="" href="org/apache/commons/io/output/ProxyCollectionWriter.html#ProxyCollectionWriter"/>
+<area shape="poly" coords="262,202,259,205,257,202,259,200,262,202,262,202" title="Complexity: 11; Coverage: 85%; Class: NullWriter" alt="" href="org/apache/commons/io/output/NullWriter.html#NullWriter"/>
+<area shape="poly" coords="298,208,296,211,293,208,296,206,298,208,298,208" title="Complexity: 1; Coverage: 100%; Class: NullPrintStream" alt="" href="org/apache/commons/io/output/NullPrintStream.html#NullPrintStream"/>
+<area shape="poly" coords="298,207,296,209,293,207,296,204,298,207,298,207" title="Complexity: 4; Coverage: 100%; Class: FileCleaningTracker.Tracker" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Tracker"/>
+<area shape="poly" coords="298,207,296,209,293,207,296,204,298,207,298,207" title="Complexity: 4; Coverage: 100%; Class: FileCleaningTracker.Tracker" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Tracker"/>
+<area shape="poly" coords="191,192,188,194,186,192,188,189,191,192,191,192" title="Complexity: 28; Coverage: 56%; Class: LockableFileWriter" alt="" href="org/apache/commons/io/output/LockableFileWriter.html#LockableFileWriter"/>
+<area shape="poly" coords="294,180,291,183,289,180,291,178,294,180,294,180" title="Complexity: 47; Coverage: 98%; Class: FilterCollectionWriter" alt="" href="org/apache/commons/io/output/FilterCollectionWriter.html#FilterCollectionWriter"/>
+<area shape="poly" coords="267,193,264,196,262,193,264,191,267,193,267,193" title="Complexity: 26; Coverage: 87%; Class: FileWriterWithEncoding" alt="" href="org/apache/commons/io/output/FileWriterWithEncoding.html#FileWriterWithEncoding"/>
+<area shape="poly" coords="176,205,174,208,171,205,174,203,176,205,176,205" title="Complexity: 6; Coverage: 50%; Class: DemuxOutputStream" alt="" href="org/apache/commons/io/output/DemuxOutputStream.html#DemuxOutputStream"/>
+<area shape="poly" coords="264,193,262,196,259,193,262,191,264,193,264,193" title="Complexity: 26; Coverage: 86%; Class: DeferredFileOutputStream" alt="" href="org/apache/commons/io/output/DeferredFileOutputStream.html#DeferredFileOutputStream"/>
+<area shape="poly" coords="298,204,296,207,293,204,296,202,298,204,298,204" title="Complexity: 8; Coverage: 100%; Class: NotFileFilter" alt="" href="org/apache/commons/io/filefilter/NotFileFilter.html#NotFileFilter"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="298,208,296,210,293,208,296,205,298,208,298,208" title="Complexity: 2; Coverage: 100%; Class: FileDeleteStrategy.ForceFileDeleteStrategy" alt="" href="org/apache/commons/io/FileDeleteStrategy.html#FileDeleteStrategy.ForceFileDeleteStrategy"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 5; Coverage: 100%; Class: IOIndexedException" alt="" href="org/apache/commons/io/IOIndexedException.html#IOIndexedException"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 5; Coverage: 100%; Class: IOIndexedException" alt="" href="org/apache/commons/io/IOIndexedException.html#IOIndexedException"/>
+<area shape="poly" coords="298,196,296,199,293,196,296,194,298,196,298,196" title="Complexity: 21; Coverage: 100%; Class: UnsynchronizedByteArrayOutputStream" alt="" href="org/apache/commons/io/output/UnsynchronizedByteArrayOutputStream.html#UnsynchronizedByteArrayOutputStream"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 5; Coverage: 100%; Class: IOIndexedException" alt="" href="org/apache/commons/io/IOIndexedException.html#IOIndexedException"/>
+<area shape="poly" coords="249,206,247,208,244,206,247,203,249,206,249,206" title="Complexity: 5; Coverage: 80%; Class: BrokenOutputStream" alt="" href="org/apache/commons/io/output/BrokenOutputStream.html#BrokenOutputStream"/>
+<area shape="poly" coords="264,201,262,204,259,201,262,199,264,201,264,201" title="Complexity: 13; Coverage: 86%; Class: AppendableWriter" alt="" href="org/apache/commons/io/output/AppendableWriter.html#AppendableWriter"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="298,194,296,196,293,194,296,191,298,194,298,194" title="Complexity: 25; Coverage: 100%; Class: AbstractByteArrayOutputStream" alt="" href="org/apache/commons/io/output/AbstractByteArrayOutputStream.html#AbstractByteArrayOutputStream"/>
+<area shape="poly" coords="298,208,296,210,293,208,296,205,298,208,298,208" title="Complexity: 2; Coverage: 100%; Class: FileDeleteStrategy.ForceFileDeleteStrategy" alt="" href="org/apache/commons/io/FileDeleteStrategy.html#FileDeleteStrategy.ForceFileDeleteStrategy"/>
+<area shape="poly" coords="298,200,296,202,293,200,296,197,298,200,298,200" title="Complexity: 15; Coverage: 100%; Class: ValidatingObjectInputStream" alt="" href="org/apache/commons/io/serialization/ValidatingObjectInputStream.html#ValidatingObjectInputStream"/>
+<area shape="poly" coords="298,207,296,209,293,207,296,204,298,207,298,207" title="Complexity: 4; Coverage: 100%; Class: FileCleaningTracker.Tracker" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Tracker"/>
+<area shape="poly" coords="298,208,296,210,293,208,296,205,298,208,298,208" title="Complexity: 2; Coverage: 100%; Class: FileDeleteStrategy.ForceFileDeleteStrategy" alt="" href="org/apache/commons/io/FileDeleteStrategy.html#FileDeleteStrategy.ForceFileDeleteStrategy"/>
+<area shape="poly" coords="252,207,249,210,247,207,249,205,252,207,252,207" title="Complexity: 3; Coverage: 81%; Class: StandardDeleteOption" alt="" href="org/apache/commons/io/file/StandardDeleteOption.html#StandardDeleteOption"/>
+<area shape="poly" coords="298,208,296,211,293,208,296,206,298,208,298,208" title="Complexity: 1; Coverage: 100%; Class: NullPrintStream" alt="" href="org/apache/commons/io/output/NullPrintStream.html#NullPrintStream"/>
+<area shape="poly" coords="284,204,281,206,279,204,281,201,284,204,284,204" title="Complexity: 9; Coverage: 94%; Class: PathUtils.RelativeSortedPaths" alt="" href="org/apache/commons/io/file/PathUtils.html#PathUtils.RelativeSortedPaths"/>
+<area shape="poly" coords="254,147,252,149,249,147,252,144,254,147,254,147" title="Complexity: 102; Coverage: 82%; Class: PathUtils" alt="" href="org/apache/commons/io/file/PathUtils.html#PathUtils"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="205,195,203,197,200,195,203,192,205,195,205,195" title="Complexity: 23; Coverage: 62%; Class: DeletingPathVisitor" alt="" href="org/apache/commons/io/file/DeletingPathVisitor.html#DeletingPathVisitor"/>
+<area shape="poly" coords="264,198,262,201,259,198,262,196,264,198,264,198" title="Complexity: 18; Coverage: 86%; Class: CountingPathVisitor" alt="" href="org/apache/commons/io/file/CountingPathVisitor.html#CountingPathVisitor"/>
+<area shape="poly" coords="54,208,51,211,49,208,51,206,54,208,54,208" title="Complexity: 1; Coverage: 0%; Class: Counters.PathCounters" alt="" href="org/apache/commons/io/file/Counters.html#Counters.PathCounters"/>
+<area shape="poly" coords="298,208,296,211,293,208,296,206,298,208,298,208" title="Complexity: 1; Coverage: 100%; Class: NullPrintStream" alt="" href="org/apache/commons/io/output/NullPrintStream.html#NullPrintStream"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 5; Coverage: 100%; Class: IOIndexedException" alt="" href="org/apache/commons/io/IOIndexedException.html#IOIndexedException"/>
+<area shape="poly" coords="298,208,296,211,293,208,296,206,298,208,298,208" title="Complexity: 1; Coverage: 100%; Class: NullPrintStream" alt="" href="org/apache/commons/io/output/NullPrintStream.html#NullPrintStream"/>
+<area shape="poly" coords="262,202,259,205,257,202,259,200,262,202,262,202" title="Complexity: 11; Coverage: 85%; Class: NullWriter" alt="" href="org/apache/commons/io/output/NullWriter.html#NullWriter"/>
+<area shape="poly" coords="54,208,51,211,49,208,51,206,54,208,54,208" title="Complexity: 1; Coverage: 0%; Class: Counters.PathCounters" alt="" href="org/apache/commons/io/file/Counters.html#Counters.PathCounters"/>
+<area shape="poly" coords="298,208,296,211,293,208,296,206,298,208,298,208" title="Complexity: 1; Coverage: 100%; Class: NullPrintStream" alt="" href="org/apache/commons/io/output/NullPrintStream.html#NullPrintStream"/>
+<area shape="poly" coords="262,202,259,205,257,202,259,200,262,202,262,202" title="Complexity: 11; Coverage: 85%; Class: NullWriter" alt="" href="org/apache/commons/io/output/NullWriter.html#NullWriter"/>
+<area shape="poly" coords="264,203,262,205,259,203,262,200,264,203,264,203" title="Complexity: 10; Coverage: 86%; Class: Counters.AbstractPathCounters" alt="" href="org/apache/commons/io/file/Counters.html#Counters.AbstractPathCounters"/>
+<area shape="poly" coords="298,205,296,208,293,205,296,203,298,205,298,205" title="Complexity: 6; Coverage: 100%; Class: FileCleaningTracker.Reaper" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Reaper"/>
+<area shape="poly" coords="144,199,142,201,139,199,142,196,144,199,144,199" title="Complexity: 17; Coverage: 37%; Class: CopyDirectoryVisitor" alt="" href="org/apache/commons/io/file/CopyDirectoryVisitor.html#CopyDirectoryVisitor"/>
+<area shape="poly" coords="186,199,183,201,181,199,183,196,186,199,186,199" title="Complexity: 17; Coverage: 54%; Class: CleaningPathVisitor" alt="" href="org/apache/commons/io/file/CleaningPathVisitor.html#CleaningPathVisitor"/>
+<area shape="poly" coords="181,197,178,200,176,197,178,195,181,197,181,197" title="Complexity: 19; Coverage: 52%; Class: AccumulatorPathVisitor" alt="" href="org/apache/commons/io/file/AccumulatorPathVisitor.html#AccumulatorPathVisitor"/>
+<area shape="poly" coords="279,204,276,206,274,204,276,201,279,204,279,204" title="Complexity: 9; Coverage: 92%; Class: FileSystemProviders" alt="" href="org/apache/commons/io/file/spi/FileSystemProviders.html#FileSystemProviders"/>
+<area shape="poly" coords="298,202,296,204,293,202,296,199,298,202,298,202" title="Complexity: 12; Coverage: 100%; Class: SizeFileComparator" alt="" href="org/apache/commons/io/comparator/SizeFileComparator.html#SizeFileComparator"/>
+<area shape="poly" coords="249,207,247,209,244,207,247,204,249,207,249,207" title="Complexity: 4; Coverage: 80%; Class: ReverseFileComparator" alt="" href="org/apache/commons/io/comparator/ReverseFileComparator.html#ReverseFileComparator"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 5; Coverage: 100%; Class: IOIndexedException" alt="" href="org/apache/commons/io/IOIndexedException.html#IOIndexedException"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 5; Coverage: 100%; Class: IOIndexedException" alt="" href="org/apache/commons/io/IOIndexedException.html#IOIndexedException"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 5; Coverage: 100%; Class: IOIndexedException" alt="" href="org/apache/commons/io/IOIndexedException.html#IOIndexedException"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="298,208,296,211,293,208,296,206,298,208,298,208" title="Complexity: 1; Coverage: 100%; Class: NullPrintStream" alt="" href="org/apache/commons/io/output/NullPrintStream.html#NullPrintStream"/>
+<area shape="poly" coords="298,204,296,206,293,204,296,201,298,204,298,204" title="Complexity: 9; Coverage: 100%; Class: IOFunction" alt="" href="org/apache/commons/io/function/IOFunction.html#IOFunction"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 5; Coverage: 100%; Class: IOIndexedException" alt="" href="org/apache/commons/io/IOIndexedException.html#IOIndexedException"/>
+<area shape="poly" coords="298,205,296,207,293,205,296,202,298,205,298,205" title="Complexity: 7; Coverage: 100%; Class: XmlStreamReaderException" alt="" href="org/apache/commons/io/input/XmlStreamReaderException.html#XmlStreamReaderException"/>
+<area shape="poly" coords="269,150,267,153,264,150,267,148,269,150,269,150" title="Complexity: 96; Coverage: 88%; Class: XmlStreamReader" alt="" href="org/apache/commons/io/input/XmlStreamReader.html#XmlStreamReader"/>
+<area shape="poly" coords="289,199,286,202,284,199,286,197,289,199,289,199" title="Complexity: 16; Coverage: 96%; Class: LineIterator" alt="" href="org/apache/commons/io/LineIterator.html#LineIterator"/>
+<area shape="poly" coords="298,193,296,196,293,193,296,191,298,193,298,193" title="Complexity: 26; Coverage: 100%; Class: UnsynchronizedByteArrayInputStream" alt="" href="org/apache/commons/io/input/UnsynchronizedByteArrayInputStream.html#UnsynchronizedByteArrayInputStream"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="286,200,284,202,281,200,284,197,286,200,286,200" title="Complexity: 15; Coverage: 95%; Class: UnixLineEndingInputStream" alt="" href="org/apache/commons/io/input/UnixLineEndingInputStream.html#UnixLineEndingInputStream"/>
+<area shape="poly" coords="298,205,296,208,293,205,296,203,298,205,298,205" title="Complexity: 6; Coverage: 100%; Class: FileCleaningTracker.Reaper" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Reaper"/>
+<area shape="poly" coords="298,202,296,204,293,202,296,199,298,202,298,202" title="Complexity: 12; Coverage: 100%; Class: SizeFileComparator" alt="" href="org/apache/commons/io/comparator/SizeFileComparator.html#SizeFileComparator"/>
+<area shape="poly" coords="298,203,296,205,293,203,296,200,298,203,298,203" title="Complexity: 10; Coverage: 100%; Class: IOExceptionList" alt="" href="org/apache/commons/io/IOExceptionList.html#IOExceptionList"/>
+<area shape="poly" coords="54,205,51,208,49,205,51,203,54,205,54,205" title="Complexity: 6; Coverage: 0%; Class: PeekableInputStream" alt="" href="org/apache/commons/io/input/buffer/PeekableInputStream.html#PeekableInputStream"/>
+<area shape="poly" coords="254,178,252,180,249,178,252,175,254,178,254,178" title="Complexity: 51; Coverage: 82%; Class: Tailer" alt="" href="org/apache/commons/io/input/Tailer.html#Tailer"/>
+<area shape="poly" coords="298,207,296,209,293,207,296,204,298,207,298,207" title="Complexity: 4; Coverage: 100%; Class: FileCleaningTracker.Tracker" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Tracker"/>
+<area shape="poly" coords="298,207,296,209,293,207,296,204,298,207,298,207" title="Complexity: 4; Coverage: 100%; Class: FileCleaningTracker.Tracker" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Tracker"/>
+<area shape="poly" coords="286,198,284,201,281,198,284,196,286,198,286,198" title="Complexity: 18; Coverage: 95%; Class: SwappedDataInputStream" alt="" href="org/apache/commons/io/input/SwappedDataInputStream.html#SwappedDataInputStream"/>
+<area shape="poly" coords="298,199,296,202,293,199,296,197,298,199,298,199" title="Complexity: 16; Coverage: 100%; Class: SequenceReader" alt="" href="org/apache/commons/io/input/SequenceReader.html#SequenceReader"/>
+<area shape="poly" coords="267,195,264,197,262,195,264,192,267,195,267,195" title="Complexity: 23; Coverage: 87%; Class: ReversedLinesFileReader.FilePart" alt="" href="org/apache/commons/io/input/ReversedLinesFileReader.html#ReversedLinesFileReader.FilePart"/>
+<area shape="poly" coords="281,190,279,193,276,190,279,188,281,190,281,190" title="Complexity: 31; Coverage: 93%; Class: ReversedLinesFileReader" alt="" href="org/apache/commons/io/input/ReversedLinesFileReader.html#ReversedLinesFileReader"/>
+<area shape="poly" coords="279,191,276,194,274,191,276,189,279,191,279,191" title="Complexity: 29; Coverage: 92%; Class: ReaderInputStream" alt="" href="org/apache/commons/io/input/ReaderInputStream.html#ReaderInputStream"/>
+<area shape="poly" coords="252,174,249,176,247,174,249,171,252,174,252,174" title="Complexity: 58; Coverage: 81%; Class: ReadAheadInputStream" alt="" href="org/apache/commons/io/input/ReadAheadInputStream.html#ReadAheadInputStream"/>
+<area shape="poly" coords="269,198,267,201,264,198,267,196,269,198,269,198" title="Complexity: 18; Coverage: 88%; Class: RandomAccessFileInputStream" alt="" href="org/apache/commons/io/input/RandomAccessFileInputStream.html#RandomAccessFileInputStream"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 5; Coverage: 100%; Class: IOIndexedException" alt="" href="org/apache/commons/io/IOIndexedException.html#IOIndexedException"/>
+<area shape="poly" coords="245,194,242,197,240,194,242,192,245,194,245,194" title="Complexity: 24; Coverage: 78%; Class: ProxyReader" alt="" href="org/apache/commons/io/input/ProxyReader.html#ProxyReader"/>
+<area shape="poly" coords="264,197,262,199,259,197,262,194,264,197,264,197" title="Complexity: 20; Coverage: 86%; Class: ProxyInputStream" alt="" href="org/apache/commons/io/input/ProxyInputStream.html#ProxyInputStream"/>
+<area shape="poly" coords="134,206,132,208,129,206,132,203,134,206,134,206" title="Complexity: 5; Coverage: 33%; Class: ObservableInputStream.Observer" alt="" href="org/apache/commons/io/input/ObservableInputStream.html#ObservableInputStream.Observer"/>
+<area shape="poly" coords="281,191,279,194,276,191,279,189,281,191,281,191" title="Complexity: 29; Coverage: 93%; Class: ObservableInputStream" alt="" href="org/apache/commons/io/input/ObservableInputStream.html#ObservableInputStream"/>
+<area shape="poly" coords="286,191,284,194,281,191,284,189,286,191,286,191" title="Complexity: 29; Coverage: 95%; Class: NullReader" alt="" href="org/apache/commons/io/input/NullReader.html#NullReader"/>
+<area shape="poly" coords="284,189,281,192,279,189,281,187,284,189,284,189" title="Complexity: 32; Coverage: 94%; Class: NullInputStream" alt="" href="org/apache/commons/io/input/NullInputStream.html#NullInputStream"/>
+<area shape="poly" coords="215,207,213,210,210,207,213,205,215,207,215,207" title="Complexity: 3; Coverage: 66%; Class: MessageDigestCalculatingInputStream.MessageDigestMaintainingObserver" alt="" href="org/apache/commons/io/input/MessageDigestCalculatingInputStream.html#MessageDigestCalculatingInputStream.MessageDigestMaintainingObserver"/>
+<area shape="poly" coords="242,207,240,209,237,207,240,204,242,207,242,207" title="Complexity: 4; Coverage: 77%; Class: MessageDigestCalculatingInputStream" alt="" href="org/apache/commons/io/input/MessageDigestCalculatingInputStream.html#MessageDigestCalculatingInputStream"/>
+<area shape="poly" coords="298,207,296,209,293,207,296,204,298,207,298,207" title="Complexity: 4; Coverage: 100%; Class: FileCleaningTracker.Tracker" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Tracker"/>
+<area shape="poly" coords="298,208,296,211,293,208,296,206,298,208,298,208" title="Complexity: 1; Coverage: 100%; Class: NullPrintStream" alt="" href="org/apache/commons/io/output/NullPrintStream.html#NullPrintStream"/>
+<area shape="poly" coords="223,207,220,209,218,207,220,204,223,207,223,207" title="Complexity: 4; Coverage: 69%; Class: DemuxInputStream" alt="" href="org/apache/commons/io/input/DemuxInputStream.html#DemuxInputStream"/>
+<area shape="poly" coords="298,203,296,205,293,203,296,200,298,203,298,203" title="Complexity: 10; Coverage: 100%; Class: IOExceptionList" alt="" href="org/apache/commons/io/IOExceptionList.html#IOExceptionList"/>
+<area shape="poly" coords="298,208,296,210,293,208,296,205,298,208,298,208" title="Complexity: 2; Coverage: 100%; Class: FileDeleteStrategy.ForceFileDeleteStrategy" alt="" href="org/apache/commons/io/FileDeleteStrategy.html#FileDeleteStrategy.ForceFileDeleteStrategy"/>
+<area shape="poly" coords="298,208,296,211,293,208,296,206,298,208,298,208" title="Complexity: 1; Coverage: 100%; Class: NullPrintStream" alt="" href="org/apache/commons/io/output/NullPrintStream.html#NullPrintStream"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 3; Coverage: 100%; Class: PathEqualsFileFilter" alt="" href="org/apache/commons/io/filefilter/PathEqualsFileFilter.html#PathEqualsFileFilter"/>
+<area shape="poly" coords="267,205,264,208,262,205,264,203,267,205,267,205" title="Complexity: 6; Coverage: 87%; Class: ClassLoaderObjectInputStream" alt="" href="org/apache/commons/io/input/ClassLoaderObjectInputStream.html#ClassLoaderObjectInputStream"/>
+<area shape="poly" coords="298,205,296,207,293,205,296,202,298,205,298,205" title="Complexity: 7; Coverage: 100%; Class: XmlStreamReaderException" alt="" href="org/apache/commons/io/input/XmlStreamReaderException.html#XmlStreamReaderException"/>
+<area shape="poly" coords="298,207,296,209,293,207,296,204,298,207,298,207" title="Complexity: 4; Coverage: 100%; Class: FileCleaningTracker.Tracker" alt="" href="org/apache/commons/io/FileCleaningTracker.html#FileCleaningTracker.Tracker"/>
+<area shape="poly" coords="298,208,296,210,293,208,296,205,298,208,298,208" title="Complexity: 2; Coverage: 100%; Class: FileDeleteStrategy.ForceFileDeleteStrategy" alt="" href="org/apache/commons/io/FileDeleteStrategy.html#FileDeleteStrategy.ForceFileDeleteStrategy"/>
+<area shape="poly" coords="286,191,284,193,281,191,284,188,286,191,286,191" title="Complexity: 30; Coverage: 95%; Class: CharSequenceReader" alt="" href="org/apache/commons/io/input/CharSequenceReader.html#CharSequenceReader"/>
+<area shape="poly" coords="272,187,269,190,267,187,269,185,272,187,272,187" title="Complexity: 36; Coverage: 89%; Class: CharSequenceInputStream" alt="" href="org/apache/commons/io/input/CharSequenceInputStream.html#CharSequenceInputStream"/>
+<area shape="poly" coords="254,189,252,192,249,189,252,187,254,189,254,189" title="Complexity: 32; Coverage: 82%; Class: BufferedFileChannelInputStream" alt="" href="org/apache/commons/io/input/BufferedFileChannelInputStream.html#BufferedFileChannelInputStream"/>
+<area shape="poly" coords="267,204,264,207,262,204,264,202,267,204,267,204" title="Complexity: 8; Coverage: 87%; Class: BrokenReader" alt="" href="org/apache/commons/io/input/BrokenReader.html#BrokenReader"/>
+<area shape="poly" coords="298,205,296,207,293,205,296,202,298,205,298,205" title="Complexity: 7; Coverage: 100%; Class: XmlStreamReaderException" alt="" href="org/apache/commons/io/input/XmlStreamReaderException.html#XmlStreamReaderException"/>
+<area shape="poly" coords="298,202,296,204,293,202,296,199,298,202,298,202" title="Complexity: 12; Coverage: 100%; Class: SizeFileComparator" alt="" href="org/apache/commons/io/comparator/SizeFileComparator.html#SizeFileComparator"/>
+<area shape="poly" coords="171,194,169,197,166,194,169,192,171,194,171,194" title="Complexity: 24; Coverage: 48%; Class: BoundedInputStream" alt="" href="org/apache/commons/io/input/BoundedInputStream.html#BoundedInputStream"/>
+<area shape="poly" coords="298,185,296,188,293,185,296,183,298,185,298,185" title="Complexity: 39; Coverage: 100%; Class: BOMInputStream" alt="" href="org/apache/commons/io/input/BOMInputStream.html#BOMInputStream"/>
+<area shape="poly" coords="240,206,237,208,235,206,237,203,240,206,240,206" title="Complexity: 5; Coverage: 76%; Class: AutoCloseInputStream" alt="" href="org/apache/commons/io/input/AutoCloseInputStream.html#AutoCloseInputStream"/>
+<area shape="poly" coords="276,202,274,204,271,202,274,199,276,202,276,202" title="Complexity: 12; Coverage: 91%; Class: AbstractCharacterFilterReader" alt="" href="org/apache/commons/io/input/AbstractCharacterFilterReader.html#AbstractCharacterFilterReader"/>
+</map>
+            </div>
+        </div>
+        
+                    <div class="dashboard-widget">
+                <header class="dashboard-widget-header">
+                    <h3>Coverage tree map</h3>
+                </header>
+                <div class="dashboard-widget-content">
+                    <div id="infovis" style="width:100%; height:250px;">
+                        <div id="treemap-loader" style="position:relative;top:50px;">
+                            <p>
+                                Generating Coverage Tree Map. Please wait...
+                            </p>
+                            <p>
+                                <img src="img/ajax-loader.gif" alt="Loading Treemap"/>
+                            </p>
+                        </div>
+                    </div>
+                    <p><a href="treemap.html">See more</a></p>
+                </div>
+
+            </div>
+            </div>
+
+
+    <div class="aui-item">
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Top 20 project risks</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                
+                                                                <a class="tag" href="org/apache/commons/io/HexDump.html"
+                            style="font-size: 19px;color:#89c495"
+                            title="Average Method Complexity - 4 , Coverage - 98.2% ">HexDump</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/output/FilterCollectionWriter.html"
+                            style="font-size: 17px;color:#89c495"
+                            title="Average Method Complexity - 3.357 , Coverage - 98.2% ">FilterCollectionWriter</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/input/WindowsLineEndingInputStream.html"
+                            style="font-size: 16px;color:#89c495"
+                            title="Average Method Complexity - 2.667 , Coverage - 96.5% ">WindowsLineEndingInputStream</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/file/PathUtils.html"
+                            style="font-size: 28px;color:#89c495"
+                            title="Average Method Complexity - 9 , Coverage - 94.4% ">PathUtils.RelativeSortedPaths</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/FilenameUtils.html"
+                            style="font-size: 20px;color:#89c495"
+                            title="Average Method Complexity - 4.87 , Coverage - 94.9% ">FilenameUtils</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/input/UnixLineEndingInputStream.html"
+                            style="font-size: 16px;color:#89c495"
+                            title="Average Method Complexity - 2.5 , Coverage - 95.9% ">UnixLineEndingInputStream</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/filefilter/EmptyFileFilter.html"
+                            style="font-size: 16px;color:#89c495"
+                            title="Average Method Complexity - 2.667 , Coverage - 94.4% ">EmptyFileFilter</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/input/ReversedLinesFileReader.html"
+                            style="font-size: 16px;color:#89c495"
+                            title="Average Method Complexity - 2.818 , Coverage - 93.6% ">ReversedLinesFileReader</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/input/CharSequenceReader.html"
+                            style="font-size: 15px;color:#89c495"
+                            title="Average Method Complexity - 2.143 , Coverage - 95.1% ">CharSequenceReader</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/LineIterator.html"
+                            style="font-size: 15px;color:#89c495"
+                            title="Average Method Complexity - 2 , Coverage - 96.3% ">LineIterator</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/FileUtils.html"
+                            style="font-size: 15px;color:#89c495"
+                            title="Average Method Complexity - 2.013 , Coverage - 95.3% ">FileUtils</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/filefilter/WildcardFileFilter.html"
+                            style="font-size: 15px;color:#89c495"
+                            title="Average Method Complexity - 1.818 , Coverage - 98.4% ">WildcardFileFilter</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/input/XmlStreamReader.html"
+                            style="font-size: 19px;color:#14892c"
+                            title="Average Method Complexity - 4 , Coverage - 88.8% ">XmlStreamReader</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/FileSystemUtils.html"
+                            style="font-size: 20px;color:#14892c"
+                            title="Average Method Complexity - 4.929 , Coverage - 87.8% ">FileSystemUtils</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/input/ReaderInputStream.html"
+                            style="font-size: 16px;color:#14892c"
+                            title="Average Method Complexity - 2.417 , Coverage - 92.5% ">ReaderInputStream</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/DirectoryWalker.html"
+                            style="font-size: 15px;color:#89c495"
+                            title="Average Method Complexity - 1.75 , Coverage - 98.7% ">DirectoryWalker</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/input/ReversedLinesFileReader.html"
+                            style="font-size: 20px;color:#14892c"
+                            title="Average Method Complexity - 4.6 , Coverage - 87.6% ">ReversedLinesFileReader.FilePart</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/input/AbstractCharacterFilterReader.html"
+                            style="font-size: 16px;color:#14892c"
+                            title="Average Method Complexity - 2.4 , Coverage - 91.7% ">AbstractCharacterFilterReader</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/ThreadMonitor.html"
+                            style="font-size: 15px;color:#89c495"
+                            title="Average Method Complexity - 1.833 , Coverage - 97% ">ThreadMonitor</a>
+                                    
+                                                                <a class="tag" href="org/apache/commons/io/filefilter/NameFileFilter.html"
+                            style="font-size: 14px;color:#89c495"
+                            title="Average Method Complexity - 1.667 , Coverage - 98.4% ">NameFileFilter</a>
+                                                    <p><a href="top-risks.html">See more</a></p>
+            </div>
+        </div>
+
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Most complex packages</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                
+                <table class="aui">
+                                            
+                                                <tr>
+                            <td>1. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.91901207</span>91.9%</div><div style="display: table-cell">
+ <div title="91.9% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:91.9%"></div></div></div></div></td>
+                            <td>
+                                <a href="org/apache/commons/io/pkg-summary.html">org.apache.commons.io</a>
+                                <span class="aui-badge" title="Package complexity">1182</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>2. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.89626557</span>89.6%</div><div style="display: table-cell">
+ <div title="89.6% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:89.6%"></div></div></div></div></td>
+                            <td>
+                                <a href="org/apache/commons/io/input/pkg-summary.html">org.apache.commons.io.input</a>
+                                <span class="aui-badge" title="Package complexity">852</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>3. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.9052969</span>90.5%</div><div style="display: table-cell">
+ <div title="90.5% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:90.5%"></div></div></div></div></td>
+                            <td>
+                                <a href="org/apache/commons/io/output/pkg-summary.html">org.apache.commons.io.output</a>
+                                <span class="aui-badge" title="Package complexity">438</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>4. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.92576885</span>92.6%</div><div style="display: table-cell">
+ <div title="92.6% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:92.6%"></div></div></div></div></td>
+                            <td>
+                                <a href="org/apache/commons/io/filefilter/pkg-summary.html">org.apache.commons.io.filefilter</a>
+                                <span class="aui-badge" title="Package complexity">357</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>5. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.74362606</span>74.4%</div><div style="display: table-cell">
+ <div title="74.4% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:74.4%"></div></div></div></div></td>
+                            <td>
+                                <a href="org/apache/commons/io/file/pkg-summary.html">org.apache.commons.io.file</a>
+                                <span class="aui-badge" title="Package complexity">260</span>
+                            </td>
+                        </tr>
+                                    </table>
+            </div>
+        </div>
+
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Most complex classes</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <table class="aui">
+                                            
+                                                <tr>
+                            <td>1. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.9532294</span>95.3%</div><div style="display: table-cell">
+ <div title="95.3% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:95.3%"></div></div></div></div></td>
+                            <td>
+                                <a  href="org/apache/commons/io/FileUtils.html"  title="org.apache.commons.io.FileUtils">FileUtils</a>
+                                <span class="aui-badge" title="Class complexity">314</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>2. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.88755983</span>88.8%</div><div style="display: table-cell">
+ <div title="88.8% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:88.8%"></div></div></div></div></td>
+                            <td>
+                                <a  href="org/apache/commons/io/IOUtils.html"  title="org.apache.commons.io.IOUtils">IOUtils</a>
+                                <span class="aui-badge" title="Class complexity">293</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>3. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.9493671</span>94.9%</div><div style="display: table-cell">
+ <div title="94.9% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:94.9%"></div></div></div></div></td>
+                            <td>
+                                <a  href="org/apache/commons/io/FilenameUtils.html"  title="org.apache.commons.io.FilenameUtils">FilenameUtils</a>
+                                <span class="aui-badge" title="Class complexity">224</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>4. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.8219697</span>82.2%</div><div style="display: table-cell">
+ <div title="82.2% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:82.2%"></div></div></div></div></td>
+                            <td>
+                                <a  href="org/apache/commons/io/file/PathUtils.html"  title="org.apache.commons.io.file.PathUtils">PathUtils</a>
+                                <span class="aui-badge" title="Class complexity">102</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>5. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.8881356</span>88.8%</div><div style="display: table-cell">
+ <div title="88.8% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:88.8%"></div></div></div></div></td>
+                            <td>
+                                <a  href="org/apache/commons/io/input/XmlStreamReader.html"  title="org.apache.commons.io.input.XmlStreamReader">XmlStreamReader</a>
+                                <span class="aui-badge" title="Class complexity">96</span>
+                            </td>
+                        </tr>
+                                    </table>
+            </div>
+        </div>
+
+                <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Least tested methods</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <table class="aui">
+                                            
+
+                    <tr>
+                        <td align="right">1.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="CircularByteBuffer.read(byte[],int,int)&#160;:&#160;void" href="org/apache/commons/io/input/buffer/CircularByteBuffer.html?line=89#src-89">CircularByteBuffer.read(byte[],int,int)&#160;:&#160;void</a>
+                            <span class="aui-badge" title="Method complexity">9</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">2.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="CircularByteBuffer.peek(byte[],int,int)&#160;:&#160;boolean" href="org/apache/commons/io/input/buffer/CircularByteBuffer.html?line=150#src-150">CircularByteBuffer.peek(byte[],int,int)&#160;:&#160;boolean</a>
+                            <span class="aui-badge" title="Method complexity">9</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">3.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="FilenameUtils.getAdsCriticalOffset(String)&#160;:&#160;int" href="org/apache/commons/io/FilenameUtils.html?line=1070#src-1070">FilenameUtils.getAdsCriticalOffset(String)&#160;:&#160;int</a>
+                            <span class="aui-badge" title="Method complexity">4</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">4.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="AccumulatorPathVisitor.equals(Object)&#160;:&#160;boolean" href="org/apache/commons/io/file/AccumulatorPathVisitor.html?line=143#src-143">AccumulatorPathVisitor.equals(Object)&#160;:&#160;boolean</a>
+                            <span class="aui-badge" title="Method complexity">4</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">5.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="CleaningPathVisitor.equals(Object)&#160;:&#160;boolean" href="org/apache/commons/io/file/CleaningPathVisitor.html?line=96#src-96">CleaningPathVisitor.equals(Object)&#160;:&#160;boolean</a>
+                            <span class="aui-badge" title="Method complexity">4</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">6.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="CopyDirectoryVisitor.equals(Object)&#160;:&#160;boolean" href="org/apache/commons/io/file/CopyDirectoryVisitor.html?line=90#src-90">CopyDirectoryVisitor.equals(Object)&#160;:&#160;boolean</a>
+                            <span class="aui-badge" title="Method complexity">4</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">7.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="DeletingPathVisitor.equals(Object)&#160;:&#160;boolean" href="org/apache/commons/io/file/DeletingPathVisitor.html?line=115#src-115">DeletingPathVisitor.equals(Object)&#160;:&#160;boolean</a>
+                            <span class="aui-badge" title="Method complexity">4</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">8.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="IOUtils.writeChunked(byte[],OutputStream)&#160;:&#160;void" href="org/apache/commons/io/IOUtils.html?line=3370#src-3370">IOUtils.writeChunked(byte[],OutputStream)&#160;:&#160;void</a>
+                            <span class="aui-badge" title="Method complexity">3</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">9.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="IOUtils.writeChunked(char[],Writer)&#160;:&#160;void" href="org/apache/commons/io/IOUtils.html?line=3396#src-3396">IOUtils.writeChunked(char[],Writer)&#160;:&#160;void</a>
+                            <span class="aui-badge" title="Method complexity">3</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">10.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="CircularByteBuffer.add(byte)&#160;:&#160;void" href="org/apache/commons/io/input/buffer/CircularByteBuffer.html?line=124#src-124">CircularByteBuffer.add(byte)&#160;:&#160;void</a>
+                            <span class="aui-badge" title="Method complexity">3</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">11.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="PeekableInputStream.peek(byte[],int,int)&#160;:&#160;boolean" href="org/apache/commons/io/input/buffer/PeekableInputStream.html?line=71#src-71">PeekableInputStream.peek(byte[],int,int)&#160;:&#160;boolean</a>
+                            <span class="aui-badge" title="Method complexity">3</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">12.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="BoundedInputStream.skip(long)&#160;:&#160;long" href="org/apache/commons/io/input/BoundedInputStream.html?line=139#src-139">BoundedInputStream.skip(long)&#160;:&#160;long</a>
+                            <span class="aui-badge" title="Method complexity">2</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">13.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="CopyDirectoryVisitor.CopyDirectoryVisitor(PathCounters,PathFilter,PathFilter,Path,Path,CopyOption)" href="org/apache/commons/io/file/CopyDirectoryVisitor.html?line=70#src-70">CopyDirectoryVisitor.CopyDirectoryVisitor(PathCounters,PathFilter,PathFilter,Path,Path,CopyOption)</a>
+                            <span class="aui-badge" title="Method complexity">2</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">14.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="StreamIterator.hasNext()&#160;:&#160;boolean" href="org/apache/commons/io/StreamIterator.html?line=60#src-60">StreamIterator.hasNext()&#160;:&#160;boolean</a>
+                            <span class="aui-badge" title="Method complexity">2</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">15.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="StreamIterator.next()&#160;:&#160;E" href="org/apache/commons/io/StreamIterator.html?line=69#src-69">StreamIterator.next()&#160;:&#160;E</a>
+                            <span class="aui-badge" title="Method complexity">2</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">16.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="BoundedInputStream.available()&#160;:&#160;int" href="org/apache/commons/io/input/BoundedInputStream.html?line=150#src-150">BoundedInputStream.available()&#160;:&#160;int</a>
+                            <span class="aui-badge" title="Method complexity">3</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">17.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="DemuxOutputStream.flush()&#160;:&#160;void" href="org/apache/commons/io/output/DemuxOutputStream.html?line=62#src-62">DemuxOutputStream.flush()&#160;:&#160;void</a>
+                            <span class="aui-badge" title="Method complexity">2</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">18.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="CleaningPathVisitor.hashCode()&#160;:&#160;int" href="org/apache/commons/io/file/CleaningPathVisitor.html?line=111#src-111">CleaningPathVisitor.hashCode()&#160;:&#160;int</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">19.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="CopyDirectoryVisitor.hashCode()&#160;:&#160;int" href="org/apache/commons/io/file/CopyDirectoryVisitor.html?line=136#src-136">CopyDirectoryVisitor.hashCode()&#160;:&#160;int</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">20.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="DeletingPathVisitor.hashCode()&#160;:&#160;int" href="org/apache/commons/io/file/DeletingPathVisitor.html?line=130#src-130">DeletingPathVisitor.hashCode()&#160;:&#160;int</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                    </table>
+            </div>
+        </div>
+        
+    </div>
+</div>
+                            </div> <!-- tabs-pane active-pane -->
+                        </div>
+
+    <script type="text/javascript" src="jit.js" ></script>
+    <script type="text/javascript" src="treemap-dash-json.js" ></script>
+
+                        </div> <!-- class="aui-page-panel-content-clover" -->
+                    <footer id="footer" role="contentinfo">
+    <section class="footer-body">
+        <ul>
+            <li>
+                Report generated by <a target="_new" href="http://openclover.org">OpenClover</a> v 4.4.1
+                on Wed. Jan. 19 2022 13:26:50 EST using coverage data from Wed. Jan. 19 2022 13:26:41 EST.
+            </li>
+        </ul>
+        <ul>
+            <li>OpenClover is free and open-source software. </li>
+        </ul>
+    </section>
+</footer>                </section> <!-- class="aui-page-panel-content" -->
+            </div> <!-- class="aui-page-panel-inner" -->
+        </div> <!-- class="aui-page-panel" -->
+    </div> <!-- id="page" -->
+</body>
+</html>

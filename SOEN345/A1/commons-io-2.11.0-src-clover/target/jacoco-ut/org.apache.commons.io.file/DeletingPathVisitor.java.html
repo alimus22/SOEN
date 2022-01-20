@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeletingPathVisitor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons IO</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.io.file</a> &gt; <span class="el_source">DeletingPathVisitor.java</span></div><h1>DeletingPathVisitor.java</h1><pre class="source lang-java linenums">/* $$ This file has been instrumented by Clover 4.4.1#2019101123313948 $$ *//*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.apache.commons.io.file;
+
+import java.io.IOException;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Arrays;
+import java.util.Objects;
+
+import org.apache.commons.io.file.Counters.PathCounters;
+
+/**
+ * Deletes files and directories as a visit proceeds.
+ *
+ * @since 2.7
+ */
+<span class="pc bpc" id="L37" title="3 of 4 branches missed.">public class DeletingPathVisitor extends CountingPathVisitor {public static class __CLR4_4_131l31lkylvdz82{public static com_atlassian_clover.CoverageRecorder R;public static com_atlassian_clover.CloverProfile[] profiles = { };@java.lang.SuppressWarnings(&quot;unchecked&quot;) public static &lt;I, T extends I&gt; I lambdaInc(final int i,final T l,final int si){java.lang.reflect.InvocationHandler h=new java.lang.reflect.InvocationHandler(){public java.lang.Object invoke(java.lang.Object p,java.lang.reflect.Method m,java.lang.Object[] a) throws Throwable{R.inc(i);R.inc(si);try{return m.invoke(l,a);}catch(java.lang.reflect.InvocationTargetException e){throw e.getCause()!=null?e.getCause():new RuntimeException(&quot;Clover failed to invoke instrumented lambda&quot;,e);}}};return (I)java.lang.reflect.Proxy.newProxyInstance(l.getClass().getClassLoader(),l.getClass().getInterfaces(),h);}static{com_atlassian_clover.CoverageRecorder _R=null;try{com_atlassian_clover.CloverVersionInfo.An_old_version_of_clover_is_on_your_compilation_classpath___Please_remove___Required_version_is___4_4_1();if(2019101123313948L!=com_atlassian_clover.CloverVersionInfo.getBuildStamp()){com_atlassian_clover.Clover.l(&quot;[CLOVER] WARNING: The Clover version used in instrumentation does not match the runtime version. You need to run instrumented classes against the same version of Clover that you instrumented with.&quot;);com_atlassian_clover.Clover.l(&quot;[CLOVER] WARNING: Instr=4.4.1#2019101123313948,Runtime=&quot;+com_atlassian_clover.CloverVersionInfo.getReleaseNum()+&quot;#&quot;+com_atlassian_clover.CloverVersionInfo.getBuildStamp());}R=com_atlassian_clover.Clover.getNullRecorder();_R=com_atlassian_clover.Clover.getNullRecorder();_R=com_atlassian_clover.Clover.getRecorder(&quot;\u002f\u0055\u0073\u0065\u0072\u0073\u002f\u0061\u006c\u0069\u0068\u0061\u006e\u006e\u0069\u002f\u0044\u0065\u0073\u006b\u0074\u006f\u0070\u002f\u0047\u0069\u0074\u0048\u0075\u0062\u002f\u0053\u004f\u0045\u004e\u002f\u0053\u004f\u0045\u004e\u0033\u0034\u0035\u002f\u0041\u0031\u002f\u0063\u006f\u006d\u006d\u006f\u006e\u0073\u002d\u0069\u006f\u002d\u0032\u002e\u0031\u0031\u002e\u0030\u002d\u0073\u0072\u0063\u002f\u0074\u0061\u0072\u0067\u0065\u0074\u002f\u0063\u006c\u006f\u0076\u0065\u0072\u002f\u0063\u006c\u006f\u0076\u0065\u0072\u002e\u0064\u0062&quot;,1642616389890L,8589935092L,4017,profiles,new java.lang.String[]{&quot;clover.distributed.coverage&quot;,null});}catch(java.lang.SecurityException e){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised because it has insufficient security privileges. Please consult the Clover documentation on the security policy file changes required. (&quot;+e.getClass()+&quot;:&quot;+e.getMessage()+&quot;)&quot;);}catch(java.lang.NoClassDefFoundError e){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised. Are you sure you have Clover in the runtime classpath? (&quot;+e.getClass()+&quot;:&quot;+e.getMessage()+&quot;)&quot;);}catch(java.lang.Throwable t){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised because of an unexpected error. (&quot;+t.getClass()+&quot;:&quot;+t.getMessage()+&quot;)&quot;);}R=_R;}}public static final com_atlassian_clover.TestNameSniffer __CLR4_4_1_TEST_NAME_SNIFFER=com_atlassian_clover.TestNameSniffer.NULL_INSTANCE;</span>
+
+    /**
+     * Creates a new instance configured with a BigInteger {@link PathCounters}.
+     *
+     * @return a new instance configured with a BigInteger {@link PathCounters}.
+     */
+<span class="fc" id="L44">    public static DeletingPathVisitor withBigIntegerCounters() {try{__CLR4_4_131l31lkylvdz82.R.inc(3945);</span>
+<span class="fc" id="L45">        __CLR4_4_131l31lkylvdz82.R.inc(3946);return new DeletingPathVisitor(Counters.bigIntegerPathCounters());</span>
+<span class="fc" id="L46">    }finally{__CLR4_4_131l31lkylvdz82.R.flushNeeded();}}</span>
+
+    /**
+     * Creates a new instance configured with a long {@link PathCounters}.
+     *
+     * @return a new instance configured with a long {@link PathCounters}.
+     */
+<span class="fc" id="L53">    public static DeletingPathVisitor withLongCounters() {try{__CLR4_4_131l31lkylvdz82.R.inc(3947);</span>
+<span class="fc" id="L54">        __CLR4_4_131l31lkylvdz82.R.inc(3948);return new DeletingPathVisitor(Counters.longPathCounters());</span>
+<span class="fc" id="L55">    }finally{__CLR4_4_131l31lkylvdz82.R.flushNeeded();}}</span>
+
+    private final String[] skip;
+    private final boolean overrideReadOnly;
+    private final LinkOption[] linkOptions;
+
+    /**
+     * Constructs a new visitor that deletes files except for the files and directories explicitly given.
+     *
+     * @param pathCounter How to count visits.
+     * @param deleteOption How deletion is handled.
+     * @param skip The files to skip deleting.
+     * @since 2.8.0
+     */
+    public DeletingPathVisitor(final PathCounters pathCounter, final DeleteOption[] deleteOption,
+        final String... skip) {
+<span class="fc" id="L71">        this(pathCounter, PathUtils.NOFOLLOW_LINK_OPTION_ARRAY, deleteOption, skip);__CLR4_4_131l31lkylvdz82.R.inc(3950);try{__CLR4_4_131l31lkylvdz82.R.inc(3949);</span>
+<span class="fc" id="L72">    }finally{__CLR4_4_131l31lkylvdz82.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a new visitor that deletes files except for the files and directories explicitly given.
+     *
+     * @param pathCounter How to count visits.
+     * @param linkOptions How symbolic links are handled.
+     * @param deleteOption How deletion is handled.
+     * @param skip The files to skip deleting.
+     * @since 2.9.0
+     */
+    public DeletingPathVisitor(final PathCounters pathCounter, final LinkOption[] linkOptions,
+        final DeleteOption[] deleteOption, final String... skip) {
+<span class="fc" id="L85">        super(pathCounter);__CLR4_4_131l31lkylvdz82.R.inc(3952);try{__CLR4_4_131l31lkylvdz82.R.inc(3951);</span>
+<span class="pc bpc" id="L86" title="4 of 10 branches missed.">        __CLR4_4_131l31lkylvdz82.R.inc(3953);final String[] temp = (((skip != null )&amp;&amp;(__CLR4_4_131l31lkylvdz82.R.iget(3954)!=0|true))||(__CLR4_4_131l31lkylvdz82.R.iget(3955)==0&amp;false))? skip.clone() : EMPTY_STRING_ARRAY;</span>
+<span class="fc" id="L87">        __CLR4_4_131l31lkylvdz82.R.inc(3956);Arrays.sort(temp);</span>
+<span class="fc" id="L88">        __CLR4_4_131l31lkylvdz82.R.inc(3957);this.skip = temp;</span>
+<span class="fc" id="L89">        __CLR4_4_131l31lkylvdz82.R.inc(3958);this.overrideReadOnly = StandardDeleteOption.overrideReadOnly(deleteOption);</span>
+        // TODO Files.deleteIfExists() never follows links, so use LinkOption.NOFOLLOW_LINKS in other calls to Files.
+<span class="pc bpc" id="L91" title="7 of 10 branches missed.">        __CLR4_4_131l31lkylvdz82.R.inc(3959);this.linkOptions = (((linkOptions == null )&amp;&amp;(__CLR4_4_131l31lkylvdz82.R.iget(3960)!=0|true))||(__CLR4_4_131l31lkylvdz82.R.iget(3961)==0&amp;false))? PathUtils.NOFOLLOW_LINK_OPTION_ARRAY : linkOptions.clone();</span>
+<span class="fc" id="L92">    }finally{__CLR4_4_131l31lkylvdz82.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a new visitor that deletes files except for the files and directories explicitly given.
+     *
+     * @param pathCounter How to count visits.
+     *
+     * @param skip The files to skip deleting.
+     */
+    public DeletingPathVisitor(final PathCounters pathCounter, final String... skip) {
+<span class="fc" id="L102">        this(pathCounter, PathUtils.EMPTY_DELETE_OPTION_ARRAY, skip);__CLR4_4_131l31lkylvdz82.R.inc(3963);try{__CLR4_4_131l31lkylvdz82.R.inc(3962);</span>
+<span class="fc" id="L103">    }finally{__CLR4_4_131l31lkylvdz82.R.flushNeeded();}}</span>
+
+    /**
+     * Returns true to process the given path, false if not.
+     *
+     * @param path the path to test.
+     * @return true to process the given path, false if not.
+     */
+<span class="fc" id="L111">    private boolean accept(final Path path) {try{__CLR4_4_131l31lkylvdz82.R.inc(3964);</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">        __CLR4_4_131l31lkylvdz82.R.inc(3965);return Arrays.binarySearch(skip, Objects.toString(path.getFileName(), null)) &lt; 0;</span>
+<span class="fc" id="L113">    }finally{__CLR4_4_131l31lkylvdz82.R.flushNeeded();}}</span>
+
+    @Override
+<span class="nc" id="L116">    public boolean equals(final Object obj) {try{__CLR4_4_131l31lkylvdz82.R.inc(3966);</span>
+<span class="nc bnc" id="L117" title="All 10 branches missed.">        __CLR4_4_131l31lkylvdz82.R.inc(3967);if ((((this == obj)&amp;&amp;(__CLR4_4_131l31lkylvdz82.R.iget(3968)!=0|true))||(__CLR4_4_131l31lkylvdz82.R.iget(3969)==0&amp;false))) {{</span>
+<span class="nc" id="L118">            __CLR4_4_131l31lkylvdz82.R.inc(3970);return true;</span>
+        }
+<span class="nc bnc" id="L120" title="All 10 branches missed.">        }__CLR4_4_131l31lkylvdz82.R.inc(3971);if ((((!super.equals(obj))&amp;&amp;(__CLR4_4_131l31lkylvdz82.R.iget(3972)!=0|true))||(__CLR4_4_131l31lkylvdz82.R.iget(3973)==0&amp;false))) {{</span>
+<span class="nc" id="L121">            __CLR4_4_131l31lkylvdz82.R.inc(3974);return false;</span>
+        }
+<span class="nc bnc" id="L123" title="All 10 branches missed.">        }__CLR4_4_131l31lkylvdz82.R.inc(3975);if ((((getClass() != obj.getClass())&amp;&amp;(__CLR4_4_131l31lkylvdz82.R.iget(3976)!=0|true))||(__CLR4_4_131l31lkylvdz82.R.iget(3977)==0&amp;false))) {{</span>
+<span class="nc" id="L124">            __CLR4_4_131l31lkylvdz82.R.inc(3978);return false;</span>
+        }
+<span class="nc" id="L126">        }__CLR4_4_131l31lkylvdz82.R.inc(3979);final DeletingPathVisitor other = (DeletingPathVisitor) obj;</span>
+<span class="nc bnc" id="L127" title="All 4 branches missed.">        __CLR4_4_131l31lkylvdz82.R.inc(3980);return overrideReadOnly == other.overrideReadOnly &amp;&amp; Arrays.equals(skip, other.skip);</span>
+<span class="nc" id="L128">    }finally{__CLR4_4_131l31lkylvdz82.R.flushNeeded();}}</span>
+
+    @Override
+<span class="nc" id="L131">    public int hashCode() {try{__CLR4_4_131l31lkylvdz82.R.inc(3981);</span>
+<span class="nc" id="L132">        __CLR4_4_131l31lkylvdz82.R.inc(3982);final int prime = 31;</span>
+<span class="nc" id="L133">        __CLR4_4_131l31lkylvdz82.R.inc(3983);int result = super.hashCode();</span>
+<span class="nc" id="L134">        __CLR4_4_131l31lkylvdz82.R.inc(3984);result = prime * result + Arrays.hashCode(skip);</span>
+<span class="nc" id="L135">        __CLR4_4_131l31lkylvdz82.R.inc(3985);result = prime * result + Objects.hash(overrideReadOnly);</span>
+<span class="nc" id="L136">        __CLR4_4_131l31lkylvdz82.R.inc(3986);return result;</span>
+<span class="nc" id="L137">    }finally{__CLR4_4_131l31lkylvdz82.R.flushNeeded();}}</span>
+
+    @Override
+<span class="fc" id="L140">    public FileVisitResult postVisitDirectory(final Path dir, final IOException exc) throws IOException {try{__CLR4_4_131l31lkylvdz82.R.inc(3987);</span>
+<span class="pc bpc" id="L141" title="4 of 10 branches missed.">        __CLR4_4_131l31lkylvdz82.R.inc(3988);if ((((PathUtils.isEmptyDirectory(dir))&amp;&amp;(__CLR4_4_131l31lkylvdz82.R.iget(3989)!=0|true))||(__CLR4_4_131l31lkylvdz82.R.iget(3990)==0&amp;false))) {{</span>
+<span class="fc" id="L142">            __CLR4_4_131l31lkylvdz82.R.inc(3991);Files.deleteIfExists(dir);</span>
+        }
+<span class="fc" id="L144">        }__CLR4_4_131l31lkylvdz82.R.inc(3992);return super.postVisitDirectory(dir, exc);</span>
+<span class="fc" id="L145">    }finally{__CLR4_4_131l31lkylvdz82.R.flushNeeded();}}</span>
+
+    @Override
+<span class="fc" id="L148">    public FileVisitResult preVisitDirectory(final Path dir, final BasicFileAttributes attrs) throws IOException {try{__CLR4_4_131l31lkylvdz82.R.inc(3993);</span>
+<span class="fc" id="L149">        __CLR4_4_131l31lkylvdz82.R.inc(3994);super.preVisitDirectory(dir, attrs);</span>
+<span class="pc bpc" id="L150" title="7 of 10 branches missed.">        __CLR4_4_131l31lkylvdz82.R.inc(3995);return (((accept(dir) )&amp;&amp;(__CLR4_4_131l31lkylvdz82.R.iget(3996)!=0|true))||(__CLR4_4_131l31lkylvdz82.R.iget(3997)==0&amp;false))? FileVisitResult.CONTINUE : FileVisitResult.SKIP_SUBTREE;</span>
+<span class="fc" id="L151">    }finally{__CLR4_4_131l31lkylvdz82.R.flushNeeded();}}</span>
+
+    @Override
+<span class="fc" id="L154">    public FileVisitResult visitFile(final Path file, final BasicFileAttributes attrs) throws IOException {try{__CLR4_4_131l31lkylvdz82.R.inc(3998);</span>
+<span class="pc bpc" id="L155" title="4 of 10 branches missed.">        __CLR4_4_131l31lkylvdz82.R.inc(3999);if ((((accept(file))&amp;&amp;(__CLR4_4_131l31lkylvdz82.R.iget(4000)!=0|true))||(__CLR4_4_131l31lkylvdz82.R.iget(4001)==0&amp;false))) {{</span>
+            // delete files and valid links, respecting linkOptions
+<span class="pc bpc" id="L157" title="7 of 10 branches missed.">            __CLR4_4_131l31lkylvdz82.R.inc(4002);if ((((Files.exists(file, linkOptions))&amp;&amp;(__CLR4_4_131l31lkylvdz82.R.iget(4003)!=0|true))||(__CLR4_4_131l31lkylvdz82.R.iget(4004)==0&amp;false))) {{</span>
+<span class="pc bpc" id="L158" title="4 of 10 branches missed.">                __CLR4_4_131l31lkylvdz82.R.inc(4005);if ((((overrideReadOnly)&amp;&amp;(__CLR4_4_131l31lkylvdz82.R.iget(4006)!=0|true))||(__CLR4_4_131l31lkylvdz82.R.iget(4007)==0&amp;false))) {{</span>
+<span class="fc" id="L159">                    __CLR4_4_131l31lkylvdz82.R.inc(4008);PathUtils.setReadOnly(file, false, linkOptions);</span>
+                }
+<span class="fc" id="L161">                }__CLR4_4_131l31lkylvdz82.R.inc(4009);Files.deleteIfExists(file);</span>
+            }
+            // invalid links will survive previous delete, different approach needed:
+<span class="pc bpc" id="L164" title="7 of 10 branches missed.">            }__CLR4_4_131l31lkylvdz82.R.inc(4010);if ((((Files.isSymbolicLink(file))&amp;&amp;(__CLR4_4_131l31lkylvdz82.R.iget(4011)!=0|true))||(__CLR4_4_131l31lkylvdz82.R.iget(4012)==0&amp;false))) {{</span>
+<span class="nc" id="L165">                __CLR4_4_131l31lkylvdz82.R.inc(4013);try {</span>
+                    // deleteIfExists does not work for this case
+<span class="nc" id="L167">                    __CLR4_4_131l31lkylvdz82.R.inc(4014);Files.delete(file);</span>
+<span class="nc" id="L168">                } catch (final NoSuchFileException e) {</span>
+                    // ignore
+<span class="nc" id="L170">                }</span>
+            }
+        }}
+<span class="fc" id="L173">        }__CLR4_4_131l31lkylvdz82.R.inc(4015);updateFileCounters(file, attrs);</span>
+<span class="fc" id="L174">        __CLR4_4_131l31lkylvdz82.R.inc(4016);return FileVisitResult.CONTINUE;</span>
+<span class="fc" id="L175">    }finally{__CLR4_4_131l31lkylvdz82.R.flushNeeded();}}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

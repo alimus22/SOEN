@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LockableFileWriter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons IO</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.io.output</a> &gt; <span class="el_source">LockableFileWriter.java</span></div><h1>LockableFileWriter.java</h1><pre class="source lang-java linenums">/* $$ This file has been instrumented by Clover 4.4.1#2019101123313948 $$ *//*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.io.output;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.Charset;
+
+import org.apache.commons.io.Charsets;
+import org.apache.commons.io.FileUtils;
+
+/**
+ * FileWriter that will create and honor lock files to allow simple
+ * cross thread file lock handling.
+ * &lt;p&gt;
+ * This class provides a simple alternative to {@code FileWriter}
+ * that will use a lock file to prevent duplicate writes.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ * &lt;b&gt;Note:&lt;/b&gt; The lock file is deleted when {@link #close()} is called
+ * - or if the main file cannot be opened initially.
+ * In the (unlikely) event that the lock file cannot be deleted,
+ * an exception is thrown.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ * By default, the file will be overwritten, but this may be changed to append.
+ * The lock directory may be specified, but defaults to the system property
+ * {@code java.io.tmpdir}.
+ * The encoding may also be specified, and defaults to the platform default.
+ * &lt;/p&gt;
+ */
+<span class="pc bpc" id="L49" title="3 of 4 branches missed.">public class LockableFileWriter extends Writer {public static class __CLR4_4_1723723kylve0e8{public static com_atlassian_clover.CoverageRecorder R;public static com_atlassian_clover.CloverProfile[] profiles = { };@java.lang.SuppressWarnings(&quot;unchecked&quot;) public static &lt;I, T extends I&gt; I lambdaInc(final int i,final T l,final int si){java.lang.reflect.InvocationHandler h=new java.lang.reflect.InvocationHandler(){public java.lang.Object invoke(java.lang.Object p,java.lang.reflect.Method m,java.lang.Object[] a) throws Throwable{R.inc(i);R.inc(si);try{return m.invoke(l,a);}catch(java.lang.reflect.InvocationTargetException e){throw e.getCause()!=null?e.getCause():new RuntimeException(&quot;Clover failed to invoke instrumented lambda&quot;,e);}}};return (I)java.lang.reflect.Proxy.newProxyInstance(l.getClass().getClassLoader(),l.getClass().getInterfaces(),h);}static{com_atlassian_clover.CoverageRecorder _R=null;try{com_atlassian_clover.CloverVersionInfo.An_old_version_of_clover_is_on_your_compilation_classpath___Please_remove___Required_version_is___4_4_1();if(2019101123313948L!=com_atlassian_clover.CloverVersionInfo.getBuildStamp()){com_atlassian_clover.Clover.l(&quot;[CLOVER] WARNING: The Clover version used in instrumentation does not match the runtime version. You need to run instrumented classes against the same version of Clover that you instrumented with.&quot;);com_atlassian_clover.Clover.l(&quot;[CLOVER] WARNING: Instr=4.4.1#2019101123313948,Runtime=&quot;+com_atlassian_clover.CloverVersionInfo.getReleaseNum()+&quot;#&quot;+com_atlassian_clover.CloverVersionInfo.getBuildStamp());}R=com_atlassian_clover.Clover.getNullRecorder();_R=com_atlassian_clover.Clover.getNullRecorder();_R=com_atlassian_clover.Clover.getRecorder(&quot;\u002f\u0055\u0073\u0065\u0072\u0073\u002f\u0061\u006c\u0069\u0068\u0061\u006e\u006e\u0069\u002f\u0044\u0065\u0073\u006b\u0074\u006f\u0070\u002f\u0047\u0069\u0074\u0048\u0075\u0062\u002f\u0053\u004f\u0045\u004e\u002f\u0053\u004f\u0045\u004e\u0033\u0034\u0035\u002f\u0041\u0031\u002f\u0063\u006f\u006d\u006d\u006f\u006e\u0073\u002d\u0069\u006f\u002d\u0032\u002e\u0031\u0031\u002e\u0030\u002d\u0073\u0072\u0063\u002f\u0074\u0061\u0072\u0067\u0065\u0074\u002f\u0063\u006c\u006f\u0076\u0065\u0072\u002f\u0063\u006c\u006f\u0076\u0065\u0072\u002e\u0064\u0062&quot;,1642616389890L,8589935092L,9227,profiles,new java.lang.String[]{&quot;clover.distributed.coverage&quot;,null});}catch(java.lang.SecurityException e){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised because it has insufficient security privileges. Please consult the Clover documentation on the security policy file changes required. (&quot;+e.getClass()+&quot;:&quot;+e.getMessage()+&quot;)&quot;);}catch(java.lang.NoClassDefFoundError e){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised. Are you sure you have Clover in the runtime classpath? (&quot;+e.getClass()+&quot;:&quot;+e.getMessage()+&quot;)&quot;);}catch(java.lang.Throwable t){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised because of an unexpected error. (&quot;+t.getClass()+&quot;:&quot;+t.getMessage()+&quot;)&quot;);}R=_R;}}public static final com_atlassian_clover.TestNameSniffer __CLR4_4_1_TEST_NAME_SNIFFER=com_atlassian_clover.TestNameSniffer.NULL_INSTANCE;</span>
+    // Cannot extend ProxyWriter, as requires writer to be
+    // known when super() is called
+
+    /** The extension for the lock file. */
+    private static final String LCK = &quot;.lck&quot;;
+
+    /** The writer to decorate. */
+    private final Writer out;
+
+    /** The lock file. */
+    private final File lockFile;
+
+    /**
+     * Constructs a LockableFileWriter.
+     * If the file exists, it is overwritten.
+     *
+     * @param fileName  the file to write to, not null
+     * @throws NullPointerException if the file is null
+     * @throws IOException in case of an I/O error
+     */
+    public LockableFileWriter(final String fileName) throws IOException {
+<span class="nc" id="L71">        this(fileName, false, null);__CLR4_4_1723723kylve0e8.R.inc(9148);try{__CLR4_4_1723723kylve0e8.R.inc(9147);</span>
+<span class="nc" id="L72">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a LockableFileWriter.
+     *
+     * @param fileName  file to write to, not null
+     * @param append  true if content should be appended, false to overwrite
+     * @throws NullPointerException if the file is null
+     * @throws IOException in case of an I/O error
+     */
+    public LockableFileWriter(final String fileName, final boolean append) throws IOException {
+<span class="nc" id="L83">        this(fileName, append, null);__CLR4_4_1723723kylve0e8.R.inc(9150);try{__CLR4_4_1723723kylve0e8.R.inc(9149);</span>
+<span class="nc" id="L84">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a LockableFileWriter.
+     *
+     * @param fileName  the file to write to, not null
+     * @param append  true if content should be appended, false to overwrite
+     * @param lockDir  the directory in which the lock file should be held
+     * @throws NullPointerException if the file is null
+     * @throws IOException in case of an I/O error
+     */
+    public LockableFileWriter(final String fileName, final boolean append, final String lockDir) throws IOException {
+<span class="nc" id="L96">        this(new File(fileName), append, lockDir);__CLR4_4_1723723kylve0e8.R.inc(9152);try{__CLR4_4_1723723kylve0e8.R.inc(9151);</span>
+<span class="nc" id="L97">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a LockableFileWriter.
+     * If the file exists, it is overwritten.
+     *
+     * @param file  the file to write to, not null
+     * @throws NullPointerException if the file is null
+     * @throws IOException in case of an I/O error
+     */
+    public LockableFileWriter(final File file) throws IOException {
+<span class="fc" id="L108">        this(file, false, null);__CLR4_4_1723723kylve0e8.R.inc(9154);try{__CLR4_4_1723723kylve0e8.R.inc(9153);</span>
+<span class="fc" id="L109">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a LockableFileWriter.
+     *
+     * @param file  the file to write to, not null
+     * @param append  true if content should be appended, false to overwrite
+     * @throws NullPointerException if the file is null
+     * @throws IOException in case of an I/O error
+     */
+    public LockableFileWriter(final File file, final boolean append) throws IOException {
+<span class="nc" id="L120">        this(file, append, null);__CLR4_4_1723723kylve0e8.R.inc(9156);try{__CLR4_4_1723723kylve0e8.R.inc(9155);</span>
+<span class="nc" id="L121">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a LockableFileWriter.
+     *
+     * @param file  the file to write to, not null
+     * @param append  true if content should be appended, false to overwrite
+     * @param lockDir  the directory in which the lock file should be held
+     * @throws NullPointerException if the file is null
+     * @throws IOException in case of an I/O error
+     * @deprecated 2.5 use {@link #LockableFileWriter(File, Charset, boolean, String)} instead
+     */
+    @Deprecated
+    public LockableFileWriter(final File file, final boolean append, final String lockDir) throws IOException {
+<span class="fc" id="L135">        this(file, Charset.defaultCharset(), append, lockDir);__CLR4_4_1723723kylve0e8.R.inc(9158);try{__CLR4_4_1723723kylve0e8.R.inc(9157);</span>
+<span class="fc" id="L136">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a LockableFileWriter with a file encoding.
+     *
+     * @param file  the file to write to, not null
+     * @param charset  the charset to use, null means platform default
+     * @throws NullPointerException if the file is null
+     * @throws IOException in case of an I/O error
+     * @since 2.3
+     */
+    public LockableFileWriter(final File file, final Charset charset) throws IOException {
+<span class="nc" id="L148">        this(file, charset, false, null);__CLR4_4_1723723kylve0e8.R.inc(9160);try{__CLR4_4_1723723kylve0e8.R.inc(9159);</span>
+<span class="nc" id="L149">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a LockableFileWriter with a file encoding.
+     *
+     * @param file  the file to write to, not null
+     * @param charsetName  the name of the requested charset, null means platform default
+     * @throws NullPointerException if the file is null
+     * @throws IOException in case of an I/O error
+     * @throws java.nio.charset.UnsupportedCharsetException
+     *             thrown instead of {@link java.io.UnsupportedEncodingException} in version 2.2 if the encoding is not
+     *             supported.
+     */
+    public LockableFileWriter(final File file, final String charsetName) throws IOException {
+<span class="nc" id="L163">        this(file, charsetName, false, null);__CLR4_4_1723723kylve0e8.R.inc(9162);try{__CLR4_4_1723723kylve0e8.R.inc(9161);</span>
+<span class="nc" id="L164">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a LockableFileWriter with a file encoding.
+     *
+     * @param file  the file to write to, not null
+     * @param charset  the name of the requested charset, null means platform default
+     * @param append  true if content should be appended, false to overwrite
+     * @param lockDir  the directory in which the lock file should be held
+     * @throws NullPointerException if the file is null
+     * @throws IOException in case of an I/O error
+     * @since 2.3
+     */
+    public LockableFileWriter(File file, final Charset charset, final boolean append,
+<span class="fc" id="L178">            String lockDir) throws IOException {try{__CLR4_4_1723723kylve0e8.R.inc(9163);</span>
+        // init file to create/append
+<span class="fc" id="L180">        __CLR4_4_1723723kylve0e8.R.inc(9164);file = file.getAbsoluteFile();</span>
+<span class="pc bpc" id="L181" title="7 of 10 branches missed.">        __CLR4_4_1723723kylve0e8.R.inc(9165);if ((((file.getParentFile() != null)&amp;&amp;(__CLR4_4_1723723kylve0e8.R.iget(9166)!=0|true))||(__CLR4_4_1723723kylve0e8.R.iget(9167)==0&amp;false))) {{</span>
+<span class="fc" id="L182">            __CLR4_4_1723723kylve0e8.R.inc(9168);FileUtils.forceMkdir(file.getParentFile());</span>
+        }
+<span class="pc bpc" id="L184" title="4 of 10 branches missed.">        }__CLR4_4_1723723kylve0e8.R.inc(9169);if ((((file.isDirectory())&amp;&amp;(__CLR4_4_1723723kylve0e8.R.iget(9170)!=0|true))||(__CLR4_4_1723723kylve0e8.R.iget(9171)==0&amp;false))) {{</span>
+<span class="fc" id="L185">            __CLR4_4_1723723kylve0e8.R.inc(9172);throw new IOException(&quot;File specified is a directory&quot;);</span>
+        }
+
+        // init lock file
+<span class="pc bpc" id="L189" title="4 of 10 branches missed.">        }__CLR4_4_1723723kylve0e8.R.inc(9173);if ((((lockDir == null)&amp;&amp;(__CLR4_4_1723723kylve0e8.R.iget(9174)!=0|true))||(__CLR4_4_1723723kylve0e8.R.iget(9175)==0&amp;false))) {{</span>
+<span class="fc" id="L190">            __CLR4_4_1723723kylve0e8.R.inc(9176);lockDir = System.getProperty(&quot;java.io.tmpdir&quot;);</span>
+        }
+<span class="fc" id="L192">        }__CLR4_4_1723723kylve0e8.R.inc(9177);final File lockDirFile = new File(lockDir);</span>
+<span class="fc" id="L193">        __CLR4_4_1723723kylve0e8.R.inc(9178);FileUtils.forceMkdir(lockDirFile);</span>
+<span class="fc" id="L194">        __CLR4_4_1723723kylve0e8.R.inc(9179);testLockDir(lockDirFile);</span>
+<span class="fc" id="L195">        __CLR4_4_1723723kylve0e8.R.inc(9180);lockFile = new File(lockDirFile, file.getName() + LCK);</span>
+
+        // check if locked
+<span class="fc" id="L198">        __CLR4_4_1723723kylve0e8.R.inc(9181);createLock();</span>
+
+        // init wrapped writer
+<span class="fc" id="L201">        __CLR4_4_1723723kylve0e8.R.inc(9182);out = initWriter(file, charset, append);</span>
+<span class="fc" id="L202">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a LockableFileWriter with a file encoding.
+     *
+     * @param file  the file to write to, not null
+     * @param charsetName  the encoding to use, null means platform default
+     * @param append  true if content should be appended, false to overwrite
+     * @param lockDir  the directory in which the lock file should be held
+     * @throws NullPointerException if the file is null
+     * @throws IOException in case of an I/O error
+     * @throws java.nio.charset.UnsupportedCharsetException
+     *             thrown instead of {@link java.io.UnsupportedEncodingException} in version 2.2 if the encoding is not
+     *             supported.
+     */
+    public LockableFileWriter(final File file, final String charsetName, final boolean append,
+            final String lockDir) throws IOException {
+<span class="fc" id="L219">        this(file, Charsets.toCharset(charsetName), append, lockDir);__CLR4_4_1723723kylve0e8.R.inc(9184);try{__CLR4_4_1723723kylve0e8.R.inc(9183);</span>
+<span class="fc" id="L220">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Tests that we can write to the lock directory.
+     *
+     * @param lockDir  the File representing the lock directory
+     * @throws IOException if we cannot write to the lock directory
+     * @throws IOException if we cannot find the lock file
+     */
+<span class="fc" id="L229">    private void testLockDir(final File lockDir) throws IOException {try{__CLR4_4_1723723kylve0e8.R.inc(9185);</span>
+<span class="pc bpc" id="L230" title="7 of 10 branches missed.">        __CLR4_4_1723723kylve0e8.R.inc(9186);if ((((!lockDir.exists())&amp;&amp;(__CLR4_4_1723723kylve0e8.R.iget(9187)!=0|true))||(__CLR4_4_1723723kylve0e8.R.iget(9188)==0&amp;false))) {{</span>
+<span class="nc" id="L231">            __CLR4_4_1723723kylve0e8.R.inc(9189);throw new IOException(</span>
+<span class="nc" id="L232">                    &quot;Could not find lockDir: &quot; + lockDir.getAbsolutePath());</span>
+        }
+<span class="pc bpc" id="L234" title="7 of 10 branches missed.">        }__CLR4_4_1723723kylve0e8.R.inc(9190);if ((((!lockDir.canWrite())&amp;&amp;(__CLR4_4_1723723kylve0e8.R.iget(9191)!=0|true))||(__CLR4_4_1723723kylve0e8.R.iget(9192)==0&amp;false))) {{</span>
+<span class="nc" id="L235">            __CLR4_4_1723723kylve0e8.R.inc(9193);throw new IOException(</span>
+<span class="nc" id="L236">                    &quot;Could not write to lockDir: &quot; + lockDir.getAbsolutePath());</span>
+        }
+<span class="fc" id="L238">    }}finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Creates the lock file.
+     *
+     * @throws IOException if we cannot create the file
+     */
+<span class="fc" id="L245">    private void createLock() throws IOException {try{__CLR4_4_1723723kylve0e8.R.inc(9194);</span>
+<span class="fc" id="L246">        __CLR4_4_1723723kylve0e8.R.inc(9195);synchronized (LockableFileWriter.class) {</span>
+<span class="pc bpc" id="L247" title="4 of 10 branches missed.">            __CLR4_4_1723723kylve0e8.R.inc(9196);if ((((!lockFile.createNewFile())&amp;&amp;(__CLR4_4_1723723kylve0e8.R.iget(9197)!=0|true))||(__CLR4_4_1723723kylve0e8.R.iget(9198)==0&amp;false))) {{</span>
+<span class="fc" id="L248">                __CLR4_4_1723723kylve0e8.R.inc(9199);throw new IOException(&quot;Can't write file, lock &quot; +</span>
+<span class="fc" id="L249">                        lockFile.getAbsolutePath() + &quot; exists&quot;);</span>
+            }
+<span class="fc" id="L251">            }__CLR4_4_1723723kylve0e8.R.inc(9200);lockFile.deleteOnExit();</span>
+<span class="fc" id="L252">        }</span>
+<span class="fc" id="L253">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Initializes the wrapped file writer.
+     * Ensure that a cleanup occurs if the writer creation fails.
+     *
+     * @param file  the file to be accessed
+     * @param charset  the charset to use
+     * @param append  true to append
+     * @return The initialized writer
+     * @throws IOException if an error occurs
+     */
+<span class="fc" id="L265">    private Writer initWriter(final File file, final Charset charset, final boolean append) throws IOException {try{__CLR4_4_1723723kylve0e8.R.inc(9201);</span>
+<span class="fc" id="L266">        __CLR4_4_1723723kylve0e8.R.inc(9202);final boolean fileExistedAlready = file.exists();</span>
+<span class="fc" id="L267">        __CLR4_4_1723723kylve0e8.R.inc(9203);try {</span>
+<span class="fc" id="L268">            __CLR4_4_1723723kylve0e8.R.inc(9204);return new OutputStreamWriter(new FileOutputStream(file.getAbsolutePath(), append),</span>
+<span class="fc" id="L269">                                          Charsets.toCharset(charset));</span>
+
+<span class="nc" id="L271">        } catch (final IOException | RuntimeException ex) {</span>
+<span class="nc" id="L272">            __CLR4_4_1723723kylve0e8.R.inc(9205);FileUtils.deleteQuietly(lockFile);</span>
+<span class="nc bnc" id="L273" title="All 10 branches missed.">            __CLR4_4_1723723kylve0e8.R.inc(9206);if ((((!fileExistedAlready)&amp;&amp;(__CLR4_4_1723723kylve0e8.R.iget(9207)!=0|true))||(__CLR4_4_1723723kylve0e8.R.iget(9208)==0&amp;false))) {{</span>
+<span class="nc" id="L274">                __CLR4_4_1723723kylve0e8.R.inc(9209);FileUtils.deleteQuietly(file);</span>
+            }
+<span class="nc" id="L276">            }__CLR4_4_1723723kylve0e8.R.inc(9210);throw ex;</span>
+        }
+<span class="fc" id="L278">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Closes the file writer and deletes the lock file.
+     *
+     * @throws IOException if an I/O error occurs.
+     */
+    @Override
+<span class="fc" id="L286">    public void close() throws IOException {try{__CLR4_4_1723723kylve0e8.R.inc(9211);</span>
+<span class="fc" id="L287">        __CLR4_4_1723723kylve0e8.R.inc(9212);try {</span>
+<span class="fc" id="L288">            __CLR4_4_1723723kylve0e8.R.inc(9213);out.close();</span>
+        } finally {
+<span class="fc" id="L290">            __CLR4_4_1723723kylve0e8.R.inc(9214);FileUtils.delete(lockFile);</span>
+        }
+<span class="fc" id="L292">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Writes a character.
+     * @param c the character to write
+     * @throws IOException if an I/O error occurs.
+     */
+    @Override
+<span class="nc" id="L300">    public void write(final int c) throws IOException {try{__CLR4_4_1723723kylve0e8.R.inc(9215);</span>
+<span class="nc" id="L301">        __CLR4_4_1723723kylve0e8.R.inc(9216);out.write(c);</span>
+<span class="nc" id="L302">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Writes the characters from an array.
+     * @param cbuf the characters to write
+     * @throws IOException if an I/O error occurs.
+     */
+    @Override
+<span class="nc" id="L310">    public void write(final char[] cbuf) throws IOException {try{__CLR4_4_1723723kylve0e8.R.inc(9217);</span>
+<span class="nc" id="L311">        __CLR4_4_1723723kylve0e8.R.inc(9218);out.write(cbuf);</span>
+<span class="nc" id="L312">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Writes the specified characters from an array.
+     * @param cbuf the characters to write
+     * @param off The start offset
+     * @param len The number of characters to write
+     * @throws IOException if an I/O error occurs.
+     */
+    @Override
+<span class="nc" id="L322">    public void write(final char[] cbuf, final int off, final int len) throws IOException {try{__CLR4_4_1723723kylve0e8.R.inc(9219);</span>
+<span class="nc" id="L323">        __CLR4_4_1723723kylve0e8.R.inc(9220);out.write(cbuf, off, len);</span>
+<span class="nc" id="L324">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Writes the characters from a string.
+     * @param str the string to write
+     * @throws IOException if an I/O error occurs.
+     */
+    @Override
+<span class="nc" id="L332">    public void write(final String str) throws IOException {try{__CLR4_4_1723723kylve0e8.R.inc(9221);</span>
+<span class="nc" id="L333">        __CLR4_4_1723723kylve0e8.R.inc(9222);out.write(str);</span>
+<span class="nc" id="L334">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Writes the specified characters from a string.
+     * @param str the string to write
+     * @param off The start offset
+     * @param len The number of characters to write
+     * @throws IOException if an I/O error occurs.
+     */
+    @Override
+<span class="nc" id="L344">    public void write(final String str, final int off, final int len) throws IOException {try{__CLR4_4_1723723kylve0e8.R.inc(9223);</span>
+<span class="nc" id="L345">        __CLR4_4_1723723kylve0e8.R.inc(9224);out.write(str, off, len);</span>
+<span class="nc" id="L346">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+    /**
+     * Flushes the stream.
+     * @throws IOException if an I/O error occurs.
+     */
+    @Override
+<span class="nc" id="L353">    public void flush() throws IOException {try{__CLR4_4_1723723kylve0e8.R.inc(9225);</span>
+<span class="nc" id="L354">        __CLR4_4_1723723kylve0e8.R.inc(9226);out.flush();</span>
+<span class="nc" id="L355">    }finally{__CLR4_4_1723723kylve0e8.R.flushNeeded();}}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

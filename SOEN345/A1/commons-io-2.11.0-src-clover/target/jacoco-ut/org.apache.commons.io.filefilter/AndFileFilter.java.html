@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AndFileFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons IO</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.io.filefilter</a> &gt; <span class="el_source">AndFileFilter.java</span></div><h1>AndFileFilter.java</h1><pre class="source lang-java linenums">/* $$ This file has been instrumented by Clover 4.4.1#2019101123313948 $$ *//*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.io.filefilter;
+
+import java.io.File;
+import java.io.Serializable;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * A {@link java.io.FileFilter} providing conditional AND logic across a list of
+ * file filters. This filter returns {@code true} if all filters in the
+ * list return {@code true}. Otherwise, it returns {@code false}.
+ * Checking of the file filter list stops when the first filter returns
+ * {@code false}.
+ *
+ * @since 1.0
+ * @see FileFilterUtils#and(IOFileFilter...)
+ */
+public class AndFileFilter
+        extends AbstractFileFilter
+<span class="pc bpc" id="L41" title="3 of 4 branches missed.">        implements ConditionalFileFilter, Serializable {public static class __CLR4_4_13eh3ehkylvdzbt{public static com_atlassian_clover.CoverageRecorder R;public static com_atlassian_clover.CloverProfile[] profiles = { };@java.lang.SuppressWarnings(&quot;unchecked&quot;) public static &lt;I, T extends I&gt; I lambdaInc(final int i,final T l,final int si){java.lang.reflect.InvocationHandler h=new java.lang.reflect.InvocationHandler(){public java.lang.Object invoke(java.lang.Object p,java.lang.reflect.Method m,java.lang.Object[] a) throws Throwable{R.inc(i);R.inc(si);try{return m.invoke(l,a);}catch(java.lang.reflect.InvocationTargetException e){throw e.getCause()!=null?e.getCause():new RuntimeException(&quot;Clover failed to invoke instrumented lambda&quot;,e);}}};return (I)java.lang.reflect.Proxy.newProxyInstance(l.getClass().getClassLoader(),l.getClass().getInterfaces(),h);}static{com_atlassian_clover.CoverageRecorder _R=null;try{com_atlassian_clover.CloverVersionInfo.An_old_version_of_clover_is_on_your_compilation_classpath___Please_remove___Required_version_is___4_4_1();if(2019101123313948L!=com_atlassian_clover.CloverVersionInfo.getBuildStamp()){com_atlassian_clover.Clover.l(&quot;[CLOVER] WARNING: The Clover version used in instrumentation does not match the runtime version. You need to run instrumented classes against the same version of Clover that you instrumented with.&quot;);com_atlassian_clover.Clover.l(&quot;[CLOVER] WARNING: Instr=4.4.1#2019101123313948,Runtime=&quot;+com_atlassian_clover.CloverVersionInfo.getReleaseNum()+&quot;#&quot;+com_atlassian_clover.CloverVersionInfo.getBuildStamp());}R=com_atlassian_clover.Clover.getNullRecorder();_R=com_atlassian_clover.Clover.getNullRecorder();_R=com_atlassian_clover.Clover.getRecorder(&quot;\u002f\u0055\u0073\u0065\u0072\u0073\u002f\u0061\u006c\u0069\u0068\u0061\u006e\u006e\u0069\u002f\u0044\u0065\u0073\u006b\u0074\u006f\u0070\u002f\u0047\u0069\u0074\u0048\u0075\u0062\u002f\u0053\u004f\u0045\u004e\u002f\u0053\u004f\u0045\u004e\u0033\u0034\u0035\u002f\u0041\u0031\u002f\u0063\u006f\u006d\u006d\u006f\u006e\u0073\u002d\u0069\u006f\u002d\u0032\u002e\u0031\u0031\u002e\u0030\u002d\u0073\u0072\u0063\u002f\u0074\u0061\u0072\u0067\u0065\u0074\u002f\u0063\u006c\u006f\u0076\u0065\u0072\u002f\u0063\u006c\u006f\u0076\u0065\u0072\u002e\u0064\u0062&quot;,1642616389890L,8589935092L,4485,profiles,new java.lang.String[]{&quot;clover.distributed.coverage&quot;,null});}catch(java.lang.SecurityException e){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised because it has insufficient security privileges. Please consult the Clover documentation on the security policy file changes required. (&quot;+e.getClass()+&quot;:&quot;+e.getMessage()+&quot;)&quot;);}catch(java.lang.NoClassDefFoundError e){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised. Are you sure you have Clover in the runtime classpath? (&quot;+e.getClass()+&quot;:&quot;+e.getMessage()+&quot;)&quot;);}catch(java.lang.Throwable t){java.lang.System.err.println(&quot;[CLOVER] FATAL ERROR: Clover could not be initialised because of an unexpected error. (&quot;+t.getClass()+&quot;:&quot;+t.getMessage()+&quot;)&quot;);}R=_R;}}public static final com_atlassian_clover.TestNameSniffer __CLR4_4_1_TEST_NAME_SNIFFER=com_atlassian_clover.TestNameSniffer.NULL_INSTANCE;</span>
+
+    private static final long serialVersionUID = 7215974688563965257L;
+
+    /** The list of file filters. */
+    private final List&lt;IOFileFilter&gt; fileFilters;
+
+    /**
+     * Constructs a new empty instance.
+     *
+     * @since 1.1
+     */
+    public AndFileFilter() {
+<span class="fc" id="L54">        this(0);__CLR4_4_13eh3ehkylvdzbt.R.inc(4410);try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4409);</span>
+<span class="fc" id="L55">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a new instance with the given initial list.
+     *
+     * @param initialList the initial list.
+     */
+<span class="fc" id="L62">    private AndFileFilter(final ArrayList&lt;IOFileFilter&gt; initialList) {try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4411);</span>
+<span class="fc" id="L63">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4412);this.fileFilters = Objects.requireNonNull(initialList, &quot;initialList&quot;);</span>
+<span class="fc" id="L64">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a new instance with the given initial capacity.
+     *
+     * @param initialCapacity the initial capacity.
+     */
+    private AndFileFilter(final int initialCapacity) {
+<span class="fc" id="L72">        this(new ArrayList&lt;&gt;(initialCapacity));__CLR4_4_13eh3ehkylvdzbt.R.inc(4414);try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4413);</span>
+<span class="fc" id="L73">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a new file filter that ANDs the result of other filters.
+     *
+     * @param filter1  the first filter, must second be null
+     * @param filter2  the first filter, must not be null
+     * @throws IllegalArgumentException if either filter is null
+     */
+    public AndFileFilter(final IOFileFilter filter1, final IOFileFilter filter2) {
+<span class="fc" id="L83">        this(2);__CLR4_4_13eh3ehkylvdzbt.R.inc(4416);try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4415);</span>
+<span class="fc" id="L84">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4417);addFileFilter(filter1);</span>
+<span class="fc" id="L85">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4418);addFileFilter(filter2);</span>
+<span class="fc" id="L86">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a new instance for the give filters.
+     * @param fileFilters filters to OR.
+     *
+     * @since 2.9.0
+     */
+    public AndFileFilter(final IOFileFilter... fileFilters) {
+<span class="fc" id="L95">        this(Objects.requireNonNull(fileFilters, &quot;fileFilters&quot;).length);__CLR4_4_13eh3ehkylvdzbt.R.inc(4420);try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4419);</span>
+<span class="fc" id="L96">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4421);addFileFilter(fileFilters);</span>
+<span class="fc" id="L97">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * Constructs a new instance of {@code AndFileFilter}
+     * with the specified list of filters.
+     *
+     * @param fileFilters  a List of IOFileFilter instances, copied.
+     * @since 1.1
+     */
+    public AndFileFilter(final List&lt;IOFileFilter&gt; fileFilters) {
+<span class="fc" id="L107">        this(new ArrayList&lt;&gt;(Objects.requireNonNull(fileFilters, &quot;fileFilters&quot;)));__CLR4_4_13eh3ehkylvdzbt.R.inc(4423);try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4422);</span>
+<span class="fc" id="L108">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+<span class="fc" id="L114">    public boolean accept(final File file) {try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4424);</span>
+<span class="pc bpc" id="L115" title="4 of 10 branches missed.">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4425);if ((((isEmpty())&amp;&amp;(__CLR4_4_13eh3ehkylvdzbt.R.iget(4426)!=0|true))||(__CLR4_4_13eh3ehkylvdzbt.R.iget(4427)==0&amp;false))) {{</span>
+<span class="fc" id="L116">            __CLR4_4_13eh3ehkylvdzbt.R.inc(4428);return false;</span>
+        }
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        }__CLR4_4_13eh3ehkylvdzbt.R.inc(4429);for (final IOFileFilter fileFilter : fileFilters) {{</span>
+<span class="pc bpc" id="L119" title="4 of 10 branches missed.">            __CLR4_4_13eh3ehkylvdzbt.R.inc(4430);if ((((!fileFilter.accept(file))&amp;&amp;(__CLR4_4_13eh3ehkylvdzbt.R.iget(4431)!=0|true))||(__CLR4_4_13eh3ehkylvdzbt.R.iget(4432)==0&amp;false))) {{</span>
+<span class="fc" id="L120">                __CLR4_4_13eh3ehkylvdzbt.R.inc(4433);return false;</span>
+            }
+        }}
+<span class="fc" id="L123">        }__CLR4_4_13eh3ehkylvdzbt.R.inc(4434);return true;</span>
+<span class="fc" id="L124">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+<span class="fc" id="L130">    public boolean accept(final File file, final String name) {try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4435);</span>
+<span class="pc bpc" id="L131" title="4 of 10 branches missed.">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4436);if ((((isEmpty())&amp;&amp;(__CLR4_4_13eh3ehkylvdzbt.R.iget(4437)!=0|true))||(__CLR4_4_13eh3ehkylvdzbt.R.iget(4438)==0&amp;false))) {{</span>
+<span class="fc" id="L132">            __CLR4_4_13eh3ehkylvdzbt.R.inc(4439);return false;</span>
+        }
+<span class="fc bfc" id="L134" title="All 2 branches covered.">        }__CLR4_4_13eh3ehkylvdzbt.R.inc(4440);for (final IOFileFilter fileFilter : fileFilters) {{</span>
+<span class="pc bpc" id="L135" title="4 of 10 branches missed.">            __CLR4_4_13eh3ehkylvdzbt.R.inc(4441);if ((((!fileFilter.accept(file, name))&amp;&amp;(__CLR4_4_13eh3ehkylvdzbt.R.iget(4442)!=0|true))||(__CLR4_4_13eh3ehkylvdzbt.R.iget(4443)==0&amp;false))) {{</span>
+<span class="fc" id="L136">                __CLR4_4_13eh3ehkylvdzbt.R.inc(4444);return false;</span>
+            }
+        }}
+<span class="fc" id="L139">        }__CLR4_4_13eh3ehkylvdzbt.R.inc(4445);return true;</span>
+<span class="fc" id="L140">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * {@inheritDoc}
+     * @since 2.9.0
+     */
+    @Override
+<span class="fc" id="L147">    public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4446);</span>
+<span class="pc bpc" id="L148" title="7 of 10 branches missed.">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4447);if ((((isEmpty())&amp;&amp;(__CLR4_4_13eh3ehkylvdzbt.R.iget(4448)!=0|true))||(__CLR4_4_13eh3ehkylvdzbt.R.iget(4449)==0&amp;false))) {{</span>
+<span class="nc" id="L149">            __CLR4_4_13eh3ehkylvdzbt.R.inc(4450);return FileVisitResult.TERMINATE;</span>
+        }
+<span class="fc bfc" id="L151" title="All 2 branches covered.">        }__CLR4_4_13eh3ehkylvdzbt.R.inc(4451);for (final IOFileFilter fileFilter : fileFilters) {{</span>
+<span class="pc bpc" id="L152" title="4 of 10 branches missed.">            __CLR4_4_13eh3ehkylvdzbt.R.inc(4452);if ((((fileFilter.accept(file, attributes) != FileVisitResult.CONTINUE)&amp;&amp;(__CLR4_4_13eh3ehkylvdzbt.R.iget(4453)!=0|true))||(__CLR4_4_13eh3ehkylvdzbt.R.iget(4454)==0&amp;false))) {{</span>
+<span class="fc" id="L153">                __CLR4_4_13eh3ehkylvdzbt.R.inc(4455);return FileVisitResult.TERMINATE;</span>
+            }
+        }}
+<span class="fc" id="L156">        }__CLR4_4_13eh3ehkylvdzbt.R.inc(4456);return FileVisitResult.CONTINUE;</span>
+<span class="fc" id="L157">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+<span class="fc" id="L163">    public void addFileFilter(final IOFileFilter fileFilter) {try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4457);</span>
+<span class="fc" id="L164">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4458);this.fileFilters.add(Objects.requireNonNull(fileFilter, &quot;fileFilter&quot;));</span>
+<span class="fc" id="L165">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * Adds the given file filters.
+     *
+     * @param fileFilters the filters to add.
+     * @since 2.9.0
+     */
+<span class="fc" id="L173">    public void addFileFilter(final IOFileFilter... fileFilters) {try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4459);</span>
+<span class="fc bfc" id="L174" title="All 2 branches covered.">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4460);for (final IOFileFilter fileFilter : Objects.requireNonNull(fileFilters, &quot;fileFilters&quot;)) {{</span>
+<span class="fc" id="L175">            __CLR4_4_13eh3ehkylvdzbt.R.inc(4461);addFileFilter(fileFilter);</span>
+        }
+<span class="fc" id="L177">    }}finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+<span class="fc" id="L183">    public List&lt;IOFileFilter&gt; getFileFilters() {try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4462);</span>
+<span class="fc" id="L184">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4463);return Collections.unmodifiableList(this.fileFilters);</span>
+<span class="fc" id="L185">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+<span class="fc" id="L187">    private boolean isEmpty() {try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4464);</span>
+<span class="fc" id="L188">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4465);return this.fileFilters.isEmpty();</span>
+<span class="fc" id="L189">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+<span class="fc" id="L195">    public boolean removeFileFilter(final IOFileFilter ioFileFilter) {try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4466);</span>
+<span class="fc" id="L196">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4467);return this.fileFilters.remove(ioFileFilter);</span>
+<span class="fc" id="L197">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+<span class="fc" id="L203">    public void setFileFilters(final List&lt;IOFileFilter&gt; fileFilters) {try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4468);</span>
+<span class="fc" id="L204">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4469);this.fileFilters.clear();</span>
+<span class="fc" id="L205">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4470);this.fileFilters.addAll(fileFilters);</span>
+<span class="fc" id="L206">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+    /**
+     * Provide a String representation of this file filter.
+     *
+     * @return a String representation
+     */
+    @Override
+<span class="fc" id="L214">    public String toString() {try{__CLR4_4_13eh3ehkylvdzbt.R.inc(4471);</span>
+<span class="fc" id="L215">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4472);final StringBuilder buffer = new StringBuilder();</span>
+<span class="fc" id="L216">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4473);buffer.append(super.toString());</span>
+<span class="fc" id="L217">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4474);buffer.append(&quot;(&quot;);</span>
+<span class="pc bpc" id="L218" title="4 of 10 branches missed.">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4475);for (int i = 0; (((i &lt; fileFilters.size())&amp;&amp;(__CLR4_4_13eh3ehkylvdzbt.R.iget(4476)!=0|true))||(__CLR4_4_13eh3ehkylvdzbt.R.iget(4477)==0&amp;false)); i++) {{</span>
+<span class="pc bpc" id="L219" title="4 of 10 branches missed.">            __CLR4_4_13eh3ehkylvdzbt.R.inc(4478);if ((((i &gt; 0)&amp;&amp;(__CLR4_4_13eh3ehkylvdzbt.R.iget(4479)!=0|true))||(__CLR4_4_13eh3ehkylvdzbt.R.iget(4480)==0&amp;false))) {{</span>
+<span class="fc" id="L220">                __CLR4_4_13eh3ehkylvdzbt.R.inc(4481);buffer.append(&quot;,&quot;);</span>
+            }
+<span class="fc" id="L222">            }__CLR4_4_13eh3ehkylvdzbt.R.inc(4482);buffer.append(fileFilters.get(i));</span>
+        }
+<span class="fc" id="L224">        }__CLR4_4_13eh3ehkylvdzbt.R.inc(4483);buffer.append(&quot;)&quot;);</span>
+<span class="fc" id="L225">        __CLR4_4_13eh3ehkylvdzbt.R.inc(4484);return buffer.toString();</span>
+<span class="fc" id="L226">    }finally{__CLR4_4_13eh3ehkylvdzbt.R.flushNeeded();}}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

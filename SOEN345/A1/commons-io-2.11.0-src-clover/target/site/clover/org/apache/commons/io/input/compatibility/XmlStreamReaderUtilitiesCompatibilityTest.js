@@ -1,0 +1,10 @@
+var clover = new Object();
+
+// JSON: {classes : [{name, id, sl, el,  methods : [{sl, el}, ...]}, ...]}
+clover.pageData = {"classes":[{"el":53,"id":24661,"methods":[{"el":35,"sc":5,"sl":29},{"el":45,"sc":5,"sl":36}],"name":"XmlStreamReaderUtilitiesCompatibilityTest","sl":27},{"el":52,"id":24669,"methods":[{"el":51,"sc":9,"sl":49}],"name":"XmlStreamReaderUtilitiesCompatibilityTest.MockXmlStreamReader","sl":48}]}
+
+// JSON: {test_ID : {"methods": [ID1, ID2, ID3...], "name" : "testXXX() void"}, ...};
+clover.testTargets = {"test_112":{"methods":[{"sl":36},{"sl":49}],"name":"testCalculateHttpEncoding","pass":true,"statements":[{"sl":39},{"sl":40},{"sl":50}]},"test_1162":{"methods":[{"sl":29},{"sl":49}],"name":"testCalculateRawEncodingAdditionalUTF32","pass":true,"statements":[{"sl":32},{"sl":33},{"sl":50}]},"test_1644":{"methods":[{"sl":29},{"sl":49}],"name":"testCalculateRawEncodingNoBOM","pass":true,"statements":[{"sl":32},{"sl":33},{"sl":50}]},"test_1671":{"methods":[{"sl":29},{"sl":49}],"name":"testCalculateRawEncodingAdditionalUTF16","pass":true,"statements":[{"sl":32},{"sl":33},{"sl":50}]},"test_588":{"methods":[{"sl":36},{"sl":49}],"name":"testCalculateHttpEncodingUtf32","pass":true,"statements":[{"sl":39},{"sl":40},{"sl":50}]},"test_615":{"methods":[{"sl":29},{"sl":49}],"name":"testCalculateRawEncodingStandard","pass":true,"statements":[{"sl":32},{"sl":33},{"sl":50}]},"test_822":{"methods":[{"sl":29},{"sl":49}],"name":"testCalculateRawEncodingStandardUtf32","pass":true,"statements":[{"sl":32},{"sl":33},{"sl":50}]}}
+
+// JSON: { lines : [{tests : [testid1, testid2, testid3, ...]}, ...]};
+clover.srcFileLines = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [1644, 1671, 822, 615, 1162], [], [], [1644, 1671, 822, 615, 1162], [1644, 1671, 822, 615, 1162], [], [], [112, 588], [], [], [112, 588], [112, 588], [], [], [], [], [], [], [], [], [1644, 1671, 822, 615, 1162, 112, 588], [1644, 1671, 822, 615, 1162, 112, 588], [], [], []]

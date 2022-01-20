@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    
+    
+    <link rel="SHORTCUT ICON" href="../../../../img/clover.ico" />
+
+    <link rel="stylesheet" href="../../../../aui/css/aui.min.css" media="all"/>
+    <link rel="stylesheet" href="../../../../aui/css/aui-experimental.min.css" media="all"/>
+    <!--[if IE 9]><link rel="stylesheet" href="../../../../aui/css/aui-ie9.min.css" media="all"/><![endif]-->
+
+    <style type="text/css" media="all">
+        @import url('../../../../style.css');
+        @import url('../../../../tree.css');
+        
+    </style>
+
+    <script src="../../../../jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="../../../../aui/js/aui.min.js" type="text/javascript"></script>
+    <script src="../../../../aui/js/aui-experimental.min.js" type="text/javascript"></script>
+    <script src="../../../../aui/js/aui-soy.min.js" type="text/javascript"></script>
+
+    <script src="../../../../package-nodes-tree.js" type="text/javascript"></script>
+    <script src="../../../../clover-tree.js" type="text/javascript"></script>
+    <script src="../../../../clover.js" type="text/javascript"></script>
+    <script src="../../../../clover-descriptions.js" type="text/javascript"></script>
+    <script src="../../../../cloud.js" type="text/javascript"></script>
+
+            <title>Apache Commons IO 2.11.0</title>
+    </head>
+
+<body  >
+    <div id="page">
+        
+        
+
+
+<header id="header" role="banner">
+    <nav class="aui-header aui-dropdown2-trigger-group" role="navigation">
+        <div class="aui-header-inner">
+            <div class="aui-header-primary">
+                <h1 id="logo" class="aui-header-logo aui-header-logo-clover">
+                    <a href="http://openclover.org" title="Visit OpenClover home page"><span class="aui-header-logo-device">OpenClover</span></a>
+                </h1>
+                            </div>
+            <div class="aui-header-secondary">
+                <ul class="aui-nav">
+                    <li id="system-help-menu">
+                        <a class="aui-nav-link" title="Open online documentation" target="_blank"
+                           href="http://openclover.org/documentation">
+                            <span class="aui-icon aui-icon-small aui-iconfont-help">&#160;Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+        
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <div class="aui-page-panel-nav aui-page-panel-nav-clover">
+                    
+
+<div class="aui-page-header-inner" style="margin-bottom: 20px;">
+    <div class="aui-page-header-image">
+                    <a href="https://commons.apache.org/proper/commons-io/" target="_top">
+                <div class="aui-avatar aui-avatar-large aui-avatar-project">
+            <div class="aui-avatar-inner">
+                                    <img src="../../../../img/clover_logo_large.png" alt="Clover icon"/>
+                            </div>
+        </div>
+                    </a>
+            </div>
+    <div class="aui-page-header-main" >
+        <h1>
+                            <a href="https://commons.apache.org/proper/commons-io/" target="_top">
+                                        Apache Commons IO 2.11.0
+                                        </a>
+                    </h1>
+    </div>
+</div>
+
+<nav class="aui-navgroup aui-navgroup-vertical">
+    <div class="aui-navgroup-inner">
+                                            <ul class="aui-nav">
+                <li class="">
+                    <a href="../../../../dashboard.html">Project overview</a>
+                </li>
+            </ul>
+        
+                <div class="aui-nav-heading packages-nav-heading">
+            <strong>Packages</strong>
+        </div>
+        <div class="aui-nav project-packages">
+            <form method="get" action="#" class="aui package-filter-container">
+                <input type="text" autocomplete="off" class="package-filter text"
+                       placeholder="Type to filter packages..." name="package-filter" id="package-filter"
+                       title="Start typing package name (or part of the name) to search through the tree. Use arrow keys and the Enter key to navigate."/>
+            </form>
+            <p class="package-filter-no-results-message hidden">
+                <small>No results found.</small>
+            </p>
+                                                <div class="packages-tree-wrapper" data-root-relative="../../../../" data-package-name="org.apache.commons.io">
+                <div class="packages-tree-container"></div>
+                <div class="clover-packages-lozenges"></div>
+            </div>
+        </div>
+        
+            </div>
+</nav>                </div>
+                <section class="aui-page-panel-content">
+                    <div class="aui-page-panel-content-clover">
+
+                    
+                    <ol class="aui-nav aui-nav-breadcrumbs">
+            
+        <li><a href="../../../../dashboard.html">Project Clover database Wed. Jan. 19 2022 13:19:53 EST</a></li> 
+    </ol>
+    
+<h1 class="aui-h2-clover">
+            Package org.apache.commons.io
+    </h1>
+<div class="aui-tabs horizontal-tabs">
+            <ul class="tabs-menu">
+                <li class="menu-item ">
+            <a href="pkg-summary.html"><strong>Application code</strong></a>
+        </li>
+                <li class="menu-item ">
+            <a href="testsrc-pkg-summary.html"><strong>Test code</strong></a>
+        </li>
+        <li class="menu-item ">
+            <a href="test-pkg-summary.html"><strong>Test results</strong></a>
+        </li>
+                <li class="menu-item ">
+            <a href="top-risks.html"><strong>Top risks</strong></a>
+        </li>
+        <li class="menu-item active-tab">
+            <a href="quick-wins.html"><strong>Quick wins</strong></a>
+        </li>
+                            </ul>
+    <div class="tabs-pane active-pane" id="tabs-first">
+
+        <div>&#160;</div>
+
+        
+
+
+                        <div style="text-align: right; margin-bottom: 10px">
+            
+                            <button id="cloudDepthCheckbox" class="aui-button active"
+                        onclick="showDeepPackageCloud(this)">Include classes from sub-packages</button>
+            
+                                    <button class="aui-button aui-button-subtle" id="popupHelp">
+    <span class="aui-icon aui-icon-small aui-iconfont-help"></span>&#160;How to read this chart
+</button>
+<script>
+    AJS.InlineDialog(AJS.$("#popupHelp"), "helpDialog",
+            function (content, trigger, showPopup) {
+                var description = quickWinsDescription();
+                var title = 'Quick Wins';
+                content.css({"padding": "20px"}).html(
+                        '<h2>' + title + '</h2>' + description);
+                showPopup();
+                return false;
+            },
+            {
+                width: 600
+            }
+    );
+</script>
+        </div>
+
+        
+
+<div style="padding: 20px; border: 1px solid #cccccc; background-color: #f5f5f5; border-radius: 3px">
+          <div id="deepPackageCloud"  >
+                          
+    
+        
+    
+            <a href="../io/output/AbstractByteArrayOutputStream.html" class="tag"
+            style="font-size: 17px;color:#d5584c"
+            title="# Elements - 125 , # Elements Covered - 125 ">AbstractByteArrayOutputStream</a>
+            
+    
+            <a href="../io/input/AbstractCharacterFilterReader.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 36 , # Elements Covered - 33 ">AbstractCharacterFilterReader</a>
+            
+    
+            <a href="../io/comparator/AbstractFileComparator.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 14 , # Elements Covered - 14 ">AbstractFileComparator</a>
+            
+    
+            <a href="../io/filefilter/AbstractFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 22 , # Elements Covered - 18 ">AbstractFileFilter</a>
+            
+    
+            <a href="../io/file/AccumulatorPathVisitor.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 50 , # Elements Covered - 26 ">AccumulatorPathVisitor</a>
+            
+    
+            <a href="../io/filefilter/AgeFileFilter.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 27 , # Elements Covered - 26 ">AgeFileFilter</a>
+            
+    
+            <a href="../io/filefilter/AndFileFilter.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 76 , # Elements Covered - 74 ">AndFileFilter</a>
+            
+    
+            <a href="../io/output/AppendableOutputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 6 ">AppendableOutputStream</a>
+            
+    
+            <a href="../io/output/AppendableWriter.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 30 , # Elements Covered - 26 ">AppendableWriter</a>
+            
+    
+            <a href="../io/input/AutoCloseInputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 13 , # Elements Covered - 10 ">AutoCloseInputStream</a>
+            
+    
+            <a href="../io/input/BOMInputStream.html" class="tag"
+            style="font-size: 16px;color:#d5584c"
+            title="# Elements - 124 , # Elements Covered - 124 ">BOMInputStream</a>
+            
+    
+            <a href="../io/input/BoundedInputStream.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 62 , # Elements Covered - 30 ">BoundedInputStream</a>
+            
+    
+            <a href="../io/input/BoundedReader.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 37 , # Elements Covered - 37 ">BoundedReader</a>
+            
+    
+            <a href="../io/input/BrokenInputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 14 , # Elements Covered - 14 ">BrokenInputStream</a>
+            
+    
+            <a href="../io/output/BrokenOutputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 10 , # Elements Covered - 8 ">BrokenOutputStream</a>
+            
+    
+            <a href="../io/input/BrokenReader.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 16 , # Elements Covered - 14 ">BrokenReader</a>
+            
+    
+            <a href="../io/output/BrokenWriter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 10 , # Elements Covered - 10 ">BrokenWriter</a>
+            
+    
+            <a href="../io/input/BufferedFileChannelInputStream.html" class="tag"
+            style="font-size: 16px;color:#d5584c"
+            title="# Elements - 107 , # Elements Covered - 88 ">BufferedFileChannelInputStream</a>
+            
+    
+            <a href="../io/output/ByteArrayOutputStream.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 41 , # Elements Covered - 41 ">ByteArrayOutputStream</a>
+            
+    
+            <a href="../io/ByteOrderMark.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 65 , # Elements Covered - 65 ">ByteOrderMark</a>
+            
+    
+            <a href="../io/ByteOrderParser.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 11 , # Elements Covered - 10 ">ByteOrderParser</a>
+            
+    
+            <a href="../io/filefilter/CanReadFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 5 , # Elements Covered - 5 ">CanReadFileFilter</a>
+            
+    
+            <a href="../io/filefilter/CanWriteFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 5 , # Elements Covered - 5 ">CanWriteFileFilter</a>
+            
+    
+            <a href="../io/input/CharSequenceInputStream.html" class="tag"
+            style="font-size: 16px;color:#d5584c"
+            title="# Elements - 116 , # Elements Covered - 104 ">CharSequenceInputStream</a>
+            
+    
+            <a href="../io/input/CharSequenceReader.html" class="tag"
+            style="font-size: 16px;color:#d5584c"
+            title="# Elements - 102 , # Elements Covered - 97 ">CharSequenceReader</a>
+            
+    
+            <a href="../io/input/CharacterFilterReader.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">CharacterFilterReader</a>
+            
+    
+            <a href="../io/input/CharacterSetFilterReader.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 11 , # Elements Covered - 11 ">CharacterSetFilterReader</a>
+            
+    
+            <a href="../io/Charsets.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 19 , # Elements Covered - 19 ">Charsets</a>
+            
+    
+            <a href="../io/output/ChunkedOutputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 19 , # Elements Covered - 19 ">ChunkedOutputStream</a>
+            
+    
+            <a href="../io/output/ChunkedWriter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 19 , # Elements Covered - 19 ">ChunkedWriter</a>
+            
+    
+            <a href="../io/input/buffer/CircularBufferInputStream.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 70 , # Elements Covered - 59 ">CircularBufferInputStream</a>
+            
+    
+            <a href="../io/input/buffer/CircularByteBuffer.html" class="tag"
+            style="font-size: 16px;color:#d04437"
+            title="# Elements - 122 , # Elements Covered - 42 ">CircularByteBuffer</a>
+            
+    
+            <a href="../io/input/CircularInputStream.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 26 , # Elements Covered - 26 ">CircularInputStream</a>
+            
+    
+            <a href="../io/input/ClassLoaderObjectInputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 16 , # Elements Covered - 14 ">ClassLoaderObjectInputStream</a>
+            
+    
+            <a href="../io/file/CleaningPathVisitor.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 53 , # Elements Covered - 29 ">CleaningPathVisitor</a>
+            
+    
+            <a href="../io/input/CloseShieldInputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 6 ">CloseShieldInputStream</a>
+            
+    
+            <a href="../io/output/CloseShieldOutputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 6 ">CloseShieldOutputStream</a>
+            
+    
+            <a href="../io/input/CloseShieldReader.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 6 ">CloseShieldReader</a>
+            
+    
+            <a href="../io/output/CloseShieldWriter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 6 ">CloseShieldWriter</a>
+            
+    
+            <a href="../io/input/ClosedInputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 2 , # Elements Covered - 2 ">ClosedInputStream</a>
+            
+    
+            <a href="../io/output/ClosedOutputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">ClosedOutputStream</a>
+            
+    
+            <a href="../io/input/ClosedReader.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 3 , # Elements Covered - 3 ">ClosedReader</a>
+            
+    
+            <a href="../io/output/ClosedWriter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 5 , # Elements Covered - 5 ">ClosedWriter</a>
+            
+    
+            <a href="../io/comparator/CompositeFileComparator.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 39 , # Elements Covered - 39 ">CompositeFileComparator</a>
+            
+    
+            <a href="../io/file/CopyDirectoryVisitor.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 56 , # Elements Covered - 21 ">CopyDirectoryVisitor</a>
+            
+    
+            <a href="../io/CopyUtils.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 55 , # Elements Covered - 42 ">CopyUtils</a>
+            
+    
+            <a href="../io/file/Counters.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 12 , # Elements Covered - 12 ">Counters</a>
+            
+    
+            <a href="../io/file/Counters.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 29 , # Elements Covered - 25 ">Counters.AbstractPathCounters</a>
+            
+    
+            <a href="../io/file/Counters.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 27 , # Elements Covered - 23 ">Counters.BigIntegerCounter</a>
+            
+    
+            <a href="../io/file/Counters.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 2 , # Elements Covered - 2 ">Counters.BigIntegerPathCounters</a>
+            
+    
+            <a href="../io/file/Counters.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 27 , # Elements Covered - 23 ">Counters.LongCounter</a>
+            
+    
+            <a href="../io/file/Counters.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 2 , # Elements Covered - 2 ">Counters.LongPathCounters</a>
+            
+    
+            <a href="../io/file/Counters.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 8 ">Counters.NoopCounter</a>
+            
+    
+            <a href="../io/file/Counters.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 2 , # Elements Covered - 2 ">Counters.NoopPathCounters</a>
+            
+    
+            <a href="../io/input/CountingInputStream.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 31 , # Elements Covered - 31 ">CountingInputStream</a>
+            
+    
+            <a href="../io/output/CountingOutputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 24 , # Elements Covered - 24 ">CountingOutputStream</a>
+            
+    
+            <a href="../io/file/CountingPathVisitor.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 46 , # Elements Covered - 40 ">CountingPathVisitor</a>
+            
+    
+            <a href="../io/comparator/DefaultFileComparator.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 2 , # Elements Covered - 2 ">DefaultFileComparator</a>
+            
+    
+            <a href="../io/output/DeferredFileOutputStream.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 80 , # Elements Covered - 69 ">DeferredFileOutputStream</a>
+            
+    
+            <a href="../io/filefilter/DelegateFileFilter.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 31 , # Elements Covered - 29 ">DelegateFileFilter</a>
+            
+    
+            <a href="../io/file/DeletingPathVisitor.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 72 , # Elements Covered - 45 ">DeletingPathVisitor</a>
+            
+    
+            <a href="../io/input/DemuxInputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 13 , # Elements Covered - 9 ">DemuxInputStream</a>
+            
+    
+            <a href="../io/output/DemuxOutputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 18 , # Elements Covered - 9 ">DemuxOutputStream</a>
+            
+    
+            <a href="../io/comparator/DirectoryFileComparator.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 6 ">DirectoryFileComparator</a>
+            
+    
+            <a href="../io/filefilter/DirectoryFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 5 , # Elements Covered - 5 ">DirectoryFileFilter</a>
+            
+    
+            <a href="../io/file/DirectoryStreamFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 6 ">DirectoryStreamFilter</a>
+            
+    
+            <a href="../io/DirectoryWalker.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 75 , # Elements Covered - 74 ">DirectoryWalker</a>
+            
+    
+            <a href="../io/DirectoryWalker.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 10 , # Elements Covered - 10 ">DirectoryWalker.CancelException</a>
+            
+    
+            <a href="../io/filefilter/EmptyFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 18 , # Elements Covered - 17 ">EmptyFileFilter</a>
+            
+    
+            <a href="../io/EndianUtils.html" class="tag"
+            style="font-size: 16px;color:#d5584c"
+            title="# Elements - 109 , # Elements Covered - 109 ">EndianUtils</a>
+            
+    
+            <a href="../io/comparator/ExtensionFileComparator.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 12 , # Elements Covered - 12 ">ExtensionFileComparator</a>
+            
+    
+            <a href="../io/filefilter/FalseFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 15 , # Elements Covered - 15 ">FalseFileFilter</a>
+            
+    
+            <a href="../io/monitor/FileAlterationListenerAdaptor.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 8 ">FileAlterationListenerAdaptor</a>
+            
+    
+            <a href="../io/monitor/FileAlterationMonitor.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 71 , # Elements Covered - 68 ">FileAlterationMonitor</a>
+            
+    
+            <a href="../io/monitor/FileAlterationObserver.html" class="tag"
+            style="font-size: 18px;color:#d9695f"
+            title="# Elements - 171 , # Elements Covered - 153 ">FileAlterationObserver</a>
+            
+    
+            <a href="../io/FileCleaner.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 14 , # Elements Covered - 2 ">FileCleaner</a>
+            
+    
+            <a href="../io/FileCleaningTracker.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 32 , # Elements Covered - 29 ">FileCleaningTracker</a>
+            
+    
+            <a href="../io/FileCleaningTracker.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 17 , # Elements Covered - 17 ">FileCleaningTracker.Reaper</a>
+            
+    
+            <a href="../io/FileCleaningTracker.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 10 , # Elements Covered - 10 ">FileCleaningTracker.Tracker</a>
+            
+    
+            <a href="../io/FileDeleteStrategy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 20 , # Elements Covered - 18 ">FileDeleteStrategy</a>
+            
+    
+            <a href="../io/FileDeleteStrategy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 5 , # Elements Covered - 5 ">FileDeleteStrategy.ForceFileDeleteStrategy</a>
+            
+    
+            <a href="../io/monitor/FileEntry.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 63 , # Elements Covered - 36 ">FileEntry</a>
+            
+    
+            <a href="../io/filefilter/FileEqualsFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 7 , # Elements Covered - 7 ">FileEqualsFileFilter</a>
+            
+    
+            <a href="../io/FileExistsException.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 5 , # Elements Covered - 2 ">FileExistsException</a>
+            
+    
+            <a href="../io/filefilter/FileFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 5 , # Elements Covered - 5 ">FileFileFilter</a>
+            
+    
+            <a href="../io/filefilter/FileFilterUtils.html" class="tag"
+            style="font-size: 17px;color:#d5584c"
+            title="# Elements - 137 , # Elements Covered - 129 ">FileFilterUtils</a>
+            
+    
+            <a href="../io/FileSystem.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 93 , # Elements Covered - 71 ">FileSystem</a>
+            
+    
+            <a href="../io/file/spi/FileSystemProviders.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 25 , # Elements Covered - 23 ">FileSystemProviders</a>
+            
+    
+            <a href="../io/FileSystemUtils.html" class="tag"
+            style="font-size: 20px;color:#d9695f"
+            title="# Elements - 221 , # Elements Covered - 194 ">FileSystemUtils</a>
+            
+    
+            <a href="../io/FileUtils.html" class="tag"
+            style="font-size: 48px;color:#89c495"
+            title="# Elements - 898 , # Elements Covered - 856 ">FileUtils</a>
+            
+    
+            <a href="../io/output/FileWriterWithEncoding.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 64 , # Elements Covered - 56 ">FileWriterWithEncoding</a>
+            
+    
+            <a href="../io/FilenameUtils.html" class="tag"
+            style="font-size: 40px;color:#fae1a0"
+            title="# Elements - 711 , # Elements Covered - 675 ">FilenameUtils</a>
+            
+    
+            <a href="../io/output/FilterCollectionWriter.html" class="tag"
+            style="font-size: 18px;color:#d9695f"
+            title="# Elements - 170 , # Elements Covered - 167 ">FilterCollectionWriter</a>
+            
+    
+            <a href="../io/serialization/FullClassNameMatcher.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">FullClassNameMatcher</a>
+            
+    
+            <a href="../io/HexDump.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 55 , # Elements Covered - 54 ">HexDump</a>
+            
+    
+            <a href="../io/filefilter/HiddenFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 7 , # Elements Covered - 6 ">HiddenFileFilter</a>
+            
+    
+            <a href="../io/IOCase.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 56 , # Elements Covered - 54 ">IOCase</a>
+            
+    
+            <a href="../io/function/IOConsumer.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 7 , # Elements Covered - 2 ">IOConsumer</a>
+            
+    
+            <a href="../io/IOExceptionList.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 19 , # Elements Covered - 19 ">IOExceptionList</a>
+            
+    
+            <a href="../io/IOExceptionWithCause.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 2 ">IOExceptionWithCause</a>
+            
+    
+            <a href="../io/filefilter/IOFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 6 ">IOFileFilter</a>
+            
+    
+            <a href="../io/function/IOFunction.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 26 , # Elements Covered - 26 ">IOFunction</a>
+            
+    
+            <a href="../io/IOIndexedException.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 14 , # Elements Covered - 14 ">IOIndexedException</a>
+            
+    
+            <a href="../io/IOUtils.html" class="tag"
+            style="font-size: 45px;color:#14892c"
+            title="# Elements - 836 , # Elements Covered - 742 ">IOUtils</a>
+            
+    
+            <a href="../io/input/InfiniteCircularInputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 2 , # Elements Covered - 2 ">InfiniteCircularInputStream</a>
+            
+    
+            <a href="../io/comparator/LastModifiedFileComparator.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 11 , # Elements Covered - 11 ">LastModifiedFileComparator</a>
+            
+    
+            <a href="../io/LineIterator.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 54 , # Elements Covered - 52 ">LineIterator</a>
+            
+    
+            <a href="../io/output/LockableFileWriter.html" class="tag"
+            style="font-size: 15px;color:#d04437"
+            title="# Elements - 80 , # Elements Covered - 45 ">LockableFileWriter</a>
+            
+    
+            <a href="../io/filefilter/MagicNumberFileFilter.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 74 , # Elements Covered - 74 ">MagicNumberFileFilter</a>
+            
+    
+            <a href="../io/input/MarkShieldInputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 7 , # Elements Covered - 7 ">MarkShieldInputStream</a>
+            
+    
+            <a href="../io/input/MessageDigestCalculatingInputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 9 , # Elements Covered - 7 ">MessageDigestCalculatingInputStream</a>
+            
+    
+            <a href="../io/input/MessageDigestCalculatingInputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 4 ">MessageDigestCalculatingInputStream.MessageDigestMaintainingObserver</a>
+            
+    
+            <a href="../io/comparator/NameFileComparator.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 10 , # Elements Covered - 10 ">NameFileComparator</a>
+            
+    
+            <a href="../io/filefilter/NameFileFilter.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 62 , # Elements Covered - 61 ">NameFileFilter</a>
+            
+    
+            <a href="../io/filefilter/NotFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 18 , # Elements Covered - 18 ">NotFileFilter</a>
+            
+    
+            <a href="../io/output/NullAppendable.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 7 , # Elements Covered - 7 ">NullAppendable</a>
+            
+    
+            <a href="../io/input/NullInputStream.html" class="tag"
+            style="font-size: 16px;color:#d5584c"
+            title="# Elements - 109 , # Elements Covered - 103 ">NullInputStream</a>
+            
+    
+            <a href="../io/output/NullOutputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">NullOutputStream</a>
+            
+    
+            <a href="../io/output/NullPrintStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 2 , # Elements Covered - 2 ">NullPrintStream</a>
+            
+    
+            <a href="../io/input/NullReader.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 98 , # Elements Covered - 94 ">NullReader</a>
+            
+    
+            <a href="../io/output/NullWriter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 14 , # Elements Covered - 12 ">NullWriter</a>
+            
+    
+            <a href="../io/input/ObservableInputStream.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 92 , # Elements Covered - 86 ">ObservableInputStream</a>
+            
+    
+            <a href="../io/input/ObservableInputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 2 ">ObservableInputStream.Observer</a>
+            
+    
+            <a href="../io/filefilter/OrFileFilter.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 65 , # Elements Covered - 58 ">OrFileFilter</a>
+            
+    
+            <a href="../io/filefilter/PathEqualsFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 6 ">PathEqualsFileFilter</a>
+            
+    
+            <a href="../io/comparator/PathFileComparator.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 10 , # Elements Covered - 10 ">PathFileComparator</a>
+            
+    
+            <a href="../io/file/PathUtils.html" class="tag"
+            style="font-size: 22px;color:#d9695f"
+            title="# Elements - 264 , # Elements Covered - 217 ">PathUtils</a>
+            
+    
+            <a href="../io/file/PathUtils.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 36 , # Elements Covered - 34 ">PathUtils.RelativeSortedPaths</a>
+            
+    
+            <a href="../io/filefilter/PathVisitorFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 24 , # Elements Covered - 15 ">PathVisitorFileFilter</a>
+            
+    
+            <a href="../io/filefilter/PrefixFileFilter.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 69 , # Elements Covered - 63 ">PrefixFileFilter</a>
+            
+    
+            <a href="../io/output/ProxyCollectionWriter.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 70 , # Elements Covered - 68 ">ProxyCollectionWriter</a>
+            
+    
+            <a href="../io/input/ProxyInputStream.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 52 , # Elements Covered - 45 ">ProxyInputStream</a>
+            
+    
+            <a href="../io/output/ProxyOutputStream.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 31 , # Elements Covered - 29 ">ProxyOutputStream</a>
+            
+    
+            <a href="../io/input/ProxyReader.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 64 , # Elements Covered - 50 ">ProxyReader</a>
+            
+    
+            <a href="../io/output/ProxyWriter.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 66 , # Elements Covered - 66 ">ProxyWriter</a>
+            
+    
+            <a href="../io/input/QueueInputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 11 , # Elements Covered - 11 ">QueueInputStream</a>
+            
+    
+            <a href="../io/output/QueueOutputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 13 , # Elements Covered - 13 ">QueueOutputStream</a>
+            
+    
+            <a href="../io/input/RandomAccessFileInputStream.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 52 , # Elements Covered - 46 ">RandomAccessFileInputStream</a>
+            
+    
+            <a href="../io/input/ReadAheadInputStream.html" class="tag"
+            style="font-size: 21px;color:#d9695f"
+            title="# Elements - 248 , # Elements Covered - 203 ">ReadAheadInputStream</a>
+            
+    
+            <a href="../io/input/ReaderInputStream.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 80 , # Elements Covered - 74 ">ReaderInputStream</a>
+            
+    
+            <a href="../io/filefilter/RegexFileFilter.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 31 , # Elements Covered - 28 ">RegexFileFilter</a>
+            
+    
+            <a href="../io/serialization/RegexpClassNameMatcher.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 10 , # Elements Covered - 10 ">RegexpClassNameMatcher</a>
+            
+    
+            <a href="../io/comparator/ReverseFileComparator.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 10 , # Elements Covered - 8 ">ReverseFileComparator</a>
+            
+    
+            <a href="../io/input/ReversedLinesFileReader.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 94 , # Elements Covered - 88 ">ReversedLinesFileReader</a>
+            
+    
+            <a href="../io/input/ReversedLinesFileReader.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 97 , # Elements Covered - 85 ">ReversedLinesFileReader.FilePart</a>
+            
+    
+            <a href="../io/input/SequenceReader.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 51 , # Elements Covered - 51 ">SequenceReader</a>
+            
+    
+            <a href="../io/file/SimplePathVisitor.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 1 , # Elements Covered - 1 ">SimplePathVisitor</a>
+            
+    
+            <a href="../io/comparator/SizeFileComparator.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 33 , # Elements Covered - 33 ">SizeFileComparator</a>
+            
+    
+            <a href="../io/filefilter/SizeFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 24 , # Elements Covered - 21 ">SizeFileFilter</a>
+            
+    
+            <a href="../io/file/StandardDeleteOption.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 11 , # Elements Covered - 9 ">StandardDeleteOption</a>
+            
+    
+            <a href="../io/StandardLineSeparator.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 6 ">StandardLineSeparator</a>
+            
+    
+            <a href="../io/StreamIterator.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 21 , # Elements Covered - 5 ">StreamIterator</a>
+            
+    
+            <a href="../io/output/StringBuilderWriter.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 33 , # Elements Covered - 31 ">StringBuilderWriter</a>
+            
+    
+            <a href="../io/filefilter/SuffixFileFilter.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 64 , # Elements Covered - 60 ">SuffixFileFilter</a>
+            
+    
+            <a href="../io/input/SwappedDataInputStream.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 42 , # Elements Covered - 40 ">SwappedDataInputStream</a>
+            
+    
+            <a href="../io/filefilter/SymbolicLinkFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 5 , # Elements Covered - 3 ">SymbolicLinkFileFilter</a>
+            
+    
+            <a href="../io/TaggedIOException.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 14 , # Elements Covered - 12 ">TaggedIOException</a>
+            
+    
+            <a href="../io/input/TaggedInputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 8 ">TaggedInputStream</a>
+            
+    
+            <a href="../io/output/TaggedOutputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 8 ">TaggedOutputStream</a>
+            
+    
+            <a href="../io/input/TaggedReader.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 8 ">TaggedReader</a>
+            
+    
+            <a href="../io/output/TaggedWriter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 8 ">TaggedWriter</a>
+            
+    
+            <a href="../io/input/Tailer.html" class="tag"
+            style="font-size: 18px;color:#d5584c"
+            title="# Elements - 162 , # Elements Covered - 134 ">Tailer</a>
+            
+    
+            <a href="../io/input/TeeInputStream.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 34 , # Elements Covered - 34 ">TeeInputStream</a>
+            
+    
+            <a href="../io/output/TeeOutputStream.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 19 , # Elements Covered - 19 ">TeeOutputStream</a>
+            
+    
+            <a href="../io/input/TeeReader.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 47 , # Elements Covered - 47 ">TeeReader</a>
+            
+    
+            <a href="../io/output/TeeWriter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">TeeWriter</a>
+            
+    
+            <a href="../io/ThreadMonitor.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 33 , # Elements Covered - 32 ">ThreadMonitor</a>
+            
+    
+            <a href="../io/output/ThresholdingOutputStream.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 49 , # Elements Covered - 42 ">ThresholdingOutputStream</a>
+            
+    
+            <a href="../io/input/TimestampedObserver.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 12 , # Elements Covered - 12 ">TimestampedObserver</a>
+            
+    
+            <a href="../io/filefilter/TrueFileFilter.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 15 , # Elements Covered - 13 ">TrueFileFilter</a>
+            
+    
+            <a href="../io/input/UnixLineEndingInputStream.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 49 , # Elements Covered - 47 ">UnixLineEndingInputStream</a>
+            
+    
+            <a href="../io/input/UnsupportedOperationExceptions.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 6 ">UnsupportedOperationExceptions</a>
+            
+    
+            <a href="../io/input/UnsynchronizedByteArrayInputStream.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 83 , # Elements Covered - 83 ">UnsynchronizedByteArrayInputStream</a>
+            
+    
+            <a href="../io/output/UnsynchronizedByteArrayOutputStream.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 39 , # Elements Covered - 39 ">UnsynchronizedByteArrayOutputStream</a>
+            
+    
+            <a href="../io/serialization/ValidatingObjectInputStream.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 52 , # Elements Covered - 52 ">ValidatingObjectInputStream</a>
+            
+    
+            <a href="../io/serialization/WildcardClassNameMatcher.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">WildcardClassNameMatcher</a>
+            
+    
+            <a href="../io/filefilter/WildcardFileFilter.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 61 , # Elements Covered - 60 ">WildcardFileFilter</a>
+            
+    
+            <a href="../io/filefilter/WildcardFilter.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 52 , # Elements Covered - 46 ">WildcardFilter</a>
+            
+    
+            <a href="../io/input/WindowsLineEndingInputStream.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 57 , # Elements Covered - 55 ">WindowsLineEndingInputStream</a>
+            
+    
+            <a href="../io/output/WriterOutputStream.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 88 , # Elements Covered - 77 ">WriterOutputStream</a>
+            
+    
+            <a href="../io/input/XmlStreamReader.html" class="tag"
+            style="font-size: 23px;color:#de7b72"
+            title="# Elements - 295 , # Elements Covered - 262 ">XmlStreamReader</a>
+            
+    
+            <a href="../io/input/XmlStreamReaderException.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 19 , # Elements Covered - 19 ">XmlStreamReaderException</a>
+            
+    
+            <a href="../io/output/XmlStreamWriter.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 74 , # Elements Covered - 54 ">XmlStreamWriter</a>
+           </div>
+   
+          <div id="shallowPackageCloud"  style="display: none"  >
+                          
+    
+        
+    
+            <a href="../io/ByteOrderMark.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 65 , # Elements Covered - 65 ">ByteOrderMark</a>
+            
+    
+            <a href="../io/ByteOrderParser.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 11 , # Elements Covered - 10 ">ByteOrderParser</a>
+            
+    
+            <a href="../io/Charsets.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 19 , # Elements Covered - 19 ">Charsets</a>
+            
+    
+            <a href="../io/CopyUtils.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 55 , # Elements Covered - 42 ">CopyUtils</a>
+            
+    
+            <a href="../io/DirectoryWalker.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 75 , # Elements Covered - 74 ">DirectoryWalker</a>
+            
+    
+            <a href="../io/DirectoryWalker.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 10 , # Elements Covered - 10 ">DirectoryWalker.CancelException</a>
+            
+    
+            <a href="../io/EndianUtils.html" class="tag"
+            style="font-size: 16px;color:#d5584c"
+            title="# Elements - 109 , # Elements Covered - 109 ">EndianUtils</a>
+            
+    
+            <a href="../io/FileCleaner.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 14 , # Elements Covered - 2 ">FileCleaner</a>
+            
+    
+            <a href="../io/FileCleaningTracker.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 32 , # Elements Covered - 29 ">FileCleaningTracker</a>
+            
+    
+            <a href="../io/FileCleaningTracker.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 17 , # Elements Covered - 17 ">FileCleaningTracker.Reaper</a>
+            
+    
+            <a href="../io/FileCleaningTracker.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 10 , # Elements Covered - 10 ">FileCleaningTracker.Tracker</a>
+            
+    
+            <a href="../io/FileDeleteStrategy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 20 , # Elements Covered - 18 ">FileDeleteStrategy</a>
+            
+    
+            <a href="../io/FileDeleteStrategy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 5 , # Elements Covered - 5 ">FileDeleteStrategy.ForceFileDeleteStrategy</a>
+            
+    
+            <a href="../io/FileExistsException.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 5 , # Elements Covered - 2 ">FileExistsException</a>
+            
+    
+            <a href="../io/FileSystem.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 93 , # Elements Covered - 71 ">FileSystem</a>
+            
+    
+            <a href="../io/FileSystemUtils.html" class="tag"
+            style="font-size: 20px;color:#d9695f"
+            title="# Elements - 221 , # Elements Covered - 194 ">FileSystemUtils</a>
+            
+    
+            <a href="../io/FileUtils.html" class="tag"
+            style="font-size: 48px;color:#89c495"
+            title="# Elements - 898 , # Elements Covered - 856 ">FileUtils</a>
+            
+    
+            <a href="../io/FilenameUtils.html" class="tag"
+            style="font-size: 40px;color:#fae1a0"
+            title="# Elements - 711 , # Elements Covered - 675 ">FilenameUtils</a>
+            
+    
+            <a href="../io/HexDump.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 55 , # Elements Covered - 54 ">HexDump</a>
+            
+    
+            <a href="../io/IOCase.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 56 , # Elements Covered - 54 ">IOCase</a>
+            
+    
+            <a href="../io/IOExceptionList.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 19 , # Elements Covered - 19 ">IOExceptionList</a>
+            
+    
+            <a href="../io/IOExceptionWithCause.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 2 ">IOExceptionWithCause</a>
+            
+    
+            <a href="../io/IOIndexedException.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 14 , # Elements Covered - 14 ">IOIndexedException</a>
+            
+    
+            <a href="../io/IOUtils.html" class="tag"
+            style="font-size: 45px;color:#14892c"
+            title="# Elements - 836 , # Elements Covered - 742 ">IOUtils</a>
+            
+    
+            <a href="../io/LineIterator.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 54 , # Elements Covered - 52 ">LineIterator</a>
+            
+    
+            <a href="../io/StandardLineSeparator.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 6 ">StandardLineSeparator</a>
+            
+    
+            <a href="../io/StreamIterator.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 21 , # Elements Covered - 5 ">StreamIterator</a>
+            
+    
+            <a href="../io/TaggedIOException.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 14 , # Elements Covered - 12 ">TaggedIOException</a>
+            
+    
+            <a href="../io/ThreadMonitor.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 33 , # Elements Covered - 32 ">ThreadMonitor</a>
+           </div>
+   </div>
+    </div> <!-- tabs-pane active-pane -->
+</div> <!-- aui-tabs horizontal-tabs -->
+
+                        </div> <!-- class="aui-page-panel-content-clover" -->
+                    <footer id="footer" role="contentinfo">
+    <section class="footer-body">
+        <ul>
+            <li>
+                Report generated by <a target="_new" href="http://openclover.org">OpenClover</a> v 4.4.1
+                on Wed. Jan. 19 2022 13:26:50 EST using coverage data from Wed. Jan. 19 2022 13:26:41 EST.
+            </li>
+        </ul>
+        <ul>
+            <li>OpenClover is free and open-source software. </li>
+        </ul>
+    </section>
+</footer>                </section> <!-- class="aui-page-panel-content" -->
+            </div> <!-- class="aui-page-panel-inner" -->
+        </div> <!-- class="aui-page-panel" -->
+    </div> <!-- id="page" -->
+</body>
+</html>
