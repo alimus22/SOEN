@@ -66,6 +66,6 @@
     \end{center}
     
     \noindent However, if we compute the theoretical cyclomatic complexity for this whole class, we obtain a value of 5. Only OClover returns the right value as JaCoCo's cyclomatic complexity takes into account the class variables.
-    \item asd
-    \item hgf
+    \item In order to have more meaningful results, I would suggest OClover over JaCoCo. Even though a lot of the metrics are similar, while completing part E, I realised that while OClover returns the number of statements covered by the tests, JaCoCo finds the number of lines covered which will make it count meaningless lines in term of code coverage like closing curly braces for example. This can boost the line coverage percentage and hide some issues. On the other side, OClover deals with executed (or missed) statements that express some action to be carried out by the program. I also prefer the OClover web interface which I think provides the user with more details. That being said, both tools are complete and seamless to use. 
+    \item The metrics provided by both tools are in my opinion very complete. However, it would be even better if the tools provided the user with a user interface that would let the user chose what test to run, what folder to work on etc (even though additional plugins will let you do so). Also, it would be a good addition to allow the user to manipulate the metrics via the web-interface after the report is generated, to allow for an direct comparison and analysis of the data. 
 \end{enumerate}
