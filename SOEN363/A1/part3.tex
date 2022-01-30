@@ -1,0 +1,68 @@
+\subsection*{Part 3 - Building a database for Concordia Academic Advising System}
+
+\begin{enumerate}[label = {(\alph*)}]
+    \item Bellow is the full ER diagram for the database.
+    
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{img/3a.png}
+    \end{center}
+    We assume that all advisors have been booked for an appointment at least once.
+    
+    \item
+    \begin{verbatim}
+        CREATE TABLE Students (
+            s_id: CHAR(20) NOT NULL,
+            s_name: CHAR(20),
+            PRIMARY KEY (s_id)
+            );
+            
+        CREATE TABLE Departments (
+            d_id: CHAR(20) NOT NULL,
+            PRIMARY KEY (d_id)
+            );
+        
+        CREATE TABLE Advisors (
+            name: CHAR(20) NOT NULL,
+            d_id: CHAR(20) NOT NULL,
+            contact: CHAR(20),
+            PRIMARY KEY (d_id, name),
+            FOREIGN KEY (d_id) REFERENCES Departments
+            );
+        
+        CREATE TABLE Books (
+            s_id: CHAR(20) NOT NULL,
+            name: CHAR(20) NOT NULL,
+            d_id: CHAR(20) NOT NULL,
+            date: DATE,
+            time: TIME,
+            PRIMARY KEY (s_id, name, d_id),
+            FOREIGN KEY (s_id) REFERENCES Students,
+            FOREIGN KEY (name, d_id) REFERENCES Advisors
+            );
+        
+        CREATE TABLE Works_on (
+            name: CHAR(20) NOT NULL,
+            d_id: CHAR(20) NOT NULL,
+            PRIMARY KEY (d_id, name),
+            FOREIGN KEY (d_id) REFERENCES Departments,
+            FOREIGN KEY (name) REFERENCES Advisors
+            );
+            
+        CREATE TABLE Member_of (
+            s_id: CHAR(20) NOT NULL,
+            d_id: CHAR(20) NOT NULL,
+            PRIMARY KEY (d_id, s_id),
+            FOREIGN KEY (d_id) REFERENCES Departments,
+            FOREIGN KEY (s_id) REFERENCES Students
+            );
+            
+    \end{verbatim}
+    
+    \item
+    \begin{verbatim}
+        CREATE VIEW Advising_History (s_id, date, time)
+            AS SELECT S.s_id, S.s_name, B.date, B.time, B.name
+            FROM S Students, B Books,
+            WHERE S.s_id = B.S_id
+    \end{verbatim}
+\end{enumerate}
