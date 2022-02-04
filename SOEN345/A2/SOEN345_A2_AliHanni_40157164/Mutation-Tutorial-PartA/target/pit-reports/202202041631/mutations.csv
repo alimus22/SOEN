@@ -1,0 +1,7 @@
+BookBean.java,soen.tutorial.service.BookBean,org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator,create,14,KILLED,soen.tutorial.service.BookBeanTest.shouldFailCreateBookWithTooShortTitleGiven1(soen.tutorial.service.BookBeanTest)
+BookBean.java,soen.tutorial.service.BookBean,org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator,create,11,KILLED,soen.tutorial.service.BookBeanTest.shouldFailCreateBookWithNoTitleGiven(soen.tutorial.service.BookBeanTest)
+BookBean.java,soen.tutorial.service.BookBean,org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator,create,14,KILLED,soen.tutorial.service.BookBeanTest.shouldFailCreateBookWithTooShortTitleGiven(soen.tutorial.service.BookBeanTest)
+BookBean.java,soen.tutorial.service.BookBean,org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator,create,17,KILLED,soen.tutorial.service.BookBeanTest.shouldCreateBook(soen.tutorial.service.BookBeanTest)
+Book.java,soen.tutorial.entity.Book,org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator,getId,17,KILLED,soen.tutorial.service.BookBeanTest.shouldCreateBook(soen.tutorial.service.BookBeanTest)
+Book.java,soen.tutorial.entity.Book,org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator,getTitle,13,KILLED,soen.tutorial.service.BookBeanTest.shouldCreateBook(soen.tutorial.service.BookBeanTest)
+Book.java,soen.tutorial.entity.Book,org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator,toString,24,NO_COVERAGE,none
