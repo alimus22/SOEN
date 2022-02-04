@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 import soen.tutorial.service.BookBean;
 import soen.tutorial.entity.Book;
