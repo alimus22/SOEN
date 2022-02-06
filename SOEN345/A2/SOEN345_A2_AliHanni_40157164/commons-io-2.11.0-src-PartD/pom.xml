@@ -435,7 +435,9 @@ file comparators, endian transformation classes, and much more.
           <argLine>${argLine} -Xmx25M</argLine>
           <includes>
             <!-- Only include test classes, not test data -->
-            <include>**/*Test*.class</include>
+            <!--<include>**/*Test*.class</include> -->
+            <include>**/input/*Test*.class</include>
+            <include>**/output/*Test*.class</include>
           </includes>
           <excludes>
             <exclude>**/*AbstractTestCase*</exclude>
@@ -516,6 +518,19 @@ file comparators, endian transformation classes, and much more.
             <param>HTML</param>
             <param>CSV</param>
           </outputFormats>
+
+          <targetClasses>
+            <param>org.apache.commons.io.output.*</param>
+            <param>org.apache.commons.io.input.* </param>
+          </targetClasses>
+          <excludedClasses>
+            <param>org.apache.commons.io.input.buffer.*</param>
+          </excludedClasses>
+          <mutators>
+            <mutator>NEGATE_CONDITIONALS</mutator>
+            <mutator>CONDITIONALS_BOUNDARY</mutator>
+            <mutator>RETURN_VALS</mutator>
+          </mutators>
         </configuration>
 
         <executions>
