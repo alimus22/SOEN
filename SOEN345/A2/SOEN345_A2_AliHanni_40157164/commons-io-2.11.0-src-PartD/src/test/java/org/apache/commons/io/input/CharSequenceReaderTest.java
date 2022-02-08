@@ -241,13 +241,13 @@ public class CharSequenceReaderTest {
 
     private void checkRead(final Reader reader, final String expected) throws IOException {
         for (int i = 0; i < expected.length(); i++) {
-            assertEquals(expected.charAt(i), (char)reader.read(), "Read[" + i + "] of '" + expected + "'");
+            assertEquals(expected.charAt(i), (char) reader.read(), "Read[" + i + "] of '" + expected + "'");
         }
     }
 
     private void checkArray(final char[] expected, final char[] actual) {
         for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], actual[i], "Compare[" +i + "]");
+            assertEquals(expected[i], actual[i], "Compare[" + i + "]");
         }
     }
 
@@ -257,6 +257,8 @@ public class CharSequenceReaderTest {
                 "Expected exception not thrown for negative start.");
         assertThrows(IllegalArgumentException.class, () -> new CharSequenceReader("FooBar", 1, 0),
                 "Expected exception not thrown for end before start.");
+        // Case where start and end have the same value.
+        final CharSequenceReader r = new CharSequenceReader("ABC", 2, 2);
     }
 
     @Test
@@ -269,9 +271,11 @@ public class CharSequenceReaderTest {
     @Test
     public void testSerialization() throws IOException, ClassNotFoundException {
         /*
-         * File CharSequenceReader.bin contains a CharSequenceReader that was serialized before
+         * File CharSequenceReader.bin contains a CharSequenceReader that was serialized
+         * before
          * the start and end fields were added. Its CharSequence is "FooBar".
-         * This part of the test will test that adding the fields does not break any existing
+         * This part of the test will test that adding the fields does not break any
+         * existing
          * serialized CharSequenceReaders.
          */
         try (ObjectInputStream ois = new ObjectInputStream(TestResources.getInputStream("CharSequenceReader.bin"))) {

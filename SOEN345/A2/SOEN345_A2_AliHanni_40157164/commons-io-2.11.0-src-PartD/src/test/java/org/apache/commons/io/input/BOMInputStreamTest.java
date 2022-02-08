@@ -49,12 +49,12 @@ import org.xml.sax.SAXParseException;
  */
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class BOMInputStreamTest {
-    //----------------------------------------------------------------------------
-    //  Support code
-    //----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+    // Support code
+    // ----------------------------------------------------------------------------
 
     /**
-     *  A mock InputStream that expects {@code close()} to be called.
+     * A mock InputStream that expects {@code close()} to be called.
      */
     private static class ExpectCloseInputStream extends InputStream {
         private boolean _closeCalled;
@@ -82,7 +82,7 @@ public class BOMInputStreamTest {
     }
 
     /**
-     *  Creates the underlying data stream, with or without BOM.
+     * Creates the underlying data stream, with or without BOM.
      */
     private InputStream createUtf16BeDataStream(final byte[] baseData, final boolean addBOM) {
         byte[] data = baseData;
@@ -96,7 +96,7 @@ public class BOMInputStreamTest {
     }
 
     /**
-     *  Creates the underlying data stream, with or without BOM.
+     * Creates the underlying data stream, with or without BOM.
      */
     private InputStream createUtf16LeDataStream(final byte[] baseData, final boolean addBOM) {
         byte[] data = baseData;
@@ -110,7 +110,7 @@ public class BOMInputStreamTest {
     }
 
     /**
-     *  Creates the underlying data stream, with or without BOM.
+     * Creates the underlying data stream, with or without BOM.
      */
     private InputStream createUtf32BeDataStream(final byte[] baseData, final boolean addBOM) {
         byte[] data = baseData;
@@ -126,7 +126,7 @@ public class BOMInputStreamTest {
     }
 
     /**
-     *  Creates the underlying data stream, with or without BOM.
+     * Creates the underlying data stream, with or without BOM.
      */
     private InputStream createUtf32LeDataStream(final byte[] baseData, final boolean addBOM) {
         byte[] data = baseData;
@@ -142,7 +142,7 @@ public class BOMInputStreamTest {
     }
 
     /**
-     *  Creates the underlying data stream, with or without BOM.
+     * Creates the underlying data stream, with or without BOM.
      */
     private InputStream createUtf8DataStream(final byte[] baseData, final boolean addBOM) {
         byte[] data = baseData;
@@ -156,9 +156,9 @@ public class BOMInputStreamTest {
         return new ByteArrayInputStream(data);
     }
 
-    //----------------------------------------------------------------------------
-    //  Test cases
-    //----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+    // Test cases
+    // ----------------------------------------------------------------------------
 
     private void parseXml(final InputStream in) throws SAXException, IOException, ParserConfigurationException {
         final Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(in));
@@ -373,7 +373,7 @@ public class BOMInputStreamTest {
     public void testNoBoms() throws Exception {
         final byte[] data = { 'A', 'B', 'C' };
         try {
-            (new BOMInputStream(createUtf8DataStream(data, true), false, (ByteOrderMark[])null)).close();
+            (new BOMInputStream(createUtf8DataStream(data, true), false, (ByteOrderMark[]) null)).close();
             fail("Null BOMs, expected IllegalArgumentException");
         } catch (final IllegalArgumentException e) {
             // expected
@@ -385,10 +385,6 @@ public class BOMInputStreamTest {
             // expected
         }
     }
-
-
-
-
 
     @Test
     public void testReadEmpty() throws Exception {
@@ -603,7 +599,8 @@ public class BOMInputStreamTest {
 
     @Test
     public void testReadXmlWithBOMUcs2() throws Exception {
-        assumeFalse(System.getProperty("java.vendor").contains("IBM"), "This test does not pass on some IBM VMs xml parsers");
+        assumeFalse(System.getProperty("java.vendor").contains("IBM"),
+                "This test does not pass on some IBM VMs xml parsers");
 
         // UCS-2 is BE.
         assumeTrue(Charset.isSupported("ISO-10646-UCS-2"));
@@ -654,7 +651,8 @@ public class BOMInputStreamTest {
         try (BOMInputStream in = new BOMInputStream(createUtf32BeDataStream(data, true), ByteOrderMark.UTF_32BE)) {
             parseXml(in);
         }
-        // XML parser does not know what to do with UTF-32, so we warp the input stream with a XmlStreamReader
+        // XML parser does not know what to do with UTF-32, so we warp the input stream
+        // with a XmlStreamReader
         try (XmlStreamReader in = new XmlStreamReader(createUtf32BeDataStream(data, true))) {
             parseXml(in);
         }
@@ -667,7 +665,8 @@ public class BOMInputStreamTest {
         try (BOMInputStream in = new BOMInputStream(createUtf32LeDataStream(data, true), ByteOrderMark.UTF_32LE)) {
             parseXml(in);
         }
-        // XML parser does not know what to do with UTF-32, so we warp the input stream with a XmlStreamReader
+        // XML parser does not know what to do with UTF-32, so we warp the input stream
+        // with a XmlStreamReader
         try (XmlStreamReader in = new XmlStreamReader(createUtf32LeDataStream(data, true))) {
             parseXml(in);
         }
@@ -719,7 +718,6 @@ public class BOMInputStreamTest {
             assertEquals('C', in.read());
         }
     }
-
 
     @Test
     public void skipReturnValueWithBom() throws IOException {
@@ -776,11 +774,13 @@ public class BOMInputStreamTest {
         }
     }
 
-    private boolean jvmAndSaxBothSupportCharset(final String charSetName) throws ParserConfigurationException, SAXException, IOException {
-        return Charset.isSupported(charSetName) &&  doesSaxSupportCharacterSet(charSetName);
+    private boolean jvmAndSaxBothSupportCharset(final String charSetName)
+            throws ParserConfigurationException, SAXException, IOException {
+        return Charset.isSupported(charSetName) && doesSaxSupportCharacterSet(charSetName);
     }
 
-    private boolean doesSaxSupportCharacterSet(final String charSetName) throws ParserConfigurationException, SAXException, IOException {
+    private boolean doesSaxSupportCharacterSet(final String charSetName)
+            throws ParserConfigurationException, SAXException, IOException {
         final byte[] data = ("<?xml version=\"1.0\" encoding=\"" + charSetName + "\"?><Z/>").getBytes(charSetName);
         final DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         try {

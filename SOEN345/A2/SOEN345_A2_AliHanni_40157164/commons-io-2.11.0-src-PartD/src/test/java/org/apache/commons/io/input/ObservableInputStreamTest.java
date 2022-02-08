@@ -22,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.beans.Transient;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
@@ -154,7 +155,7 @@ public class ObservableInputStreamTest {
     @Test
     public void testDataByteCalled_add() throws Exception {
         final byte[] buffer = MessageDigestCalculatingInputStreamTest
-            .generateRandomByteStream(IOUtils.DEFAULT_BUFFER_SIZE);
+                .generateRandomByteStream(IOUtils.DEFAULT_BUFFER_SIZE);
         final DataViewObserver lko = new DataViewObserver();
         try (final ObservableInputStream ois = new ObservableInputStream(new ByteArrayInputStream(buffer))) {
             assertEquals(-1, lko.lastValue);
@@ -186,7 +187,7 @@ public class ObservableInputStreamTest {
     @Test
     public void testDataByteCalled_ctor() throws Exception {
         final byte[] buffer = MessageDigestCalculatingInputStreamTest
-            .generateRandomByteStream(IOUtils.DEFAULT_BUFFER_SIZE);
+                .generateRandomByteStream(IOUtils.DEFAULT_BUFFER_SIZE);
         final DataViewObserver lko = new DataViewObserver();
         try (final ObservableInputStream ois = new ObservableInputStream(new ByteArrayInputStream(buffer), lko)) {
             assertEquals(-1, lko.lastValue);
@@ -217,9 +218,9 @@ public class ObservableInputStreamTest {
     @Test
     public void testDataBytesCalled() throws Exception {
         final byte[] buffer = MessageDigestCalculatingInputStreamTest
-            .generateRandomByteStream(IOUtils.DEFAULT_BUFFER_SIZE);
+                .generateRandomByteStream(IOUtils.DEFAULT_BUFFER_SIZE);
         try (final ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
-            final ObservableInputStream ois = new ObservableInputStream(bais)) {
+                final ObservableInputStream ois = new ObservableInputStream(bais)) {
             final DataViewObserver observer = new DataViewObserver();
             final byte[] readBuffer = new byte[23];
             assertNull(observer.buffer);
@@ -281,9 +282,9 @@ public class ObservableInputStreamTest {
         final LengthObserver lengthObserver = new LengthObserver();
         final MethodCountObserver methodCountObserver = new MethodCountObserver();
         try (final ObservableInputStream ois = new ObservableInputStream(new ByteArrayInputStream(buffer),
-            lengthObserver, methodCountObserver)) {
+                lengthObserver, methodCountObserver)) {
             assertEquals(IOUtils.DEFAULT_BUFFER_SIZE,
-                IOUtils.copy(ois, NullOutputStream.NULL_OUTPUT_STREAM, bufferSize));
+                    IOUtils.copy(ois, NullOutputStream.NULL_OUTPUT_STREAM, bufferSize));
         }
         assertEquals(IOUtils.DEFAULT_BUFFER_SIZE, lengthObserver.getTotal());
         assertEquals(1, methodCountObserver.getClosedCount());

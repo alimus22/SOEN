@@ -2,10 +2,10 @@
 *****************************************************
 Summary
 -------
-Generated at: 2022-02-06T17:10:12-05:00
+Generated at: 2022-02-07T21:27:06-05:00
 
 Notes: 3
-Binaries: 7
+Binaries: 6
 Archives: 1
 Standards: 415
 
@@ -34,7 +34,6 @@ Archives:
   AL    spotbugs-exclude-filter.xml
   AL    CONTRIBUTING.md
   AL    checkstyle.xml
-  B     testThresholdReached.dat
   N     LICENSE.txt
   AL    SECURITY.md
   B     src/test/resources/org/apache/commons/io/FileUtilsTestDataLF.dat

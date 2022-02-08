@@ -99,7 +99,7 @@ public class NullInputStreamTest {
 
         // Read into array using offset & length
         final int offset = 2;
-        final int lth    = 4;
+        final int lth = 4;
         final int count5 = input.read(bytes, offset, lth);
         assertEquals(lth, count5, "Read 5");
         for (int i = offset; i < lth; i++) {
@@ -139,7 +139,7 @@ public class NullInputStreamTest {
         }
 
         for (; position < 3; position++) {
-            assertEquals(position, input.read(), "Read Before Mark [" + position +"]");
+            assertEquals(position, input.read(), "Read Before Mark [" + position + "]");
         }
 
         // Mark
@@ -147,7 +147,7 @@ public class NullInputStreamTest {
 
         // Read further
         for (int i = 0; i < 3; i++) {
-            assertEquals(position + i, input.read(), "Read After Mark [" + i +"]");
+            assertEquals(position + i, input.read(), "Read After Mark [" + i + "]");
         }
 
         // Reset
@@ -155,7 +155,7 @@ public class NullInputStreamTest {
 
         // Read From marked position
         for (int i = 0; i < readlimit + 1; i++) {
-            assertEquals(position + i, input.read(), "Read After Reset [" + i +"]");
+            assertEquals(position + i, input.read(), "Read After Reset [" + i + "]");
         }
 
         // Reset after read limit passed
@@ -164,10 +164,10 @@ public class NullInputStreamTest {
             fail("Read limit exceeded, expected IOException ");
         } catch (final IOException e) {
             assertEquals("Marked position [" + position
-                         + "] is no longer valid - passed the read limit ["
-                         + readlimit + "]",
-                         e.getMessage(),
-                         "Read limit IOException message");
+                    + "] is no longer valid - passed the read limit ["
+                    + readlimit + "]",
+                    e.getMessage(),
+                    "Read limit IOException message");
         }
         input.close();
     }
@@ -211,25 +211,27 @@ public class NullInputStreamTest {
         input.close();
     }
 
-
     // ------------- Test NullInputStream implementation -------------
 
     private static final class TestNullInputStream extends NullInputStream {
         public TestNullInputStream(final int size) {
             super(size);
         }
+
         public TestNullInputStream(final int size, final boolean markSupported, final boolean throwEofException) {
             super(size, markSupported, throwEofException);
         }
+
         @Override
         protected int processByte() {
-            return (int)getPosition() - 1;
+            return (int) getPosition() - 1;
         }
+
         @Override
         protected void processBytes(final byte[] bytes, final int offset, final int length) {
-            final int startPos = (int)getPosition() - length;
+            final int startPos = (int) getPosition() - length;
             for (int i = offset; i < length; i++) {
-                bytes[i] = (byte)(startPos + i);
+                bytes[i] = (byte) (startPos + i);
             }
         }
 
