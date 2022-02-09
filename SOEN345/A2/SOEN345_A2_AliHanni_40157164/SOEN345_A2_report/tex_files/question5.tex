@@ -1,0 +1,22 @@
+\newpage
+
+\subsection*{Question 5}
+
+\begin{enumerate}
+    \item 
+    \noindent The packages with lower test strength are \verb|org.apache.commons.io.output| with 78\% test strength and 90\% line coverage and \verb|org.apache.commons.io.| \verb|input.buffer| with 83\% test strength and 53\% line coverage. The packages with highest test strength are \verb|org.apache.commons.io.file.spi| with 100\% test strength and 94\% line coverage, \verb|org.apache.commons.io.function| with 100\% test strength and 79\% line coverage, and \verb|org.apache.commons.io.file.| \verb|serialization| with 100\% test strength and 100\% line coverage. However, these 3 packages are the one with least number of classes and least number of line of code.\\ I realized first that there is no concrete correlation between the line coverage and the test strength, quit the contrary, while overall, the tests that has the highest line coverage tend to have a lower test strength. Also, I realized that the classes with best test strength were short compared to the others. It can therefor be a good idea to keep the classes small and separate concerns and functions as much as possible in order to keep the code simple and easier to test.
+    Here are three concrete ideas to improve test 
+    \begin{enumerate}[label={\arabic* -}]
+        \item Add more tests for 'risky' sections of the project with low test strength in order to improve the line coverage, this will make it easier to spot surviving mutants and upgrade the defaulting tests.
+        \item Focus on certain type of mutants that tend to survive more than others in order to maybe detect a flaw in the way tests are written. It can help produce a method to quickly determine what can be improved for any given test. 
+        \item Produce statistics for each package, that give insight on what is the type of mutants that tend to survive the most, and go to the test code to try and understand why it is the case. From that quick analysis, interesting general rules can be derived and help upgrade the testing suite.
+    \end{enumerate}
+    \item 
+        \begin{enumerate}[label={\alph*.}]
+            \item As previously stated, there is no solid correlation between line coverage and test strength. A low line coverage means that many tests and consequently many mutants will not be covered. The test strength only takes into account the cases where the mutants are covered. However, all mutants found in tests that are not covered are considered 'failures', as if the test was undertaken but the mutants survived. Contrary to test strength, mutation coverage takes into account tests that are not covered. Because of this, we can see a clear correlation between line coverage and mutation coverage. The lower the line coverage, the lower the mutation coverage.
+            \item The package with lower test strength is the \verb|output| package. A script was used to compute this data. A total number of 777 mutants survived in that packages. The mutator type with the highest surviving mutants ratio is the \verb|ConditionalsBoundaryMutator| with 47\% of the mutants surviving. The mutator type with the highest surviving mutants number is the \verb|VoidMethodCallMutators| with 144 surviving mutants. A total of 262 mutants survived.
+            \item Adding more test can help improving line coverage, which in turns will possibly give more insight on test suite quality and reason (type of surviving mutators) why test strength is low. However, simply adding more tests does not guarantee an improved test suite. The added tests should take into account the surviving mutants in order to be pertinent and have a positive impact on the quality of the test suite. 
+            \item Running the whole test suite every time one wants to verify the efficiency of an added or modified test test can be very time consuming. Even using surefire to reduce the scope of the testing to only the package of interest still takes a lot of time to run. However, deleting the other tests and adding them back after processing is done greatly reduces the running time and help kill all mutants and hence build a better testing suite faster. 
+            \item Yes. Mutation testing helps to find the test cases the programmer has not thought of. It can be very helpful especially in a situation where the code to test is long, complex and handles many functionalities. 
+        \end{enumerate}
+\end{enumerate}
