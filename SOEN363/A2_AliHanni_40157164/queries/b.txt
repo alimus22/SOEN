@@ -1,0 +1,4 @@
+SELECT u.username, COUNT(tg.hashtag) AS countTags
+FROM Users u, tweets tw, tweettags tg
+WHERE u.userid = tw.userid AND tw.tweetid = tg.tweetid
+GROUP BY u.username

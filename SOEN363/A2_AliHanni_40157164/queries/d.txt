@@ -1,0 +1,5 @@
+SELECT DISTINCT u.username, u.city
+FROM users u
+WHERE u.userid IN (SELECT f2.followersid
+                       FROM follows f2, users u2
+                       WHERE u2.username = 'Yoshua Bengio' AND f2.followeeid = u2.userid)

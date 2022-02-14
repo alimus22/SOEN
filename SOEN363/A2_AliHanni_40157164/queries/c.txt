@@ -1,0 +1,8 @@
+SELECT tg1.hashtag, COUNT(tg1.tweetid)
+FROM tweettags tg1 GROUP BY tg1.hashtag
+HAVING COUNT(tg1.tweetid)=(
+SELECT MAX(counttweet)
+FROM (
+SELECT tg.hashtag, COUNT(tg.tweetid) AS counttweet
+FROM tweettags tg
+GROUP BY tg.hashtag)as q1)

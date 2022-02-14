@@ -1,0 +1,7 @@
+SELECT DISTINCT u2.username, u2.city
+FROM users u1, follows f, users u2
+WHERE u1.username = 'Ian Goodfellow' AND u1.userid = f.followersid
+AND f.followeeid IN (SELECT f2.followeeid
+                    FROM follows f2
+                    WHERE u2.userid = f2.followersid 
+                     AND u2.username != 'Ian Goodfellow')

@@ -1,0 +1,5 @@
+SELECT u.username
+FROM users u
+WHERE u.userid NOT IN (SELECT u1.userid
+                      FROM users u1, tweets tw, retweets rt
+                      WHERE u1.userid = tw.userid AND tw.tweetid = rt.tweetid)

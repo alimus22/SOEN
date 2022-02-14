@@ -1,0 +1,4 @@
+SELECT u.username, u.city
+FROM users u
+JOIN follows f ON u.userid = f.followersid
+WHERE f.followeeid = 2

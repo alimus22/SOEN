@@ -1,0 +1,6 @@
+SELECT u.username, COUNT(DISTINCT tw.tweetid) AS countTweet
+FROM users u, tweets tw, follows f
+WHERE u.userid = f.followersid AND f.followeeid = tw.userid 
+AND tw.tweettimestamp > u.lastlogin
+GROUP BY u.username
+ORDER BY countTweet DESC

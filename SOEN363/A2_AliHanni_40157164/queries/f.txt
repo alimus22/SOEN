@@ -1,0 +1,8 @@
+SELECT DISTINCT tw.tweettext
+FROM tweets tw, users u, retweets rt, users u2
+WHERE ((tw.userid = u.userid AND tw.tweettimestamp > u2.lastlogin) OR 
+       (rt.tweetid = tw.tweetid AND rt.userid = u.userid AND
+        rt.retweettimestamp > u2.lastlogin)) AND u2.username = 'Geoffrey Hinton'
+        AND u.userid IN (SELECT f.followeeid
+                        FROM follows f
+                        WHERE f.followersid = u2.userid)
