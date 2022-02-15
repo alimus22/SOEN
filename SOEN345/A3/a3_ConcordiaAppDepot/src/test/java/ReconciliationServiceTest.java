@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.mock;
 
 
 
@@ -48,6 +49,10 @@ public class ReconciliationServiceTest {
 	public void when_Transaction_to_process_Service_RETURNS_Processing_Count_One() throws Exception {
 		//TODO: 1. We will concentrate on when DAO returns 1 transaction.
 		// Stub the retrieval method to return a transaction:
+		TransactionDto mockedTransactionDto = mock(TransactionDto.class);
+		List<TransactionDto> trxList = new ArrayList<>();
+		trxList.add(mockedTransactionDto);
+		when(financialTransactionDAO.retrieveUnSettledTransactions()).thenReturn(trxList);
 		assertEquals(1, service.reconcile());
 	}
 
