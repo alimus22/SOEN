@@ -1,19 +1,18 @@
+/*
+  Ali Hanni - 40157164
+ */
 
-import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.ArgumentCaptor;//you need to use this import when completing the excercise
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.mockito.internal.verification.Times;//you need to use this import when completing the excercise
-
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;//you need to use this import when completing the excercise
 
 
 
@@ -177,7 +176,7 @@ public class ReconciliationServiceTest {
 	@Test
 	public void calculates_payable_with_multiple_Transaction() throws Exception {
 		/*
-		 * TODO: 6. Now it's time to test multiple transactions—one with CAD 200.00 and
+		 * TODO: 6. Now it's time to test multiple transactionsï¿½one with CAD 200.00 and
 		 * another with CAD 150.00, and Standard and Premium memberships. The deductible
 		 * is 15 percent and 10 percent respectively. The memberShip(double percent)
 		 * method creates membershipStatusDto. Stub the membershipDAO instance to return
