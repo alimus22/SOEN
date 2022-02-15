@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 
@@ -135,10 +136,17 @@ public class ReconciliationServiceTest {
 		double davidsAppPrice = 100.00;
 		davidsTransactionList.add(createTxDto(davidsDeveloperId, davidsPayPalId, davidsAppPrice));
 		// mock the unsettled david's transaction below.
-		
+		when(financialTransactionDAO.retrieveUnSettledTransactions()).thenReturn(davidsTransactionList);
 		assertEquals(1, service.reconcile());
 		//verify the call to the payPalFacade.sendAdvice method
-		
+		ArgumentCaptor<PaymentAdviceDto> argumentCaptor = ArgumentCaptor.forClass(PaymentAdviceDto.class);
+		verify(payPalFacade).sendAdvice(argumentCaptor.capture());
+
+		// Added some code just to understand how ArgumentCaptor works and verify that the
+		// advice is captured.
+		PaymentAdviceDto capturedAdvice = argumentCaptor.getValue();
+		assertEquals("david@paypal.com", capturedAdvice.getTargetPayPalId());
+		assertEquals(70, capturedAdvice.getAmount(), 0);
 	}
 
 
@@ -170,15 +178,15 @@ public class ReconciliationServiceTest {
 		double ronaldosSoccerFee = 100.00;
 		ronaldosTransactions.add(createTxDto(ronaldosDeveloperId, ronaldosPayPalId, ronaldosSoccerFee));
 		//mock mock the unsettled Ronaldo's transaction below.
-		
+		when(financialTransactionDAO.retrieveUnSettledTransactions()).thenReturn(ronaldosTransactions);
 		assertEquals(1, service.reconcile());
 		
 		//instantiate an ArgumentCaptor for calculateAdvice below
-
+		ArgumentCaptor<PaymentAdviceDto> calculatedAdvice = ArgumentCaptor.forClass(PaymentAdviceDto.class);
 		//verify that a call to payPalFacade.sendAdvice was sent from the argumentCaptor
-		
+		verify(payPalFacade).sendAdvice(calculatedAdvice.capture());
 		//corroborate that calculateAdvice.getValue().getAmount == 70
-		//assertTrue(70.00 == calculatedAdvice.getValue().getAmount());//uncomment when you fill the code above
+		assertTrue(70.00 == calculatedAdvice.getValue().getAmount());//uncomment when you fill the code above
 	}
 	
 	
@@ -204,27 +212,29 @@ public class ReconciliationServiceTest {
 		int davesAppFee = 150;
 		transactionList.add(createTxDto(davesDeveloperId, davesPayPalId, davesAppFee));
 		// mock financialTransactionDAO to retrieve the unsettled transactions from transactionList
+		when(financialTransactionDAO.retrieveUnSettledTransactions()).thenReturn(transactionList);
 
-		
 		//Use the memberShip(double percent) method to create an instance of membershipStatusDto and
 		//set the corresponding deductible.
 		//Note. When we use argument matchers, then all the arguments should use matchers. If we want to
 		//use a specific value for an argument, then we can use eq() method.
+		MembershipStatusDto johnMembership = memberShip(0.15);
+		MembershipStatusDto daveMembership = memberShip(0.10);
 		// mock the membership for johnDeveloperId to return .15
-		
+		when(membershipDAO.getStatusFor("john001")).thenReturn(johnMembership);
 		// mock the membership for davesDeveloperId to return .10
-		
+		when(membershipDAO.getStatusFor("dave888")).thenReturn(daveMembership);
+
 		assertEquals(2, service.reconcile());
 		// Instantiate an ArgumentCaptor<PaymentAdviceDto> for calculatedAdvice
-		
+		ArgumentCaptor<PaymentAdviceDto> calculatedAdvice = ArgumentCaptor.forClass(PaymentAdviceDto.class);
 		//verify the call to the method payPalFacade Times(2)
+		verify(payPalFacade, times(2)).sendAdvice(calculatedAdvice.capture());
 
 		//corroborate that the correct deductible was computed and passed to facade for both the developers:
-		/*
-		 * assertTrue(170.00 == calculatedAdvice.getAllValues().get(0).getAmount());
-		 * assertTrue(135.00 == calculatedAdvice.getAllValues().get(1).getAmount());
-		 * //uncomment when you fill the code above
-		 */
+		assertTrue(170.00 == calculatedAdvice.getAllValues().get(0).getAmount());
+		assertTrue(135.00 == calculatedAdvice.getAllValues().get(1).getAmount());
+		 //uncomment when you fill the code above
 	}
 
 
@@ -253,13 +263,14 @@ public class ReconciliationServiceTest {
 		janetsAppFees.add(createTxDto(janetsDeveloperId, janetsPayPalId, fishPondAppFee));
 		janetsAppFees.add(createTxDto(janetsDeveloperId, janetsPayPalId, ticTacToeAppFee));
 		//// mock financialTransactionDAO to retrieve the unsettled transactions from janetsappFees
-		
+		when(financialTransactionDAO.retrieveUnSettledTransactions()).thenReturn(janetsAppFees);
+
 		assertEquals(2, service.reconcile());
 		// Instantiate an ArgumentCaptor<PaymentAdviceDto> for calculatedAdvice
-		
+		ArgumentCaptor<PaymentAdviceDto> calculatedAdvice = ArgumentCaptor.forClass(PaymentAdviceDto.class);
 		//verify the call to the method payPalFacade Times(1)for janet:
-
+		verify(payPalFacade, times(1)).sendAdvice(calculatedAdvice.capture());
 		//corroborate that the correct advice was calculated 
-		//assertTrue(210.00 == calculatedAdvice.getValue().getAmount()); //uncomment when you fill the code above
+		assertTrue(210.00 == calculatedAdvice.getValue().getAmount()); //uncomment when you fill the code above
 	}
 }
