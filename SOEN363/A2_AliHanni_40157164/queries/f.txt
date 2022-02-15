@@ -5,4 +5,4 @@ WHERE ((tw.userid = u.userid AND tw.tweettimestamp > u2.lastlogin) OR
         rt.retweettimestamp > u2.lastlogin)) AND u2.username = 'Geoffrey Hinton'
         AND u.userid IN (SELECT f.followeeid
                         FROM follows f
-                        WHERE f.followersid = u2.userid)
+                        WHERE f.followerid = u2.userid)

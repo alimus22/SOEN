@@ -1,4 +1,4 @@
-SELECT u.username, u.city
-FROM users u
-JOIN follows f ON u.userid = f.followersid
-WHERE f.followeeid = 2
+SELECT distinct u.username, u.city
+FROM users u, users u2, follows f1
+JOIN follows f2 ON f1.followeeid = f2.followerid
+WHERE u2.username = 'Yoshua Bengio' and u2.userid = f2.followeeid AND u.userid = f1.followerid
