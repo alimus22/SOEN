@@ -4,6 +4,7 @@
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -12,9 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.mock;
-
+import static org.mockito.Mockito.*;
 
 
 public class ReconciliationServiceTest {
@@ -65,12 +64,17 @@ public class ReconciliationServiceTest {
 		 * transactions and add only one transaction with the developer's ID as DEV001.
 		 * Stub financialTransactioDAO to retrieve this list.
 		 */
-		 assertEquals(1, service.reconcile());
+		TransactionDto mockedTransaction =  mock(TransactionDto.class);
+		when(mockedTransaction.getTargetId()).thenReturn("DEV001");
+		List<TransactionDto> trxList = new ArrayList<>();
+		trxList.add(mockedTransaction);
+		when(financialTransactionDAO.retrieveUnSettledTransactions()).thenReturn(trxList);
+		assertEquals(1, service.reconcile());
 		 /* During test execution, the service will get this list and then it should ask
 		 * membershipDAO to get the details of developer DEV001. We will verify that in
 		 * the test using Mockito's verify() API. Add the verify code below.
 		 */		
-		
+		verify(membershipDAO).getStatusFor("DEV001");
 	}
 	
 	@Test
@@ -101,22 +105,22 @@ public class ReconciliationServiceTest {
 		multipleTxs.add(bobsTransaction);
 
 		//add the mock code to retrieve the unsettled transactions using multipleTxs
-		
+		when(financialTransactionDAO.retrieveUnSettledTransactions()).thenReturn(multipleTxs);
 		assertEquals(2, service.reconcile());
 		
 		//Declare an argument captor below
+		ArgumentCaptor<String> idCaptor = ArgumentCaptor.forClass(String.class);
 
 		//Verify the number of invocations by passing new Times(2) below.
-
+		verify(membershipDAO, times(2)).getStatusFor(idCaptor.capture());
 		//Use the argCaptor to return the list of invocations below
-		
+		List<String> passedValues = idCaptor.getAllValues();
 //		From that list verify whether membershipDAO was invoked for Bob and John below
 
-		/*
-		 * assertEquals(johnsDeveloperId, passedValues.get(0));
-		 * assertEquals(bobsDeveloperId, passedValues.get(1));
-		 * //uncomment when you fill the code above
-		 */
+		assertEquals(johnsDeveloperId, passedValues.get(0));
+		assertEquals(bobsDeveloperId, passedValues.get(1));
+		//uncomment when you fill the code above
+
 	}
 	
 	@Test
