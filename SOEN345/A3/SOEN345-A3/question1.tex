@@ -1,0 +1,3 @@
+\subsection*{Question 1}
+
+\noindent Since no stubbing is set for in the case the method \verb|.get| with argument value 1, the call \verb|list.get(1)| on the mock object \verb|list| will return the null value. The \verb|assertNull()| method verifies if the parameter's value is null which is indeed the case.\\ For example, trying the test \verb|assertNull(list.get(0))| will fail since the \verb|list.get(0)| will return the string \textit{"0th element"}, which is not null. 
