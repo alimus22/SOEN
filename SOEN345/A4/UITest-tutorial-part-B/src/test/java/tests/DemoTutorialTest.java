@@ -1,17 +1,17 @@
 package test.java.tests;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
-import java.util.concurrent.TimeUnit;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-
+import org.openqa.selenium.*;
 import test.java.seleniumtutorial.EnvironmentManager;
 import test.java.seleniumtutorial.RunEnvironment;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class DemoTutorialTest {
 	private WebDriver driver;
@@ -42,5 +42,29 @@ public class DemoTutorialTest {
     public void tearDown() {
         //shut down the driver
         EnvironmentManager.shutDownDriver();
+    }
+
+    @Test
+    public void testcase2() {
+        driver.get("https://www.google.ca/");
+        driver.manage().window().setSize(new Dimension(1140, 993));
+        driver.findElement(By.name("q")).sendKeys("arbitrary stuff");
+        driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+        {
+            List<WebElement> elements = driver.findElements(By.linkText("Images"));
+            assert(elements.size() > 0);
+        }
+        {
+            List<WebElement> elements = driver.findElements(By.linkText("Shopping"));
+            assert(elements.size() > 0);
+        }
+        {
+            List<WebElement> elements = driver.findElements(By.linkText("Videos"));
+            assert(elements.size() > 0);
+        }
+        {
+            List<WebElement> elements = driver.findElements(By.linkText("News"));
+            assert(elements.size() > 0);
+        }
     }
 }

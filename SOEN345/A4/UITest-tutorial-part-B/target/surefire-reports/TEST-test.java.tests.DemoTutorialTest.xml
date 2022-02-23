@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="test.java.tests.DemoTutorialTest" time="3.77" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="test.java.tests.DemoTutorialTest" time="8.273" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="17.0.1+1"/>
     <property name="sun.boot.library.path" value="/usr/local/Cellar/openjdk/17.0.1_1/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="maven.multiModuleProjectDirectory" value="/Users/alihanni/GitHub/SOEN/SOEN345/A4/UITest-tutorial-part-A"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/alihanni/GitHub/SOEN/SOEN345/A4/UITest-tutorial-part-B"/>
     <property name="java.vm.vendor" value="Homebrew"/>
     <property name="java.vendor.url" value="https://github.com/Homebrew/homebrew-core/issues"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -13,7 +13,7 @@
     <property name="user.country" value="CA"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/alihanni/GitHub/SOEN/SOEN345/A4/UITest-tutorial-part-A"/>
+    <property name="user.dir" value="/Users/alihanni/GitHub/SOEN/SOEN345/A4/UITest-tutorial-part-B"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.runtime.version" value="17.0.1+1"/>
     <property name="os.arch" value="x86_64"/>
@@ -61,5 +61,6 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase classname="test.java.tests.DemoTutorialTest" name="demoTest" time="3.77"/>
+  <testcase classname="test.java.tests.DemoTutorialTest" name="testcase2" time="5.311"/>
+  <testcase classname="test.java.tests.DemoTutorialTest" name="demoTest" time="2.962"/>
 </testsuite>

@@ -1,17 +1,16 @@
 package test.java.tests;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
-import java.util.concurrent.TimeUnit;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-
 import test.java.seleniumtutorial.EnvironmentManager;
 import test.java.seleniumtutorial.RunEnvironment;
+
+import java.util.concurrent.TimeUnit;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class DemoTutorialTest {
 	private WebDriver driver;
