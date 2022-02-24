@@ -45,26 +45,29 @@ public class DemoTutorialTest {
     }
 
     @Test
-    public void testcase2() {
-        driver.get("https://www.google.ca/");
+    public void webAppTest() {
+        driver.get("https://en.wikipedia.org/wiki/Software_engineering");
+        {
+            List<WebElement> elements = driver.findElements(By.cssSelector(".mw-wiki-logo"));
+            assert(elements.size() > 0);
+        }
+        {
+            List<WebElement> elements = driver.findElements(By.cssSelector(".sidebar"));
+            assert(elements.size() > 0);
+        }
         driver.manage().window().setSize(new Dimension(1140, 993));
-        driver.findElement(By.name("q")).sendKeys("arbitrary stuff");
-        driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+    }
+
+    @Test
+    public void mobileAppTest() {
+        driver.get("https://en.m.wikipedia.org/wiki/Software_engineering");
         {
-            List<WebElement> elements = driver.findElements(By.linkText("Images"));
-            assert(elements.size() > 0);
+            List<WebElement> elements = driver.findElements(By.cssSelector(".sidebar"));
+            assert(elements.size() == 0);
         }
         {
-            List<WebElement> elements = driver.findElements(By.linkText("Shopping"));
-            assert(elements.size() > 0);
-        }
-        {
-            List<WebElement> elements = driver.findElements(By.linkText("Videos"));
-            assert(elements.size() > 0);
-        }
-        {
-            List<WebElement> elements = driver.findElements(By.linkText("News"));
-            assert(elements.size() > 0);
+            List<WebElement> elements = driver.findElements(By.cssSelector(".mw-wiki-logo"));
+            assert(elements.size() == 0);
         }
     }
 }

@@ -1,0 +1,119 @@
+{
+  "id": "de810713-934a-4e3d-9dcd-79dd91bcef4b",
+  "version": "2.0",
+  "name": "A4 ui testing",
+  "url": "https://www.google.ca",
+  "tests": [{
+    "id": "a75f6710-9f38-4821-aca4-d222489ccc6b",
+    "name": "Test case 2",
+    "commands": [{
+      "id": "e5204894-199c-48a8-9963-ef22bdeebecc",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "98807b25-86e1-4360-b0af-c59e2928634d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1140x993",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4eca0b8a-904f-4aa1-98b2-6175d097199e",
+      "comment": "",
+      "command": "type",
+      "target": "name=q",
+      "targets": [
+        ["name=q", "name"],
+        ["css=.gLFyf", "css:finder"],
+        ["xpath=//input[@name='q']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "arbitrary stuff"
+    }, {
+      "id": "4ddc395e-f19d-4f54-8a4a-1d434bb4654a",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=q",
+      "targets": [
+        ["name=q", "name"],
+        ["css=.gLFyf", "css:finder"],
+        ["xpath=//input[@name='q']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "ac1fe172-ca22-4987-a81c-4043920f6ab3",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "linkText=Images",
+      "targets": [
+        ["linkText=Images", "linkText"],
+        ["css=.hdtb-mitem:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Images')]", "xpath:link"],
+        ["xpath=//div[@id='hdtb-msb']/div/div/div[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/search?q=arbitrary+stuff&sxsrf=APq-WBuIv1Q9PM09GO_-764ZTsYBFg67JA:1645658379923&source=lnms&tbm=isch&sa=X&ved=2ahUKEwienKCZ-5b2AhVBTd8KHfveCG8Q_AUoAXoECAEQAw')]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Images')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "73c708cd-98c6-4c8f-a7f4-07ceff9308ed",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "linkText=Shopping",
+      "targets": [
+        ["linkText=Shopping", "linkText"],
+        ["css=.hdtb-mitem:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Shopping')]", "xpath:link"],
+        ["xpath=//div[@id='hdtb-msb']/div/div/div[3]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/search?q=arbitrary+stuff&sxsrf=APq-WBuIv1Q9PM09GO_-764ZTsYBFg67JA:1645658379923&source=lnms&tbm=shop&sa=X&ved=2ahUKEwienKCZ-5b2AhVBTd8KHfveCG8Q_AUoAnoECAEQBA')]", "xpath:href"],
+        ["xpath=//div/div/div/div/div[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Shopping')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "83c5060f-db24-4a77-a1b4-5a544d94b2bf",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "linkText=Videos",
+      "targets": [
+        ["linkText=Videos", "linkText"],
+        ["css=.hdtb-mitem:nth-child(4) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Videos')]", "xpath:link"],
+        ["xpath=//div[@id='hdtb-msb']/div/div/div[4]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/search?q=arbitrary+stuff&sxsrf=APq-WBuIv1Q9PM09GO_-764ZTsYBFg67JA:1645658379923&source=lnms&tbm=vid&sa=X&ved=2ahUKEwienKCZ-5b2AhVBTd8KHfveCG8Q_AUoA3oECAEQBQ')]", "xpath:href"],
+        ["xpath=//div[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Videos')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b73c79ca-6bf0-4bb6-b0ea-0555893542a1",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "linkText=News",
+      "targets": [
+        ["linkText=News", "linkText"],
+        ["css=.hdtb-mitem:nth-child(5) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'News')]", "xpath:link"],
+        ["xpath=//div[@id='hdtb-msb']/div/div/div[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/search?q=arbitrary+stuff&sxsrf=APq-WBuIv1Q9PM09GO_-764ZTsYBFg67JA:1645658379923&source=lnms&tbm=nws&sa=X&ved=2ahUKEwienKCZ-5b2AhVBTd8KHfveCG8Q_AUoBHoECAEQBg')]", "xpath:href"],
+        ["xpath=//div[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'News')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "b9140026-edaa-4ae0-90be-ced993696281",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a75f6710-9f38-4821-aca4-d222489ccc6b"]
+  }],
+  "urls": ["https://www.google.ca/"],
+  "plugins": []
+}

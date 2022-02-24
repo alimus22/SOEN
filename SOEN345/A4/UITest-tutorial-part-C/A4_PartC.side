@@ -1,0 +1,83 @@
+{
+  "id": "83291694-bcf1-4c55-8703-b4a3b61652d7",
+  "version": "2.0",
+  "name": "A4_PartC_WebApp",
+  "url": "https://en.m.wikipedia.org/wiki/Software_engineering",
+  "tests": [{
+    "id": "2206af82-2f39-4c5d-be5d-6a066a8dc6fc",
+    "name": "WebApp_Test",
+    "commands": [{
+      "id": "6eea6a40-295c-4866-a63e-a2e42f86dc46",
+      "comment": "",
+      "command": "open",
+      "target": "/wiki/Software_engineering",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6dbce0b4-e76d-4ddb-b2c1-9a98e6f70c78",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.mw-wiki-logo",
+      "targets": [
+        ["css=.mw-wiki-logo", "css:finder"],
+        ["xpath=//div[@id='p-logo']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/wiki/Main_Page')]", "xpath:href"],
+        ["xpath=//div[2]/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9d89480a-b9e8-444d-a50a-db9b7479ccb9",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.sidebar",
+      "targets": [
+        ["css=.sidebar", "css:finder"],
+        ["xpath=//div[@id='mw-content-text']/div/table", "xpath:idRelative"],
+        ["xpath=//table", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8995046e-b36d-4ee2-b6a0-1bb07396e82b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1140x993",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "a25fe202-da0e-43c6-a39c-9af3c1041263",
+    "name": "MobileApp_Test",
+    "commands": [{
+      "id": "ba4bc879-8aa2-4190-a1f7-37323b33856f",
+      "comment": "",
+      "command": "open",
+      "target": "https://en.m.wikipedia.org/wiki/Software_engineering",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4b4f2924-8638-486b-93ac-fe255748e1dd",
+      "comment": "",
+      "command": "assertElementNotPresent",
+      "target": "css=.sidebar",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a9ece290-91be-4d1d-84f2-84b1d4426082",
+      "comment": "",
+      "command": "assertElementNotPresent",
+      "target": "css=.mw-wiki-logo",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "c47ba0bb-0de2-4ff9-97b1-440fdc8447db",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://en.wikipedia.org/"],
+  "plugins": []
+}
