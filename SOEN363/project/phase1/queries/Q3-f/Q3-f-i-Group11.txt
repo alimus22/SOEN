@@ -1,0 +1,4 @@
+SELECT DISTINCT ON (M1.title) *
+FROM Movies M1
+WHERE M1.num_ratings = (SELECT MAX(M.num_ratings)
+				FROM Movies M )

@@ -1,0 +1,30 @@
+Aggregate  (cost=1745571.30..1745571.31 rows=1 width=8) (actual time=9784.480..9784.528 rows=1 loops=1)
+  ->  Nested Loop  (cost=4595.55..1745570.39 rows=365 width=0) (actual time=107.141..9784.106 rows=239 loops=1)
+        Join Filter: (NOT (SubPlan 1))
+        Rows Removed by Join Filter: 295
+        ->  Seq Scan on actors a  (cost=0.00..4756.71 rows=5 width=4) (actual time=19.132..37.377 rows=3 loops=1)
+              Filter: ((name)::text = 'Annette Nicole'::text)
+              Rows Removed by Filter: 231734
+        ->  Materialize  (cost=4595.55..4598.47 rows=146 width=14) (actual time=21.087..21.455 rows=178 loops=3)
+              ->  Unique  (cost=4595.55..4596.28 rows=146 width=14) (actual time=63.194..63.748 rows=178 loops=1)
+                    ->  Sort  (cost=4595.55..4595.91 rows=146 width=14) (actual time=63.192..63.382 rows=295 loops=1)
+                          Sort Key: a1.name
+                          Sort Method: quicksort  Memory: 41kB
+                          ->  Nested Loop  (cost=1000.42..4590.30 rows=146 width=14) (actual time=10.080..63.022 rows=295 loops=1)
+                                ->  Gather  (cost=1000.00..4564.45 rows=5 width=4) (actual time=10.030..62.836 rows=3 loops=1)
+                                      Workers Planned: 1
+                                      Workers Launched: 1
+                                      ->  Parallel Seq Scan on actors a_1  (cost=0.00..3563.95 rows=3 width=4) (actual time=7.827..40.173 rows=2 loops=2)
+                                            Filter: ((name)::text = 'Annette Nicole'::text)
+                                            Rows Removed by Filter: 115867
+                                ->  Index Only Scan using actors_pkey on actors a1  (cost=0.42..4.92 rows=25 width=18) (actual time=0.023..0.043 rows=98 loops=3)
+                                      Index Cond: (mid = a_1.mid)
+                                      Filter: ((name)::text <> 'Annette Nicole'::text)
+                                      Rows Removed by Filter: 1
+                                      Heap Fetches: 0
+        SubPlan 1
+          ->  Seq Scan on actors a_2  (cost=0.00..4756.71 rows=5 width=4) (actual time=8.482..18.117 rows=4 loops=534)
+                Filter: ((name)::text = (a1.name)::text)
+                Rows Removed by Filter: 175214
+Planning Time: 1.148 ms
+Execution Time: 9784.780 ms

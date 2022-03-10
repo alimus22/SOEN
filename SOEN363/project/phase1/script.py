@@ -1,7 +1,6 @@
 import pandas as pd
 from os import listdir
 
-path = './results'
 files = listdir('./execution')
 
 for file in files:

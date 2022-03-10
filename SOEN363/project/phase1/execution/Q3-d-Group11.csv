@@ -1,0 +1,9 @@
+Sort  (cost=989.34..1014.83 rows=10197 width=29) (actual time=22.824..24.875 rows=10197 loops=1)
+"  Sort Key: year, rating DESC"
+  Sort Method: quicksort  Memory: 1200kB
+  ->  HashAggregate  (cost=208.46..310.43 rows=10197 width=29) (actual time=7.524..12.140 rows=10197 loops=1)
+        Group Key: mid
+        Batches: 1  Memory Usage: 1425kB
+        ->  Seq Scan on movies m  (cost=0.00..182.97 rows=10197 width=29) (actual time=0.008..1.638 rows=10197 loops=1)
+Planning Time: 0.085 ms
+Execution Time: 26.931 ms

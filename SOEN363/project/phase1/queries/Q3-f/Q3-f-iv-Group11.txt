@@ -1,0 +1,5 @@
+SELECT *
+FROM Movies M1
+WHERE M1.rating = (SELECT MIN(M.rating)
+			FROM Movies M )
+ORDER BY M1.mid ASC

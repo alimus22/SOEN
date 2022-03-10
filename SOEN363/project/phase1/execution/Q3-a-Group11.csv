@@ -1,0 +1,15 @@
+Gather Merge  (cost=4588.89..4589.24 rows=3 width=17) (actual time=50.729..51.839 rows=21 loops=1)
+  Workers Planned: 1
+  Workers Launched: 1
+  ->  Sort  (cost=3588.88..3588.89 rows=3 width=17) (actual time=22.955..22.958 rows=10 loops=2)
+        Sort Key: movies.title
+        Sort Method: quicksort  Memory: 26kB
+        Worker 0:  Sort Method: quicksort  Memory: 25kB
+        ->  Nested Loop  (cost=0.29..3588.86 rows=3 width=17) (actual time=1.835..22.689 rows=10 loops=2)
+              ->  Parallel Seq Scan on actors  (cost=0.00..3563.95 rows=3 width=4) (actual time=1.817..22.558 rows=10 loops=2)
+                    Filter: ((name)::text = 'Daniel Craig'::text)
+                    Rows Removed by Filter: 115858
+              ->  Index Scan using movies_pkey on movies  (cost=0.29..8.30 rows=1 width=21) (actual time=0.008..0.008 rows=1 loops=21)
+                    Index Cond: (mid = actors.mid)
+Planning Time: 0.499 ms
+Execution Time: 52.908 ms

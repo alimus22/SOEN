@@ -1,0 +1,12 @@
+Sort  (cost=214.09..214.15 rows=23 width=14) (actual time=2.286..2.295 rows=91 loops=1)
+  Sort Key: actors.name
+  Sort Method: quicksort  Memory: 29kB
+  ->  Nested Loop  (cost=0.42..213.57 rows=23 width=14) (actual time=2.188..2.258 rows=91 loops=1)
+        ->  Seq Scan on movies  (cost=0.00..208.46 rows=1 width=4) (actual time=2.164..2.205 rows=1 loops=1)
+              Filter: ((title)::text = 'The Dark Knight'::text)
+              Rows Removed by Filter: 10196
+        ->  Index Only Scan using actors_pkey on actors  (cost=0.42..4.86 rows=25 width=18) (actual time=0.019..0.033 rows=91 loops=1)
+              Index Cond: (mid = movies.mid)
+              Heap Fetches: 0
+Planning Time: 0.240 ms
+Execution Time: 2.337 ms

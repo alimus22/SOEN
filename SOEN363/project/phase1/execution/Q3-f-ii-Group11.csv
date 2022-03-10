@@ -1,0 +1,11 @@
+Sort  (cost=429.37..430.13 rows=302 width=33) (actual time=7.264..7.266 rows=1 loops=1)
+  Sort Key: m1.mid
+  Sort Method: quicksort  Memory: 25kB
+  InitPlan 1 (returns $0)
+    ->  Aggregate  (cost=208.46..208.47 rows=1 width=4) (actual time=4.830..4.831 rows=1 loops=1)
+          ->  Seq Scan on movies m  (cost=0.00..182.97 rows=10197 width=4) (actual time=0.004..2.348 rows=10197 loops=1)
+  ->  Seq Scan on movies m1  (cost=0.00..208.46 rows=302 width=33) (actual time=6.262..7.244 rows=1 loops=1)
+        Filter: (rating = $0)
+        Rows Removed by Filter: 10196
+Planning Time: 0.153 ms
+Execution Time: 7.341 ms

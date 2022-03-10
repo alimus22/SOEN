@@ -1,0 +1,28 @@
+Aggregate  (cost=10856.63..10856.64 rows=1 width=8) (actual time=276.333..276.349 rows=1 loops=1)
+  ->  Subquery Scan on hr  (cost=10387.59..10831.94 rows=9874 width=0) (actual time=269.179..275.749 rows=7015 loops=1)
+        Filter: (NOT (hashed SubPlan 1))
+        Rows Removed by Filter: 6695
+        ->  HashAggregate  (cost=3704.25..3901.74 rows=19749 width=14) (actual time=26.627..29.116 rows=13710 loops=1)
+              Group Key: a.name
+              Batches: 1  Memory Usage: 1553kB
+              ->  Nested Loop  (cost=0.42..3654.88 rows=19749 width=14) (actual time=0.049..14.800 rows=18031 loops=1)
+                    ->  Seq Scan on movies m  (cost=0.00..208.46 rows=869 width=4) (actual time=0.030..1.972 rows=869 loops=1)
+                          Filter: (rating >= '4'::double precision)
+                          Rows Removed by Filter: 9328
+                    ->  Index Only Scan using actors_pkey on actors a  (cost=0.42..3.72 rows=25 width=18) (actual time=0.006..0.010 rows=21 loops=869)
+                          Index Cond: (mid = m.mid)
+                          Heap Fetches: 0
+        SubPlan 1
+          ->  HashAggregate  (cost=5625.10..6095.43 rows=47033 width=14) (actual time=191.756..219.454 rows=87031 loops=1)
+                Group Key: a_1.name
+                Batches: 5  Memory Usage: 4145kB  Disk Usage: 3352kB
+                ->  Hash Join  (cost=322.20..5108.14 rows=206784 width=14) (actual time=3.416..100.346 rows=210792 loops=1)
+                      Hash Cond: (a_1.mid = m_1.mid)
+                      ->  Seq Scan on actors a_1  (cost=0.00..4177.37 rows=231737 width=18) (actual time=0.053..27.433 rows=231737 loops=1)
+                      ->  Hash  (cost=208.46..208.46 rows=9099 width=4) (actual time=3.344..3.345 rows=9099 loops=1)
+                            Buckets: 16384  Batches: 1  Memory Usage: 448kB
+                            ->  Seq Scan on movies m_1  (cost=0.00..208.46 rows=9099 width=4) (actual time=0.011..1.752 rows=9099 loops=1)
+                                  Filter: (rating < '4'::double precision)
+                                  Rows Removed by Filter: 1098
+Planning Time: 0.605 ms
+Execution Time: 281.416 ms

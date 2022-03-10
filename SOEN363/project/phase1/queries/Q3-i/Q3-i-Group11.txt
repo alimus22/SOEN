@@ -1,0 +1,6 @@
+SELECT a.name
+FROM Movies m, Actors a
+WHERE m.mid = a.mid
+GROUP BY a.name
+ORDER BY (MAX(m.year) - MIN(m.year)) DESC
+LIMIT 1

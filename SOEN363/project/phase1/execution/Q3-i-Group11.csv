@@ -1,0 +1,15 @@
+Limit  (cost=25870.55..25870.56 rows=1 width=18) (actual time=325.687..325.693 rows=1 loops=1)
+  ->  Sort  (cost=25870.55..25988.14 rows=47033 width=18) (actual time=325.685..325.690 rows=1 loops=1)
+        Sort Key: ((max(m.year) - min(m.year))) DESC
+        Sort Method: top-N heapsort  Memory: 25kB
+        ->  HashAggregate  (cost=22331.81..25635.39 rows=47033 width=18) (actual time=245.611..308.893 rows=95241 loops=1)
+              Group Key: a.name
+              Batches: 5  Memory Usage: 4401kB  Disk Usage: 6968kB
+              ->  Hash Join  (cost=310.43..5096.37 rows=231737 width=18) (actual time=8.337..113.813 rows=231737 loops=1)
+                    Hash Cond: (a.mid = m.mid)
+                    ->  Seq Scan on actors a  (cost=0.00..4177.37 rows=231737 width=18) (actual time=0.079..30.211 rows=231737 loops=1)
+                    ->  Hash  (cost=182.97..182.97 rows=10197 width=8) (actual time=8.239..8.241 rows=10197 loops=1)
+                          Buckets: 16384  Batches: 1  Memory Usage: 527kB
+                          ->  Seq Scan on movies m  (cost=0.00..182.97 rows=10197 width=8) (actual time=0.011..4.586 rows=10197 loops=1)
+Planning Time: 0.277 ms
+Execution Time: 334.380 ms

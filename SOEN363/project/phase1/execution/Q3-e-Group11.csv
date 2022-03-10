@@ -1,0 +1,41 @@
+Group  (cost=1388.82..1388.84 rows=3 width=21) (actual time=23.880..23.887 rows=0 loops=1)
+  Group Key: m.mid
+  ->  Sort  (cost=1388.82..1388.83 rows=3 width=21) (actual time=23.880..23.886 rows=0 loops=1)
+        Sort Key: m.mid
+        Sort Method: quicksort  Memory: 25kB
+        ->  Nested Loop  (cost=976.86..1388.80 rows=3 width=21) (actual time=23.818..23.823 rows=0 loops=1)
+              ->  Nested Loop  (cost=976.57..999.81 rows=1 width=29) (actual time=23.817..23.822 rows=0 loops=1)
+                    Join Filter: (t_1.mid = m.mid)
+                    ->  Hash Join  (cost=976.29..988.20 rows=10 width=8) (actual time=23.816..23.821 rows=0 loops=1)
+                          Hash Cond: (t.mid = t_1.mid)
+                          ->  HashAggregate  (cost=726.30..731.55 rows=525 width=4) (actual time=10.307..10.326 rows=55 loops=1)
+                                Group Key: t.mid
+                                Batches: 1  Memory Usage: 49kB
+                                ->  Nested Loop  (cost=0.29..724.99 rows=525 width=4) (actual time=0.080..10.210 rows=58 loops=1)
+                                      ->  Seq Scan on tag_names tn  (cost=0.00..245.28 rows=134 width=4) (actual time=0.031..9.918 rows=48 loops=1)
+                                            Filter: ((tag)::text ~~ 'bad%'::text)
+                                            Rows Removed by Filter: 13174
+                                      ->  Index Only Scan using tags_pkey on tags t  (cost=0.29..3.48 rows=10 width=8) (actual time=0.004..0.005 rows=1 loops=48)
+                                            Index Cond: (tid = tn.tid)
+                                            Heap Fetches: 0
+                          ->  Hash  (cost=249.94..249.94 rows=4 width=4) (actual time=13.445..13.447 rows=139 loops=1)
+                                Buckets: 1024  Batches: 1  Memory Usage: 13kB
+                                ->  Group  (cost=249.88..249.90 rows=4 width=4) (actual time=12.354..12.431 rows=139 loops=1)
+                                      Group Key: t_1.mid
+                                      ->  Sort  (cost=249.88..249.89 rows=4 width=4) (actual time=12.351..12.373 rows=148 loops=1)
+                                            Sort Key: t_1.mid
+                                            Sort Method: quicksort  Memory: 31kB
+                                            ->  Nested Loop  (cost=0.29..249.84 rows=4 width=4) (actual time=0.211..12.258 rows=148 loops=1)
+                                                  ->  Seq Scan on tag_names tn_1  (cost=0.00..245.28 rows=1 width=4) (actual time=0.096..6.134 rows=93 loops=1)
+                                                        Filter: ((tag)::text ~~ 'good%'::text)
+                                                        Rows Removed by Filter: 13129
+                                                  ->  Index Only Scan using tags_pkey on tags t_1  (cost=0.29..4.46 rows=10 width=8) (actual time=0.011..0.011 rows=2 loops=93)
+                                                        Index Cond: (tid = tn_1.tid)
+                                                        Heap Fetches: 0
+                    ->  Index Scan using movies_pkey on movies m  (cost=0.29..1.15 rows=1 width=21) (never executed)
+                          Index Cond: (mid = t.mid)
+              ->  Index Only Scan using tags_pkey on tags t1  (cost=0.29..388.91 rows=8 width=4) (never executed)
+                    Index Cond: (mid = m.mid)
+                    Heap Fetches: 0
+Planning Time: 4.276 ms
+Execution Time: 24.326 ms

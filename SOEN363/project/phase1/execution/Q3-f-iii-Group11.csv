@@ -1,0 +1,15 @@
+Hash Join  (cost=416.99..626.75 rows=1 width=33) (actual time=30.441..30.445 rows=0 loops=1)
+  Hash Cond: (m1.rating = (max(m_1.rating)))
+  ->  Hash Join  (cost=208.49..418.25 rows=2 width=33) (actual time=20.257..22.591 rows=2 loops=1)
+        Hash Cond: (m1.num_ratings = (max(m.num_ratings)))
+        ->  Seq Scan on movies m1  (cost=0.00..182.97 rows=10197 width=33) (actual time=0.014..1.864 rows=10197 loops=1)
+        ->  Hash  (cost=208.48..208.48 rows=1 width=4) (actual time=17.163..17.164 rows=1 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              ->  Aggregate  (cost=208.46..208.47 rows=1 width=4) (actual time=17.156..17.157 rows=1 loops=1)
+                    ->  Seq Scan on movies m  (cost=0.00..182.97 rows=10197 width=4) (actual time=0.007..11.068 rows=10197 loops=1)
+  ->  Hash  (cost=208.48..208.48 rows=1 width=4) (actual time=7.826..7.827 rows=1 loops=1)
+        Buckets: 1024  Batches: 1  Memory Usage: 9kB
+        ->  Aggregate  (cost=208.46..208.47 rows=1 width=4) (actual time=7.819..7.819 rows=1 loops=1)
+              ->  Seq Scan on movies m_1  (cost=0.00..182.97 rows=10197 width=4) (actual time=0.025..4.151 rows=10197 loops=1)
+Planning Time: 0.418 ms
+Execution Time: 30.518 ms
