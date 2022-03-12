@@ -1,6 +1,10 @@
-SELECT a.name
-FROM Movies m, Actors a
-WHERE m.mid = a.mid
-GROUP BY a.name
-ORDER BY (MAX(m.year) - MIN(m.year)) DESC
-LIMIT 1
+SELECT L.name
+FROM (SELECT A.name, MAX(M.year)- MIN(M.year) as longevity
+	  FROM Movies M, Actors A
+	  WHERE M.mid=A.mid
+	  GROUP BY A.name) L
+WHERE L.longevity = (SELECT MAX(L.longevity)
+			   FROM (SELECT MAX(M.year)-MIN(M.year) as longevity
+				    FROM Movies M, Actors A
+				    WHERE M.mid=A.mid
+				    GROUP BY A.name) L)
