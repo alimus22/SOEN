@@ -1,0 +1,32 @@
+-- Find duplicates in movies table --
+
+SELECT title, year, rating, num_ratings, COUNT(mid)
+FROM movies
+GROUP BY title, year, rating, num_ratings
+HAVING COUNT(mid) > 1
+ORDER BY title;
+
+-- Query to display movies without duplicate -- 
+
+SELECT MIN(mid) AS mid, title, year, rating, num_ratings
+FROM movies
+GROUP BY title, year, rating, num_ratings
+ORDER BY title;
+
+-- Create View for movies without duplicates --
+
+CREATE VIEW movies_no_duplicates AS
+    SELECT MIN(mid) AS mid, title, year, rating, num_ratings
+    FROM movies
+    GROUP BY title, year, rating, num_ratings;
+
+
+-- Create View for actors without duplicates -- 
+
+CREATE VIEW actors_no_duplicates AS
+    SELECT actors.*
+    FROM actors JOIN movies_no_duplicates mnd ON actors.mid = mnd.mid
+
+
+
+
