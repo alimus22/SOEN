@@ -1,0 +1,13 @@
+CREATE OR REPLACE VIEW numActors_movies AS
+    SELECT
+        mid,
+        COUNT(DISTINCT name) numActors
+    FROM actors
+    GROUP BY mid
+    ORDER BY numActors DESC
+
+SELECT DISTINCT A.name, SUM(numActors - 1) AS numActors
+FROM actors A, numactors_movies nm
+WHERE A.mid = nm.mid AND A.name = 'Tom Cruise'
+GROUP BY A.name
+ORDER BY numactors DESC
