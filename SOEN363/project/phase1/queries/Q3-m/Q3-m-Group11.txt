@@ -58,4 +58,27 @@ CREATE VIEW genres_no_duplicates AS
     JOIN movies_no_duplicates mnd ON genres.mid = mnd.mid
     ORDER BY  mid, genre
 
+-- Query that shows that no duplicates in tag_names (returns nothing) -- 
+
+SELECT tid, tag, COUNT(tid)
+FROM tag_names
+GROUP BY tid, tag
+HAVING COUNT(tid) > 1
+
+-- Query to show duplicates for tags table -- 
+
+SELECT tags.tid, tag, title as movie_title, COUNT(movies.mid) AS count
+FROM tags
+JOIN tag_names tn on tags.tid = tn.tid
+JOIN movies ON movies.mid = tags.mid
+GROUP BY tags.tid, tag, title
+HAVING COUNT(movies.mid) > 1
+
+-- Create view for tags without duplicates -- 
+
+CREATE VIEW tags_no_duplicates AS
+    SELECT tags.mid, tags.tid
+    FROM tags
+    JOIN movies_no_duplicates mnd on tags.mid = mnd.mid
+    ORDER BY tags.mid, tags.tid
 
