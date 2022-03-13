@@ -21,12 +21,41 @@ CREATE VIEW movies_no_duplicates AS
     GROUP BY title, year, rating, num_ratings;
 
 
+
+-- Display actors and duplicate movies they played in -- 
+
+SELECT name, cast_position, title AS movie_title, t1.count AS count
+FROM (
+    SELECT
+           name, cast_position, title,
+           COUNT(movies.mid)
+    FROM actors
+    JOIN movies ON actors.mid = movies.mid
+    GROUP BY name, cast_position, title
+    HAVING COUNT(movies.mid) > 1) AS t1
+ORDER BY name, cast_position;
+
 -- Create View for actors without duplicates -- 
 
 CREATE VIEW actors_no_duplicates AS
     SELECT actors.*
     FROM actors JOIN movies_no_duplicates mnd ON actors.mid = mnd.mid
 
+-- Display genres and duplicate movies associated with them -- 
 
+SELECT genre, title as movie_title, COUNT(movies.mid)
+FROM genres
+JOIN movies ON genres.mid = movies.mid
+GROUP BY genre, title
+HAVING COUNT(movies.mid) > 1
+ORDER BY genre, movies.title
+
+-- Create view for genres without duplicates -- 
+
+CREATE VIEW genres_no_duplicates AS
+    SELECT genres.mid, genre
+    FROM genres
+    JOIN movies_no_duplicates mnd ON genres.mid = mnd.mid
+    ORDER BY  mid, genre
 
 
