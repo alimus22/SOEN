@@ -1,0 +1,9 @@
+Select A.name , COUNT(DISTINCT CC.name) AS co_actors
+FROM Actors A,(SELECT A.name
+               FROM Actors A,(SELECT m.mid
+                              FROM movies m
+                              JOIN Actors A ON m.mid = A.mid
+                              WHERE A.name = 'Tom Cruise') AS B
+               WHERE A.mid = B.mid) AS CC
+WHERE A.name = 'Tom Cruise'
+GROUP BY A.name
