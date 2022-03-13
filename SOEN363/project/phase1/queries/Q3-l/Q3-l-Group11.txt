@@ -1,0 +1,33 @@
+-- Create view that gives number of actors for each movie --
+
+CREATE VIEW num_actors AS
+    SELECT mid, COUNT(mid) as count_actors
+    FROM actors
+    GROUP BY mid
+    ORDER BY COUNT(mid) DESC
+
+
+-- Create view that gives the number of common actors between any given pair of movies -- 
+
+CREATE VIEW count_common_actors AS
+    SELECT
+           M1.mid AS mid1,
+           M2.mid AS mid2,
+           COUNT(A1.name) as count_common_actors
+    FROM movies M1, movies M2, actors A1, actors A2
+    WHERE M1.mid = A1.mid AND M2.mid = A2.mid
+    AND A1.name = A2.name AND M1.mid <> M2.mid
+    GROUP BY M1.mid, M2.mid
+    ORDER BY M1.mid
+
+-- Create a view that gives the fraction of common actors between any given pair of movies --
+
+CREATE VIEW fraction_common_actors AS
+    SELECT
+        M1.mid AS mid1,
+        M2.mid AS mid2,
+        (CAST(CCA.count_common_actors AS FLOAT) / CAST(NA.count_actors AS FLOAT)) AS fraction_common
+    FROM movies M1, movies M2, num_actors NA, count_common_actors CCA
+    WHERE M1.mid = NA.mid AND M1.mid = CCA.mid1 AND NA.mid = CCA.mid1
+      AND M2.mid = CCA.mid2 AND M1.mid <> M2.mid AND M1.title NOT LIKE M2.title
+    ORDER BY M1.mid

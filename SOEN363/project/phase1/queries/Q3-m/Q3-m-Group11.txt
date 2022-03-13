@@ -82,3 +82,4 @@ CREATE VIEW tags_no_duplicates AS
     JOIN movies_no_duplicates mnd on tags.mid = mnd.mid
     ORDER BY tags.mid, tags.tid
 
+
