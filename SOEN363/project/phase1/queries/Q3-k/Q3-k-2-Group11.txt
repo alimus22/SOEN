@@ -1,13 +1,11 @@
-CREATE OR REPLACE VIEW numActors_movies AS
-    SELECT
-        mid,
-        COUNT(DISTINCT name) numActors
-    FROM actors
-    GROUP BY mid
-    ORDER BY numActors DESC
+CREATE VIEW social AS
+    SELECT A1.name, COUNT(DISTINCT(A2.name)) AS num_coActors
+    FROM Actors A1, Actors A2
+    WHERE A1.mid = A2.mid AND A1.name <> A2.name
+    GROUP BY A1.name ORDER BY 2 DESC
 
-SELECT DISTINCT A.name, SUM(numActors - 1) AS numActors
-FROM actors A, numactors_movies nm
-WHERE A.mid = nm.mid AND A.name = 'Tom Cruise'
-GROUP BY A.name
-ORDER BY numactors DESC
+
+SELECT name, num_coactors
+FROM social
+WHERE num_coactors >= ALL(SELECT MAX(num_coactors)
+                          FROM social)
