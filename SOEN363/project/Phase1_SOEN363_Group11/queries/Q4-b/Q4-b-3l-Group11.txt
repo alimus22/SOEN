@@ -1,0 +1,19 @@
+CREATE MATERIALIZED VIEW mat_similarity_of_movies AS
+SELECT moviex.mid AS movieid1 , moviey.mid AS movieid2 ,( ((f1.fraction + 0 + f3.fraction + YD.yeargap + RD.ratingap)/5.0) * 100) AS Similarity
+FROM movies moviex,movies moviey,fraction_actors f1, fraction_common_genres f3,year_gap YD ,rate_gap RD
+WHERE moviex.mid = f1.movieid1 AND moviey.mid = f1.movieid2   AND moviex.mid = f3.movieid1 AND moviey.mid = f3.movieid2 AND moviex.mid = YD.mx1 AND moviey.mid = YD.mx2 AND moviex.mid = RD.mx1 AND moviey.mid = RD.my2 AND moviex.mid <> moviey.mid;
+
+CREATE MATERIALIZED VIEW mat_suggestion AS
+
+   SELECT moviex.title, moviey.rating, S.Similarity
+   FROM mat_similarity_of_movies S,
+       movies moviex,
+       movies moviey
+   WHERE S.movieid1 = moviex.mid
+    AND moviey.title = 'Mr. & Mrs. Smith'
+    AND S.movieid2 = moviey.mid
+   ORDER BY S.Similarity DESC
+   LIMIT 10
+
+
+SELECT * FROM mat_suggestion

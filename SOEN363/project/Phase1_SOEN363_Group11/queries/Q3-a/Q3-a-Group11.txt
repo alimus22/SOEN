@@ -1,0 +1,5 @@
+SELECT movies.title
+FROM Movies
+JOIN Actors ON actors.mid=movies.mid
+WHERE actors.name='Daniel Craig'
+ORDER BY movies.title ASC;

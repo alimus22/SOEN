@@ -1,0 +1,4 @@
+SELECT COUNT(*)
+FROM high_ratings HR
+WHERE HR.name NOT IN (SELECT *
+		     FROM low_ratings)

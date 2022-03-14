@@ -1,0 +1,5 @@
+SELECT g.genre, COUNT(g.mid) as Count
+FROM genres g
+GROUP BY g.genre
+HAVING COUNT(g.mid) > 1000
+ORDER BY Count ASC;
