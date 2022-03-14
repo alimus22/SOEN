@@ -31,3 +31,4 @@ CREATE VIEW fraction_common_actors AS
     WHERE M1.mid = NA.mid AND M1.mid = CCA.mid1 AND NA.mid = CCA.mid1
       AND M2.mid = CCA.mid2 AND M1.mid <> M2.mid AND M1.title NOT LIKE M2.title
     ORDER BY M1.mid
+
