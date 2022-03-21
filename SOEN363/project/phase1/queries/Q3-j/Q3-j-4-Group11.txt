@@ -1,3 +1,0 @@
-SELECT *
-FROM co_actors c
-WHERE c.name NOT IN (SELECT n.name FROM non_existent n)

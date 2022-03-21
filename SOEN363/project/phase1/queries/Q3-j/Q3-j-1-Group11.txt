@@ -1,8 +1,0 @@
-CREATE VIEW co_actors AS
-SELECT  DISTINCT A1.name
-FROM Actors A1
-WHERE A1.name <>'Annette Nicole' AND A1.mid in (SELECT A.mid
-                                                FROM Actors A
-                                                WHERE A.name='Annette Nicole') 
-
-SELECT COUNT(*) FROM co_actors

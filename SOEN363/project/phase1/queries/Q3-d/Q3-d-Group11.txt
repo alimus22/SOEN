@@ -1,4 +1,0 @@
-SELECT M.title,M.year,M.rating
-FROM Movies M
-GROUP BY M.mid, M.year
-ORDER BY M.year ASC, M.rating DESC

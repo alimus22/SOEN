@@ -1,4 +1,0 @@
-SELECT actors.name FROM actors
-JOIN movies ON movies.mid = actors.mid
-WHERE movies.title = 'The Dark Knight'
-ORDER BY  actors.name ASC;

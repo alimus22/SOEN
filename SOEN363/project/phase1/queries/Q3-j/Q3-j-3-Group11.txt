@@ -1,6 +1,0 @@
-CREATE VIEW non_existent AS
-SELECT AC.name, AC.mid
-FROM all_combinations AC
-WHERE AC.mid NOT IN (SELECT A.mid
-                     FROM actors A
-                     WHERE A.name = AC.name)

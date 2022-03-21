@@ -1,6 +1,0 @@
-SELECT *
-FROM Movies M1
-WHERE M1.rating IN (SELECT MAX(M.rating)
-			FROM Movies M )
-AND M1.num_ratings IN (SELECT MAX(M.num_ratings)
-				     FROM Movies M )

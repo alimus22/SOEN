@@ -1,5 +1,0 @@
-SELECT *
-FROM Movies M1
-WHERE M1.rating = (SELECT MAX(M.rating)
-			FROM Movies M )
-ORDER BY M1.mid ASC

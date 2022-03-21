@@ -1,7 +1,0 @@
-CREATE VIEW all_combinations AS
-SELECT CA.name, AN.mid
-FROM co_actors CA, (SELECT A.mid
-			  FROM Actors A
-			  WHERE A.name='Annette Nicole') AN
-
-SELECT COUNT(*) FROM all_combinations
