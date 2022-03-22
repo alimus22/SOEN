@@ -116,7 +116,7 @@
                 <connectTime>true</connectTime>
               </value>
             </objProp>
-            <stringProp name="filename">/Users/alihanni/GitHub/SOEN/SOEN345/A5/40157164_amazon.csv</stringProp>
+            <stringProp name="filename">/Users/alihanni/GitHub/SOEN/SOEN345/A5/40157164_amazon1.csv</stringProp>
           </ResultCollector>
           <hashTree/>
         </hashTree>

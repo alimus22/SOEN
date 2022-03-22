@@ -1,39 +1,22 @@
-2022-03-22 12:50:41,176 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
-2022-03-22 12:50:41,210 INFO o.a.j.JMeter: Loading user properties from: /Users/alihanni/Documents/apache-jmeter-5.4.3/bin/user.properties
-2022-03-22 12:50:41,211 INFO o.a.j.JMeter: Loading system properties from: /Users/alihanni/Documents/apache-jmeter-5.4.3/bin/system.properties
-2022-03-22 12:50:41,222 INFO o.a.j.JMeter: Copyright (c) 1998-2021 The Apache Software Foundation
-2022-03-22 12:50:41,222 INFO o.a.j.JMeter: Version 5.4.3
-2022-03-22 12:50:41,222 INFO o.a.j.JMeter: java.version=15.0.2
-2022-03-22 12:50:41,222 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
-2022-03-22 12:50:41,222 INFO o.a.j.JMeter: os.name=Mac OS X
-2022-03-22 12:50:41,223 INFO o.a.j.JMeter: os.arch=x86_64
-2022-03-22 12:50:41,223 INFO o.a.j.JMeter: os.version=12.2.1
-2022-03-22 12:50:41,223 INFO o.a.j.JMeter: file.encoding=UTF-8
-2022-03-22 12:50:41,223 INFO o.a.j.JMeter: java.awt.headless=null
-2022-03-22 12:50:41,223 INFO o.a.j.JMeter: Max memory     =1073741824
-2022-03-22 12:50:41,223 INFO o.a.j.JMeter: Available Processors =4
-2022-03-22 12:50:41,233 INFO o.a.j.JMeter: Default Locale=English (EN)
-2022-03-22 12:50:41,234 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
-2022-03-22 12:50:41,234 INFO o.a.j.JMeter: JMeterHome=/Users/alihanni/Documents/apache-jmeter-5.4.3
-2022-03-22 12:50:41,234 INFO o.a.j.JMeter: user.dir  =/Users/alihanni/GitHub/SOEN/SOEN345/A5
-2022-03-22 12:50:41,234 INFO o.a.j.JMeter: PWD       =/Users/alihanni/GitHub/SOEN/SOEN345/A5
-2022-03-22 12:50:41,251 INFO o.a.j.JMeter: IP: 10.0.0.103 Name: Ali FullName: 10.0.0.103
-2022-03-22 12:50:41,738 INFO o.a.j.JMeter: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
-2022-03-22 12:50:42,729 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
-2022-03-22 12:50:52,996 INFO o.a.j.s.FileServer: Default base='/Users/alihanni/GitHub/SOEN/SOEN345/A5'
-2022-03-22 12:50:53,006 INFO o.a.j.g.a.Load: Loading file: /Users/alihanni/GitHub/SOEN/SOEN345/A5/part_C.jmx
-2022-03-22 12:50:53,007 INFO o.a.j.s.FileServer: Set new base='/Users/alihanni/GitHub/SOEN/SOEN345/A5'
-2022-03-22 12:50:53,192 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
-2022-03-22 12:50:53,221 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
-2022-03-22 12:50:53,223 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
-2022-03-22 12:50:53,225 INFO o.a.j.s.SaveService: Loading file: /Users/alihanni/GitHub/SOEN/SOEN345/A5/part_C.jmx
-2022-03-22 12:50:53,261 INFO o.a.j.p.h.c.CookieManager: Settings: Delete null: true Check: true Allow variable: true Save: false Prefix: COOKIE_
-2022-03-22 12:50:53,264 INFO o.a.j.p.h.c.CacheManager: Will only cache the following methods: [GET]
-2022-03-22 12:50:53,273 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2022-03-22 12:50:53,274 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2022-03-22 12:50:53,274 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2022-03-22 12:50:53,274 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2022-03-22 12:50:53,274 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
-2022-03-22 12:50:53,274 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
-2022-03-22 12:50:53,733 INFO o.a.j.s.FileServer: Set new base='/Users/alihanni/GitHub/SOEN/SOEN345/A5'
-2022-03-22 12:51:23,965 INFO o.a.j.g.a.What: TestElement: class org.apache.jmeter.threads.ThreadGroup, guiClassName: org.apache.jmeter.threads.gui.ThreadGroupGui
+2022-03-22 18:49:03,341 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2022-03-22 18:49:03,398 INFO o.a.j.JMeter: Loading user properties from: /Users/alihanni/Documents/apache-jmeter-5.4.3/bin/user.properties
+2022-03-22 18:49:03,399 INFO o.a.j.JMeter: Loading system properties from: /Users/alihanni/Documents/apache-jmeter-5.4.3/bin/system.properties
+2022-03-22 18:49:03,410 INFO o.a.j.JMeter: Copyright (c) 1998-2021 The Apache Software Foundation
+2022-03-22 18:49:03,410 INFO o.a.j.JMeter: Version 5.4.3
+2022-03-22 18:49:03,410 INFO o.a.j.JMeter: java.version=15.0.2
+2022-03-22 18:49:03,410 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2022-03-22 18:49:03,410 INFO o.a.j.JMeter: os.name=Mac OS X
+2022-03-22 18:49:03,410 INFO o.a.j.JMeter: os.arch=x86_64
+2022-03-22 18:49:03,410 INFO o.a.j.JMeter: os.version=12.2.1
+2022-03-22 18:49:03,411 INFO o.a.j.JMeter: file.encoding=UTF-8
+2022-03-22 18:49:03,411 INFO o.a.j.JMeter: java.awt.headless=null
+2022-03-22 18:49:03,411 INFO o.a.j.JMeter: Max memory     =1073741824
+2022-03-22 18:49:03,411 INFO o.a.j.JMeter: Available Processors =4
+2022-03-22 18:49:03,431 INFO o.a.j.JMeter: Default Locale=English (EN)
+2022-03-22 18:49:03,431 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2022-03-22 18:49:03,432 INFO o.a.j.JMeter: JMeterHome=/Users/alihanni/Documents/apache-jmeter-5.4.3
+2022-03-22 18:49:03,432 INFO o.a.j.JMeter: user.dir  =/Users/alihanni/GitHub/SOEN/SOEN345/A5
+2022-03-22 18:49:03,432 INFO o.a.j.JMeter: PWD       =/Users/alihanni/GitHub/SOEN/SOEN345/A5
+2022-03-22 18:49:03,459 INFO o.a.j.JMeter: IP: 10.0.0.103 Name: Ali FullName: 10.0.0.103
+2022-03-22 18:49:04,263 INFO o.a.j.JMeter: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
+2022-03-22 18:49:06,062 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties

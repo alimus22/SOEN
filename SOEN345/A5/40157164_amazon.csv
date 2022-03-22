@@ -1,101 +1,101 @@
 timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
-1647958814519,149,HTTP Request,503,Service Unavailable,Users 1-1,text,false,,7177,115,15,15,https://www.amazon.ca/,149,0,107
-1647958814560,116,HTTP Request,503,Service Unavailable,Users 1-5,text,false,,7177,115,15,15,https://www.amazon.ca/,116,0,69
-1647958814550,127,HTTP Request,503,Service Unavailable,Users 1-4,text,false,,7177,115,14,14,https://www.amazon.ca/,127,0,78
-1647958814577,102,HTTP Request,503,Service Unavailable,Users 1-7,text,false,,7177,115,13,13,https://www.amazon.ca/,102,0,59
-1647958814529,150,HTTP Request,503,Service Unavailable,Users 1-2,text,false,,7177,115,13,13,https://www.amazon.ca/,150,0,104
-1647958814537,154,HTTP Request,503,Service Unavailable,Users 1-3,text,false,,7177,115,13,13,https://www.amazon.ca/,154,0,99
-1647958814588,106,HTTP Request,503,Service Unavailable,Users 1-8,text,false,,7177,115,12,12,https://www.amazon.ca/,106,0,51
-1647958814567,128,HTTP Request,503,Service Unavailable,Users 1-6,text,false,,7177,115,12,12,https://www.amazon.ca/,128,0,73
-1647958814600,110,HTTP Request,503,Service Unavailable,Users 1-9,text,false,,7177,115,12,12,https://www.amazon.ca/,110,0,59
-1647958814618,93,HTTP Request,503,Service Unavailable,Users 1-11,text,false,,7177,115,11,11,https://www.amazon.ca/,93,0,53
-1647958814611,100,HTTP Request,503,Service Unavailable,Users 1-10,text,false,,7177,115,10,10,https://www.amazon.ca/,100,0,49
-1647958814630,100,HTTP Request,503,Service Unavailable,Users 1-12,text,false,,7177,115,11,11,https://www.amazon.ca/,100,0,56
-1647958814658,93,HTTP Request,503,Service Unavailable,Users 1-15,text,false,,7177,115,12,12,https://www.amazon.ca/,92,0,47
-1647958814649,104,HTTP Request,503,Service Unavailable,Users 1-14,text,false,,7177,115,11,11,https://www.amazon.ca/,104,0,55
-1647958814681,93,HTTP Request,503,Service Unavailable,Users 1-17,text,false,,7177,115,12,12,https://www.amazon.ca/,93,0,53
-1647958814670,107,HTTP Request,503,Service Unavailable,Users 1-16,text,false,,7177,115,11,11,https://www.amazon.ca/,106,0,56
-1647958814687,98,HTTP Request,503,Service Unavailable,Users 1-18,text,false,,7177,115,11,11,https://www.amazon.ca/,98,0,57
-1647958814697,113,HTTP Request,503,Service Unavailable,Users 1-19,text,false,,7177,115,12,12,https://www.amazon.ca/,113,0,62
-1647958814716,98,HTTP Request,503,Service Unavailable,Users 1-21,text,false,,7177,115,12,12,https://www.amazon.ca/,98,0,53
-1647958814727,95,HTTP Request,503,Service Unavailable,Users 1-22,text,false,,7177,115,12,12,https://www.amazon.ca/,95,0,53
-1647958814746,95,HTTP Request,503,Service Unavailable,Users 1-23,text,false,,7177,115,12,12,https://www.amazon.ca/,95,0,50
-1647958814766,94,HTTP Request,503,Service Unavailable,Users 1-26,text,false,,7177,115,14,14,https://www.amazon.ca/,94,0,43
-1647958814748,119,HTTP Request,503,Service Unavailable,Users 1-24,text,false,,7177,115,13,13,https://www.amazon.ca/,119,0,72
-1647958814759,109,HTTP Request,503,Service Unavailable,Users 1-25,text,false,,7177,115,13,13,https://www.amazon.ca/,109,0,54
-1647958814782,93,HTTP Request,503,Service Unavailable,Users 1-27,text,false,,7177,115,12,12,https://www.amazon.ca/,93,0,50
-1647958814790,94,HTTP Request,503,Service Unavailable,Users 1-28,text,false,,7177,115,12,12,https://www.amazon.ca/,94,0,53
-1647958814802,98,HTTP Request,503,Service Unavailable,Users 1-29,text,false,,7177,115,13,13,https://www.amazon.ca/,98,0,54
-1647958814812,91,HTTP Request,503,Service Unavailable,Users 1-30,text,false,,7177,115,12,12,https://www.amazon.ca/,91,0,47
-1647958814827,91,HTTP Request,503,Service Unavailable,Users 1-32,text,false,,7177,115,12,12,https://www.amazon.ca/,91,0,51
-1647958814818,102,HTTP Request,503,Service Unavailable,Users 1-31,text,false,,7177,115,11,11,https://www.amazon.ca/,102,0,58
-1647958814847,103,HTTP Request,503,Service Unavailable,Users 1-34,text,false,,7177,115,14,14,https://www.amazon.ca/,103,0,58
-1647958814842,109,HTTP Request,503,Service Unavailable,Users 1-33,text,false,,7177,115,13,13,https://www.amazon.ca/,109,0,51
-1647958814860,98,HTTP Request,503,Service Unavailable,Users 1-35,text,false,,7177,115,13,13,https://www.amazon.ca/,98,0,52
-1647958814641,330,HTTP Request,200,OK,Users 1-13,text,true,,82124,115,13,13,https://www.amazon.ca/,123,0,54
-1647958814872,104,HTTP Request,503,Service Unavailable,Users 1-36,text,false,,7177,115,12,12,https://www.amazon.ca/,104,0,51
-1647958814880,99,HTTP Request,503,Service Unavailable,Users 1-37,text,false,,7177,115,12,12,https://www.amazon.ca/,99,0,52
-1647958814888,97,HTTP Request,503,Service Unavailable,Users 1-38,text,false,,7177,115,11,11,https://www.amazon.ca/,97,0,55
-1647958814897,100,HTTP Request,503,Service Unavailable,Users 1-39,text,false,,7177,115,11,11,https://www.amazon.ca/,100,0,48
-1647958814923,88,HTTP Request,503,Service Unavailable,Users 1-41,text,false,,7177,115,12,12,https://www.amazon.ca/,88,0,45
-1647958814908,111,HTTP Request,503,Service Unavailable,Users 1-40,text,false,,7177,115,12,12,https://www.amazon.ca/,111,0,63
-1647958814927,102,HTTP Request,503,Service Unavailable,Users 1-42,text,false,,7177,115,12,12,https://www.amazon.ca/,102,0,50
-1647958814946,99,HTTP Request,503,Service Unavailable,Users 1-43,text,false,,7177,115,12,12,https://www.amazon.ca/,99,0,56
-1647958814950,95,HTTP Request,503,Service Unavailable,Users 1-44,text,false,,7177,115,12,12,https://www.amazon.ca/,95,0,52
-1647958814709,343,HTTP Request,200,OK,Users 1-20,text,true,,82908,115,11,11,https://www.amazon.ca/,114,0,52
-1647958814957,106,HTTP Request,503,Service Unavailable,Users 1-45,text,false,,7177,115,11,11,https://www.amazon.ca/,106,0,53
-1647958814978,92,HTTP Request,503,Service Unavailable,Users 1-47,text,false,,7177,115,11,11,https://www.amazon.ca/,92,0,51
-1647958814969,103,HTTP Request,503,Service Unavailable,Users 1-46,text,false,,7177,115,10,10,https://www.amazon.ca/,103,0,60
-1647958814986,94,HTTP Request,503,Service Unavailable,Users 1-48,text,false,,7177,115,10,10,https://www.amazon.ca/,94,0,51
-1647958814997,100,HTTP Request,503,Service Unavailable,Users 1-49,text,false,,7177,115,11,11,https://www.amazon.ca/,100,0,57
-1647958815009,98,HTTP Request,503,Service Unavailable,Users 1-50,text,false,,7177,115,11,11,https://www.amazon.ca/,98,0,52
-1647958815018,98,HTTP Request,503,Service Unavailable,Users 1-51,text,false,,7177,115,10,10,https://www.amazon.ca/,98,0,54
-1647958815047,95,HTTP Request,503,Service Unavailable,Users 1-54,text,false,,7177,115,12,12,https://www.amazon.ca/,95,0,53
-1647958815037,107,HTTP Request,503,Service Unavailable,Users 1-53,text,false,,7177,115,11,11,https://www.amazon.ca/,107,0,52
-1647958815027,118,HTTP Request,503,Service Unavailable,Users 1-52,text,false,,7177,115,10,10,https://www.amazon.ca/,118,0,63
-1647958815068,84,HTTP Request,503,Service Unavailable,Users 1-56,text,false,,7177,115,10,10,https://www.amazon.ca/,84,0,37
-1647958815059,100,HTTP Request,503,Service Unavailable,Users 1-55,text,false,,7177,115,10,10,https://www.amazon.ca/,100,0,56
-1647958815078,101,HTTP Request,503,Service Unavailable,Users 1-57,text,false,,7177,115,11,11,https://www.amazon.ca/,101,0,54
-1647958815087,99,HTTP Request,503,Service Unavailable,Users 1-58,text,false,,7177,115,10,10,https://www.amazon.ca/,99,0,59
-1647958815108,94,HTTP Request,503,Service Unavailable,Users 1-60,text,false,,7177,115,11,11,https://www.amazon.ca/,94,0,42
-1647958815097,105,HTTP Request,503,Service Unavailable,Users 1-59,text,false,,7177,115,10,10,https://www.amazon.ca/,105,0,53
-1647958815120,95,HTTP Request,503,Service Unavailable,Users 1-61,text,false,,7177,115,10,10,https://www.amazon.ca/,95,0,48
-1647958815128,95,HTTP Request,503,Service Unavailable,Users 1-62,text,false,,7177,115,10,10,https://www.amazon.ca/,95,0,49
-1647958815138,105,HTTP Request,503,Service Unavailable,Users 1-63,text,false,,7177,115,11,11,https://www.amazon.ca/,105,0,59
-1647958815150,95,HTTP Request,503,Service Unavailable,Users 1-64,text,false,,7177,115,10,10,https://www.amazon.ca/,95,0,46
-1647958815158,100,HTTP Request,503,Service Unavailable,Users 1-65,text,false,,7177,115,10,10,https://www.amazon.ca/,100,0,58
-1647958815176,92,HTTP Request,503,Service Unavailable,Users 1-67,text,false,,7177,115,11,11,https://www.amazon.ca/,92,0,51
-1647958815167,111,HTTP Request,503,Service Unavailable,Users 1-66,text,false,,7177,115,11,11,https://www.amazon.ca/,111,0,60
-1647958815190,97,HTTP Request,503,Service Unavailable,Users 1-68,text,false,,7177,115,10,10,https://www.amazon.ca/,97,0,55
-1647958815208,96,HTTP Request,503,Service Unavailable,Users 1-70,text,false,,7177,115,11,11,https://www.amazon.ca/,96,0,52
-1647958815200,108,HTTP Request,503,Service Unavailable,Users 1-69,text,false,,7177,115,10,10,https://www.amazon.ca/,108,0,51
-1647958815217,95,HTTP Request,503,Service Unavailable,Users 1-71,text,false,,7177,115,10,10,https://www.amazon.ca/,95,0,53
-1647958815227,93,HTTP Request,503,Service Unavailable,Users 1-72,text,false,,7177,115,10,10,https://www.amazon.ca/,93,0,52
-1647958815241,103,HTTP Request,503,Service Unavailable,Users 1-73,text,false,,7177,115,11,11,https://www.amazon.ca/,103,0,52
-1647958815250,108,HTTP Request,503,Service Unavailable,Users 1-74,text,false,,7177,115,12,12,https://www.amazon.ca/,108,0,54
-1647958815260,105,HTTP Request,503,Service Unavailable,Users 1-75,text,false,,7177,115,11,11,https://www.amazon.ca/,105,0,52
-1647958815266,104,HTTP Request,503,Service Unavailable,Users 1-76,text,false,,7177,115,11,11,https://www.amazon.ca/,104,0,46
-1647958815276,95,HTTP Request,503,Service Unavailable,Users 1-77,text,false,,7177,115,10,10,https://www.amazon.ca/,95,0,52
-1647958815289,89,HTTP Request,503,Service Unavailable,Users 1-78,text,false,,7177,115,10,10,https://www.amazon.ca/,89,0,47
-1647958815309,90,HTTP Request,503,Service Unavailable,Users 1-80,text,false,,7177,115,11,11,https://www.amazon.ca/,90,0,46
-1647958815316,89,HTTP Request,503,Service Unavailable,Users 1-81,text,false,,7177,115,10,10,https://www.amazon.ca/,89,0,45
-1647958815326,87,HTTP Request,503,Service Unavailable,Users 1-82,text,false,,7177,115,10,10,https://www.amazon.ca/,87,0,42
-1647958815336,88,HTTP Request,503,Service Unavailable,Users 1-83,text,false,,7177,115,10,10,https://www.amazon.ca/,88,0,44
-1647958815347,86,HTTP Request,503,Service Unavailable,Users 1-84,text,false,,7177,115,10,10,https://www.amazon.ca/,86,0,41
-1647958815369,113,HTTP Request,503,Service Unavailable,Users 1-86,text,false,,7177,115,14,14,https://www.amazon.ca/,112,0,57
-1647958815377,108,HTTP Request,503,Service Unavailable,Users 1-87,text,false,,7177,115,13,13,https://www.amazon.ca/,108,0,54
-1647958815389,100,HTTP Request,503,Service Unavailable,Users 1-88,text,false,,7177,115,12,12,https://www.amazon.ca/,100,0,54
-1647958815397,97,HTTP Request,503,Service Unavailable,Users 1-89,text,false,,7177,115,12,12,https://www.amazon.ca/,97,0,52
-1647958815410,93,HTTP Request,503,Service Unavailable,Users 1-90,text,false,,7177,115,11,11,https://www.amazon.ca/,93,0,51
-1647958815421,98,HTTP Request,503,Service Unavailable,Users 1-91,text,false,,7177,115,12,12,https://www.amazon.ca/,98,0,55
-1647958815427,111,HTTP Request,503,Service Unavailable,Users 1-92,text,false,,7177,115,11,11,https://www.amazon.ca/,111,0,61
-1647958815446,94,HTTP Request,503,Service Unavailable,Users 1-94,text,false,,7177,115,10,10,https://www.amazon.ca/,94,0,45
-1647958815439,108,HTTP Request,503,Service Unavailable,Users 1-93,text,false,,7177,115,9,9,https://www.amazon.ca/,108,0,56
-1647958815458,100,HTTP Request,503,Service Unavailable,Users 1-95,text,false,,7177,115,8,8,https://www.amazon.ca/,100,0,54
-1647958815470,111,HTTP Request,503,Service Unavailable,Users 1-96,text,false,,7177,115,7,7,https://www.amazon.ca/,111,0,57
-1647958815493,95,HTTP Request,503,Service Unavailable,Users 1-98,text,false,,7177,115,6,6,https://www.amazon.ca/,95,0,46
-1647958815504,89,HTTP Request,503,Service Unavailable,Users 1-99,text,false,,7177,115,5,5,https://www.amazon.ca/,89,0,44
-1647958815509,91,HTTP Request,503,Service Unavailable,Users 1-100,text,false,,7177,115,4,4,https://www.amazon.ca/,91,0,39
-1647958815300,345,HTTP Request,200,OK,Users 1-79,text,true,,82489,115,3,3,https://www.amazon.ca/,131,0,46
-1647958815358,332,HTTP Request,200,OK,Users 1-85,text,true,,82387,115,2,2,https://www.amazon.ca/,128,0,57
-1647958815479,356,HTTP Request,200,OK,Users 1-97,text,true,,82676,115,1,1,https://www.amazon.ca/,130,0,60
+1647987892795,258,HTTP Request,503,Service Unavailable,Users 1-13,text,false,,7177,115,39,39,https://www.amazon.ca/,258,0,203
+1647987892888,281,HTTP Request,503,Service Unavailable,Users 1-22,text,false,,7177,115,50,50,https://www.amazon.ca/,281,0,234
+1647987892679,496,HTTP Request,503,Service Unavailable,Users 1-1,text,false,,7177,115,49,49,https://www.amazon.ca/,496,0,283
+1647987892750,480,HTTP Request,503,Service Unavailable,Users 1-8,text,false,,7177,115,54,54,https://www.amazon.ca/,480,0,168
+1647987892763,467,HTTP Request,503,Service Unavailable,Users 1-9,text,false,,7177,115,54,54,https://www.amazon.ca/,467,0,168
+1647987892775,467,HTTP Request,200,OK,Users 1-11,text,true,,83206,115,53,53,https://www.amazon.ca/,456,0,169
+1647987892699,578,HTTP Request,200,OK,Users 1-3,text,true,,84709,115,57,57,https://www.amazon.ca/,505,0,233
+1647987892731,549,HTTP Request,200,OK,Users 1-6,text,true,,86893,115,56,56,https://www.amazon.ca/,493,0,184
+1647987892928,382,HTTP Request,503,Service Unavailable,Users 1-26,text,false,,7177,115,58,58,https://www.amazon.ca/,382,0,328
+1647987892743,576,HTTP Request,200,OK,Users 1-7,text,true,,86918,115,58,58,https://www.amazon.ca/,309,0,217
+1647987892687,695,HTTP Request,503,Service Unavailable,Users 1-2,text,false,,7177,115,62,62,https://www.amazon.ca/,695,0,477
+1647987892999,394,HTTP Request,503,Service Unavailable,Users 1-33,text,false,,7177,115,62,62,https://www.amazon.ca/,394,0,347
+1647987892722,751,HTTP Request,503,Service Unavailable,Users 1-5,text,false,,7177,115,68,68,https://www.amazon.ca/,751,0,455
+1647987892940,563,HTTP Request,200,OK,Users 1-27,text,true,,83170,115,70,70,https://www.amazon.ca/,555,0,111
+1647987892908,605,HTTP Request,200,OK,Users 1-24,text,true,,86146,115,70,70,https://www.amazon.ca/,525,0,242
+1647987892766,752,HTTP Request,200,OK,Users 1-10,text,true,,86652,115,71,71,https://www.amazon.ca/,667,0,395
+1647987892959,569,HTTP Request,503,Service Unavailable,Users 1-29,text,false,,7177,115,71,71,https://www.amazon.ca/,569,0,76
+1647987892950,584,HTTP Request,200,OK,Users 1-28,text,true,,86405,115,70,70,https://www.amazon.ca/,576,0,72
+1647987892896,650,HTTP Request,200,OK,Users 1-23,text,true,,86602,115,71,71,https://www.amazon.ca/,536,0,236
+1647987892784,764,HTTP Request,200,OK,Users 1-12,text,true,,83776,115,70,70,https://www.amazon.ca/,650,0,377
+1647987892989,600,HTTP Request,503,Service Unavailable,Users 1-32,text,false,,7177,115,73,73,https://www.amazon.ca/,600,0,332
+1647987892806,785,HTTP Request,503,Service Unavailable,Users 1-14,text,false,,7177,115,72,72,https://www.amazon.ca/,784,0,483
+1647987892712,888,HTTP Request,200,OK,Users 1-4,text,true,,84142,115,72,72,https://www.amazon.ca/,618,0,462
+1647987892980,642,HTTP Request,200,OK,Users 1-31,text,true,,81575,115,73,73,https://www.amazon.ca/,466,0,187
+1647987892847,776,HTTP Request,503,Service Unavailable,Users 1-18,text,false,,7177,115,72,72,https://www.amazon.ca/,776,0,568
+1647987892972,697,HTTP Request,200,OK,Users 1-30,text,true,,86970,115,76,76,https://www.amazon.ca/,350,0,298
+1647987892860,813,HTTP Request,503,Service Unavailable,Users 1-19,text,false,,7177,115,75,75,https://www.amazon.ca/,813,0,760
+1647987893154,522,HTTP Request,503,Service Unavailable,Users 1-49,text,false,,7177,115,74,74,https://www.amazon.ca/,522,0,477
+1647987893076,610,HTTP Request,503,Service Unavailable,Users 1-41,text,false,,7177,115,73,73,https://www.amazon.ca/,610,0,559
+1647987893108,578,HTTP Request,503,Service Unavailable,Users 1-43,text,false,,7177,115,73,73,https://www.amazon.ca/,578,0,534
+1647987893234,463,HTTP Request,200,OK,Users 1-57,text,true,,86697,115,71,71,https://www.amazon.ca/,440,0,78
+1647987892876,852,HTTP Request,503,Service Unavailable,Users 1-21,text,false,,7177,115,70,70,https://www.amazon.ca/,852,0,653
+1647987892917,813,HTTP Request,200,OK,Users 1-25,text,true,,82431,115,69,69,https://www.amazon.ca/,525,0,280
+1647987893036,721,HTTP Request,200,OK,Users 1-37,text,true,,87467,115,68,68,https://www.amazon.ca/,712,0,351
+1647987893126,655,HTTP Request,503,Service Unavailable,Users 1-45,text,false,,7177,115,66,66,https://www.amazon.ca/,655,0,613
+1647987893134,656,HTTP Request,503,Service Unavailable,Users 1-47,text,false,,7177,115,65,65,https://www.amazon.ca/,656,0,608
+1647987893176,616,HTTP Request,503,Service Unavailable,Users 1-51,text,false,,7177,115,64,64,https://www.amazon.ca/,616,0,565
+1647987893099,699,HTTP Request,503,Service Unavailable,Users 1-42,text,false,,7177,115,63,63,https://www.amazon.ca/,699,0,652
+1647987893405,420,HTTP Request,503,Service Unavailable,Users 1-74,text,false,,7177,115,62,62,https://www.amazon.ca/,420,0,373
+1647987893034,811,HTTP Request,503,Service Unavailable,Users 1-36,text,false,,7177,115,61,61,https://www.amazon.ca/,811,0,626
+1647987892828,1055,HTTP Request,200,OK,Users 1-16,text,true,,85060,115,60,60,https://www.amazon.ca/,813,0,756
+1647987892864,1042,HTTP Request,200,OK,Users 1-20,text,true,,87525,115,59,59,https://www.amazon.ca/,844,0,689
+1647987892814,1103,HTTP Request,200,OK,Users 1-15,text,true,,84099,115,58,58,https://www.amazon.ca/,853,0,796
+1647987893435,496,HTTP Request,503,Service Unavailable,Users 1-77,text,false,,7177,115,57,57,https://www.amazon.ca/,496,0,447
+1647987892836,1102,HTTP Request,200,OK,Users 1-17,text,true,,86666,115,56,56,https://www.amazon.ca/,813,0,752
+1647987893147,797,HTTP Request,200,OK,Users 1-48,text,true,,87408,115,55,55,https://www.amazon.ca/,731,0,503
+1647987893195,758,HTTP Request,503,Service Unavailable,Users 1-53,text,false,,7177,115,54,54,https://www.amazon.ca/,758,0,590
+1647987893285,680,HTTP Request,503,Service Unavailable,Users 1-62,text,false,,7177,115,53,53,https://www.amazon.ca/,680,0,537
+1647987893384,592,HTTP Request,503,Service Unavailable,Users 1-72,text,false,,7177,115,52,52,https://www.amazon.ca/,592,0,412
+1647987893274,713,HTTP Request,200,OK,Users 1-61,text,true,,83779,115,51,51,https://www.amazon.ca/,595,0,400
+1647987893314,676,HTTP Request,503,Service Unavailable,Users 1-65,text,false,,7177,115,50,50,https://www.amazon.ca/,676,0,470
+1647987893054,945,HTTP Request,200,OK,Users 1-39,text,true,,86051,115,49,49,https://www.amazon.ca/,796,0,499
+1647987893644,362,HTTP Request,503,Service Unavailable,Users 1-98,text,false,,7177,115,48,48,https://www.amazon.ca/,362,0,319
+1647987893488,557,HTTP Request,503,Service Unavailable,Users 1-82,text,false,,7177,115,47,47,https://www.amazon.ca/,557,0,506
+1647987893166,890,HTTP Request,200,OK,Users 1-50,text,true,,86718,115,46,46,https://www.amazon.ca/,615,0,553
+1647987893011,1056,HTTP Request,200,OK,Users 1-34,text,true,,85111,115,45,45,https://www.amazon.ca/,726,0,533
+1647987893045,1028,HTTP Request,200,OK,Users 1-38,text,true,,88696,115,44,44,https://www.amazon.ca/,763,0,702
+1647987893024,1056,HTTP Request,200,OK,Users 1-35,text,true,,84567,115,43,43,https://www.amazon.ca/,771,0,699
+1647987893248,849,HTTP Request,200,OK,Users 1-58,text,true,,88930,115,42,42,https://www.amazon.ca/,667,0,407
+1647987893187,917,HTTP Request,200,OK,Users 1-52,text,true,,86232,115,41,41,https://www.amazon.ca/,892,0,621
+1647987893345,765,HTTP Request,503,Service Unavailable,Users 1-68,text,false,,7177,115,40,40,https://www.amazon.ca/,765,0,601
+1647987893375,738,HTTP Request,503,Service Unavailable,Users 1-71,text,false,,7177,115,39,39,https://www.amazon.ca/,738,0,565
+1647987893122,996,HTTP Request,200,OK,Users 1-44,text,true,,83917,115,38,38,https://www.amazon.ca/,835,0,684
+1647987893309,814,HTTP Request,200,OK,Users 1-64,text,true,,84234,115,37,37,https://www.amazon.ca/,667,0,462
+1647987893072,1054,HTTP Request,200,OK,Users 1-40,text,true,,84007,115,36,36,https://www.amazon.ca/,842,0,594
+1647987893215,925,HTTP Request,200,OK,Users 1-55,text,true,,86415,115,35,35,https://www.amazon.ca/,683,0,620
+1647987893125,1025,HTTP Request,200,OK,Users 1-46,text,true,,87714,115,34,34,https://www.amazon.ca/,853,0,682
+1647987893495,668,HTTP Request,200,OK,Users 1-83,text,true,,84204,115,33,33,https://www.amazon.ca/,451,0,377
+1647987893223,942,HTTP Request,200,OK,Users 1-56,text,true,,84560,115,32,32,https://www.amazon.ca/,718,0,611
+1647987893334,840,HTTP Request,200,OK,Users 1-67,text,true,,87288,115,31,31,https://www.amazon.ca/,658,0,444
+1647987893365,811,HTTP Request,200,OK,Users 1-70,text,true,,83333,115,31,31,https://www.amazon.ca/,616,0,293
+1647987893536,642,HTTP Request,200,OK,Users 1-87,text,true,,84046,115,29,29,https://www.amazon.ca/,389,0,330
+1647987893607,574,HTTP Request,503,Service Unavailable,Users 1-94,text,false,,7177,115,28,28,https://www.amazon.ca/,574,0,401
+1647987893624,559,HTTP Request,503,Service Unavailable,Users 1-96,text,false,,7177,115,28,28,https://www.amazon.ca/,559,0,406
+1647987893654,533,HTTP Request,503,Service Unavailable,Users 1-99,text,false,,7177,115,26,26,https://www.amazon.ca/,533,0,369
+1647987893259,938,HTTP Request,200,OK,Users 1-59,text,true,,87131,115,25,25,https://www.amazon.ca/,819,0,554
+1647987893417,780,HTTP Request,503,Service Unavailable,Users 1-75,text,false,,7177,115,24,24,https://www.amazon.ca/,780,0,668
+1647987893264,935,HTTP Request,200,OK,Users 1-60,text,true,,81844,115,23,23,https://www.amazon.ca/,824,0,649
+1647987893544,661,HTTP Request,200,OK,Users 1-88,text,true,,83598,115,22,22,https://www.amazon.ca/,621,0,391
+1647987893324,895,HTTP Request,200,OK,Users 1-66,text,true,,86058,115,21,21,https://www.amazon.ca/,612,0,546
+1647987893524,720,HTTP Request,200,OK,Users 1-86,text,true,,87424,115,20,20,https://www.amazon.ca/,579,0,366
+1647987893444,806,HTTP Request,200,OK,Users 1-78,text,true,,81953,115,19,19,https://www.amazon.ca/,668,0,507
+1647987893209,1064,HTTP Request,200,OK,Users 1-54,text,true,,84430,115,18,18,https://www.amazon.ca/,893,0,739
+1647987893298,989,HTTP Request,200,OK,Users 1-63,text,true,,86171,115,17,17,https://www.amazon.ca/,783,0,524
+1647987893354,950,HTTP Request,200,OK,Users 1-69,text,true,,86335,115,16,16,https://www.amazon.ca/,757,0,584
+1647987893616,693,HTTP Request,200,OK,Users 1-95,text,true,,86383,115,15,15,https://www.amazon.ca/,411,0,348
+1647987893394,920,HTTP Request,200,OK,Users 1-73,text,true,,84182,115,14,14,https://www.amazon.ca/,796,0,627
+1647987893505,817,HTTP Request,200,OK,Users 1-84,text,true,,86370,115,13,13,https://www.amazon.ca/,565,0,464
+1647987893576,758,HTTP Request,200,OK,Users 1-91,text,true,,86916,115,12,12,https://www.amazon.ca/,627,0,441
+1647987893567,782,HTTP Request,200,OK,Users 1-90,text,true,,84887,115,11,11,https://www.amazon.ca/,619,0,451
+1647987893586,850,HTTP Request,200,OK,Users 1-92,text,true,,86548,115,10,10,https://www.amazon.ca/,617,0,470
+1647987893515,923,HTTP Request,200,OK,Users 1-85,text,true,,84237,115,9,9,https://www.amazon.ca/,682,0,587
+1647987893554,898,HTTP Request,503,Service Unavailable,Users 1-89,text,false,,7177,115,8,8,https://www.amazon.ca/,898,0,606
+1647987893665,801,HTTP Request,200,OK,Users 1-100,text,true,,84156,115,7,7,https://www.amazon.ca/,561,0,447
+1647987893596,900,HTTP Request,200,OK,Users 1-93,text,true,,87228,115,6,6,https://www.amazon.ca/,833,0,550
+1647987893475,1022,HTTP Request,200,OK,Users 1-81,text,true,,89144,115,6,6,https://www.amazon.ca/,965,0,673
+1647987893455,1045,HTTP Request,200,OK,Users 1-79,text,true,,86941,115,4,4,https://www.amazon.ca/,974,0,692
+1647987893634,899,HTTP Request,200,OK,Users 1-97,text,true,,87082,115,3,3,https://www.amazon.ca/,809,0,519
+1647987893464,1189,HTTP Request,200,OK,Users 1-80,text,true,,86958,115,2,2,https://www.amazon.ca/,988,0,701
+1647987893427,1227,HTTP Request,200,OK,Users 1-76,text,true,,85250,115,2,2,https://www.amazon.ca/,1027,0,748
