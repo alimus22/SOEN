@@ -1,0 +1,52 @@
+\newpage
+\subsection*{Question 2}
+
+\begin{enumerate}[label={(\alph*)}]
+    \item First, we try to find the order of the $B^+$ tree d. We know that the maximum number of keys is $2d$ and the maximum number of pointers to children is $2d + 1$. Knowing that key size is 50-byte, that pointer size is 8-byte, and that page size is 2000 bytes, we have to maximize the value of d such that:
+    \begin{align*}
+        (2d)*50 + (2d + 1)*8 &\leq 2000\\
+        100d + 16d + 8 &\leq 2000\\
+        116d &\leq 1992 \\
+        d &\leq 17.17 \\
+        d &= 17
+    \end{align*}
+    \noindent Hence, when maximizing the value of $d$ we obtain $d=17$. We know that we can have 34 keys and 35 pointers. Then, we know that a record on any given page holds a key field (50-byte) and a pointer (8-byte). Since the size of one page on the disk is 2000 bytes, we can find the maximum number of entries in a page by doing:
+    \begin{align*}
+        \floor{2000 / (50 + 8)}
+        \floor{2000 / 58}
+        \floor{34.48} = 34
+    \end{align*}
+    \noindent Hence, there is a maximum of 34 entries per page. We can proceed and compute the number of levels in the tree by doing:
+    \begin{align*}
+        \ceil{\log_{35}(20000/34) + 1}\\
+        \ceil{\log_{35}(588.2353) + 1}\\
+        \ceil{1.79367 + 1}\\
+        \ceil{2.79367} = 3
+    \end{align*}
+    \noindent There are 3 levels in the $B^+$ tree described.
+    
+    \item Since we deal with a dense $B^+$ tree, we know that the nodes are filled at each level we know that there are $\ceil{20000/34} = 589$ leafs on level 3. Since each full node has $2d+1 = 2*17 + 1 = 35$ children, there are $\ceil{589/35} = 17$ nodes on level 2 and a single node on level 1 which is the root of the tree. 
+    
+    \item We try to find the order of $B^+$ but this time with a key size of 10-bytes and a page size of $2000 * 0.70 = 1400$:
+        \begin{align*}
+        (2d)*10 + (2d + 1)*8 &\leq 1400\\
+        20d + 16d + 8 \leq 1400\\
+        36d \leq 1392 \\
+        d \leq 38.66 \\
+        d = 38
+    \end{align*}
+    \noindent We can have 76 keys and 77 pointers. Since the size of one page on the disk is 2000 bytes, but pages are only 70\% full, we can find the maximum number of entries in a page by doing:
+    \begin{align*}
+        \floor{1400 / (10 + 8)}
+        \floor{1400 / 18}
+        \floor{77.7778} = 77
+    \end{align*}
+    \noindent Hence, there is a maximum of 34 entries per page. We can proceed and compute the number of levels in the tree by doing:
+    \begin{align*}
+        \ceil{\log_{77}(20000/77) + 1}\\
+        \ceil{\log_{77}(259.74026) + 1}\\
+        \ceil{1.2799 + 1}\\
+        \ceil{2.2799} = 3
+    \end{align*}
+    \noindent There are 3 levels in the $B^+$ tree described.
+\end{enumerate}
