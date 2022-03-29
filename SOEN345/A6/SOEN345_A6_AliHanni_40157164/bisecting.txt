@@ -1,0 +1,11 @@
+git bisect start
+git bisect good a3bbceff0a9ea73215a4d6ff54f29e0aee102e27
+git bisect bad
+ant clean compile (build success)
+git bisect good
+ant clean compile (build fail)
+git bisect bad
+ant clean compile (build success)
+git bisect good
+ant clean compile (build fail)
+git bisect bad
