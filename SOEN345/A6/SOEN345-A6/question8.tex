@@ -1,0 +1,17 @@
+\newpage
+\subsection*{Question 4}
+\noindent In this commit, the \verb|InvalidPort| class is deleted. 
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{img/partF_1.png}
+\end{center}
+
+\noindent A call to create an instance of \verb|InvalidPort| is replaced by one to create an instance of \verb|Computer|
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{img/partF_2.png}
+\end{center}
+
+\noindent However, since \verb|Computer| is not well defined and do not extend \verb|PortHandler|, the call \verb|Computer().setPortListener(Computer.this)| is not possible since the method \verb|setPortListener()| is defined in \verb|PortHandler|. \verb|Computer| implementd \verb|PortListener| that do not have such method which will cause the error. In order to fix it, \verb|Computer| must extend \verb|PortHandler| which is possible since \verb|Computer| do not extend any other class. 
+
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{img/partF_3.png}
+\end{center}
