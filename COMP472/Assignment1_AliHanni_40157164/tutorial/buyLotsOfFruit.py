@@ -30,8 +30,8 @@ fruitPrices = {'apples': 2.00, 'oranges': 1.50, 'pears': 1.75,
 
 def buyLotsOfFruit(orderList):
     totalCost = 0.0
-    for fruit in orderList:
-        totalCost += fruitPrices.get(fruit[0]) * fruit[1]
+    for (fruit, weight) in orderList:
+        totalCost += fruitPrices.get(fruit) * weight
     return totalCost
 
 
