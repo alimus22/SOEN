@@ -25,10 +25,6 @@ import sys
 
 
 def shopSmart(orderList, fruitShops):
-    """
-        orderList: List of (fruit, numPound) tuples
-        fruitShops: List of FruitShops
-    """
     bestShop = ['', sys.maxsize]
     for shop in fruitShops:
         currentCost = shop.getPriceOfOrder(orderList)

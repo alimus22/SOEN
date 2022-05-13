@@ -31,6 +31,9 @@ fruitPrices = {'apples': 2.00, 'oranges': 1.50, 'pears': 1.75,
 def buyLotsOfFruit(orderList):
     totalCost = 0.0
     for (fruit, weight) in orderList:
+        if fruit not in fruitPrices:
+            print('ERROR: Item not in list')
+            return None
         totalCost += fruitPrices.get(fruit) * weight
     return totalCost
 
