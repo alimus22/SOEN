@@ -120,11 +120,42 @@ def depthFirstSearch(problem):
 
     return solution
 
-    util.raiseNotDefined()
-
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
+    open = util.Queue()
+    closed = {}
+    solution = []
+    visited = []
+    start = problem.getStartState()
+
+    if problem.isGoalState(start):
+        return solution
+
+    open.push((start, '', 0, ''))
+    visited.insert(0, start)
+
+    while not (open.isEmpty()):
+        node = open.pop()
+        closed[node[0]] = (node[3], node[1])
+        if problem.isGoalState(node[0]):
+            current = node[0]
+            closed[node[0]] = (node[3], node[1])
+            break
+
+        for child in problem.getSuccessors(node[0]):
+            if child[0] not in closed.keys() and child[0] not in visited:
+                open.push((*child, node[0]))
+                visited.insert(0, child[0])
+
+    while current in closed.keys():
+        if current == problem.getStartState():
+            break
+        solution.insert(0, closed[current][1])
+        current = closed[current][0]
+
+    return solution
+
     util.raiseNotDefined()
 
 
