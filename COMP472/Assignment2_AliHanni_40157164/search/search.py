@@ -162,6 +162,43 @@ def breadthFirstSearch(problem):
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
+    open = util.PriorityQueue()
+    closed = {}
+    solution = []
+    visited = []
+    costDict = {}
+    start = problem.getStartState()
+
+    if problem.isGoalState(start):
+        return solution
+
+    open.push((start, '', 0, '', 0), 0)
+    visited.insert(0, start)
+    costDict[start] = 0
+
+    while not (open.isEmpty()):
+        node = open.pop()
+        closed[node[0]] = (node[3], node[1])
+        if problem.isGoalState(node[0]):
+            current = node[0]
+            closed[node[0]] = (node[3], node[1])
+            break
+
+        for child in problem.getSuccessors(node[0]):
+            cost = node[4] + child[2]
+            if not (child[0] in closed.keys() and child[0] in visited):
+                if not (child[0] in costDict and costDict[child[0]] <= cost):
+                    open.push((*child, node[0], cost), cost)
+                    visited.insert(0, child[0])
+                    costDict[child[0]] = cost
+
+    while current in closed.keys():
+        if current == problem.getStartState():
+            break
+        solution.insert(0, closed[current][1])
+        current = closed[current][0]
+
+    return solution
     util.raiseNotDefined()
 
 
