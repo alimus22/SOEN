@@ -40,7 +40,6 @@ from game import Actions
 import util
 import time
 import search
-import math
 
 
 class GoWestAgent(Agent):
@@ -403,16 +402,12 @@ def cornersHeuristic(state, problem):
     (xPos, yPos) = state[0]
 
     if problem.isGoalState(state):
-        print(heuristic)
         return heuristic
 
-    first = True
+    val = 0
     for (xCorner, yCorner) in remainingCorners:
-        val = abs(xPos - xCorner) + abs(yPos - yCorner)
-        if first:
-            heuristic = val
-            first = False
-        elif val < heuristic:
+        val = abs(xCorner - xPos) + abs(yCorner - yPos)
+        if val > heuristic:
             heuristic = val
 
     return heuristic  # Default to trivial solution
